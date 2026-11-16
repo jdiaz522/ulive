@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ULive conoce las reglas de tu universidad y las convierte en cálculos: cuánto necesitas en lo que te falta, qué entrega pesa más esta semana y cuántas faltas te quedan.">
+  <meta name="keywords" content="ULive, universitarios, Lima, notas, faltas, gestión del tiempo académico">
+  <meta name="author" content="EduMetrics">
+  <title>ULive: notas, entregas y faltas según las reglas de tu universidad</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- Encabezado con la marca y la navegación a las secciones -->
+  <header class="encabezado">
+    <div class="contenedor barra">
+      <a class="marca" href="#inicio">ULive</a>
+      <nav class="navegacion" aria-label="Secciones de la página">
+        <ul>
+          <li><a href="#funciones">Funciones</a></li>
+          <li><a href="#para-quien-es">Para quién es</a></li>
+          <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
+        </ul>
+      </nav>
+      <a class="boton boton-secundario boton-encabezado" href="#registro">Quiero enterarme</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Qué resuelve ULive -->
+    <section id="inicio" class="seccion portada">
+      <div class="contenedor portada-fila">
+        <div class="portada-texto">
+          <p class="antetitulo">Para universitarios de Lima</p>
+          <h1>Sabe cuánto necesitas, qué atender primero y si puedes faltar</h1>
+          <p class="portada-descripcion">ULive aplica las reglas de tu universidad a tus cursos: te muestra la nota que necesitas en lo que falta, ordena tu semana según el peso de cada entrega y te dice cuántas faltas te quedan.</p>
+          <div class="acciones">
+            <a class="boton boton-secundario" href="#registro">Quiero enterarme</a>
+          </div>
+          <p class="texto-auxiliar">Sin contraseñas del portal. Tus datos se quedan en tu celular.</p>
+        </div>
+        <img class="vista-previa" src="img/vista-previa-app.png" alt="Vista previa de la pantalla de inicio de ULive: saludo a Daniela, la entrega prioritaria del Taller 3 de Cálculo II que vence hoy, promedio 15,2, 4 de 6 faltas usadas, 3 pendientes, sus cursos Cálculo II y Programación III y sus próximas actividades.">
+      </div>
+    </section>
+
+    <!-- 2. Dato del problema -->
+    <section id="problema" class="seccion problema">
+      <div class="contenedor problema-fila">
+        <p class="dato-cifra dato-numerico">83 %</p>
+        <div class="problema-texto">
+          <p class="dato-frase">de universitarios peruanos reportó estrés académico durante el semestre.</p>
+          <p class="dato-fuente">El exceso de tareas y el poco tiempo para entregarlas están entre las causas principales (Cassaretto et al., 2021).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Funciones principales -->
+    <section id="funciones" class="seccion funciones">
+      <div class="contenedor">
+        <h2>Lo que hace ULive por ti</h2>
+        <div class="tarjetas">
+          <article class="tarjeta tarjeta-funcion">
+            <img class="icono-funcion" src="img/calculadora.svg" alt="">
+            <h3>La nota que necesitas</h3>
+            <p>Registra la fórmula de tu sílabo y ve cuánto necesitas en lo que falta, con el cálculo a la vista.</p>
+          </article>
+          <article class="tarjeta tarjeta-funcion">
+            <img class="icono-funcion" src="img/calendario.svg" alt="">
+            <h3>Tu semana por impacto</h3>
+            <p>Cada entrega muestra su peso en la nota. Lo que más mueve tu promedio aparece primero.</p>
+          </article>
+          <article class="tarjeta tarjeta-funcion">
+            <img class="icono-funcion" src="img/portapapeles.svg" alt="">
+            <h3>Tus faltas con margen</h3>
+            <p>Sabe cuántas faltas te quedan antes de decidir si faltas, con la regla de tu universidad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Beneficio para cada segmento -->
+    <section id="para-quien-es" class="seccion segmentos">
+      <div class="contenedor">
+        <h2>Pensado para tu momento de la carrera</h2>
+        <div class="tarjetas">
+          <article class="tarjeta tarjeta-segmento">
+            <h3>Si llevas 18 créditos o más</h3>
+            <p>Deja de rehacer tus cálculos en Excel cada vez que sale una nota.</p>
+          </article>
+          <article class="tarjeta tarjeta-segmento">
+            <h3>Si estás en primer o segundo ciclo</h3>
+            <p>Entiende la regla de tu universidad justo cuando una decisión depende de ella.</p>
+          </article>
+          <article class="tarjeta tarjeta-segmento">
+            <h3>Si trabajas y estudias</h3>
+            <p>Decide si puedes faltar sin perder un curso y reacomoda tu semana cuando cambia tu turno.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Registro de interesados -->
+    <section id="registro" class="seccion registro">
+      <div class="contenedor contenedor-estrecho">
+        <h2>Te avisamos cuando ULive esté disponible</h2>
+        <p class="registro-descripcion">Déjanos tu correo y te escribiremos una sola vez, el día del lanzamiento.</p>
+
+        <!-- Tarjeta del registro: primero muestra el formulario y, tras un envío válido, la confirmación -->
+        <div id="tarjeta-registro" class="tarjeta-registro">
+          <form id="form-registro" class="formulario" action="#">
+            <label for="correo">Correo electrónico</label>
+            <div class="campo-fila">
+              <input type="text" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" aria-describedby="error-correo" aria-invalid="false">
+              <button type="submit" class="boton boton-principal">Avisarme</button>
+            </div>
+            <p id="error-correo" class="mensaje-error"></p>
+            <p class="texto-auxiliar">Solo usaremos tu correo para avisarte del lanzamiento. No lo compartimos con terceros.</p>
+          </form>
+
+          <!-- Confirmación (J27). El párrafo role="status" existe y está visible desde que carga
+               la página (vacío, sin alto); el escudo y el detalle empiezan ocultos -->
+          <div class="confirmacion">
+            <img id="icono-confirmacion" class="icono-confirmacion" src="img/escudo-check.svg" alt="">
+            <div class="confirmacion-texto">
+              <p id="confirmacion" class="confirmacion-titulo" role="status"></p>
+              <p id="confirmacion-detalle" class="confirmacion-detalle">Revisa tu bandeja de entrada el día del lanzamiento. Puedes darte de baja desde el mismo correo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Preguntas frecuentes (sin JavaScript) -->
+    <section id="preguntas-frecuentes" class="seccion preguntas">
+      <div class="contenedor contenedor-estrecho">
+        <h2>Preguntas frecuentes</h2>
+        <details class="pregunta" open>
+          <summary>¿Necesito la contraseña del portal de mi universidad?</summary>
+          <p>No. Tus cursos y notas los registras tú y se guardan en tu celular.</p>
+        </details>
+        <details class="pregunta">
+          <summary>¿Funciona con mi universidad?</summary>
+          <p>Empezamos con universidades privadas de Lima. Al configurar la app eliges tu universidad y ULive aplica sus reglas de notas e inasistencias. Si tu curso usa una fórmula distinta, la registras tal como aparece en tu sílabo.</p>
+        </details>
+        <details class="pregunta">
+          <summary>¿Cuánto cuesta?</summary>
+          <p>Todavía estamos definiendo el precio. Si te registras, serás de los primeros en saberlo.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>© 2026 EduMetrics · ULive</p>
+    </div>
+  </footer>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

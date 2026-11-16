@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registra un curso en ULive con la fórmula de evaluación de tu sílabo, sus sesiones y tu nota objetivo.">
+  <meta name="author" content="EduMetrics">
+  <title>Nuevo curso · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="cursos.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-primario.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Mis cursos / Nuevo curso</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+          <div class="titulo-pantalla">
+            <h1>Nuevo curso</h1>
+            <p class="descripcion-pantalla">Copia la fórmula de tu sílabo. Puedes partir de una plantilla.</p>
+          </div>
+
+          <form id="form-curso" action="cursos.html">
+            <!-- Nombre y plantilla -->
+            <div class="tarjeta-app">
+              <div class="grupo-campo">
+                <label for="nombre-curso">Nombre del curso</label>
+                <input type="text" id="nombre-curso" class="campo" value="Química General">
+              </div>
+              <div class="grupo-campo">
+                <label for="plantilla">Usar una plantilla</label>
+                <select id="plantilla" class="campo" aria-describedby="aviso-plantilla">
+                  <option value="">Sin plantilla</option>
+                  <option value="ciencias-laboratorio">Ciencias con laboratorio</option>
+                </select>
+                <p id="aviso-plantilla" class="caja-detalle ayuda" role="status"></p>
+              </div>
+            </div>
+
+            <!-- Fórmula de evaluación -->
+            <div class="tarjeta-app">
+              <h2>Fórmula de evaluación</h2>
+              <div class="lista-formula">
+                <div class="fila-formula">
+                  <label for="peso-pc1"><span class="formula-codigo">PC1</span> <span class="formula-nombre">Práctica calificada 1</span></label>
+                  <input type="text" id="peso-pc1" class="campo" placeholder="0" aria-describedby="aviso-pc1 caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-pc1" class="mensaje-error aviso-peso"></p>
+                </div>
+                <div class="fila-formula">
+                  <label for="peso-lb1"><span class="formula-codigo">LB1</span> <span class="formula-nombre">Laboratorio 1</span></label>
+                  <input type="text" id="peso-lb1" class="campo" placeholder="0" aria-describedby="aviso-lb1 caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-lb1" class="mensaje-error aviso-peso"></p>
+                </div>
+                <div class="fila-formula">
+                  <label for="peso-ea"><span class="formula-codigo">EA</span> <span class="formula-nombre">Examen parcial</span></label>
+                  <input type="text" id="peso-ea" class="campo" placeholder="0" aria-describedby="aviso-ea caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-ea" class="mensaje-error aviso-peso"></p>
+                </div>
+                <div class="fila-formula">
+                  <label for="peso-lb2"><span class="formula-codigo">LB2</span> <span class="formula-nombre">Laboratorio 2</span></label>
+                  <input type="text" id="peso-lb2" class="campo" placeholder="0" aria-describedby="aviso-lb2 caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-lb2" class="mensaje-error aviso-peso"></p>
+                </div>
+                <div class="fila-formula">
+                  <label for="peso-pc2"><span class="formula-codigo">PC2</span> <span class="formula-nombre">Práctica calificada 2</span></label>
+                  <input type="text" id="peso-pc2" class="campo" placeholder="0" aria-describedby="aviso-pc2 caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-pc2" class="mensaje-error aviso-peso"></p>
+                </div>
+                <div class="fila-formula">
+                  <label for="peso-eb"><span class="formula-codigo">EB</span> <span class="formula-nombre">Examen final</span></label>
+                  <input type="text" id="peso-eb" class="campo" placeholder="0" aria-describedby="aviso-eb caja-suma" aria-invalid="false">
+                  <span class="unidad">%</span>
+                  <p id="aviso-eb" class="mensaje-error aviso-peso"></p>
+                </div>
+              </div>
+
+              <!-- Suma de pesos: se recalcula al cambiar un peso -->
+              <div id="caja-suma" class="caja-estado caja-suma" role="status">
+                <img id="icono-suma-ok" class="icono-oculto" src="../img/icono-escudo.svg" alt="">
+                <img id="icono-suma-error" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
+                <div class="caja-estado-texto">
+                  <!-- El JS escribe en cada span; las cifras no se parten gracias a .cifra -->
+                  <p id="suma-titulo" class="caja-titulo"><span id="suma-prefijo">Suma:</span> <span id="suma-valor" class="cifra">0 %</span></p>
+                  <p class="caja-detalle"><span id="suma-diferencia-texto">Falta asignar</span> <span id="suma-diferencia" class="cifra">100 %</span><span id="suma-cierre">.</span><span id="suma-consejo"></span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Faltas y nota objetivo -->
+            <div class="tarjeta-app">
+              <h2>Faltas y nota objetivo</h2>
+              <div class="grupo-campo">
+                <label for="sesiones">Sesiones del curso</label>
+                <input type="text" id="sesiones" class="campo" value="24" aria-describedby="ayuda-sesiones">
+                <p id="ayuda-sesiones" class="texto-auxiliar ayuda">Regla UPC: puedes faltar hasta 6 sesiones (<span class="cifra">25 %</span>).</p>
+              </div>
+              <div class="grupo-campo">
+                <label for="nota-objetivo">Nota objetivo</label>
+                <input type="text" id="nota-objetivo" class="campo" value="13" aria-describedby="ayuda-objetivo">
+                <p id="ayuda-objetivo" class="texto-auxiliar ayuda">Es la nota aprobatoria de la UPC. Puedes subirla.</p>
+              </div>
+            </div>
+
+            <div class="acciones-apiladas">
+              <button type="submit" class="boton-app boton-principal">Guardar curso</button>
+              <a class="boton-app boton-secundario" href="cursos.html">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/registrar-curso.js"></script>
+</body>
+</html>

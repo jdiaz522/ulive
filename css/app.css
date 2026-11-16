@@ -1,0 +1,1863 @@
+/*
+  ULive · Estilos de la app (navegación global y pantallas)
+  Se carga después de css/base.css, que tiene los tokens, la tipografía y los campos.
+  Primero la versión web y al final la media query móvil.
+  Colores: solo los de la tabla de tokens de css/base.css.
+*/
+
+/* ---------- Cifras con unidad ---------- */
+/* Una cifra y su "%" no se separan en dos líneas */
+.cifra {
+  white-space: nowrap;
+}
+
+/* ---------- Página ---------- */
+/* La página ocupa al menos el alto de la ventana, para que la columna
+   lateral oscura llegue hasta abajo aunque el contenido sea corto */
+html,
+body {
+  height: 100%;
+}
+
+/* Excepción de la navegación fija: en la app no hay encabezado fijo arriba,
+   así que los saltos y el foco solo dejan un pequeño margen */
+html {
+  scroll-padding-top: 8px;
+}
+
+/* ---------- Estructura: columna lateral + área principal ---------- */
+.app {
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+}
+
+.lateral {
+  width: 240px;
+  min-width: 240px;
+  background-color: #0F2A44;
+}
+
+/* Excepción: el contenido de la columna lateral queda fijo al desplazarse */
+.lateral-contenido {
+  position: sticky;
+  top: 0;
+  padding: 32px 16px 24px 16px;
+}
+
+.area {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Marca ---------- */
+.marca-app {
+  display: flex;
+  flex-direction: row;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+/* Símbolo "U": primario sobre la columna oscura (el acento queda para la acción principal) */
+.simbolo {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  border-radius: 8px;
+  background-color: #15497A;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+}
+
+/* ---------- Navegación global (web: menú lateral) ---------- */
+.navegacion-app ul {
+  margin: 32px 0;
+  padding: 0;
+}
+
+.navegacion-app li {
+  display: block;
+  margin-top: 8px;
+}
+
+.navegacion-app li:first-child {
+  margin-top: 0;
+}
+
+.destino {
+  display: flex;
+  flex-direction: row;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+  text-decoration: none;
+}
+
+.destino picture {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 8px;
+}
+
+.destino img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.destino:hover {
+  text-decoration: underline;
+}
+
+/* Sección activa: cambia el fondo y el peso de la letra, no solo el color */
+.destino.activa {
+  background-color: #15497A;
+  font-weight: 600;
+}
+
+.perfil-lateral {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #15497A;
+}
+
+.perfil-nombre {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.perfil-detalle {
+  margin-top: 4px;
+  color: #D6DEE7;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ---------- Barra superior ---------- */
+.barra-app {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 32px;
+  border-bottom: 1px solid #D6DEE7;
+  background-color: #FFFFFF;
+}
+
+.ruta {
+  margin-right: auto;
+  color: #55606E;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.ciclo {
+  display: flex;
+  flex-direction: row;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.ciclo img,
+.perfil-movil img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 8px;
+}
+
+/* Marca y perfil de la barra móvil: en web ya están en la columna lateral */
+.marca-movil,
+.perfil-movil {
+  display: none;
+}
+
+/* ---------- Contenido ---------- */
+.contenido {
+  padding: 32px;
+}
+
+.titulo-pantalla {
+  margin-bottom: 24px;
+}
+
+.descripcion-pantalla {
+  margin-top: 4px;
+  color: #55606E;
+}
+
+/* Botones de la app: 8 + 26 + 8 + 2 de borde = 44 px de alto */
+.boton-app {
+  display: block;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid #15497A;
+  border-radius: 8px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.acciones-app {
+  display: flex;
+  flex-direction: row;
+}
+
+.boton-ancho {
+  flex: 1;
+}
+
+/* ---------- Tarjetas de resumen ---------- */
+.resumenes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.resumen {
+  display: block;
+  flex: 1;
+  margin-left: 16px;
+  padding: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  color: #1A2430;
+  text-decoration: none;
+}
+
+.resumen:first-child {
+  margin-left: 0;
+}
+
+.resumen-etiqueta {
+  display: block;
+  color: #55606E;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.resumen-valor {
+  display: block;
+  margin-top: 4px;
+  color: #0F2A44;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.resumen-nota {
+  display: block;
+  margin-top: 4px;
+  color: #55606E;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Variante resaltada (enlace a Faltas) */
+.resumen-destacado {
+  border: 2px solid #15497A;
+}
+
+.resumen-destacado:hover .resumen-etiqueta {
+  text-decoration: underline;
+}
+
+/* ---------- Columnas de Inicio ---------- */
+.columnas {
+  display: flex;
+  flex-direction: row;
+}
+
+.columna-principal {
+  flex: 1;
+  min-width: 0;
+}
+
+.columna-secundaria {
+  width: 390px;
+  margin-left: 24px;
+}
+
+.columna-principal .notificacion,
+.columna-secundaria .panel,
+.columna-secundaria .alerta-faltas {
+  margin-bottom: 24px;
+}
+
+/* ---------- Notificación prioritaria ---------- */
+.notificacion {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #0F2A44;
+}
+
+.notificacion-cabecera {
+  display: flex;
+  flex-direction: row;
+}
+
+.notificacion-etiqueta {
+  margin-right: auto;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #0F2A44;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.notificacion-plazo {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notificacion-titulo {
+  margin-top: 16px;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.notificacion-descripcion {
+  margin-top: 8px;
+  color: #D6DEE7;
+}
+
+.notificacion .acciones-app {
+  margin-top: 16px;
+}
+
+/* ---------- Panel (bloque blanco con título) ---------- */
+.panel {
+  padding: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.panel-cabecera {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-titulos {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.panel-cabecera .boton-app {
+  margin-top: auto;
+}
+
+.criterio {
+  margin-top: 4px;
+}
+
+/* ---------- Filas de curso ---------- */
+.lista-cursos,
+.lista-actividades {
+  margin: 16px 0 0 0;
+  padding: 0;
+}
+
+.lista-cursos li,
+.lista-actividades li {
+  display: block;
+  margin-top: 8px;
+}
+
+.lista-cursos li:first-child,
+.lista-actividades li:first-child {
+  margin-top: 0;
+}
+
+.fila-curso {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  color: #1A2430;
+  text-decoration: none;
+}
+
+.icono-curso {
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #F5F7FA;
+}
+
+.icono-curso img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.curso-info {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  margin: auto 16px;
+}
+
+.curso-nombre {
+  display: block;
+  font-weight: 500;
+}
+
+.curso-detalle {
+  display: block;
+  color: #55606E;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.curso-nota {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #0F2A44;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Solo las filas que llevan a otra pantalla tienen aspecto de clicables */
+.fila-enlace:hover .curso-nombre,
+.fila-enlace:hover .actividad-nombre {
+  text-decoration: underline;
+}
+
+/* ---------- Indicadores de estado: color + ícono + texto ---------- */
+.estado {
+  display: flex;
+  flex-direction: row;
+  margin: auto 16px auto 0;
+  padding: 4px 8px;
+  border: 1px solid #55606E;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.estado img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.estado-seguro {
+  border-color: #1B7F4B;
+  color: #1B7F4B;
+}
+
+.estado-atencion {
+  border-color: #8A5A00;
+  color: #8A5A00;
+}
+
+.estado-riesgo {
+  border-color: #B3261E;
+  color: #B3261E;
+}
+
+/* Estado sin color de situación académica (Pendiente, En curso) */
+.estado-neutro {
+  display: block;
+  padding: 0 8px;
+  border: 1px solid #7D8B99;
+  border-radius: 4px;
+  background-color: #F5F7FA;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* ---------- Tarjetas de actividad ---------- */
+.tarjeta-actividad {
+  display: block;
+  padding: 8px;
+  border: 1px solid #D6DEE7;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #1A2430;
+  text-decoration: none;
+}
+
+.actividad-prioritaria {
+  border: 2px solid #15497A;
+}
+
+.actividad-cabecera {
+  display: flex;
+  flex-direction: row;
+}
+
+.actividad-nombre {
+  display: block;
+  flex: 1;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.actividad-curso {
+  display: block;
+  margin-top: 4px;
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.actividad-fechas {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+}
+
+.actividad-peso,
+.actividad-vence {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.actividad-peso {
+  margin-right: auto;
+  color: #55606E;
+}
+
+.actividad-vence {
+  color: #1A2430;
+  font-weight: 500;
+}
+
+.actividad-peso img,
+.actividad-vence img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+/* Vence hoy: primario y más peso */
+.vence-pronto {
+  color: #15497A;
+  font-weight: 600;
+}
+
+/* ---------- Alerta de faltas ---------- */
+.alerta-faltas {
+  padding: 24px;
+  border: 2px solid #8A5A00;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.alerta-titulo {
+  display: flex;
+  flex-direction: row;
+  color: #8A5A00;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.alerta-titulo img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.alerta-resumen {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.alerta-dato {
+  margin-right: auto;
+  font-weight: 500;
+}
+
+.alerta-porcentaje {
+  color: #55606E;
+}
+
+/* Barra de progreso: el ancho del avance se fija con una clase por porcentaje */
+.progreso {
+  height: 8px;
+  margin-top: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 4px;
+  background-color: #F5F7FA;
+}
+
+.progreso-avance {
+  height: 6px;
+  border-radius: 4px;
+  background-color: #8A5A00;
+}
+
+.avance-67 {
+  width: 67%;
+}
+
+/* ---------- Pantallas con solo mockup móvil: columna centrada ---------- */
+.columna-estrecha {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Bienvenida no lleva navegación: la barra muestra la marca y el perfil también en web */
+.barra-bienvenida .marca-movil,
+.barra-bienvenida .perfil-movil {
+  display: flex;
+  flex-direction: row;
+}
+
+.barra-bienvenida .marca-movil {
+  margin-right: auto;
+  color: #0F2A44;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.barra-bienvenida .marca-movil .simbolo {
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #0F2A44;
+}
+
+.barra-bienvenida .perfil-movil {
+  color: #1A2430;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.barra-bienvenida .perfil-movil img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- Tarjeta genérica y bloques apilados ---------- */
+.tarjeta-app {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.tarjeta-app h2 {
+  margin-bottom: 8px;
+}
+
+/* ---------- Campos de formulario ---------- */
+.grupo-campo {
+  margin-top: 16px;
+}
+
+.grupo-campo:first-child {
+  margin-top: 0;
+}
+
+.grupo-campo label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Fecha y hora de entrega: dos campos agrupados con fieldset y legend */
+.grupo-fecha {
+  padding: 0;
+  border: 0;
+}
+
+.grupo-fecha legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.fecha-hora {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fecha-hora-campo {
+  flex: 1;
+  min-width: 0;
+  margin-left: 16px;
+}
+
+.fecha-hora-campo:first-child {
+  margin-left: 0;
+}
+
+.grupo-fecha .fecha-hora-campo label {
+  color: #55606E;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.grupo-fecha .mensaje-error {
+  margin-top: 4px;
+}
+
+/* Registrar actividad: los datos de impacto empiezan ocultos; el JS los muestra con display: inline */
+.impacto-datos {
+  display: none;
+}
+
+/* El select usa los estilos de .campo (base.css); solo se ajusta su alto */
+select.campo {
+  min-height: 48px;
+}
+
+.ayuda {
+  margin-top: 8px;
+}
+
+.grupo-campo .mensaje-error {
+  margin-top: 4px;
+}
+
+/* ---------- Acciones apiladas (botón principal arriba, secundario abajo) ---------- */
+.acciones-apiladas .boton-app {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.acciones-apiladas .boton-app:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Caja de estado en línea (resultado o aviso) ---------- */
+.caja-estado {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #7D8B99;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.caja-estado img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.caja-estado-texto {
+  flex: 1;
+  min-width: 0;
+}
+
+.caja-titulo {
+  font-weight: 600;
+}
+
+.caja-detalle {
+  margin-top: 4px;
+  color: #55606E;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.caja-segura {
+  border-color: #1B7F4B;
+}
+
+.caja-segura .caja-titulo {
+  color: #1B7F4B;
+}
+
+/* ---------- Lista con separadores (Mis cursos) ---------- */
+.lista-separada {
+  margin: 0;
+  padding: 0;
+}
+
+/* Separador arriba de cada fila salvo la primera (no se usa :last-child) */
+.lista-separada li {
+  display: block;
+  border-top: 1px solid #D6DEE7;
+}
+
+.lista-separada li:first-child {
+  border-top: 0;
+}
+
+.elemento-lista {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 0;
+  color: #1A2430;
+  text-decoration: none;
+}
+
+/* Caja de 32 px con el ícono de 24 px (4 + 24 + 4) */
+.elemento-lista .icono-curso {
+  width: 32px;
+  height: 32px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 4px;
+}
+
+.elemento-lista .curso-info {
+  margin: auto 16px;
+}
+
+.elemento-lista .estado {
+  margin: 4px 0 0 0;
+}
+
+/* El indicador dentro de la columna de información solo ocupa el ancho de su texto */
+.estado-linea {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ---------- Fórmula de evaluación (Registrar curso) ---------- */
+.fila-formula {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 8px 0;
+  border-top: 1px solid #D6DEE7;
+}
+
+.fila-formula:first-child {
+  border-top: 0;
+}
+
+.fila-formula label {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  margin: auto 16px auto 0;
+}
+
+.formula-codigo {
+  display: block;
+  color: #1A2430;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.formula-nombre {
+  display: block;
+  color: #55606E;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.fila-formula .campo {
+  width: 80px;
+  text-align: right;
+}
+
+.unidad {
+  margin: auto 0 auto 8px;
+  color: #0F2A44;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Aviso de un peso concreto: ocupa una línea propia debajo del campo */
+.aviso-peso {
+  width: 100%;
+  max-width: none;
+}
+
+.lista-formula {
+  margin-bottom: 16px;
+}
+
+.tarjeta-app .caja-suma {
+  margin-bottom: 0;
+}
+
+/* Íconos que empiezan ocultos; el JS los muestra con display: block */
+.caja-estado .icono-oculto {
+  display: none;
+}
+
+/* ---------- Más tonos de la caja de estado ---------- */
+.caja-atencion {
+  border-color: #8A5A00;
+}
+
+.caja-atencion .caja-titulo {
+  color: #8A5A00;
+}
+
+.caja-riesgo {
+  border-color: #B3261E;
+}
+
+.caja-riesgo .caja-titulo {
+  color: #B3261E;
+}
+
+/* Informativa: sin color de estado, borde y título primarios */
+.caja-info {
+  border-color: #15497A;
+}
+
+.caja-info .caja-titulo {
+  color: #15497A;
+}
+
+/* ---------- Dos columnas (Detalle, Simulación, Resultado) ---------- */
+.dos-columnas {
+  display: flex;
+  flex-direction: row;
+}
+
+.columna-ancha {
+  flex: 1;
+  min-width: 0;
+}
+
+.columna-lado {
+  width: 390px;
+  margin-left: 24px;
+}
+
+.columna-formulario {
+  width: 560px;
+  margin-right: 24px;
+}
+
+/* ---------- Tabla que en móvil es lista ---------- */
+.tabla-app {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-app caption {
+  padding-bottom: 8px;
+  color: #55606E;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.tabla-app th {
+  padding: 16px;
+  background-color: #F5F7FA;
+  color: #0F2A44;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tabla-app td {
+  padding: 16px;
+  border-top: 1px solid #D6DEE7;
+  color: #1A2430;
+  vertical-align: middle;
+}
+
+.tabla-app .celda-nombre {
+  font-weight: 500;
+}
+
+.tabla-app .celda-fecha {
+  color: #55606E;
+}
+
+.tabla-app .celda-resultado {
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tabla-con-margen {
+  margin-top: 16px;
+}
+
+/* Acción principal al pie de una pantalla */
+.acciones-pie {
+  margin-top: 24px;
+}
+
+.panel-pie {
+  margin-top: 24px;
+}
+
+.panel-pie .acciones-pie {
+  margin-top: 16px;
+}
+
+/* Botón con ícono: ícono y texto centrados con márgenes automáticos */
+.boton-con-icono {
+  display: flex;
+  flex-direction: row;
+}
+
+.boton-con-icono img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: auto 8px auto auto;
+}
+
+.boton-con-icono span {
+  margin-right: auto;
+}
+
+/* Actividades: nombre y curso en la misma celda, uno debajo del otro */
+.tabla-nombre {
+  display: block;
+  font-weight: 500;
+}
+
+.tabla-curso {
+  display: block;
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Nombre de la columna dentro de cada celda: solo en móvil */
+.etiqueta-movil {
+  display: none;
+}
+
+/* ---------- Filtros (botones de opción) ---------- */
+.filtros {
+  margin: 0 0 16px 0;
+  padding: 0;
+  border: 0;
+}
+
+.filtros legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.filtros-opciones {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.opcion-filtro {
+  display: flex;
+  flex-direction: row;
+  min-height: 44px;
+  margin: 0 8px 8px 0;
+  padding: 0 16px;
+  border: 1px solid #7D8B99;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+  cursor: pointer;
+}
+
+.opcion-filtro input {
+  margin: auto 8px auto 0;
+}
+
+.opcion-filtro:hover {
+  border-color: #15497A;
+}
+
+/* ---------- Panel de resultado (Simulación y Resultado) ---------- */
+.panel-resultado {
+  padding: 32px;
+  border: 2px solid #15497A;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+/* Caja de 48 px con el ícono de 32 px (8 + 32 + 8) */
+.icono-resultado {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px auto;
+  padding: 8px;
+  border-radius: 12px;
+  background-color: #F5F7FA;
+}
+
+.icono-resultado img {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.resultado-antetitulo {
+  max-width: none;
+  color: #55606E;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.resultado-cifra {
+  max-width: none;
+  margin-top: 16px;
+  color: #0F2A44;
+}
+
+.resultado-texto {
+  max-width: none;
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.resultado-detalle {
+  max-width: none;
+  margin-top: 8px;
+  color: #55606E;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.panel-resultado .caja-estado,
+.panel-resultado .resumenes {
+  margin-top: 16px;
+  text-align: left;
+}
+
+.panel-resultado .estado-linea {
+  margin-top: 16px;
+}
+
+/* El indicador centrado dentro del panel */
+.panel-resultado .estado {
+  margin: 0 auto;
+}
+
+/* Indicadores que empiezan ocultos; el JS muestra el del estado con display: flex */
+.estado.estado-oculto {
+  display: none;
+}
+
+.acciones-formulario {
+  margin-top: 16px;
+}
+
+.panel-resultado .acciones-app {
+  margin-top: 16px;
+}
+
+/* Simulación: el resultado (J5, J17) empieza oculto; el JS lo muestra con display: block */
+.vista-resultado {
+  display: none;
+  margin-top: 16px;
+}
+
+.vista-resultado h2 {
+  margin-bottom: 16px;
+}
+
+/* Anuncio del resultado: vacío y sin alto hasta que el JS escribe el resumen */
+.resultado-anuncio {
+  max-width: none;
+  color: #1A2430;
+  font-weight: 500;
+}
+
+.lista-desglose {
+  margin-top: 8px;
+}
+
+.estado-separado {
+  margin: 16px 0 8px 0;
+}
+
+.estado-separado .estado {
+  margin: 0;
+}
+
+/* ---------- Faltas ---------- */
+.fila-separada {
+  margin-top: 24px;
+}
+
+.resumenes-faltas {
+  margin-bottom: 0;
+}
+
+.titulo-con-icono {
+  display: flex;
+  flex-direction: row;
+}
+
+.titulo-con-icono img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: auto 8px auto 0;
+}
+
+.regla-texto {
+  margin-top: 8px;
+}
+
+.regla-nota {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #D6DEE7;
+}
+
+/* Botón que puede ocupar dos líneas (texto largo) */
+.boton-ancho {
+  white-space: normal;
+}
+
+/* Casilla con título y detalle (Falta justificada): toda la etiqueta es el área táctil */
+.opcion-casilla {
+  display: flex;
+  flex-direction: row;
+  min-height: 44px;
+  padding: 16px;
+  border: 1px solid #7D8B99;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Dentro de un grupo de campo, la etiqueta de la casilla sigue siendo una fila */
+.grupo-campo .opcion-casilla {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.opcion-casilla input {
+  width: 20px;
+  height: 20px;
+  margin: 4px 16px 0 0;
+}
+
+.casilla-texto {
+  display: block;
+  flex: 1;
+}
+
+.casilla-titulo {
+  display: block;
+  color: #1A2430;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.casilla-detalle {
+  display: block;
+  color: #55606E;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.opcion-casilla:hover {
+  border-color: #15497A;
+}
+
+/* Faltas registradas (J25) */
+.lista-faltas li {
+  padding: 8px 0;
+}
+
+.falta-fecha {
+  font-weight: 500;
+}
+
+/* Desglose y vista previa: filas con valor a la derecha */
+.valor-fila {
+  margin: auto 0;
+  color: #0F2A44;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.vista-previa-nota {
+  margin-bottom: 16px;
+}
+
+.caja-separada {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+/* Vista previa de Registrar nota: antes → después */
+.comparacion {
+  display: flex;
+  flex-direction: row;
+}
+
+.comparacion .resumen {
+  margin-left: 8px;
+}
+
+.comparacion .resumen:first-child {
+  margin-left: 0;
+}
+
+/* ---------- Cambio de turno (J21) y Simulador de matrícula (J22) ---------- */
+/* Dato que no se edita (Turno actual): mismo aspecto que el texto del campo, sin borde */
+.dato-fijo {
+  margin-top: 8px;
+  color: #1A2430;
+}
+
+/* Bloques que dependen del turno: empiezan ocultos y el JS los muestra con display: block */
+.bloque-turno {
+  display: none;
+}
+
+/* Indicador con un ícono por tono: el JS muestra solo el que corresponde */
+.estado .icono-oculto {
+  display: none;
+}
+
+/* Grupo de opciones dentro de una tarjeta, con su leyenda como título.
+   La tarjeta es un div que envuelve al fieldset: si el borde fuera del fieldset,
+   la leyenda quedaría sobre la línea del borde. */
+.grupo-opciones {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-opciones legend {
+  padding: 0;
+  color: #0F2A44;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.grupo-opciones .opcion-casilla {
+  margin-top: 8px;
+}
+
+.grupo-opciones .texto-auxiliar {
+  margin-top: 4px;
+}
+
+.grupo-opciones .mensaje-error {
+  margin-top: 8px;
+}
+
+/* Fila de curso: casilla, nombre y créditos a la derecha */
+.opcion-curso {
+  padding: 8px 16px;
+}
+
+.opcion-curso .casilla-texto {
+  margin: auto 0;
+}
+
+.opcion-curso input {
+  margin: auto 16px auto 0;
+}
+
+.creditos-curso {
+  margin: auto 0 auto 8px;
+  color: #55606E;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Curso que no se puede elegir: sin casilla ni cursor de clic, borde punteado y texto
+   secundario sin transparencia (opacity bajaba el contraste y, al crear un contexto de
+   apilamiento, el curso se pintaba encima de la barra inferior fija) */
+.curso-bloqueado {
+  border-style: dashed;
+  cursor: default;
+}
+
+.curso-bloqueado .casilla-titulo {
+  color: #55606E;
+}
+
+.curso-bloqueado:hover {
+  border-color: #7D8B99;
+}
+
+/* Promedio y tope (J22): separados del aviso de la regla */
+.resumenes-matricula {
+  margin-bottom: 16px;
+}
+
+/* Tarjeta de resumen resaltada sin ser enlace (Tope de créditos) */
+.resumen-resaltado {
+  border: 2px solid #15497A;
+}
+
+/* ---------- Actividades: casilla "Entregada" (HU-17) ---------- */
+/* La casilla y "Ver curso" van en fila dentro de la celda de acciones */
+.acciones-fila {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.acciones-fila .boton-app {
+  margin-left: 8px;
+}
+
+/* Toda la etiqueta es el área táctil (44 px de alto) */
+.opcion-entregada {
+  padding: 0 16px;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 42px;
+  white-space: nowrap;
+}
+
+.opcion-entregada input {
+  width: 20px;
+  height: 20px;
+  margin: auto 8px auto 0;
+}
+
+/* Indicador de estado dentro de una celda de tabla: solo el ancho de su texto */
+.estado-tabla {
+  margin: 0;
+}
+
+/* ---------- Nota calculada y nota oficial (HU-13) ---------- */
+/* Enlace a la regla dentro de una caja: línea propia con área táctil de 44 px */
+.enlace-regla {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+}
+
+.enlace-regla a {
+  display: block;
+  min-height: 44px;
+  color: #15497A;
+}
+
+.enlace-regla a:hover {
+  text-decoration: none;
+}
+
+/* En el resultado de Simulación la caja va alineada a la izquierda, como las demás */
+.caja-redondeo {
+  margin-top: 16px;
+  text-align: left;
+}
+
+/* =========================================================
+   Móvil: una columna, barra superior y navegación inferior
+   ========================================================= */
+@media screen and (max-width: 800px) {
+  /* La barra inferior fija no debe tapar el elemento con foco */
+  html {
+    scroll-padding-bottom: 80px;
+  }
+
+  /* El área va arriba y la navegación (primera en el HTML) abajo */
+  .app {
+    flex-direction: column-reverse;
+  }
+
+  /* Excepción: la barra inferior queda fija al desplazarse */
+  .lateral {
+    position: sticky;
+    bottom: 0;
+    width: auto;
+    min-width: 0;
+    border-top: 1px solid #D6DEE7;
+    background-color: #FFFFFF;
+  }
+
+  .lateral-contenido {
+    padding: 8px;
+  }
+
+  /* Marca y perfil de la columna lateral: se repiten en la barra superior móvil */
+  .marca-lateral,
+  .perfil-lateral {
+    display: none;
+  }
+
+  .navegacion-app ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+
+  .navegacion-app li {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+    margin-left: 4px;
+  }
+
+  .navegacion-app li:first-child {
+    margin-left: 0;
+  }
+
+  .destino {
+    display: block;
+    min-height: 56px;
+    padding: 8px 0;
+    color: #55606E;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .destino picture {
+    width: 20px;
+    margin: 0 auto 4px auto;
+  }
+
+  .destino span {
+    display: block;
+  }
+
+  .destino.activa {
+    background-color: #F5F7FA;
+    color: #15497A;
+  }
+
+  /* Barra superior: marca y perfil; la ruta y el ciclo se ocultan */
+  .barra-app {
+    padding: 8px 16px;
+  }
+
+  .ruta,
+  .ciclo {
+    display: none;
+  }
+
+  .marca-movil {
+    display: flex;
+    margin-right: auto;
+    color: #0F2A44;
+    font-size: 18px;
+    line-height: 40px;
+  }
+
+  .marca-movil .simbolo {
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #0F2A44;
+  }
+
+  .perfil-movil {
+    display: flex;
+    flex-direction: row;
+    color: #1A2430;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 40px;
+  }
+
+  .perfil-movil img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contenido {
+    padding: 16px;
+  }
+
+  .titulo-pantalla {
+    margin-bottom: 16px;
+  }
+
+  /* Resumen en dos columnas: base 40 % y el espacio libre se reparte igual */
+  .resumenes {
+    margin-bottom: 8px;
+  }
+
+  .resumen {
+    flex: 1 1 40%;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+
+  .resumen:nth-child(odd) {
+    margin-right: 8px;
+  }
+
+  .resumen-valor {
+    font-size: 20px;
+  }
+
+  .columnas {
+    flex-direction: column;
+  }
+
+  .columna-secundaria {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .columna-principal .notificacion,
+  .columna-principal .panel,
+  .columna-secundaria .panel,
+  .columna-secundaria .alerta-faltas {
+    margin-bottom: 16px;
+  }
+
+  .notificacion {
+    padding: 16px;
+  }
+
+  .notificacion-titulo {
+    font-size: 18px;
+  }
+
+  /* Cabecera del panel: título arriba y botón debajo */
+  .panel-cabecera {
+    flex-direction: column;
+  }
+
+  .panel-titulos {
+    margin-right: 0;
+  }
+
+  .panel-cabecera .boton-app {
+    margin-top: 8px;
+  }
+
+  /* Fila de curso en dos líneas: ícono y nombre arriba; estado y nota debajo */
+  .fila-curso {
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+
+  .curso-info {
+    flex: 1 1 60%;
+    margin: auto 0 auto 8px;
+  }
+
+  .estado {
+    margin: 8px auto 0 0;
+  }
+
+  .curso-nota {
+    margin-top: 8px;
+    font-size: 18px;
+  }
+
+  /* En Mis cursos la nota sigue centrada junto a la información */
+  .elemento-lista .curso-nota {
+    margin-top: auto;
+  }
+
+  .alerta-faltas {
+    padding: 16px;
+  }
+
+  .alerta-titulo {
+    font-size: 20px;
+  }
+
+  /* Dos columnas pasan a una */
+  .dos-columnas {
+    flex-direction: column;
+  }
+
+  .columna-lado,
+  .columna-formulario {
+    width: auto;
+    margin: 0 0 16px 0;
+  }
+
+  .columna-lado {
+    margin-top: 16px;
+  }
+
+  .fila-separada {
+    margin-top: 0;
+  }
+
+  /* Faltas: las tres tarjetas en una fila, como en J18 */
+  .resumenes-faltas .resumen,
+  .resumenes-faltas .resumen:nth-child(odd) {
+    flex: 1;
+    margin: 0 0 0 8px;
+  }
+
+  .resumenes-faltas .resumen:first-child {
+    margin-left: 0;
+  }
+
+  /* Tabla como lista de tarjetas: la misma tabla, sin duplicar contenido */
+  .tabla-app,
+  .tabla-app caption,
+  .tabla-app tbody,
+  .tabla-app td {
+    display: block;
+  }
+
+  .tabla-app thead {
+    display: none;
+  }
+
+  .tabla-app tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding: 8px 16px;
+    border: 1px solid #D6DEE7;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+  }
+
+  .tabla-app td {
+    margin-right: 16px;
+    padding: 4px 0;
+    border-top: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Nombre y curso ocupan una línea cada uno; fecha, nota, peso y resultado comparten la siguiente */
+  .tabla-app .celda-nombre,
+  .tabla-app .celda-curso {
+    flex: 1 1 100%;
+    margin-right: 0;
+  }
+
+  .tabla-app .celda-nombre {
+    font-size: 16px;
+  }
+
+  .etiqueta-movil {
+    display: inline;
+    color: #55606E;
+  }
+
+  /* En Actividades, el botón "Ver curso" ocupa su propia línea */
+  .tabla-app .celda-accion {
+    flex: 1 1 100%;
+    margin-right: 0;
+  }
+
+  .acciones-pie {
+    margin-top: 16px;
+  }
+
+  .acciones-pie .boton-app {
+    flex: 1;
+  }
+
+  .panel-resultado {
+    padding: 16px;
+  }
+
+  .comparacion {
+    flex-direction: column;
+  }
+
+  .comparacion .resumen {
+    flex: none;
+    margin: 8px 0 0 0;
+  }
+
+  .comparacion .resumen:first-child {
+    margin-top: 0;
+  }
+
+  /* J22: las dos tarjetas de resumen siguen en fila, como en el mockup móvil */
+  .resumenes-matricula {
+    flex-direction: row;
+  }
+
+  .resumenes-matricula .resumen {
+    flex: 1;
+    margin: 0 0 0 8px;
+  }
+
+  .resumenes-matricula .resumen:first-child {
+    margin-left: 0;
+  }
+
+  .grupo-opciones legend {
+    font-size: 20px;
+  }
+
+  /* Actividades: la casilla ocupa el ancho disponible y "Ver curso" va a su lado */
+  .acciones-fila .opcion-entregada {
+    flex: 1;
+  }
+}

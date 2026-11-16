@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inicio de ULive: tu promedio, tus faltas, tus cursos y lo que debes atender primero esta semana.">
+  <meta name="author" content="EduMetrics">
+  <title>Inicio · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino activa" href="inicio.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-primario.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <!-- Web: ruta y ciclo -->
+        <p class="ruta">ULive / Hola, Daniela</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <!-- Móvil: marca y perfil (en web ya están en la columna lateral) -->
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="titulo-pantalla">
+          <h1>Hola, Daniela</h1>
+          <p class="descripcion-pantalla">Martes 6 de octubre · Revisa primero lo prioritario</p>
+        </div>
+
+        <!-- Resumen académico -->
+        <section class="resumenes">
+          <article class="resumen">
+            <p class="resumen-etiqueta">Promedio general</p>
+            <p class="resumen-valor">15,2</p>
+            <p class="resumen-nota">Situación estable</p>
+          </article>
+          <a class="resumen resumen-destacado" href="faltas.html">
+            <span class="resumen-etiqueta">Faltas en Cálculo II</span>
+            <span class="resumen-valor">4 / 6</span>
+            <span class="resumen-nota">Te quedan 2 faltas</span>
+          </a>
+          <article class="resumen">
+            <p class="resumen-etiqueta">Actividades pendientes</p>
+            <p class="resumen-valor">4</p>
+            <p class="resumen-nota">Esta semana · 1 vencida</p>
+          </article>
+          <article class="resumen">
+            <p class="resumen-etiqueta">Próxima evaluación</p>
+            <p class="resumen-valor">14 oct</p>
+            <p class="resumen-nota">Parcial 2 · Cálculo II</p>
+          </article>
+        </section>
+
+        <div class="columnas">
+          <div class="columna-principal">
+
+            <!-- Lo que se debe atender primero -->
+            <section class="notificacion">
+              <div class="notificacion-cabecera">
+                <p class="notificacion-etiqueta">Revisar primero</p>
+                <p class="notificacion-plazo">vence hoy, 23:59</p>
+              </div>
+              <p class="notificacion-titulo">Entregar Taller 3 de Cálculo II</p>
+              <p class="notificacion-descripcion">Adjunta el desarrollo en PDF antes del cierre.</p>
+              <div class="acciones-app">
+                <a class="boton-app boton-principal" href="curso.html">Ver actividad</a>
+              </div>
+            </section>
+
+            <!-- Mis cursos -->
+            <section class="panel">
+              <div class="panel-cabecera">
+                <div class="panel-titulos">
+                  <h2>Mis cursos</h2>
+                  <p class="texto-auxiliar">Situación académica del ciclo</p>
+                </div>
+                <a class="boton-app boton-secundario" href="cursos.html">Ver todos los cursos</a>
+              </div>
+              <ul class="lista-cursos">
+                <li>
+                  <a class="fila-curso fila-enlace" href="curso.html">
+                    <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
+                    <span class="curso-info">
+                      <span class="curso-nombre">Cálculo II</span>
+                      <span class="curso-detalle">Lun / Mié · 08:00 · MAT-204</span>
+                    </span>
+                    <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
+                    <span class="curso-nota">13,8</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="fila-curso">
+                    <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
+                    <span class="curso-info">
+                      <span class="curso-nombre">Programación III</span>
+                      <span class="curso-detalle">Mar / Jue · 10:00 · SIS-306</span>
+                    </span>
+                    <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
+                    <span class="curso-nota">16,4</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="fila-curso">
+                    <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
+                    <span class="curso-info">
+                      <span class="curso-nombre">Física II</span>
+                      <span class="curso-detalle">Vie · 08:00 · FIS-202</span>
+                    </span>
+                    <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
+                    <span class="curso-nota">15,3</span>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="columna-secundaria">
+
+            <!-- Próximas actividades, ordenadas por impacto -->
+            <section class="panel">
+              <h2>Próximas actividades</h2>
+              <p class="texto-auxiliar criterio">Ordenado por impacto: peso en la nota entre días que faltan</p>
+              <ul class="lista-actividades">
+                <li>
+                  <a class="tarjeta-actividad actividad-prioritaria fila-enlace" href="curso.html">
+                    <span class="actividad-cabecera">
+                      <span class="actividad-nombre">Taller 3</span>
+                      <span class="estado-neutro">Pendiente</span>
+                    </span>
+                    <span class="actividad-curso">Cálculo II</span>
+                    <span class="actividad-fechas">
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">10 %</span></span>
+                      <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-primario.svg" alt=""> Hoy, 23:59</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <div class="tarjeta-actividad">
+                    <span class="actividad-cabecera">
+                      <span class="actividad-nombre">Foro de patrones</span>
+                      <span class="estado-neutro">Pendiente</span>
+                    </span>
+                    <span class="actividad-curso">Programación III</span>
+                    <span class="actividad-fechas">
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">5 %</span></span>
+                      <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="tarjeta-actividad">
+                    <span class="actividad-cabecera">
+                      <span class="actividad-nombre">Informe de laboratorio</span>
+                      <span class="estado-neutro">Pendiente</span>
+                    </span>
+                    <span class="actividad-curso">Física II</span>
+                    <span class="actividad-fechas">
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">15 %</span></span>
+                      <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </section>
+
+            <!-- Margen de faltas de Cálculo II -->
+            <section class="alerta-faltas">
+              <p class="alerta-titulo"><img src="../img/icono-alerta-grande.svg" alt=""> Te quedan 2 faltas en Cálculo II</p>
+              <div class="alerta-resumen">
+                <p class="alerta-dato">4 faltas registradas de 6</p>
+                <p class="alerta-porcentaje"><span class="cifra">67 %</span></p>
+              </div>
+              <div class="progreso">
+                <div class="progreso-avance avance-67"></div>
+              </div>
+            </section>
+
+            <div class="acciones-app">
+              <a class="boton-app boton-secundario boton-ancho" href="cambio-turno.html">Registrar cambio de turno</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

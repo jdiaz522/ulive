@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registra en ULive tu nuevo turno de trabajo y revisa qué clases y entregas chocan con él, con espacios libres para adelantar tus actividades.">
+  <meta name="author" content="EduMetrics">
+  <title>Cambio de turno · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino activa" href="inicio.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-primario.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Inicio / Cambio de turno</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+
+          <div class="titulo-pantalla">
+            <h1>Cambio de turno</h1>
+            <p class="descripcion-pantalla">Registra tu nuevo horario de trabajo y revisa qué choca con tu semana.</p>
+          </div>
+
+          <form id="form-turno" action="actividades.html">
+            <div class="tarjeta-app">
+              <!-- El turno actual es un dato, no un campo editable -->
+              <div class="grupo-campo">
+                <p class="etiqueta">Turno actual</p>
+                <p class="dato-fijo">Lun a vie · 2:00 a 8:00 p. m.</p>
+              </div>
+              <div class="grupo-campo">
+                <label for="nuevo-turno">Nuevo turno</label>
+                <!-- Un select no parte el texto en dos líneas: el horario va en la ayuda -->
+                <select id="nuevo-turno" class="campo" aria-describedby="ayuda-turno error-turno" aria-invalid="false">
+                  <option value="">Elige tu nuevo turno</option>
+                  <option value="jue-vie-manana">Jue 8 y vie 9 oct · mañana</option>
+                </select>
+                <p id="ayuda-turno" class="texto-auxiliar ayuda">Turno de mañana: 8:00 a. m. a 2:00 p. m.</p>
+                <p id="error-turno" class="mensaje-error"></p>
+              </div>
+            </div>
+
+            <!-- Resumen (role="status"): existe desde que carga la página y cambia al elegir el turno -->
+            <div id="caja-turno" class="caja-estado caja-info" role="status">
+              <img src="../img/icono-calendario-primario.svg" alt="">
+              <div class="caja-estado-texto">
+                <p id="turno-titulo" class="caja-titulo">Elige tu nuevo turno para ver qué choca con tu semana</p>
+                <p id="turno-detalle" class="caja-detalle">ULive compara el turno con tus clases y entregas de la semana.</p>
+              </div>
+            </div>
+
+            <!-- Bloques que dependen del turno: empiezan ocultos y el JS los muestra al elegirlo -->
+            <div id="bloque-choques" class="bloque-turno">
+              <section class="tarjeta-app">
+                <h2>Lo que choca con tu nuevo turno</h2>
+                <ul class="lista-separada">
+                  <li>
+                    <div class="elemento-lista">
+                      <span class="icono-curso"><img src="../img/icono-calendario-primario.svg" alt=""></span>
+                      <span class="curso-info">
+                        <span class="curso-nombre">Física II · clase</span>
+                        <span class="curso-detalle">Vie 9 oct · 8:00 a. m. · <span id="choque-faltas" class="cifra">usarías 1 de tus 6 faltas</span></span>
+                        <span class="estado-linea">
+                          <span id="estado-choque" class="estado">
+                            <img id="icono-choque-seguro" class="icono-oculto" src="../img/icono-escudo.svg" alt="">
+                            <img id="icono-choque-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">
+                            <img id="icono-choque-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
+                            <span id="estado-choque-texto">Margen holgado</span>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="elemento-lista">
+                      <span class="icono-curso"><img src="../img/icono-reloj-primario.svg" alt=""></span>
+                      <span class="curso-info">
+                        <span class="curso-nombre">Informe de laboratorio</span>
+                        <span class="curso-detalle">Física II · vence vie 9 oct · peso <span class="cifra">15 %</span></span>
+                        <span class="estado-linea">
+                          <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Tendrás menos tiempo</span>
+                        </span>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+
+            <div id="bloque-espacios" class="bloque-turno">
+              <div class="tarjeta-app">
+                <fieldset class="grupo-opciones">
+                  <legend>Espacios libres para adelantar el informe</legend>
+                  <label class="opcion-casilla" for="espacio-jueves">
+                    <input type="radio" id="espacio-jueves" name="espacio" value="jue-8-oct" checked>
+                    <span class="casilla-texto">
+                      <span class="casilla-titulo">Jue 8 oct · 3:00 a 6:00 p. m.</span>
+                      <span class="casilla-detalle">Después de tu nuevo turno</span>
+                    </span>
+                  </label>
+                  <label class="opcion-casilla" for="espacio-miercoles">
+                    <input type="radio" id="espacio-miercoles" name="espacio" value="mie-7-oct">
+                    <span class="casilla-texto">
+                      <span class="casilla-titulo">Mié 7 oct · 10:00 a. m. a 1:00 p. m.</span>
+                      <span class="casilla-detalle">Entre clase y trabajo</span>
+                    </span>
+                  </label>
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="acciones-apiladas">
+              <button type="submit" class="boton-app boton-principal">Guardar plan</button>
+              <a class="boton-app boton-secundario" href="inicio.html">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/cambio-turno.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simula en ULive tu matrícula del próximo ciclo: elige cursos y revisa si caben en tu tope de créditos según la regla de la UPC.">
+  <meta name="author" content="EduMetrics">
+  <title>Simular matrícula · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="cursos.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-primario.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Mis cursos / Simular matrícula</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+
+          <div class="titulo-pantalla">
+            <h1>Simular matrícula 2027-1</h1>
+            <p class="descripcion-pantalla">Elige cursos y revisa si caben en tu tope de créditos.</p>
+          </div>
+
+          <!-- Promedio y tope: el JS escribe el tope con topeCreditos (calculos.js) -->
+          <section class="comparacion resumenes-matricula">
+            <article class="resumen">
+              <p class="resumen-etiqueta">Tu promedio</p>
+              <p id="promedio-matricula" class="resumen-valor">15,2</p>
+              <p class="resumen-nota">proyectado 2026-2</p>
+            </article>
+            <article class="resumen resumen-resaltado">
+              <p class="resumen-etiqueta">Tope de créditos</p>
+              <p id="tope-matricula" class="resumen-valor">27</p>
+              <p id="tope-nota" class="resumen-nota">según la UPC</p>
+            </article>
+          </section>
+
+          <div class="caja-estado caja-info">
+            <img src="../img/icono-balanza.svg" alt="">
+            <div class="caja-estado-texto">
+              <p class="caja-titulo">Regla UPC</p>
+              <p class="caja-detalle">Con promedio mayor a 15 puedes matricular hasta 27 créditos; con menos de 13, hasta 18.</p>
+            </div>
+          </div>
+
+          <form id="form-matricula" action="cursos.html">
+            <div id="grupo-cursos" class="tarjeta-app">
+              <fieldset class="grupo-opciones">
+                <legend>Cursos disponibles</legend>
+                <p class="texto-auxiliar">Seleccionados: <span id="creditos-seleccionados" class="cifra">22 de 27 créditos</span></p>
+
+                <label class="opcion-casilla opcion-curso" for="curso-calculo-3">
+                  <input type="checkbox" id="curso-calculo-3" aria-describedby="error-matricula" checked>
+                  <span class="casilla-texto"><span class="casilla-titulo">Cálculo III</span></span>
+                  <span class="creditos-curso cifra">5 cr.</span>
+                </label>
+                <label class="opcion-casilla opcion-curso" for="curso-fisica-3">
+                  <input type="checkbox" id="curso-fisica-3" aria-describedby="error-matricula" checked>
+                  <span class="casilla-texto"><span class="casilla-titulo">Física III</span></span>
+                  <span class="creditos-curso cifra">4 cr.</span>
+                </label>
+                <label class="opcion-casilla opcion-curso" for="curso-base-datos">
+                  <input type="checkbox" id="curso-base-datos" aria-describedby="error-matricula" checked>
+                  <span class="casilla-texto"><span class="casilla-titulo">Base de Datos</span></span>
+                  <span class="creditos-curso cifra">5 cr.</span>
+                </label>
+                <label class="opcion-casilla opcion-curso" for="curso-programacion-4">
+                  <input type="checkbox" id="curso-programacion-4" aria-describedby="error-matricula" checked>
+                  <span class="casilla-texto"><span class="casilla-titulo">Programación IV</span></span>
+                  <span class="creditos-curso cifra">5 cr.</span>
+                </label>
+                <label class="opcion-casilla opcion-curso" for="curso-etica">
+                  <input type="checkbox" id="curso-etica" aria-describedby="error-matricula" checked>
+                  <span class="casilla-texto"><span class="casilla-titulo">Ética y Ciudadanía</span></span>
+                  <span class="creditos-curso cifra">3 cr.</span>
+                </label>
+
+                <!-- Curso que no se puede elegir: no lleva casilla, solo el motivo en texto -->
+                <div class="opcion-casilla opcion-curso curso-bloqueado">
+                  <span class="casilla-texto">
+                    <span class="casilla-titulo">Investigación de Operaciones</span>
+                    <span class="casilla-detalle">No disponible: requiere Estadística II, que aún no apruebas</span>
+                  </span>
+                  <span class="creditos-curso cifra">4 cr.</span>
+                </div>
+
+                <label class="opcion-casilla opcion-curso" for="curso-diseno-experimentos">
+                  <input type="checkbox" id="curso-diseno-experimentos" aria-describedby="error-matricula">
+                  <span class="casilla-texto"><span class="casilla-titulo">Diseño de Experimentos</span></span>
+                  <span class="creditos-curso cifra">4 cr.</span>
+                </label>
+
+                <p id="error-matricula" class="mensaje-error"></p>
+              </fieldset>
+            </div>
+
+            <!-- Aviso (role="status"): existe desde que carga la página y cambia al marcar cursos -->
+            <div id="caja-matricula" class="caja-estado caja-segura" role="status">
+              <img id="icono-mat-seguro" src="../img/icono-escudo.svg" alt="">
+              <img id="icono-mat-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
+              <img id="icono-mat-info" class="icono-oculto" src="../img/icono-balanza.svg" alt="">
+              <div class="caja-estado-texto">
+                <p id="matricula-titulo" class="caja-titulo">Tu selección cabe en tu tope</p>
+                <p id="matricula-detalle" class="caja-detalle">Te quedan 5 créditos libres.</p>
+              </div>
+            </div>
+
+            <div class="acciones-apiladas">
+              <button type="submit" class="boton-app boton-principal">Guardar simulación</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/matricula.js"></script>
+</body>
+</html>

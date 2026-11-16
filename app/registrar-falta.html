@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simula en ULive cuántas faltas te quedarían si faltas a una clase, y regístrala con la consecuencia que fija la regla de la UPC.">
+  <meta name="author" content="EduMetrics">
+  <title>Registrar o simular una falta · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="faltas.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-primario.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Faltas / Registrar o simular una falta</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+
+          <!-- Título de la pantalla: al registrar, el JS lo cambia por el de J25 -->
+          <div class="titulo-pantalla">
+            <h1 id="titulo-falta">Registrar o simular una falta</h1>
+            <p class="descripcion-pantalla"><span id="descripcion-falta">Cálculo II · </span><span id="descripcion-falta-cifra" class="cifra">4 de 6 faltas usadas</span></p>
+          </div>
+
+          <!-- Estado 1 (J19): registrar o simular una falta -->
+          <div id="vista-falta">
+
+            <form id="form-falta" action="registrar-falta.html">
+              <div class="tarjeta-app">
+                <div class="grupo-campo">
+                  <label for="curso-falta">Curso</label>
+                  <!-- El prototipo solo detalla las faltas de Cálculo II -->
+                  <select id="curso-falta" class="campo" aria-describedby="ayuda-curso-falta">
+                    <option value="calculo-2">Cálculo II</option>
+                  </select>
+                  <p id="ayuda-curso-falta" class="texto-auxiliar ayuda">Lun / Mié · 08:00 · sesiones de teoría</p>
+                </div>
+                <div class="grupo-campo">
+                  <label for="clase">Clase</label>
+                  <select id="clase" class="campo" aria-describedby="error-clase" aria-invalid="false">
+                    <option value="">Elige una clase</option>
+                    <option value="mie-7-oct">Mié 7 oct · 8:00 a. m.</option>
+                    <option value="lun-12-oct">Lun 12 oct · 8:00 a. m.</option>
+                    <option value="mie-14-oct">Mié 14 oct · 8:00 a. m.</option>
+                  </select>
+                  <p id="error-clase" class="mensaje-error"></p>
+                </div>
+                <div class="grupo-campo">
+                  <label class="opcion-casilla" for="justificada">
+                    <input type="checkbox" id="justificada">
+                    <span class="casilla-texto">
+                      <span class="casilla-titulo">Falta justificada</span>
+                      <span class="casilla-detalle">Si la universidad la justifica, no se descuenta de tu margen.</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Simulación: se actualiza al elegir la clase o marcar la casilla -->
+              <div id="caja-simulacion" class="caja-estado" role="status">
+                <img id="icono-sim-seguro" class="icono-oculto" src="../img/icono-escudo.svg" alt="">
+                <img id="icono-sim-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">
+                <img id="icono-sim-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
+                <div class="caja-estado-texto">
+                  <p id="simulacion-titulo" class="caja-titulo">Elige una clase para ver cuántas faltas te quedarían</p>
+                  <p class="caja-detalle">Simulación: no se guarda hasta que la registres. Superar 6 faltas hace que el examen final se califique con cero.</p>
+                </div>
+              </div>
+
+              <div class="acciones-apiladas">
+                <button type="submit" class="boton-app boton-principal">Registrar falta</button>
+                <a class="boton-app boton-secundario" href="registrar-falta.html">Simular otra clase</a>
+              </div>
+            </form>
+          </div>
+
+          <!-- Anuncio del registro (role="status"): existe desde que carga la página, vacío y sin alto -->
+          <p id="anuncio-falta" class="resultado-anuncio" role="status"></p>
+
+          <!-- Estado 2 (J25): falta registrada. Empieza oculto; el JS lo muestra al registrar
+               y lo llena con la clase elegida -->
+          <section id="vista-registrada" class="vista-resultado">
+            <div id="caja-registrada" class="caja-estado">
+              <img id="icono-reg-seguro" class="icono-oculto" src="../img/icono-escudo.svg" alt="">
+              <img id="icono-reg-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">
+              <img id="icono-reg-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
+              <div class="caja-estado-texto">
+                <p id="registrada-titulo" class="caja-titulo">Te queda 1 falta en Cálculo II</p>
+                <p id="registrada-consecuencia" class="caja-detalle">Si superas 6 faltas, tu examen final se califica con cero (regla UPC). Te avisaremos antes de cada clase.</p>
+              </div>
+            </div>
+
+            <section class="resumenes resumenes-faltas">
+              <article class="resumen">
+                <p class="resumen-etiqueta">Usadas</p>
+                <p id="registrada-usadas" class="resumen-valor">5</p>
+                <p class="resumen-nota">de 24 sesiones</p>
+              </article>
+              <article class="resumen">
+                <p class="resumen-etiqueta">Máximo</p>
+                <p class="resumen-valor">6</p>
+                <p class="resumen-nota"><span class="cifra">25 %</span></p>
+              </article>
+              <article class="resumen resumen-destacado">
+                <p class="resumen-etiqueta">Restantes</p>
+                <p id="registrada-restantes" class="resumen-valor">1</p>
+                <p id="registrada-restantes-nota" class="resumen-nota">disponible</p>
+              </article>
+            </section>
+
+            <section class="tarjeta-app">
+              <h2>Faltas registradas</h2>
+              <ul class="lista-separada lista-desglose lista-faltas">
+                <li><p class="falta-fecha">Lun 14 sep · Teoría</p></li>
+                <li><p class="falta-fecha">Mié 23 sep · Teoría</p></li>
+                <li><p class="falta-fecha">Lun 28 sep · Teoría</p></li>
+                <li><p class="falta-fecha">Lun 5 oct · Teoría</p></li>
+                <li>
+                  <p id="registrada-clase" class="falta-fecha">Mié 7 oct · Teoría</p>
+                  <p id="registrada-marca" class="texto-auxiliar">Registrada hoy</p>
+                </li>
+              </ul>
+            </section>
+
+            <div class="acciones-apiladas">
+              <a class="boton-app boton-principal" href="faltas.html">Volver a Faltas</a>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/registrar-falta.js"></script>
+</body>
+</html>

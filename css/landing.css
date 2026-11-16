@@ -1,0 +1,463 @@
+/*
+  ULive · Estilos de la landing page
+  Primero la versión web (1440 px) y al final la media query móvil.
+  Los colores salen de la tabla de tokens de css/base.css.
+*/
+
+/* ---------- Secciones ---------- */
+/* 32 px de la sección + 32 px del contenedor = 64 px arriba y abajo */
+.seccion {
+  padding: 32px 0;
+}
+
+.seccion .contenedor {
+  padding: 32px;
+}
+
+/* Contenedor angosto para el formulario y las preguntas */
+.contenedor-estrecho {
+  max-width: 1024px;
+}
+
+/* ---------- Encabezado ---------- */
+/* Excepción: el encabezado queda fijo arriba al desplazarse.
+   Usa la misma excepción de navegación fija que el menú lateral y la barra inferior de la app. */
+.encabezado {
+  position: sticky;
+  top: 0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #D6DEE7;
+}
+
+.barra {
+  display: flex;
+  flex-direction: row;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* El margen automático empuja la navegación y el botón a la derecha */
+.marca {
+  display: block;
+  margin-right: auto;
+  min-height: 44px;
+  color: #0F2A44;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 48px;
+  text-decoration: none;
+}
+
+.marca:hover {
+  text-decoration: underline;
+}
+
+.navegacion ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.navegacion li {
+  display: block;
+  margin-left: 16px;
+}
+
+.navegacion a {
+  display: block;
+  min-height: 44px;
+  padding: 0 8px;
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 48px;
+  text-decoration: none;
+}
+
+.navegacion a:hover {
+  text-decoration: underline;
+}
+
+.navegacion a:active {
+  color: #0F2A44;
+}
+
+.boton-encabezado {
+  margin-left: 32px;
+}
+
+/* ---------- Primera sección ---------- */
+.portada-fila {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Márgenes automáticos arriba y abajo: centra el texto junto a la imagen */
+.portada-texto {
+  flex: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.antetitulo {
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.portada-texto h1 {
+  margin-top: 16px;
+}
+
+.portada-descripcion {
+  margin-top: 16px;
+  color: #55606E;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+}
+
+.portada-texto .texto-auxiliar {
+  margin-top: 16px;
+}
+
+.vista-previa {
+  display: block;
+  width: 273px;
+  margin-left: 32px;
+}
+
+/* ---------- Dato del problema ---------- */
+.problema {
+  background-color: #0F2A44;
+}
+
+.problema-fila {
+  display: flex;
+  flex-direction: row;
+}
+
+.dato-cifra {
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.problema-texto {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 32px;
+}
+
+.dato-frase {
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.dato-fuente {
+  margin-top: 4px;
+  color: #D6DEE7;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ---------- Tarjetas (funciones y segmentos) ---------- */
+.funciones h2,
+.segmentos h2 {
+  margin-bottom: 32px;
+}
+
+.tarjetas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tarjeta {
+  flex: 1;
+  margin-left: 24px;
+  padding: 24px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+}
+
+.tarjeta:first-child {
+  margin-left: 0;
+}
+
+.tarjeta p {
+  margin-top: 8px;
+  color: #55606E;
+}
+
+.tarjeta-funcion {
+  background-color: #FFFFFF;
+}
+
+.icono-funcion {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.segmentos {
+  background-color: #FFFFFF;
+}
+
+.tarjeta-segmento {
+  background-color: #F5F7FA;
+}
+
+/* ---------- Registro de interesados ---------- */
+.registro {
+  background-color: #FFFFFF;
+}
+
+.registro-descripcion {
+  margin-top: 16px;
+  color: #55606E;
+}
+
+/* Tarjeta que contiene el formulario y la confirmación */
+.tarjeta-registro {
+  margin-top: 16px;
+  padding: 24px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.formulario label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.campo-fila {
+  display: flex;
+  flex-direction: row;
+}
+
+.campo-fila .campo {
+  flex: 1;
+}
+
+.campo-fila .boton {
+  margin-left: 16px;
+}
+
+.formulario .mensaje-error {
+  margin-top: 8px;
+}
+
+.formulario .texto-auxiliar {
+  margin-top: 8px;
+}
+
+/* La fila de confirmación siempre está en la página. Mientras el párrafo de
+   estado está vacío y el escudo y el detalle están ocultos, no ocupa alto. */
+.confirmacion {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Empiezan ocultos; el JS los muestra con display: block */
+.icono-confirmacion,
+.confirmacion-detalle {
+  display: none;
+}
+
+.icono-confirmacion {
+  width: 28px;
+  height: 28px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.confirmacion-texto {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.confirmacion-texto p {
+  color: #55606E;
+}
+
+.confirmacion-texto .confirmacion-detalle {
+  margin-top: 4px;
+}
+
+.confirmacion-texto .confirmacion-titulo {
+  color: #1B7F4B;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ---------- Preguntas frecuentes ---------- */
+.pregunta {
+  margin-top: 16px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.pregunta summary {
+  min-height: 44px;
+  padding: 16px 24px;
+  color: #1A2430;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pregunta summary:hover {
+  text-decoration: underline;
+}
+
+.pregunta p {
+  padding: 0 24px 16px 24px;
+  color: #55606E;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  background-color: #0F2A44;
+}
+
+.pie .contenedor {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.pie p {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   Móvil: una sola columna y márgenes laterales de 16 px
+   ========================================================= */
+@media screen and (max-width: 800px) {
+  .seccion {
+    padding: 16px 0;
+  }
+
+  .seccion .contenedor {
+    padding: 16px;
+  }
+
+  /* Encabezado compacto en dos filas: marca arriba y enlaces debajo.
+     Así el encabezado fijo ocupa unos 113 px y no 170 px de la pantalla. */
+  .barra {
+    flex-wrap: wrap;
+  }
+
+  .navegacion {
+    width: 100%;
+  }
+
+  .navegacion ul {
+    display: block;
+    line-height: 48px;
+  }
+
+  /* Enlaces en línea; el relleno vertical da un área táctil de unos 49 px */
+  .navegacion li {
+    display: inline;
+    margin-left: 0;
+  }
+
+  .navegacion a {
+    display: inline;
+    padding: 16px 4px;
+  }
+
+  /* El mismo botón está en la primera sección, justo debajo */
+  .boton-encabezado {
+    display: none;
+  }
+
+  /* Primera sección: el texto primero y la vista previa debajo */
+  .portada-fila {
+    flex-direction: column;
+  }
+
+  .vista-previa {
+    margin: 32px auto 0 auto;
+  }
+
+  .problema-fila {
+    flex-direction: column;
+  }
+
+  .problema-texto {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .dato-frase {
+    font-size: 18px;
+  }
+
+  .funciones h2,
+  .segmentos h2 {
+    margin-bottom: 16px;
+  }
+
+  .tarjetas {
+    flex-direction: column;
+  }
+
+  .tarjeta {
+    margin-top: 16px;
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .tarjeta:first-child {
+    margin-top: 0;
+  }
+
+  .tarjeta-registro {
+    padding: 16px;
+  }
+
+  /* Campo y botón apilados */
+  .campo-fila {
+    flex-direction: column;
+  }
+
+  .campo-fila .boton {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .confirmacion-texto .confirmacion-titulo {
+    font-size: 18px;
+  }
+
+  .pregunta summary {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .pregunta p {
+    padding: 0 16px 16px 16px;
+  }
+
+  .pie .contenedor {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}

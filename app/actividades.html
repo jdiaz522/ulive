@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Actividades del ciclo en ULive, ordenadas por su impacto en tu nota: peso entre los días que faltan para la entrega.">
+  <meta name="author" content="EduMetrics">
+  <title>Actividades · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="actividades.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-primario.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Actividades</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="titulo-pantalla">
+          <h1>Actividades</h1>
+          <p class="descripcion-pantalla">Ordenadas por impacto en tu nota</p>
+        </div>
+
+        <!-- Filtros: botones de opción; el JS oculta o muestra filas -->
+        <fieldset class="filtros">
+          <legend>Mostrar</legend>
+          <div class="filtros-opciones">
+            <label class="opcion-filtro" for="filtro-todas"><input type="radio" id="filtro-todas" name="filtro" value="todas" checked> Todas</label>
+            <label class="opcion-filtro" for="filtro-pendientes"><input type="radio" id="filtro-pendientes" name="filtro" value="pendientes"> Pendientes</label>
+            <label class="opcion-filtro" for="filtro-entregadas"><input type="radio" id="filtro-entregadas" name="filtro" value="entregadas"> Entregadas</label>
+          </div>
+        </fieldset>
+
+        <section class="panel">
+          <h2>Actividades del ciclo</h2>
+          <p class="texto-auxiliar criterio">Primero las vencidas sin entregar; después, por impacto: peso en la nota entre días que faltan</p>
+          <p id="conteo-actividades" class="texto-auxiliar" role="status">7 actividades</p>
+          <table class="tabla-app tabla-con-margen tabla-actividades">
+            <caption>Actividades del ciclo 2026-2: primero las vencidas y después de mayor a menor impacto. Marca "Entregada" cuando la entregues.</caption>
+            <thead>
+              <tr>
+                <th>Actividad / curso</th>
+                <th>Peso</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="act-cuestionario-4">
+                <td class="celda-nombre"><span id="nombre-cuestionario-4" class="tabla-nombre">Cuestionario 4</span><span class="tabla-curso">Programación III</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Venció lun 5 oct, 23:59</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-cuestionario-4" class="estado estado-riesgo estado-tabla"><img id="icono-vencida-cuestionario-4" src="../img/icono-alerta-riesgo.svg" alt=""> <span id="estado-texto-cuestionario-4">Vencida</span></span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-cuestionario-4"><input type="checkbox" id="entregada-cuestionario-4" aria-describedby="nombre-cuestionario-4"> Entregada</label>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-taller-3">
+                <td class="celda-nombre"><span id="nombre-taller-3" class="tabla-nombre">Taller 3</span><span class="tabla-curso">Cálculo II</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
+                <td><span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-primario.svg" alt=""> Hoy, 23:59</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-taller-3" class="estado-actividad">Pendiente</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-taller-3"><input type="checkbox" id="entregada-taller-3" aria-describedby="nombre-taller-3"> Entregada</label>
+                    <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-foro-patrones">
+                <td class="celda-nombre"><span id="nombre-foro-patrones" class="tabla-nombre">Foro de patrones</span><span class="tabla-curso">Programación III</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-foro-patrones" class="estado-actividad">Pendiente</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-foro-patrones"><input type="checkbox" id="entregada-foro-patrones" aria-describedby="nombre-foro-patrones"> Entregada</label>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-informe-laboratorio">
+                <td class="celda-nombre"><span id="nombre-informe-laboratorio" class="tabla-nombre">Informe de laboratorio</span><span class="tabla-curso">Física II</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-informe-laboratorio" class="estado-actividad">Pendiente</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-informe-laboratorio"><input type="checkbox" id="entregada-informe-laboratorio" aria-describedby="nombre-informe-laboratorio"> Entregada</label>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-guia-integrales">
+                <td class="celda-nombre"><span id="nombre-guia-integrales" class="tabla-nombre">Guía de integrales</span><span class="tabla-curso">Cálculo II</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 23:59</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-guia-integrales" class="estado-actividad">En curso</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-guia-integrales"><input type="checkbox" id="entregada-guia-integrales" aria-describedby="nombre-guia-integrales"> Entregada</label>
+                    <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-proyecto-api">
+                <td class="celda-nombre"><span id="nombre-proyecto-api" class="tabla-nombre">Proyecto API</span><span class="tabla-curso">Programación III</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">30 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 30 oct, 18:00</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-proyecto-api" class="estado-actividad">En curso</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-proyecto-api"><input type="checkbox" id="entregada-proyecto-api" aria-describedby="nombre-proyecto-api"> Entregada</label>
+                  </div>
+                </td>
+              </tr>
+              <tr id="act-foro-dudas">
+                <td class="celda-nombre"><span id="nombre-foro-dudas" class="tabla-nombre">Foro de dudas</span><span class="tabla-curso">Cálculo II</span></td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
+                <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 12 oct</span></td>
+                <td><span class="etiqueta-movil">Estado: </span><span id="estado-foro-dudas" class="estado-actividad">Pendiente</span></td>
+                <td class="celda-accion">
+                  <div class="acciones-fila">
+                    <label class="opcion-casilla opcion-entregada" for="entregada-foro-dudas"><input type="checkbox" id="entregada-foro-dudas" aria-describedby="nombre-foro-dudas"> Entregada</label>
+                    <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="acciones-app acciones-pie">
+          <a class="boton-app boton-principal" href="registrar-actividad.html">Agregar actividad</a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/actividades.js"></script>
+</body>
+</html>

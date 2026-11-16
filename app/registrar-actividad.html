@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registra en ULive una entrega o evaluación con su fecha para que aparezca en Actividades, ordenada por impacto.">
+  <meta name="author" content="EduMetrics">
+  <title>Nueva actividad · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="actividades.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-primario.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Actividades / Nueva actividad</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+          <div class="titulo-pantalla">
+            <h1>Nueva actividad</h1>
+            <p class="descripcion-pantalla">Registra una entrega o evaluación con su fecha para que aparezca en Actividades.</p>
+          </div>
+
+          <!-- Guardar envía el formulario a Actividades (su action) si los datos están completos -->
+          <form id="form-actividad" action="actividades.html">
+            <div class="tarjeta-app">
+              <div class="grupo-campo">
+                <label for="curso">Curso</label>
+                <select id="curso" class="campo" aria-describedby="ayuda-curso">
+                  <option value="">Elige un curso</option>
+                  <option value="calculo-2">Cálculo II</option>
+                  <option value="programacion-3">Programación III</option>
+                  <option value="fisica-2">Física II</option>
+                </select>
+                <p id="ayuda-curso" class="texto-auxiliar ayuda">Se completa solo al elegir la evaluación.</p>
+              </div>
+              <div class="grupo-campo">
+                <label for="actividad">Actividad</label>
+                <input type="text" id="actividad" class="campo" placeholder="Ej. Informe de laboratorio 3" aria-describedby="error-actividad" aria-invalid="false">
+                <p id="error-actividad" class="mensaje-error"></p>
+              </div>
+              <fieldset class="grupo-campo grupo-fecha">
+                <legend>Fecha y hora de entrega</legend>
+                <div class="fecha-hora">
+                  <div class="fecha-hora-campo">
+                    <label for="fecha-entrega">Fecha</label>
+                    <input type="date" id="fecha-entrega" class="campo" aria-describedby="error-fecha" aria-invalid="false">
+                  </div>
+                  <div class="fecha-hora-campo">
+                    <label for="hora-entrega">Hora (opcional)</label>
+                    <input type="time" id="hora-entrega" class="campo">
+                  </div>
+                </div>
+                <p id="error-fecha" class="mensaje-error"></p>
+              </fieldset>
+              <div class="grupo-campo">
+                <label for="evaluacion-formula">Evaluación de la fórmula</label>
+                <!-- Solo evaluaciones pendientes: a una evaluación ya calificada no se le registra una entrega -->
+                <select id="evaluacion-formula" class="campo" aria-describedby="ayuda-formula error-formula" aria-invalid="false">
+                  <option value="">Elige una evaluación</option>
+                  <optgroup label="Cálculo II">
+                    <option value="calculo-2-parcial-2">Parcial 2 · peso 25 %</option>
+                    <option value="calculo-2-taller-3">Taller 3 · peso 10 %</option>
+                    <option value="calculo-2-examen-final">Examen final · peso 20 %</option>
+                  </optgroup>
+                  <optgroup label="Programación III">
+                    <option value="programacion-3-proyecto-api">Proyecto API · peso 30 %</option>
+                  </optgroup>
+                  <optgroup label="Física II">
+                    <option value="fisica-2-laboratorio-3">Laboratorio 3 · peso 15 %</option>
+                  </optgroup>
+                </select>
+                <p id="ayuda-formula" class="texto-auxiliar ayuda">El peso se toma de la fórmula que registraste para el curso.</p>
+                <p id="error-formula" class="mensaje-error"></p>
+              </div>
+            </div>
+
+            <!-- Impacto (HU-16): se recalcula al cambiar la evaluación o la fecha -->
+            <div id="caja-impacto" class="caja-estado caja-info" role="status">
+              <img src="../img/icono-calendario-primario.svg" alt="">
+              <div class="caja-estado-texto">
+                <p class="caja-titulo">Se ordenará en Actividades según su impacto</p>
+                <p class="caja-detalle">
+                  <span id="impacto-pendiente">Elige la evaluación y la fecha para ver su peso e impacto. El impacto es el peso en la nota entre los días que faltan para la entrega.</span>
+                  <span id="impacto-datos" class="impacto-datos">Peso <span id="impacto-peso" class="cifra">15 %</span> · vence <span id="impacto-dias" class="cifra">en 3 días</span> · impacto <span id="impacto-valor" class="cifra">5,0</span>: quedaría <span id="impacto-posicion" class="cifra">4.º de 7</span> en Actividades.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="acciones-apiladas">
+              <button type="submit" class="boton-app boton-principal">Guardar actividad</button>
+              <a class="boton-app boton-secundario" href="actividades.html">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/registrar-actividad.js"></script>
+</body>
+</html>

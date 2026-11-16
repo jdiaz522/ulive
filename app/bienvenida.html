@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bienvenida a ULive: elige tu universidad, tu carrera y tu ciclo para cargar sus reglas de evaluación, faltas y matrícula.">
+  <meta name="author" content="EduMetrics">
+  <title>Bienvenida · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <!-- Bienvenida es la entrada de la app: no lleva navegación global -->
+  <header class="barra-app barra-bienvenida">
+    <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+    <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+  </header>
+
+  <main class="contenido">
+    <div class="columna-estrecha">
+      <div class="titulo-pantalla">
+        <h1>Te damos la bienvenida a ULive</h1>
+        <p class="descripcion-pantalla">Elige tu universidad para que ULive cargue sus reglas de evaluación, faltas y matrícula.</p>
+      </div>
+
+      <form id="form-bienvenida" action="inicio.html">
+        <div class="tarjeta-app">
+          <div class="grupo-campo">
+            <label for="universidad">Universidad</label>
+            <select id="universidad" class="campo" aria-describedby="ayuda-universidad error-universidad" aria-invalid="false">
+              <option value="">Elige tu universidad</option>
+              <option value="upc">Universidad Peruana de Ciencias Aplicadas (UPC)</option>
+            </select>
+            <p id="ayuda-universidad" class="texto-auxiliar ayuda">Se aplicarán la escala de 0 a 20 y el límite de <span class="cifra">25 %</span> de faltas.</p>
+            <p id="error-universidad" class="mensaje-error"></p>
+          </div>
+          <div class="grupo-campo">
+            <label for="carrera">Carrera</label>
+            <select id="carrera" class="campo" aria-describedby="error-carrera" aria-invalid="false">
+              <option value="">Elige tu carrera</option>
+              <option value="isi">Ingeniería de Sistemas de Información</option>
+            </select>
+            <p id="error-carrera" class="mensaje-error"></p>
+          </div>
+          <div class="grupo-campo">
+            <label for="ciclo">Ciclo actual</label>
+            <select id="ciclo" class="campo" aria-describedby="error-ciclo" aria-invalid="false">
+              <option value="">Elige tu ciclo</option>
+              <option value="1">1.º ciclo</option>
+              <option value="2">2.º ciclo</option>
+              <option value="3">3.º ciclo</option>
+              <option value="4">4.º ciclo</option>
+              <option value="5">5.º ciclo</option>
+              <option value="6">6.º ciclo</option>
+              <option value="7">7.º ciclo</option>
+              <option value="8">8.º ciclo</option>
+              <option value="9">9.º ciclo</option>
+              <option value="10">10.º ciclo</option>
+            </select>
+            <p id="error-ciclo" class="mensaje-error"></p>
+          </div>
+        </div>
+
+        <div class="caja-estado caja-segura">
+          <img src="../img/icono-escudo.svg" alt="">
+          <div class="caja-estado-texto">
+            <p class="caja-titulo">No pedimos tu contraseña del portal</p>
+            <p class="caja-detalle">Tus cursos y notas se guardan en tu celular y los registras tú.</p>
+          </div>
+        </div>
+
+        <div class="acciones-apiladas">
+          <button type="submit" class="boton-app boton-principal">Continuar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/bienvenida.js"></script>
+</body>
+</html>

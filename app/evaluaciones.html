@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evaluaciones del ciclo en ULive: resultados, pesos y fechas de todos tus cursos, con filtros por estado.">
+  <meta name="author" content="EduMetrics">
+  <title>Evaluaciones · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="evaluaciones.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-primario.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Evaluaciones</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="titulo-pantalla">
+          <h1>Evaluaciones</h1>
+          <p class="descripcion-pantalla">Consulta resultados, pesos y fechas del ciclo</p>
+        </div>
+
+        <!-- Filtros: botones de opción; el JS oculta o muestra filas -->
+
+          <fieldset class="filtros">
+            <legend>Mostrar</legend>
+            <div class="filtros-opciones">
+              <label class="opcion-filtro" for="filtro-todas"><input type="radio" id="filtro-todas" name="filtro" value="todas" checked> Todos los cursos</label>
+              <label class="opcion-filtro" for="filtro-pendientes"><input type="radio" id="filtro-pendientes" name="filtro" value="pendientes"> Pendientes</label>
+              <label class="opcion-filtro" for="filtro-calificadas"><input type="radio" id="filtro-calificadas" name="filtro" value="calificadas"> Calificadas</label>
+            </div>
+          </fieldset>
+
+
+        <section class="panel">
+          <h2>Listado del ciclo</h2>
+          <p id="conteo-evaluaciones" class="texto-auxiliar" role="status">7 evaluaciones</p>
+          <table class="tabla-app tabla-con-margen">
+            <caption>Evaluaciones del ciclo 2026-2 de tus tres cursos</caption>
+            <thead>
+              <tr>
+                <th>Evaluación</th>
+                <th>Curso</th>
+                <th>Fecha</th>
+                <th>Nota</th>
+                <th>Peso</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="eval-parcial-2">
+                <td class="celda-nombre">Parcial 2</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>14 oct</td>
+                <td><span class="etiqueta-movil">Nota: </span>—</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">25 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Pendiente</td>
+              </tr>
+              <tr id="eval-taller-2">
+                <td class="celda-nombre">Taller 2</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>28 sep</td>
+                <td><span class="etiqueta-movil">Nota: </span>16</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
+              </tr>
+              <tr id="eval-parcial-1">
+                <td class="celda-nombre">Parcial 1</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>18 sep</td>
+                <td><span class="etiqueta-movil">Nota: </span>14</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">20 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
+              </tr>
+              <tr id="eval-practica-1">
+                <td class="celda-nombre">Práctica 1</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>4 sep</td>
+                <td><span class="etiqueta-movil">Nota: </span>12</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Desaprobada</td>
+              </tr>
+              <tr id="eval-quiz">
+                <td class="celda-nombre">Quiz estructuras</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Programación III</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>12 sep</td>
+                <td><span class="etiqueta-movil">Nota: </span>9</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Desaprobada</td>
+              </tr>
+              <tr id="eval-laboratorio-2">
+                <td class="celda-nombre">Laboratorio 2</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Física II</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>8 sep</td>
+                <td><span class="etiqueta-movil">Nota: </span>18</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
+              </tr>
+              <tr id="eval-proyecto-api">
+                <td class="celda-nombre">Proyecto API</td>
+                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Programación III</td>
+                <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>30 oct</td>
+                <td><span class="etiqueta-movil">Nota: </span>—</td>
+                <td><span class="etiqueta-movil">Peso: </span><span class="cifra">30 %</span></td>
+                <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Pendiente</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Acceso a la simulación de nota -->
+        <section class="panel panel-pie">
+          <h2>¿Qué nota necesitas?</h2>
+          <p class="descripcion-pantalla">Prueba escenarios antes de tu próxima evaluación.</p>
+          <div class="acciones-app acciones-pie">
+            <a class="boton-app boton-principal boton-con-icono" href="simulacion.html"><img src="../img/icono-calculadora-blanco.svg" alt=""> <span>Ir a simulación de nota</span></a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/evaluaciones.js"></script>
+</body>
+</html>

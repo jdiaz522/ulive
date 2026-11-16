@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detalle de Cálculo II en ULive: nota actual, faltas, evaluaciones y próximas entregas del curso.">
+  <meta name="author" content="EduMetrics">
+  <title>Cálculo II · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="cursos.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-primario.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Mis cursos / Cálculo II</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="titulo-pantalla">
+          <h1>Cálculo II</h1>
+          <p class="descripcion-pantalla">MAT-204 · Grupo 02 · Prof. Laura Méndez · Lun / Mié 08:00</p>
+        </div>
+
+        <!-- Resumen del curso -->
+        <section class="resumenes">
+          <article class="resumen resumen-destacado">
+            <p class="resumen-etiqueta">Nota actual</p>
+            <p class="resumen-valor">13,8</p>
+            <p class="resumen-nota">Aprobando</p>
+          </article>
+          <article class="resumen">
+            <p class="resumen-etiqueta">Faltas</p>
+            <p class="resumen-valor">4 / 6</p>
+            <p class="resumen-nota">Te quedan 2 faltas</p>
+          </article>
+          <article class="resumen">
+            <p class="resumen-etiqueta">Avance del curso</p>
+            <p class="resumen-valor"><span class="cifra">63 %</span></p>
+            <p class="resumen-nota">Semana 10 de 16</p>
+          </article>
+          <article class="resumen">
+            <p class="resumen-etiqueta">Próxima evaluación</p>
+            <p class="resumen-valor">14 oct</p>
+            <p class="resumen-nota">Parcial 2 · <span class="cifra">25 %</span></p>
+          </article>
+        </section>
+
+        <!-- Estado del curso según la regla de margen -->
+        <div class="caja-estado caja-atencion">
+          <img src="../img/icono-alerta.svg" alt="">
+          <div class="caja-estado-texto">
+            <p class="caja-titulo">Depende del final</p>
+            <p class="caja-detalle">Necesitas 12,4 en promedio en lo que falta para llegar a 13. La próxima evaluación pesa <span class="cifra">25 %</span>.</p>
+            <p class="caja-detalle">Con el redondeo, un promedio final de 12,50 ya cuenta como 13.</p>
+          </div>
+        </div>
+
+        <!-- Nota calculada y nota oficial (HU-13): notaOficial y formatearCentesimas de calculos.js -->
+        <div class="caja-estado caja-info">
+          <img src="../img/icono-balanza.svg" alt="">
+          <div class="caja-estado-texto">
+            <p class="caja-titulo">Nota calculada 13,78 · nota oficial 14</p>
+            <p class="caja-detalle">Si el curso terminara así, tu nota oficial sería 14 (la UPC redondea desde 0,50).</p>
+            <p class="enlace-regla"><a href="https://cerbero.upc.edu.pe/apps/gmailingpregrado/Repositorio/Adjunto/33017/sica-reg-05_v14_reglamento_de_estudios_pregrado.pdf" target="_blank">Ver regla (se abre en otra pestaña)</a></p>
+          </div>
+        </div>
+
+        <div class="dos-columnas">
+          <!-- Evaluaciones del curso -->
+          <section class="panel columna-ancha">
+            <div class="panel-cabecera">
+              <div class="panel-titulos">
+                <h2>Evaluaciones</h2>
+              </div>
+              <a class="boton-app boton-secundario" href="evaluaciones.html">Ver todas</a>
+            </div>
+            <table class="tabla-app tabla-con-margen">
+              <caption>Evaluaciones de Cálculo II, de la más reciente a la más antigua</caption>
+              <thead>
+                <tr>
+                  <th>Evaluación</th>
+                  <th>Curso</th>
+                  <th>Fecha</th>
+                  <th>Nota</th>
+                  <th>Peso</th>
+                  <th>Resultado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="celda-nombre">Parcial 2</td>
+                  <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                  <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>14 oct</td>
+                  <td><span class="etiqueta-movil">Nota: </span>—</td>
+                  <td><span class="etiqueta-movil">Peso: </span><span class="cifra">25 %</span></td>
+                  <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Pendiente</td>
+                </tr>
+                <tr>
+                  <td class="celda-nombre">Taller 2</td>
+                  <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                  <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>28 sep</td>
+                  <td><span class="etiqueta-movil">Nota: </span>16</td>
+                  <td><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
+                  <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
+                </tr>
+                <tr>
+                  <td class="celda-nombre">Parcial 1</td>
+                  <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                  <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>18 sep</td>
+                  <td><span class="etiqueta-movil">Nota: </span>14</td>
+                  <td><span class="etiqueta-movil">Peso: </span><span class="cifra">20 %</span></td>
+                  <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
+                </tr>
+                <tr>
+                  <td class="celda-nombre">Práctica 1</td>
+                  <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                  <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>4 sep</td>
+                  <td><span class="etiqueta-movil">Nota: </span>12</td>
+                  <td><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
+                  <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Desaprobada</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- Próximas entregas del curso, por impacto -->
+          <section class="panel columna-lado">
+            <h2>Actividades</h2>
+            <p class="texto-auxiliar criterio">Próximas entregas, ordenadas por impacto: peso en la nota entre días que faltan</p>
+            <ul class="lista-actividades">
+              <li>
+                <a class="tarjeta-actividad actividad-prioritaria fila-enlace" href="actividades.html">
+                  <span class="actividad-cabecera">
+                    <span class="actividad-nombre">Taller 3</span>
+                    <span class="estado-neutro">Pendiente</span>
+                  </span>
+                  <span class="actividad-curso">Cálculo II</span>
+                  <span class="actividad-fechas">
+                    <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">10 %</span></span>
+                    <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-primario.svg" alt=""> Hoy, 23:59</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <div class="tarjeta-actividad">
+                  <span class="actividad-cabecera">
+                    <span class="actividad-nombre">Guía de integrales</span>
+                    <span class="estado-neutro">En curso</span>
+                  </span>
+                  <span class="actividad-curso">Cálculo II</span>
+                  <span class="actividad-fechas">
+                    <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">5 %</span></span>
+                    <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 23:59</span>
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div class="tarjeta-actividad">
+                  <span class="actividad-cabecera">
+                    <span class="actividad-nombre">Foro de dudas</span>
+                    <span class="estado-neutro">Pendiente</span>
+                  </span>
+                  <span class="actividad-curso">Cálculo II</span>
+                  <span class="actividad-fechas">
+                    <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">5 %</span></span>
+                    <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 12 oct</span>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="acciones-app acciones-pie">
+          <a class="boton-app boton-principal" href="registrar-nota.html">Registrar nota</a>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

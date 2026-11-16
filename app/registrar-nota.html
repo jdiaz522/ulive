@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registra en ULive la nota que publicó tu profesor y mira antes de guardar cómo cambian tu promedio y la nota que necesitas.">
+  <meta name="author" content="EduMetrics">
+  <title>Registrar nota · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="cursos.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-primario.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="evaluaciones.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-gris.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Mis cursos / Cálculo II / Registrar nota</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="columna-estrecha">
+          <div class="titulo-pantalla">
+            <h1>Registrar nota</h1>
+            <p class="descripcion-pantalla">Cálculo II · ingresa la nota que publicó tu profesor.</p>
+          </div>
+
+          <form id="form-nota" action="curso.html">
+            <div class="tarjeta-app">
+              <div class="grupo-campo">
+                <label for="evaluacion">Evaluación</label>
+                <select id="evaluacion" class="campo">
+                  <option value="parcial-2">Parcial 2 · 14 oct · peso 25 %</option>
+                  <option value="taller-3">Taller 3 · 6 oct · peso 10 %</option>
+                  <option value="examen-final">Examen final · peso 20 %</option>
+                </select>
+              </div>
+              <div class="grupo-campo">
+                <label for="nota">Nota obtenida</label>
+                <input type="text" id="nota" class="campo" aria-describedby="ayuda-nota error-nota" aria-invalid="false">
+                <p id="ayuda-nota" class="texto-auxiliar ayuda">Nota de 0 a 20, hasta dos decimales (15,5 o 15.75)</p>
+                <p id="error-nota" class="mensaje-error"></p>
+              </div>
+            </div>
+
+            <!-- Vista previa antes de guardar: se actualiza al cambiar la nota o la evaluación -->
+            <div class="vista-previa-nota" role="status">
+              <div class="comparacion">
+                <div class="resumen">
+                  <p class="resumen-etiqueta">Promedio actual</p>
+                  <p class="resumen-valor">13,8</p>
+                  <p class="resumen-nota"><span class="cifra">45 %</span> evaluado</p>
+                </div>
+                <div class="resumen resumen-destacado">
+                  <p class="resumen-etiqueta">Con esta nota</p>
+                  <p id="promedio-con-nota" class="resumen-valor">—</p>
+                  <p id="evaluado-con-nota" class="resumen-nota cifra">Escribe la nota para verlo</p>
+                </div>
+              </div>
+
+              <div class="caja-estado caja-info caja-separada">
+                <img src="../img/icono-balanza.svg" alt="">
+                <div class="caja-estado-texto">
+                  <p id="necesaria-titulo" class="caja-titulo">Hoy necesitas 12,4 en lo que falta para llegar a 13</p>
+                  <!-- Evaluaciones que quedan: cada una en un span que no se parte -->
+                  <p class="caja-detalle">Quedan <span id="queda-1" class="cifra">Parcial 2 (25 %)</span><span id="separador-1">, </span><span id="queda-2" class="cifra">Taller 3 (10 %)</span><span id="separador-2"> y </span><span id="queda-3" class="cifra">el examen final (20 %)</span>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="acciones-apiladas">
+              <button type="submit" class="boton-app boton-principal">Guardar nota</button>
+              <a class="boton-app boton-secundario" href="curso.html">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/registrar-nota.js"></script>
+</body>
+</html>

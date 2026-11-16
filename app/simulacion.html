@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simula en ULive cómo una evaluación puede cambiar tu promedio y cuánto necesitarías en lo que falta.">
+  <meta name="author" content="EduMetrics">
+  <title>Simulación de nota · ULive</title>
+  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <div class="lateral">
+      <div class="lateral-contenido">
+        <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
+        <nav class="navegacion-app" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a class="destino" href="inicio.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-inicio-gris.svg">
+                  <img src="../img/nav-inicio-blanco.svg" alt="">
+                </picture>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="cursos.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-cursos-gris.svg">
+                  <img src="../img/nav-cursos-blanco.svg" alt="">
+                </picture>
+                <span>Cursos</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino activa" href="evaluaciones.html" aria-current="page">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-evaluaciones-primario.svg">
+                  <img src="../img/nav-evaluaciones-blanco.svg" alt="">
+                </picture>
+                <span>Evaluaciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="faltas.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-faltas-gris.svg">
+                  <img src="../img/nav-faltas-blanco.svg" alt="">
+                </picture>
+                <span>Faltas</span>
+              </a>
+            </li>
+            <li>
+              <a class="destino" href="actividades.html">
+                <picture>
+                  <source media="(max-width: 800px)" srcset="../img/nav-actividades-gris.svg">
+                  <img src="../img/nav-actividades-blanco.svg" alt="">
+                </picture>
+                <span>Actividades</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="perfil-lateral">
+          <p class="perfil-nombre">Daniela Rojas</p>
+          <p class="perfil-detalle">Ingeniería · 5.º ciclo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área principal -->
+    <div class="area">
+      <header class="barra-app">
+        <p class="ruta">ULive / Evaluaciones / Simulación de nota</p>
+        <p class="ciclo"><img src="../img/icono-calendario-primario.svg" alt=""> Ciclo 2026-2</p>
+        <p class="marca-app marca-movil"><span class="simbolo">U</span> ULive</p>
+        <p class="perfil-movil"><img src="../img/icono-usuario.svg" alt=""> Estudiante</p>
+      </header>
+
+      <main class="contenido">
+        <div class="titulo-pantalla">
+          <h1>Simulación de nota</h1>
+          <p class="descripcion-pantalla">Calcula cómo una evaluación puede cambiar tu promedio</p>
+        </div>
+
+        <!-- Estado 1 (J4, J16): escenario y resultado estimado -->
+        <div id="vista-formulario" class="dos-columnas">
+          <form id="form-simulacion" class="tarjeta-app columna-formulario" action="simulacion.html">
+            <h2>Ingresa el escenario</h2>
+            <p class="texto-auxiliar">Todos los campos son necesarios</p>
+            <div class="grupo-campo">
+              <label for="evaluacion-simulada">Evaluación</label>
+              <select id="evaluacion-simulada" class="campo" aria-describedby="peso-simulado">
+                <option value="parcial-2">Parcial 2 · Cálculo II</option>
+                <option value="taller-3">Taller 3 · Cálculo II</option>
+                <option value="examen-final">Examen final · Cálculo II</option>
+              </select>
+              <p id="peso-simulado" class="texto-auxiliar ayuda">Peso de la evaluación: <span id="peso-simulado-valor" class="cifra">25 %</span></p>
+            </div>
+            <div class="grupo-campo">
+              <label for="nota-esperada">Nota que esperas obtener</label>
+              <input type="text" id="nota-esperada" class="campo" value="15" aria-describedby="ayuda-esperada error-esperada" aria-invalid="false">
+              <p id="ayuda-esperada" class="texto-auxiliar ayuda">Nota de 0 a 20, hasta dos decimales (15,5 o 15.75)</p>
+              <p id="error-esperada" class="mensaje-error"></p>
+            </div>
+            <div class="caja-estado caja-info caja-separada">
+              <img src="../img/icono-balanza.svg" alt="">
+              <div class="caja-estado-texto">
+                <p class="caja-titulo">Contexto del cálculo</p>
+                <p class="caja-detalle">Nota actual: 13,8 · Evaluado: <span class="cifra">45 %</span> · Nota objetivo: 13</p>
+              </div>
+            </div>
+            <div class="acciones-apiladas acciones-formulario">
+              <button type="submit" class="boton-app boton-principal boton-con-icono"><img src="../img/icono-calculadora-blanco.svg" alt=""> <span>Simular nota</span></button>
+            </div>
+          </form>
+
+          <!-- Resultado estimado: se actualiza al cambiar la evaluación o la nota -->
+          <section class="panel-resultado columna-ancha" role="status">
+            <span class="icono-resultado"><img src="../img/icono-calculadora-grande.svg" alt=""></span>
+            <h2>Resultado estimado</h2>
+            <p id="resultado-necesaria" class="resultado-texto">Necesitas 10,2 en promedio en lo que falta</p>
+            <div class="estado-linea">
+              <span id="estado-seguro" class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> <span id="texto-estado-seguro">Con margen</span></span>
+              <span id="estado-atencion" class="estado estado-atencion estado-oculto"><img src="../img/icono-alerta.svg" alt=""> <span id="texto-estado-atencion">Depende del final</span></span>
+              <span id="estado-riesgo" class="estado estado-riesgo estado-oculto"><img src="../img/icono-alerta-riesgo.svg" alt=""> <span id="texto-estado-riesgo">En riesgo</span></span>
+            </div>
+            <p id="resultado-detalle" class="resultado-detalle">Con 15 en el Parcial 2, tu promedio proyectado sería 14,2.</p>
+          </section>
+        </div>
+
+        <!-- Anuncio del resultado (role="status"): existe desde que carga la página,
+             vacío y sin alto, para que el lector de pantalla lo lea al recibir el texto -->
+        <p id="anuncio-resultado" class="resultado-anuncio" role="status"></p>
+
+        <!-- Estado 2 (J5, J17): resultado de la simulación. Empieza oculto; el JS lo
+             muestra al enviar una nota válida y lo llena con lo que escribió el usuario -->
+        <section id="vista-resultado" class="vista-resultado">
+          <h2>Resultado de simulación</h2>
+          <div class="dos-columnas">
+            <div class="panel-resultado columna-formulario">
+              <p class="resultado-antetitulo">Si obtienes <span id="r-nota">15</span> en <span id="r-evaluacion">el Parcial 2</span></p>
+              <p id="r-proyectado" class="resultado-cifra dato-numerico">14,2</p>
+              <p class="resultado-texto">sería tu nota acumulada</p>
+
+              <!-- Nota calculada con dos decimales y nota oficial según el redondeo (HU-13).
+                   El JS escribe los textos y muestra solo el ícono del tono que corresponde -->
+              <div id="r-redondeo" class="caja-estado caja-info caja-redondeo">
+                <img id="r-redondeo-icono-info" src="../img/icono-balanza.svg" alt="">
+                <img id="r-redondeo-icono-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">
+                <div class="caja-estado-texto">
+                  <p id="r-redondeo-titulo" class="caja-titulo">Nota calculada 14,21 · nota oficial 14</p>
+                  <p id="r-redondeo-detalle" class="caja-detalle">Si el curso terminara con este promedio, tu nota oficial sería 14 (la UPC redondea desde 0,50).</p>
+                </div>
+              </div>
+
+              <div class="caja-estado caja-info">
+                <img src="../img/icono-balanza.svg" alt="">
+                <div class="caja-estado-texto">
+                  <p id="r-necesaria-titulo" class="caja-titulo">Necesitas 10,2 en promedio en lo que falta</p>
+                  <p class="caja-detalle">Este es el dato decisivo para alcanzar la meta del curso.</p>
+                </div>
+              </div>
+
+              <div class="resumenes">
+                <div class="resumen resumen-destacado">
+                  <p class="resumen-etiqueta">Nota necesaria</p>
+                  <p id="r-necesaria" class="resumen-valor">10,2</p>
+                  <p class="resumen-nota">para llegar a 13</p>
+                </div>
+                <div class="resumen">
+                  <p class="resumen-etiqueta">Evaluación</p>
+                  <p id="r-peso" class="resumen-valor cifra">25 %</p>
+                  <p id="r-nombre" class="resumen-nota">Parcial 2</p>
+                </div>
+              </div>
+
+              <div class="acciones-app">
+                <button type="button" id="boton-nueva" class="boton-app boton-principal boton-con-icono boton-ancho"><img src="../img/icono-calculadora-blanco.svg" alt=""> <span>Nueva simulación</span></button>
+              </div>
+            </div>
+
+            <div class="columna-ancha">
+              <!-- Desglose del cálculo -->
+              <section class="panel">
+                <h3>Cómo se calculó</h3>
+                <p class="texto-auxiliar">Desglose del escenario simulado</p>
+                <ul class="lista-separada lista-desglose">
+                  <li>
+                    <div class="elemento-lista">
+                      <span class="icono-curso"><img src="../img/icono-calculadora.svg" alt=""></span>
+                      <span class="curso-info">
+                        <span class="curso-nombre">Acumulado actual</span>
+                        <span class="curso-detalle"><span class="cifra">45 %</span> evaluado</span>
+                      </span>
+                      <span class="valor-fila">13,8</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="elemento-lista">
+                      <span class="icono-curso"><img src="../img/icono-calculadora.svg" alt=""></span>
+                      <span class="curso-info">
+                        <span class="curso-nombre">Escenario simulado</span>
+                        <span class="curso-detalle"><span id="r-escenario-nombre">Parcial 2</span> · <span id="r-escenario-peso" class="cifra">25 %</span></span>
+                      </span>
+                      <span id="r-escenario-nota" class="valor-fila">15</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="elemento-lista">
+                      <span class="icono-curso"><img src="../img/icono-calculadora.svg" alt=""></span>
+                      <span class="curso-info">
+                        <span class="curso-nombre">Proyección</span>
+                        <span class="curso-detalle"><span id="r-evaluado" class="cifra">70 %</span> evaluado</span>
+                      </span>
+                      <span id="r-proyectado-desglose" class="valor-fila">14,2</span>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
+              <!-- Estado del curso con este resultado -->
+              <section class="panel panel-pie">
+                <h3>Contexto</h3>
+                <div class="estado-linea estado-separado">
+                  <span id="r-estado-seguro" class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> <span id="r-texto-estado-seguro">Con margen</span></span>
+                  <span id="r-estado-atencion" class="estado estado-atencion estado-oculto"><img src="../img/icono-alerta.svg" alt=""> <span id="r-texto-estado-atencion">Depende del final</span></span>
+                  <span id="r-estado-riesgo" class="estado estado-riesgo estado-oculto"><img src="../img/icono-alerta-riesgo.svg" alt=""> <span id="r-texto-estado-riesgo">En riesgo</span></span>
+                </div>
+                <p><span id="r-contexto">Con este resultado seguirías aprobando el curso.</span> Aún quedaría <span id="r-restante" class="cifra">30 %</span> por evaluar.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/calculos.js"></script>
+  <script src="../js/simulacion.js"></script>
+</body>
+</html>
