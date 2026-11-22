@@ -1893,12 +1893,17 @@ select.campo {
     margin: 0;
   }
 
-  /* Sin min-width: 0, ningún destino mide menos que su texto: a 320 px "Evaluaciones"
-     y "Actividades" conservan su ancho y los demás se reparten el resto */
+  /* Sin min-width: 0, ningún destino mide menos que su texto */
   .navegacion-app li {
     flex: 1;
     margin-top: 0;
     margin-left: 4px;
+  }
+
+  /* "Evaluaciones" y "Actividades" miden lo que su palabra, para ir en una línea con letra
+     normal. Con letra grande se encogen y sus guiones suaves las parten en sílabas */
+  .navegacion-app li.destino-largo {
+    flex: 0 1 auto;
   }
 
   .navegacion-app li:first-child {
@@ -2270,5 +2275,35 @@ select.campo {
   /* Actividades: la casilla ocupa el ancho disponible y "Ver curso" va a su lado */
   .acciones-fila .opcion-entregada {
     flex: 1;
+  }
+
+  /* Letra grande en el celular (150 y 200 %): lo que no cabe pasa a otra línea */
+  .boton-app {
+    white-space: normal;
+  }
+
+  .resumen-par,
+  .curso-resultado,
+  .elemento-lista,
+  .actividad-cabecera,
+  .barra-app,
+  .opcion-casilla {
+    flex-wrap: wrap;
+  }
+
+  /* Un estado largo ("Margen reducido") puede ocupar dos líneas si no cabe */
+  .estado {
+    white-space: normal;
+  }
+
+  /* El resultado del curso puede encogerse para que su estado y su nota se repartan en dos líneas */
+  .curso-resultado {
+    flex: 1 1 auto;
+  }
+
+  /* Un fieldset mide al menos lo que su contenido; con min-width: 0 se ajusta al ancho */
+  .grupo-opciones,
+  .grupo-fecha {
+    min-width: 0;
   }
 }

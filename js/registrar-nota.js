@@ -48,7 +48,8 @@ function limpiarError() {
 function escribirRestantes(restantes) {
   for (var i = 0; i < espaciosQuedan.length; i++) {
     if (i < restantes.length) {
-      espaciosQuedan[i].textContent = restantes[i].nombre + ' (' + restantes[i].peso + ' %)';
+      // Espacio que no se corta (U+00A0): la cifra y su "%" no se separan
+      espaciosQuedan[i].textContent = restantes[i].nombre + ' (' + restantes[i].peso + '\u00a0%)';
       espaciosQuedan[i].style.display = '';
     } else {
       espaciosQuedan[i].textContent = '';

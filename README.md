@@ -209,7 +209,18 @@ Las condiciones se revisan en este orden:
 - **Navegación global:** un solo `<nav aria-label="Navegación principal">`.
   - En web es la columna lateral, a la izquierda.
   - En móvil es la barra inferior. Para eso, `.app` usa `flex-direction: column-reverse`.
-  - **A 320 px no desborda (HU-48, escenario 3):** los cinco destinos usan `flex: 1`, pero sin `min-width: 0`, así que ninguno mide menos que su texto. A 320 px "Evaluaciones" (76 px) y "Actividades" (68 px) conservan su ancho y los otros tres se reparten el resto (44 px cada uno, con 56 px de alto). Antes la barra se pasaba 10 px del ancho. Desde unos 400 px los cinco vuelven a medir casi igual. Se midió a 306, 360 y 390 px de ancho útil.
+  - **Letra grande en el celular (HU-48, escenario 3; PA-90):** Inicio, Cursos y Faltas usan `flex: 1`, sin `min-width: 0`, así que ninguno mide menos que su texto y se reparten el espacio libre. "Evaluaciones" y "Actividades" llevan la clase `destino-largo` con `flex: 0 1 auto`: miden lo que su palabra, así que con letra normal van en una línea, y solo se encogen si la barra no tiene sitio. Además llevan guiones suaves en el HTML (`Eva&shy;lua&shy;cio&shy;nes`, `Ac&shy;ti&shy;vi&shy;da&shy;des`, ver excepciones): al encogerse con letra grande, la palabra se parte en sílabas con guion ("Evalua-ciones") en vez de desbordar la barra.
+    - **Con letra al 100 %, las cinco etiquetas van en una línea:**
+      - A 390 px, las pestañas miden de 68 a 76 px de ancho: Evaluaciones 76 px, Actividades 68 px y las otras tres 70 px. Todas miden 57 px de alto.
+      - A 320 px, Evaluaciones mide 76 px, Actividades 68 px y las otras tres 47 px.
+    - **Con letra al 150 % y al 200 %** (equivale a 260 y 195 px de ancho CSS): la barra no desborda. La pestaña más pequeña mide 31 × 57 px CSS al 150 % (46 × 85 px en pantalla) y 25 × 57 px CSS al 200 % (50 × 114 px en pantalla). "Evaluaciones" y "Actividades" ocupan dos líneas al 150 % y cuatro al 200 %.
+  - **El resto de cada pantalla con letra grande:** al 150 % y al 200 % desbordaban también otros bloques, porque no se podían partir. En el punto de quiebre móvil se agregó:
+    - `white-space: normal` en `.boton-app` y `.estado`, que tenían `nowrap`: un botón o un estado largo ("Simular matrícula del próximo ciclo", "Margen reducido") pasa a dos líneas si no cabe.
+    - `flex-wrap: wrap` en `.resumen-par`, `.curso-resultado`, `.elemento-lista`, `.actividad-cabecera`, `.barra-app` y `.opcion-casilla`: lo que no cabe en la fila pasa abajo. `.curso-resultado` pasa a `flex: 1 1 auto` para poder encogerse.
+    - `min-width: 0` en `.grupo-opciones` y `.grupo-fecha`: un `<fieldset>` mide por defecto al menos lo que su contenido.
+    - En Registrar nota, las evaluaciones que quedan ("el examen final (20 %)") ya no van en `.cifra`, que no se corta; el JS une la cifra y su "%" con un espacio que no se corta (`'\u00a0'`).
+    - **Con letra al 100 % no cambia nada:** se compararon las posiciones de todos los elementos del contenido y la barra superior con la versión anterior, a 390 y 1440 px, en las 14 pantallas: son iguales. La única diferencia es de 4 px en un separador de Registrar nota a 1440 px.
+    - Se midió en las 14 pantallas a 390 px con letra al 100, 150 y 200 %, y a 320 px con letra al 100 %: ninguna desborda.
   - En el HTML la navegación va antes que el contenido, en todas las páginas. Por eso, con Tab, llega primero a la navegación, tanto en web como en móvil.
   - El destino activo lleva la clase `activa` (cambia el fondo y el peso de la letra) y `aria-current="page"`, para no depender solo de lo visual.
 - **Foco sobre fondo oscuro:** el contorno de foco de `base.css` es primario (#15497A) y sobre #0F2A44 casi no se ve (1,6:1). En la columna lateral (web) y en la tarjeta "Revisar primero" pasa a blanco (14,6:1) con `.lateral a:focus-visible` y `.notificacion a:focus-visible`. En móvil la barra inferior es blanca y vuelve el contorno primario.
@@ -516,6 +527,7 @@ Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curs
 
 - **Navegación fija:** `position: sticky; top: 0;` en el contenido de la columna lateral (web) y `position: sticky; bottom: 0;` en la barra inferior (móvil). En `html`, `scroll-padding-top: 8px` y, en móvil, `scroll-padding-bottom: 80px` (72 px de barra + 7 px del contorno de foco, redondeado), para que el elemento con foco no quede debajo de la barra.
   - **Pantallas bajas:** con `@media screen and (max-height: 500px)`, `.lateral-contenido` pasa a `position: static`. En un celular en horizontal (874 × 402) o una laptop con zoom, el menú lateral es más alto que la ventana y, fijo, dejaba la tarjeta del perfil cortada hasta llegar al final de la página; así se desplaza con ella. Es la misma técnica de `@media` de la lista, aplicada al alto, y solo desactiva la excepción sticky. No toca `.lateral`: la barra inferior móvil sigue fija.
+- **Guion suave `&shy;`** en las etiquetas "Evaluaciones" y "Actividades" de la navegación, en las 13 páginas con navegación: con letra grande en el celular, una palabra sin espacios no se puede partir con ninguna técnica de la lista y desbordaba la barra inferior (80 px al 200 %). Con el guion suave, la palabra se parte en sílabas con guion solo si no cabe; si cabe, no se ve. No aparece en las lecturas pre clase; se aprobó para este caso (22 nov 2026).
 - **`appearance: none`** en `select.campo` (css/app.css): quita la flecha nativa del select, que Chrome dibuja a unos 4 px del borde y que no se mueve con `padding`, para poner una flecha propia a 16 px con `background-image` y `background-position` (técnicas de las lecturas pre clase). No aparece en las lecturas pre clase; se aprobó para los selects.
 - **`Number()`** (excepción mínima): convierte en número el texto de los pesos (`js/registrar-curso.js`), de las notas (`js/registrar-nota.js` y `js/simulacion.js`) y del año, el mes y el día de la fecha de entrega (`js/registrar-actividad.js`).
 - **`toLocaleString('es', ...)`** (excepción mínima, en `formatearDecimal`): muestra las cifras calculadas con coma (14,2). Se usa `'es'` y no `'es-PE'` porque, en Chrome, `'es-PE'` da "14.2", ya que los datos de idioma de Perú usan punto decimal.
@@ -579,4 +591,15 @@ Las 28 de la tabla de pantallas más HU-13 y HU-17. Cada una se puede verificar 
 | HU-44 | Landing |
 | HU-45 | Landing |
 | HU-47 | Inicio (margen de faltas al abrir), Registrar nota (vista previa al instante) |
-| HU-48 | Inicio; barra inferior sin desborde a 320 px |
+| HU-48 | Inicio; las 14 pantallas sin desborde a 390 px con letra al 100, 150 y 200 % y a 320 px con letra al 100 % |
+
+### Tiempos de respuesta en un equipo de gama baja (HU-47, escenario 3)
+
+Medido el 22 nov 2026 sobre la versión publicada (https://jdiaz522.github.io/ulive/, commit `153e1cd`) con el protocolo de Chrome DevTools: CPU 6x más lenta y red "Slow 4G" (562,5 ms de latencia, 180 000 B/s de bajada, 84 375 B/s de subida), caché desactivada, pantalla de 390 × 844. Cinco cargas de Inicio y tres recálculos de Registrar nota.
+
+| Consulta | Umbral (HU-47) | Mediana | Peor caso |
+|---|---|---|---|
+| "Te quedan 2 faltas" pintado en Inicio (primer pintado con contenido), desde que se abre la página | 10 s | 1,75 s | 1,84 s |
+| Registrar nota: con 17 en el Parcial 2, la vista previa pintada con 14,9 y "Necesitarás 8,5…" | 3 s | 13 ms | 14 ms |
+
+El margen de faltas está en el HTML de Inicio, así que se ve en cuanto cargan las hojas de estilo; no espera a ningún script. Inter llega desde Google Fonts con `display=swap`: mientras carga, el texto se ve con la fuente de respaldo.
