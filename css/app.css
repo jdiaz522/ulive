@@ -1298,14 +1298,17 @@ select.campo {
   font-weight: 500;
 }
 
+/* "28 sep" no se parte: a 801 px el indicador de Resultado le quita ancho a la columna */
 .tabla-app .celda-fecha {
   color: #55606E;
+  white-space: nowrap;
 }
 
+/* Resultado de cada evaluación (Detalle de curso y Evaluaciones), con los indicadores de estado:
+   Aprobada (seguro) si la nota llega a REGLAS_UPC.notaAprobatoria (13, calculos.js),
+   Desaprobada (riesgo) si no llega y Pendiente (neutro) si aún no tiene nota */
 .tabla-app .celda-resultado {
-  color: #15497A;
   font-size: 14px;
-  font-weight: 500;
 }
 
 .tabla-con-margen {
@@ -1348,9 +1351,10 @@ select.campo {
   font-weight: 500;
 }
 
+/* Texto principal y sin subrayado: no es un enlace */
 .tabla-curso {
   display: block;
-  color: #15497A;
+  color: #1A2430;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
@@ -1416,7 +1420,29 @@ select.campo {
 .estado-accion {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 8px;
+}
+
+/* Resultado de evaluación: la etiqueta móvil y el indicador en una fila, el indicador del ancho de su texto */
+.estado-celda {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* En móvil, "Estado:" o "Resultado:" y su indicador comparten la línea. Los márgenes auto
+   centran la etiqueta en alto junto al indicador; 4 px reponen el espacio final, que flex no conserva.
+   Dos clases para ganarle al margen superior de .estado en móvil */
+.estado-accion .etiqueta-movil,
+.estado-celda .etiqueta-movil {
+  margin: auto 4px auto 0;
+}
+
+.estado-accion .estado,
+.estado-celda .estado,
+.estado-celda .estado-neutro {
+  margin: 0;
 }
 
 /* ---------- Filtros (botones de opción) ---------- */
@@ -2183,9 +2209,8 @@ select.campo {
     line-height: 1.4;
   }
 
-  /* Nombre y curso ocupan una línea cada uno; fecha, nota, peso y resultado comparten la siguiente */
-  .tabla-app .celda-nombre,
-  .tabla-app .celda-curso {
+  /* El nombre ocupa su línea; fecha, nota, peso y resultado comparten la siguiente */
+  .tabla-app .celda-nombre {
     flex: 1 1 100%;
     margin-right: 0;
   }
@@ -2194,16 +2219,10 @@ select.campo {
     font-size: 16px;
   }
 
-  /* Evaluaciones: el curso sigue en su propia línea, con su etiqueta "Curso:" y en texto principal */
+  /* Evaluaciones: el curso sigue en su propia línea, con su etiqueta "Curso:" */
   .tabla-evaluaciones .tabla-curso {
     margin-top: 8px;
-    color: #1A2430;
     font-weight: 400;
-  }
-
-  /* Actividades: el estado vuelve a ser un bloque, como cuando tenía su propia celda */
-  .estado-accion {
-    display: block;
   }
 
   /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda.
