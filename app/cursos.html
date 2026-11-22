@@ -89,7 +89,8 @@
           <p class="descripcion-pantalla">Ciclo 2026-2 · 3 cursos registrados</p>
         </div>
 
-        <!-- Tabla en web y tarjetas en móvil, como Evaluaciones y Actividades.
+        <!-- Tabla en web y tarjetas en móvil, como Evaluaciones y Actividades. El estado va bajo el nombre
+             del curso, en la misma celda, para que la tabla quepa en 801 px.
              "Agregar curso" va en la cabecera para que siga a la vista aunque la lista crezca -->
         <section class="panel">
           <div class="panel-cabecera">
@@ -103,8 +104,7 @@
             <caption>Tus cursos del ciclo 2026-2. "Necesitas" es la nota que te hace falta en las evaluaciones pendientes para llegar a 13.</caption>
             <thead>
               <tr>
-                <th>Curso</th>
-                <th>Estado</th>
+                <th>Curso / estado</th>
                 <th>Nota actual</th>
                 <th>Necesitas en lo que falta</th>
                 <th>Faltas</th>
@@ -113,25 +113,22 @@
             <tbody>
               <tr>
                 <!-- Solo Cálculo II tiene detalle en el prototipo: solo su nombre es enlace -->
-                <td class="celda-nombre"><a class="enlace-curso" href="curso.html">Cálculo II</a></td>
-                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span></span></td>
+                <td class="celda-nombre"><a class="enlace-curso" href="curso.html">Cálculo II</a><span class="estado-linea"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">13,8</span></td>
                 <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">12,4</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 2</span> <span class="faltas-usadas">· 4 de 6</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 2</span><span class="faltas-usadas">4 de 6</span></td>
               </tr>
               <tr>
-                <td class="celda-nombre">Programación III</td>
-                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
+                <td class="celda-nombre"><span class="nombre-curso">Programación III</span><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">16,4</span></td>
                 <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">9,1</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 5</span> <span class="faltas-usadas">· 1 de 6</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 5</span><span class="faltas-usadas">1 de 6</span></td>
               </tr>
               <tr>
-                <td class="celda-nombre">Física II</td>
-                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
+                <td class="celda-nombre"><span class="nombre-curso">Física II</span><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">15,3</span></td>
                 <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">11,6</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 6</span> <span class="faltas-usadas">· 0 de 6</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 6</span><span class="faltas-usadas">0 de 6</span></td>
               </tr>
             </tbody>
           </table>

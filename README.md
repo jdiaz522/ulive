@@ -247,11 +247,11 @@ Las condiciones se revisan en este orden:
   - Los tres selects empiezan en una opción vacía ("Elige tu universidad", etc.), para que la validación de J9 tenga sentido. El mockup muestra el estado ya elegido.
   - Universidad y carrera solo ofrecen la opción del mockup. El ciclo va de 1.º a 10.º.
 - **Mis cursos (J11):**
-  - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso, Estado, Nota actual, Necesitas en lo que falta y Faltas.
+  - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso / estado, Nota actual, Necesitas en lo que falta y Faltas.
   - En web usa el ancho completo del contenido y no la columna de 480 px de las pantallas con solo mockup móvil, porque cinco columnas no caben en 480 px.
-  - La columna Faltas muestra primero lo que queda y después las usadas: "Te quedan 2 · 4 de 6". Es el lenguaje de la pantalla Faltas. J11 decía "4 de 6 faltas".
+  - El estado va debajo del nombre del curso, en la misma celda, como en las tarjetas móviles. Con una columna propia, la tabla no cabía justo por encima del punto de quiebre: a 801 px de ventana necesitaba unos 520 px y había 448. Por lo mismo, en esta tabla el texto de las celdas puede partirse (`white-space: normal` sobre el `nowrap` de `.estado` y `.cifra`), salvo "Te quedan N", que no separa el número de su frase, y las celdas llevan 8 px de relleno lateral en web.
+  - La columna Faltas muestra primero lo que queda y debajo las usadas: "Te quedan 2" y "4 de 6". Es el lenguaje de la pantalla Faltas. J11 decía "4 de 6 faltas".
   - Solo el nombre de Cálculo II es un enlace, subrayado y de 44 px de alto, porque es el único curso con detalle en el prototipo. Programación III y Física II son texto.
-  - En móvil, el estado va en su propia línea, sin la etiqueta "Estado:", porque el indicador ya nombra el estado.
   - Encima de la tabla hay un título de sección, "Cursos del ciclo", con la regla que usan las cifras: "Se aprueba con 13 · Límite de faltas: 25 % de las sesiones".
   - **"Agregar curso" va en la cabecera de la tabla y no al final.** Así sigue a la vista aunque la lista crezca: con 6 o 7 cursos, al final quedaría debajo de la barra inferior en móvil. Se aparta de la sección 4.2 del informe ("las acciones principales van al final") y de J11. **Pendiente:** corregir J11 y la sección 4.2 del informe para que coincidan con el prototipo.
   - "Simular matrícula del próximo ciclo" sigue al pie, como botón secundario.

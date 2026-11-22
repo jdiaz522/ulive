@@ -1191,18 +1191,24 @@ select.campo {
   display: none;
 }
 
-/* Mis cursos: el nombre con detalle es un enlace subrayado de 44 px de alto.
-   La celda pierde 8 px de relleno arriba y abajo para que la fila mida lo mismo que las demás */
+/* Mis cursos: nombre del curso y, debajo, su estado. El nombre con detalle es un enlace
+   subrayado de 44 px de alto; los demás nombres ocupan la misma altura para que las filas midan igual.
+   Si el nombre se parte en dos líneas, el relleno de 8 px mantiene el interlineado normal.
+   La celda pierde 8 px de relleno arriba y abajo porque el nombre ya trae los suyos */
 .tabla-cursos .celda-nombre {
   padding-top: 8px;
   padding-bottom: 8px;
 }
 
-.enlace-curso {
+.enlace-curso,
+.tabla-cursos .nombre-curso {
   display: block;
   min-height: 44px;
+  padding: 8px 0;
+}
+
+.enlace-curso {
   color: #15497A;
-  line-height: 44px;
   text-decoration: underline;
 }
 
@@ -1210,15 +1216,31 @@ select.campo {
   text-decoration: none;
 }
 
-/* Faltas: lo que queda es el dato principal; las usadas van detrás, en texto secundario */
+/* Faltas: lo que queda es el dato principal; las usadas van debajo, en texto secundario */
+/* "Te quedan 2" no se parte: el número no queda separado de su frase */
 .faltas-quedan {
   font-weight: 500;
   white-space: nowrap;
 }
 
 .faltas-usadas {
+  display: block;
   color: #55606E;
-  white-space: nowrap;
+}
+
+/* Mis cursos: el texto de las celdas puede partirse para que la tabla quepa
+   justo por encima del punto de quiebre (801 px) sin desplazamiento horizontal */
+.tabla-cursos .estado,
+.tabla-cursos .cifra {
+  white-space: normal;
+}
+
+/* Mis cursos: relleno lateral de 8 px en las celdas, para que la tabla quepa a 801 px
+   sin partir los datos. En móvil manda el relleno de las tarjetas (más abajo) */
+.tabla-cursos th,
+.tabla-cursos td {
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 /* ---------- Filtros (botones de opción) ---------- */
@@ -1953,15 +1975,20 @@ select.campo {
     font-size: 16px;
   }
 
-  /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda */
+  /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda.
+     Los nombres sin enlace vuelven a su altura de línea, como en las demás tarjetas */
   .tabla-cursos .celda-nombre {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 4px;
   }
 
-  .tabla-cursos .celda-estado {
-    flex: 1 1 100%;
-    margin-right: 0;
+  .tabla-cursos .nombre-curso {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .tabla-cursos .estado-linea {
+    margin-top: 4px;
   }
 
   .etiqueta-movil {
