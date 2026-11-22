@@ -16,37 +16,39 @@ img/              vista previa de la app e íconos exportados desde Figma
 
 ## Técnicas usadas
 
-| Técnica | Archivo | Lectura |
-|---|---|---|
-| `<!DOCTYPE html>`, `html lang="es"`, `head`, `body`, `title` | index.html | HTML5 Foundation |
-| `meta` charset, viewport, description, keywords y author | index.html | HTML5 Foundation |
-| `link rel="stylesheet"` (hojas externas y Google Fonts) | index.html | HTML5 Foundation / CSS |
-| `script src` antes de `</body>` | index.html | JavaScript for User Interaction |
-| `header`, `nav`, `main`, `section`, `article`, `footer` | index.html | HTML5 Foundation |
-| `aria-label` en `nav`, `aria-describedby` y `aria-invalid` en el correo, `role="status"` en la confirmación y en el error del correo | index.html | Front-End Accessibility and Deployment |
-| `:focus-visible` con `outline` y `outline-offset` | css/base.css | Front-End Accessibility and Deployment |
-| `.setAttribute('aria-invalid', ...)` | js/landing.js | Front-End Accessibility and Deployment |
-| `h1`–`h3`, `p`, `ul`, `li`, `a href="#id"` | index.html | HTML5 Foundation |
-| `img` con `alt` (descriptivo o vacío si es decorativa) | index.html | HTML5 Foundation |
-| `details` y `summary` para las preguntas frecuentes | index.html | HTML5 Foundation |
-| `form`, `label for`, `input type="email"` con `placeholder`, `button type="submit"` | index.html | HTML5 Foundation (tabla de tipos de input) y Front-End Accessibility and Deployment (ejemplo de etiqueta y error) |
-| Atributos `class` e `id` | index.html | HTML5 Foundation |
-| Selectores de elemento, clase, id y descendiente | css/base.css, css/landing.css | CSS |
-| `:hover`, `:active`, `:first-child` | css/base.css, css/landing.css | CSS |
-| Colores en hex | css/base.css, css/landing.css | CSS |
-| `background-color` | css/base.css, css/landing.css | CSS |
-| `margin` (incluido `auto`), `padding`, `border`, `border-radius` | css/base.css, css/landing.css | CSS |
-| `width`, `max-width`, `min-height`, `height`, `box-sizing` | css/base.css, css/landing.css | CSS |
-| `display` (flex, block, inline), `flex-direction`, `flex-wrap`, `flex` | css/base.css, css/landing.css | CSS |
-| `font-family`, `font-size`, `font-weight` | css/base.css, css/landing.css | CSS |
-| `color`, `text-align`, `text-transform`, `text-decoration`, `line-height`, `white-space` | css/base.css, css/landing.css | CSS |
-| `cursor` | css/base.css, css/landing.css | CSS |
-| `@media screen and (max-width: 800px)` | css/base.css, css/landing.css | CSS |
-| `const`, funciones, `if`, operadores de comparación y lógicos | js/landing.js | JavaScript for User Interaction |
-| `document.getElementById` | js/landing.js | JavaScript for User Interaction |
-| `addEventListener` con `blur`, `submit` y `click` | js/landing.js | JavaScript for User Interaction |
-| `.value`, `.trim()`, `.textContent`, `.style.borderColor`, `.style.display`, `.focus()`, `e.preventDefault()` | js/landing.js | JavaScript for User Interaction |
-| Expresiones regulares con `.test()` | js/landing.js | JavaScript for User Interaction |
+Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curso.
+
+| Técnica | Archivo |
+|---|---|
+| `<!DOCTYPE html>`, `html lang="es"`, `head`, `body`, `title` | index.html |
+| `meta` charset, viewport, description, keywords y author | index.html |
+| `link rel="stylesheet"` (hojas externas y Google Fonts) | index.html |
+| `script src` antes de `</body>` | index.html |
+| `header`, `nav`, `main`, `section`, `article`, `footer` | index.html |
+| `aria-label` en `nav`, `aria-describedby` y `aria-invalid` en el correo, `role="status"` en la confirmación y en el error del correo | index.html |
+| `:focus-visible` con `outline` y `outline-offset` | css/base.css |
+| `.setAttribute('aria-invalid', ...)` | js/landing.js |
+| `h1`–`h3`, `p`, `ul`, `li`, `a href="#id"` | index.html |
+| `img` con `alt` (descriptivo o vacío si es decorativa) | index.html |
+| `details` y `summary` para las preguntas frecuentes | index.html |
+| `form`, `label for`, `input type="email"` con `placeholder`, `button type="submit"` | index.html |
+| Atributos `class` e `id` | index.html |
+| Selectores de elemento, clase, id y descendiente | css/base.css, css/landing.css |
+| `:hover`, `:active`, `:first-child` | css/base.css, css/landing.css |
+| Colores en hex | css/base.css, css/landing.css |
+| `background-color` | css/base.css, css/landing.css |
+| `margin` (incluido `auto`), `padding`, `border`, `border-radius` | css/base.css, css/landing.css |
+| `width`, `max-width`, `min-height`, `height`, `box-sizing` | css/base.css, css/landing.css |
+| `display` (flex, block, inline), `flex-direction`, `flex-wrap`, `flex` | css/base.css, css/landing.css |
+| `font-family`, `font-size`, `font-weight` | css/base.css, css/landing.css |
+| `color`, `text-align`, `text-transform`, `text-decoration`, `line-height`, `white-space` | css/base.css, css/landing.css |
+| `cursor` | css/base.css, css/landing.css |
+| `@media screen and (max-width: 800px)` | css/base.css, css/landing.css |
+| `const`, funciones, `if`, operadores de comparación y lógicos | js/landing.js |
+| `document.getElementById` | js/landing.js |
+| `addEventListener` con `blur`, `submit` y `click` | js/landing.js |
+| `.value`, `.trim()`, `.textContent`, `.style.borderColor`, `.style.display`, `.focus()`, `e.preventDefault()` | js/landing.js |
+| Expresiones regulares con `.test()` | js/landing.js |
 
 ## Adaptaciones propias
 
@@ -78,7 +80,7 @@ img/              vista previa de la app e íconos exportados desde Figma
   - La marca lleva `margin-bottom: auto` para no estirarse al alto de las dos filas: estirada, cubría la mitad izquierda de la lista y un toque entre enlaces llevaba a `#inicio`. Su área táctil es la mitad del ancho y 48 px de alto.
   - Los enlaces de la lista usan `nav li { display: inline; }`. Su relleno vertical de 16 px les da unos 49 px de área táctil, porque `min-height` no se aplica a elementos en línea. Con `nowrap`, a 360 px "Preguntas frecuentes" pasa entera a una tercera fila (163 px, lo mismo que antes, cuando se partía en dos líneas).
   - El botón "Quiero enterarme" del encabezado se oculta en móvil, porque el mismo botón está en la primera sección. Con él, el encabezado fijo ocupaba 170 px, una quinta parte de la pantalla.
-- **`<details open>`:** el atributo `open` no aparece en la lectura de HTML; se usa para que la primera pregunta empiece abierta, como en el mockup.
+- **`<details open>`:** el atributo `open` no aparece en las lecturas pre clase; se usa para que la primera pregunta empiece abierta, como en el mockup.
 - **Primera sección en móvil:** la vista previa de la app pasa debajo del texto, de modo que el h1 y el botón quedan visibles sin desplazarse a 390 px.
 - **Formulario en móvil:** el campo y el botón "Avisarme" se apilan.
 - **Mensajes de error:** se acordaron dos, los dos con ⚠:
@@ -87,7 +89,7 @@ img/              vista previa de la app e íconos exportados desde Figma
   - Con error, el borde del campo cambia solo de color a #B3261E y mantiene 1 px; la tarjeta no cambia. Así el campo no se mueve y el rojo queda en el campo que origina el error. El mensaje lleva ⚠ y texto, así que el estado no depende solo del color.
   - El párrafo del error tiene `role="status"`, para que el lector de pantalla lo anuncie también cuando aparece al salir del campo (`blur`) y no solo al enviar.
 - **Decisiones de accesibilidad que se mantienen (auditoría del 21 de noviembre de 2026):**
-  - **Error anunciado dos veces:** `#error-correo` tiene `role="status"` y además es el `aria-describedby` del campo. Al enviar con error, el foco vuelve al campo y algunos lectores de pantalla leen el mensaje dos veces: una por la región de estado y otra como descripción del campo. Se deja así porque las dos vías vienen de la lectura U3S12: `role="status"` hace que el error se anuncie también al salir del campo (`blur`), donde el foco no vuelve al campo, y `aria-describedby` hace que el error se lea cada vez que el campo recibe el foco.
+  - **Error anunciado dos veces:** `#error-correo` tiene `role="status"` y además es el `aria-describedby` del campo. Al enviar con error, el foco vuelve al campo y algunos lectores de pantalla leen el mensaje dos veces: una por la región de estado y otra como descripción del campo. Se deja así porque las dos vías vienen de las lecturas pre clase: `role="status"` hace que el error se anuncie también al salir del campo (`blur`), donde el foco no vuelve al campo, y `aria-describedby` hace que el error se lea cada vez que el campo recibe el foco.
   - **Color del placeholder:** "tu.correo@ejemplo.com" usa el gris por defecto del navegador (en Chrome, unos 4,6:1 sobre blanco, por encima del 4,5:1 de AA). No es un token de la guía, pero `::placeholder` no está en la lista de técnicas. El placeholder solo es un ejemplo: la etiqueta "Correo electrónico" siempre está visible.
 - **Validación en `blur`:** solo valida si el campo tiene texto, y no devuelve el foco. Si lo devolviera al salir del campo, quien navega con el teclado no podría salir de él. El foco se devuelve solo al enviar.
 - **Confirmación:** el texto sale del correo escrito (J27). El símbolo del estado es el escudo con check (`img/escudo-check.svg`), alineado arriba con la primera línea del título para que, si un correo largo ocupa varias líneas, marque el inicio del mensaje. El título no repite el ✓ porque el escudo ya lo lleva; el estado sigue teniendo ícono y texto en color seguro. El formulario y la confirmación comparten una tarjeta (`#tarjeta-registro`), y el error ya no la pinta. El párrafo `role="status"` está en la página desde que carga, vacío y sin alto. Así, al recibir el texto, el lector de pantalla lo anuncia. Si estuviera dentro de un bloque oculto que se muestra en el mismo momento, muchos lectores no lo anunciarían.
@@ -98,11 +100,11 @@ img/              vista previa de la app e íconos exportados desde Figma
 
 ## Excepciones usadas
 
-- `display: none`: el escudo y el texto de detalle de la confirmación empiezan ocultos con CSS. Al enviar un correo válido, el JS pone `formulario.style.display = 'none'` y muestra el escudo y el detalle con `.style.display = 'block'`. Se apoya en que la lectura de JavaScript dice que el DOM permite "mostrar, ocultar o eliminar elementos". En CSS también oculta en móvil el botón del encabezado.
-- `novalidate` en el formulario de registro: el correo es `type="email"` para que el celular muestre el teclado con @. Sin `novalidate`, el navegador bloquearía el envío con su propio aviso antes de que corra el script, y no se verían los mensajes de J26. No aparece en ninguna lectura; se aprobó para este caso.
-- `autocomplete="email"` en el campo de correo: declara que el campo pide el correo del propio usuario, para que el navegador y los gestores de contraseñas lo autocompleten. Es la técnica habitual para el criterio 1.3.5 de las WCAG 2.2 (Identificar el propósito de la entrada, nivel AA), que ayuda sobre todo a personas con dificultades motoras o cognitivas. No aparece en ninguna lectura; se aprobó para este campo.
-- `overflow-wrap: anywhere` en `.confirmacion-titulo` (css/landing.css): un correo largo sin espacios (por ejemplo, uno de 66 caracteres) medía 599 px dentro de una tarjeta de 356 px a 390 px de ancho y causaba desplazamiento horizontal. Ninguna técnica de la lista corta una palabra sin espacios (`white-space` solo controla los cortes en espacios). Con esta propiedad, el correo se corta solo donde no cabe y se copia intacto. No aparece en ninguna lectura; se aprobó para este caso.
-- `position: sticky; top: 0;` en el encabezado y `scroll-padding-top` en `html`: mantienen el encabezado fijo y evitan que tape el título de la sección o el contorno de foco al usar los enlaces o Tab. No aparece en ninguna lectura. Valores:
+- `display: none`: el escudo y el texto de detalle de la confirmación empiezan ocultos con CSS. Al enviar un correo válido, el JS pone `formulario.style.display = 'none'` y muestra el escudo y el detalle con `.style.display = 'block'`. Se apoya en que las lecturas pre clase dicen que el DOM permite "mostrar, ocultar o eliminar elementos". En CSS también oculta en móvil el botón del encabezado.
+- `novalidate` en el formulario de registro: el correo es `type="email"` para que el celular muestre el teclado con @. Sin `novalidate`, el navegador bloquearía el envío con su propio aviso antes de que corra el script, y no se verían los mensajes de J26. No aparece en las lecturas pre clase; se aprobó para este caso.
+- `autocomplete="email"` en el campo de correo: declara que el campo pide el correo del propio usuario, para que el navegador y los gestores de contraseñas lo autocompleten. Es la técnica habitual para el criterio 1.3.5 de las WCAG 2.2 (Identificar el propósito de la entrada, nivel AA), que ayuda sobre todo a personas con dificultades motoras o cognitivas. No aparece en las lecturas pre clase; se aprobó para este campo.
+- `overflow-wrap: anywhere` en `.confirmacion-titulo` (css/landing.css): un correo largo sin espacios (por ejemplo, uno de 66 caracteres) medía 599 px dentro de una tarjeta de 356 px a 390 px de ancho y causaba desplazamiento horizontal. Ninguna técnica de la lista corta una palabra sin espacios (`white-space` solo controla los cortes en espacios). Con esta propiedad, el correo se corta solo donde no cabe y se copia intacto. No aparece en las lecturas pre clase; se aprobó para este caso.
+- `position: sticky; top: 0;` en el encabezado y `scroll-padding-top` en `html`: mantienen el encabezado fijo y evitan que tape el título de la sección o el contorno de foco al usar los enlaces o Tab. No aparece en las lecturas pre clase. Valores:
   - 124 px en web y en móvil (113 o 114 px de encabezado en dos filas + 7 px del contorno, redondeado). En web era 72 px (65 + 7), pero entre 801 y unos 885 px el encabezado pasa a dos filas y, sin otro `@media`, el valor tiene que cubrir ese caso. Se fija en `css/landing.css`, sin cambiar la regla de `css/base.css`; en web ancha deja 52 px de aire de más sobre el título de la sección.
 
 No se usaron `Number()` ni `toLocaleString()`, porque la landing no hace cálculos.
@@ -139,7 +141,7 @@ La landing no es una de las 15 pantallas de la app; va en la tabla para mostrar 
 ## Historias Must Have que el prototipo web no cubre
 
 - **HU-03 (editar la fórmula de un curso):** no hay pantalla de edición. En el informe, la edición reutiliza el formulario de Registrar curso.
-- **HU-37 (datos en el dispositivo) y HU-46 (funcionar sin conexión):** necesitan almacenamiento local o un service worker, que están fuera de las lecturas. Bienvenida ya no lo menciona: decía "Tus cursos y notas se guardan en tu celular", algo que el prototipo no hace. Ahora dice "Tú registras tus cursos y notas. ULive no se conecta al portal." (revisión de UX, 22 nov 2026).
+- **HU-37 (datos en el dispositivo) y HU-46 (funcionar sin conexión):** necesitan almacenamiento local o un service worker, que están fuera de las lecturas pre clase. Bienvenida ya no lo menciona: decía "Tus cursos y notas se guardan en tu celular", algo que el prototipo no hace. Ahora dice "Tú registras tus cursos y notas. ULive no se conecta al portal." (revisión de UX, 22 nov 2026).
 
 ## Cambios de datos respecto de los mockups
 
@@ -198,7 +200,7 @@ Las condiciones se revisan en este orden:
 
 ## Adaptaciones propias de la app
 
-- **Una página para web y móvil.** El informe (sección 4.2.2) dice que la versión móvil conserva el contenido y cambia la disposición, y la lectura U3S12 pide no perder contenido al reducir el ancho. Inicio muestra en las dos versiones el contenido de la web (J1), que incluye todo lo de J10:
+- **Una página para web y móvil.** El informe (sección 4.2.2) dice que la versión móvil conserva el contenido y cambia la disposición, y las lecturas pre clase piden no perder contenido al reducir el ancho. Inicio muestra en las dos versiones el contenido de la web (J1), que incluye todo lo de J10:
   - 4 tarjetas de resumen, agrupadas en dos pares (`.resumen-par`). En móvil van en 2 × 2: cada par ocupa una fila y sus dos tarjetas miden lo mismo de alto (`flex: 1 1 40%` y `:nth-child(odd)`). J10 tenía 3 en fila.
   - 3 cursos y 3 actividades. J10 mostraba 2 de cada uno.
   - El aviso de faltas.
@@ -358,9 +360,9 @@ Las condiciones se revisan en este orden:
   - **Marcar como entregada (HU-17):** cada fila (tarjeta en móvil) lleva una casilla "Entregada" dentro de su `<label>`, con área táctil de 44 px, como "Falta justificada".
     - Al cambiarla (`change`, `.checked`), `js/actividades.js` actualiza `entregada` en su array, cambia el estado de la fila a "✓ Entregada" (color seguro) o al estado anterior, y vuelve a aplicar el filtro elegido, con el conteo en el `role="status"`. Con el filtro "Pendientes", la fila marcada desaparece y el conteo baja. Al desmarcarla, vuelve a las pendientes.
     - Si el filtro oculta la fila que tenía el foco, el foco pasa a la siguiente casilla visible o, si no hay, al filtro elegido, para que no se pierda.
-    - Como el texto "Entregada" se repite en cada fila, cada casilla lleva `aria-describedby` hacia el nombre de su actividad, para que el lector de pantalla diga cuál es. Es una extensión de la lectura U3S12, que muestra `aria-describedby` en campos con error.
+    - Como el texto "Entregada" se repite en cada fila, cada casilla lleva `aria-describedby` hacia el nombre de su actividad, para que el lector de pantalla diga cuál es. Es una extensión de las lecturas pre clase, que muestran `aria-describedby` en campos con error.
     - **Vencida:** una actividad sin entregar cuya fecha ya pasó (`diasDesdeHoy` < 0) muestra "Vencida" en color de riesgo, con ⚠ y texto. Si se marca, pasa a "✓ Entregada".
-    - **Limitación:** la marca dura mientras la página está abierta. Guardarla entre páginas necesita almacenamiento local, fuera de las lecturas, igual que HU-37.
+    - **Limitación:** la marca dura mientras la página está abierta. Guardarla entre páginas necesita almacenamiento local, fuera de las lecturas pre clase, igual que HU-37.
   - "Ordenar: Impacto ▾" es texto ("Primero las vencidas sin entregar; después, por impacto: peso en la nota entre días que faltan"), no un control. Las vencidas van arriba porque ya no se pueden entregar a tiempo y hay que decidir qué hacer con ellas.
   - **Botón por fila:** solo las actividades de Cálculo II lo llevan, porque el prototipo solo detalla ese curso. Dice "Ver curso" (en J7 decía "Ver") porque lleva al Detalle del curso y no a la actividad, y porque "Ver" solo no dice adónde va.
   - "Agregar actividad" (acción principal, acento) va en web y en móvil. En J7 no estaba.
@@ -380,7 +382,7 @@ Las condiciones se revisan en este orden:
   - **Validación al guardar:** el nombre, la evaluación y la fecha son obligatorios, con "⚠", borde de riesgo y `aria-invalid`, y el foco va al primer campo con error.
     - Una fecha anterior a hoy da "⚠ Esa fecha ya pasó. Elige hoy (6 de octubre) o una fecha posterior." (HU-14, escenario 3). Este error aparece también al cambiar la fecha.
     - Si todo está bien, el formulario se envía a `actividades.html` (su `action`).
-  - **Fecha y hora:** son dos campos, `type="date"` y `type="time"` (los dos están en la tabla de la lectura de HTML), agrupados con `<fieldset>` y `<legend>`. En J23 era un solo selector.
+  - **Fecha y hora:** son dos campos, `type="date"` y `type="time"` (los dos están en la tabla de tipos de input de las lecturas pre clase), agrupados con `<fieldset>` y `<legend>`. En J23 era un solo selector.
 - **Estado del margen de faltas** (`estadoFaltas` en `js/calculos.js`): en las pantallas de faltas, el indicador muestra el margen de faltas y no el estado de la nota. Usa los nombres de la guía de estilos ("margen de faltas holgado / reducido", "umbral superado"):
 
   | Estado | Condición (faltas que quedan) | Color e ícono |
@@ -437,7 +439,7 @@ Las condiciones se revisan en este orden:
     - Se probó cambiando el promedio a 14 en una copia de prueba.
   - **Cursos:** cada uno es un `input type="checkbox"` dentro de su `<label>`, agrupados en un `<fieldset>` con su `<legend>`. Vienen marcados los cinco del mockup (22 créditos), igual que Simulación viene precargada.
   - **Investigación de Operaciones** no se puede elegir. Como el atributo `disabled` no está en la lista de técnicas, va sin casilla, con borde punteado (`border-style: dashed`), texto secundario (#55606E) y el motivo: "No disponible: requiere Estadística II, que aún no apruebas".
-    - No se usa `opacity`, aunque el mockup la tenía. Con 75 %, el texto #55606E quedaba cerca de 3,6:1 sobre blanco, por debajo del 4,5:1 de WCAG AA (lectura U3S12). Además, `opacity` crea un contexto de apilamiento, y en móvil el curso se pintaba encima de la barra inferior fija.
+    - No se usa `opacity`, aunque el mockup la tenía. Con 75 %, el texto #55606E quedaba cerca de 3,6:1 sobre blanco, por debajo del 4,5:1 de WCAG AA (lecturas pre clase). Además, `opacity` crea un contexto de apilamiento, y en móvil el curso se pintaba encima de la barra inferior fija.
   - **Al marcar o desmarcar** (`change`): `sumarCreditos` suma los créditos y se actualiza "Seleccionados: 22 de 27 créditos". La caja `role="status"` muestra el resultado:
     - "Tu selección cabe en tu tope · Te quedan 5 créditos libres" (seguro, escudo).
     - "⚠ Tu selección supera tu tope · Te pasas por N créditos…" (riesgo, ⚠). Con los cursos del ejemplo no se llega a este caso, porque el máximo es 26 créditos. Se probó agregando un curso de prueba.
@@ -458,45 +460,47 @@ Las condiciones se revisan en este orden:
 
 ## Técnicas y excepciones de la app
 
-| Técnica | Archivo | Lectura |
-|---|---|---|
-| `picture` y `source media` para los íconos de la navegación | app/inicio.html | HTML5 Foundation |
-| `aria-label` en el `<nav>` principal | app/inicio.html | Front-End Accessibility and Deployment |
-| `aria-current="page"` en el destino activo (extensión de la lectura) | app/inicio.html | Front-End Accessibility and Deployment |
-| `:nth-child(odd)` en la cuadrícula móvil del resumen | css/app.css | CSS |
-| Funciones, `var`, `const`, `if`, bucles `for` y `while`, objetos, arrays y `Math.round` | js/calculos.js | JavaScript for User Interaction |
-| `form` con `action` hacia la pantalla siguiente; `select`, `option` y `label for` | app/bienvenida.html, app/registrar-curso.html | HTML5 Foundation |
-| `addEventListener` con `change` y `submit`, `e.preventDefault()` solo si hay error, `.value`, `.trim()`, `.textContent`, `.style`, `.focus()` | js/bienvenida.js, js/registrar-curso.js | JavaScript for User Interaction |
-| `.style.borderColor` para marcar el error (el borde se queda en 1 px, como en la landing) | js/bienvenida.js, js/registrar-*.js, js/matricula.js, js/cambio-turno.js, js/simulacion.js | JavaScript for User Interaction |
-| `option` con `selected` para el ciclo del ejemplo (5.º), como `checked` en las casillas | app/bienvenida.html | HTML5 Foundation |
-| Expresión regular con `.test()` para validar los pesos | js/registrar-curso.js | JavaScript for User Interaction |
-| `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html, app/cursos.html | HTML5 Foundation |
-| `border-collapse` y `vertical-align` en tablas | css/app.css | CSS |
-| `input type="radio"` dentro de `fieldset` y `legend` | app/evaluaciones.html | HTML5 Foundation |
-| `switch` y `change` en los filtros | js/evaluaciones.js, js/actividades.js | JavaScript for User Interaction |
-| `input type="checkbox"` dentro de su `label` (Falta justificada) y `.checked` | app/registrar-falta.html, js/registrar-falta.js | HTML5 Foundation / JavaScript for User Interaction |
-| `a` con `target="_blank"` (Consultar reglamento) | app/faltas.html | HTML5 Foundation |
-| `input type="date"` y `type="time"` en un `fieldset`, `select` con `optgroup` | app/registrar-actividad.html | HTML5 Foundation |
-| `new Date(año, mes, día)` y resta de fechas; lectura de caracteres por posición | js/calculos.js, js/registrar-actividad.js | JavaScript for User Interaction |
-| `button type="button"` con el evento `click` (Nueva simulación) | app/simulacion.html, js/simulacion.js | JavaScript for User Interaction |
-| `white-space: nowrap` en `.cifra`, para que una cifra y su "%" no se separen | css/app.css | CSS |
-| `simularEvaluacion` y `formatearDecimal` (funciones puras) | js/calculos.js | JavaScript for User Interaction |
-| Validación de 0 a 20, vista previa y resultado estimado con `change` y `submit` | js/registrar-nota.js, js/simulacion.js | JavaScript for User Interaction |
-| `aria-describedby`, `aria-invalid` (cambiado con `.setAttribute()`) y `role="status"` en la suma y en el aviso de plantilla | app/bienvenida.html, app/registrar-curso.html, js/*.js | Front-End Accessibility and Deployment |
-| `:focus-visible` con `outline` y `outline-offset`, también en `select` y `textarea` | css/base.css | Front-End Accessibility and Deployment |
-| `background-image`, `background-repeat` y `background-position` para la flecha de los select | css/app.css | CSS |
-| `input type="radio"` (espacios libres) e `input type="checkbox"` (cursos) dentro de su `label`, en un `fieldset` con `legend` | app/cambio-turno.html, app/matricula.html | HTML5 Foundation |
-| `.checked` para leer casillas (la lectura de JavaScript lee y marca casillas con `checked` en jQuery; aquí es lo mismo sin librería) | js/registrar-falta.js, js/matricula.js | JavaScript for User Interaction |
-| `topeCreditos`, `sumarCreditos`, `faltasPermitidas`, `faltasRestantes` y `estadoFaltas` (funciones puras) | js/calculos.js, js/cambio-turno.js, js/matricula.js | JavaScript for User Interaction |
-| `border-style: dashed` en el curso que no se puede elegir | css/app.css | CSS |
-| Casilla "Entregada" con `change` y `.checked`; `aria-describedby` hacia el nombre de la actividad (extensión de la lectura) | app/actividades.html, js/actividades.js | HTML5 Foundation / JavaScript for User Interaction / Front-End Accessibility and Deployment |
-| `notaOficial`, `formatearCentesimas`, `redondearCentesimas` y `textoANota` (funciones puras) | js/calculos.js | JavaScript for User Interaction |
-| Lectura de caracteres por posición también en las notas (`textoANota`), después de comprobar el formato con `.test()` | js/calculos.js | JavaScript for User Interaction |
-| `a` con `target="_blank"` hacia el reglamento (Ver regla) | app/curso.html | HTML5 Foundation |
+Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curso.
+
+| Técnica | Archivo |
+|---|---|
+| `picture` y `source media` para los íconos de la navegación | app/inicio.html |
+| `aria-label` en el `<nav>` principal | app/inicio.html |
+| `aria-current="page"` en el destino activo (extensión de las lecturas pre clase) | app/inicio.html |
+| `:nth-child(odd)` en la cuadrícula móvil del resumen | css/app.css |
+| Funciones, `var`, `const`, `if`, bucles `for` y `while`, objetos, arrays y `Math.round` | js/calculos.js |
+| `form` con `action` hacia la pantalla siguiente; `select`, `option` y `label for` | app/bienvenida.html, app/registrar-curso.html |
+| `addEventListener` con `change` y `submit`, `e.preventDefault()` solo si hay error, `.value`, `.trim()`, `.textContent`, `.style`, `.focus()` | js/bienvenida.js, js/registrar-curso.js |
+| `.style.borderColor` para marcar el error (el borde se queda en 1 px, como en la landing) | js/bienvenida.js, js/registrar-*.js, js/matricula.js, js/cambio-turno.js, js/simulacion.js |
+| `option` con `selected` para el ciclo del ejemplo (5.º), como `checked` en las casillas | app/bienvenida.html |
+| Expresión regular con `.test()` para validar los pesos | js/registrar-curso.js |
+| `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html, app/cursos.html |
+| `border-collapse` y `vertical-align` en tablas | css/app.css |
+| `input type="radio"` dentro de `fieldset` y `legend` | app/evaluaciones.html |
+| `switch` y `change` en los filtros | js/evaluaciones.js, js/actividades.js |
+| `input type="checkbox"` dentro de su `label` (Falta justificada) y `.checked` | app/registrar-falta.html, js/registrar-falta.js |
+| `a` con `target="_blank"` (Consultar reglamento) | app/faltas.html |
+| `input type="date"` y `type="time"` en un `fieldset`, `select` con `optgroup` | app/registrar-actividad.html |
+| `new Date(año, mes, día)` y resta de fechas; lectura de caracteres por posición | js/calculos.js, js/registrar-actividad.js |
+| `button type="button"` con el evento `click` (Nueva simulación) | app/simulacion.html, js/simulacion.js |
+| `white-space: nowrap` en `.cifra`, para que una cifra y su "%" no se separen | css/app.css |
+| `simularEvaluacion` y `formatearDecimal` (funciones puras) | js/calculos.js |
+| Validación de 0 a 20, vista previa y resultado estimado con `change` y `submit` | js/registrar-nota.js, js/simulacion.js |
+| `aria-describedby`, `aria-invalid` (cambiado con `.setAttribute()`) y `role="status"` en la suma y en el aviso de plantilla | app/bienvenida.html, app/registrar-curso.html, js/*.js |
+| `:focus-visible` con `outline` y `outline-offset`, también en `select` y `textarea` | css/base.css |
+| `background-image`, `background-repeat` y `background-position` para la flecha de los select | css/app.css |
+| `input type="radio"` (espacios libres) e `input type="checkbox"` (cursos) dentro de su `label`, en un `fieldset` con `legend` | app/cambio-turno.html, app/matricula.html |
+| `.checked` para leer casillas (las lecturas pre clase leen y marcan casillas con `checked` en jQuery; aquí es lo mismo sin librería) | js/registrar-falta.js, js/matricula.js |
+| `topeCreditos`, `sumarCreditos`, `faltasPermitidas`, `faltasRestantes` y `estadoFaltas` (funciones puras) | js/calculos.js, js/cambio-turno.js, js/matricula.js |
+| `border-style: dashed` en el curso que no se puede elegir | css/app.css |
+| Casilla "Entregada" con `change` y `.checked`; `aria-describedby` hacia el nombre de la actividad (extensión de las lecturas pre clase) | app/actividades.html, js/actividades.js |
+| `notaOficial`, `formatearCentesimas`, `redondearCentesimas` y `textoANota` (funciones puras) | js/calculos.js |
+| Lectura de caracteres por posición también en las notas (`textoANota`), después de comprobar el formato con `.test()` | js/calculos.js |
+| `a` con `target="_blank"` hacia el reglamento (Ver regla) | app/curso.html |
 
 - **Navegación fija:** `position: sticky; top: 0;` en el contenido de la columna lateral (web) y `position: sticky; bottom: 0;` en la barra inferior (móvil). En `html`, `scroll-padding-top: 8px` y, en móvil, `scroll-padding-bottom: 80px` (72 px de barra + 7 px del contorno de foco, redondeado), para que el elemento con foco no quede debajo de la barra.
   - **Pantallas bajas:** con `@media screen and (max-height: 500px)`, `.lateral-contenido` pasa a `position: static`. En un celular en horizontal (874 × 402) o una laptop con zoom, el menú lateral es más alto que la ventana y, fijo, dejaba la tarjeta del perfil cortada hasta llegar al final de la página; así se desplaza con ella. Es la misma técnica de `@media` de la lista, aplicada al alto, y solo desactiva la excepción sticky. No toca `.lateral`: la barra inferior móvil sigue fija.
-- **`appearance: none`** en `select.campo` (css/app.css): quita la flecha nativa del select, que Chrome dibuja a unos 4 px del borde y que no se mueve con `padding`, para poner una flecha propia a 16 px con `background-image` y `background-position` (técnicas de la lectura de CSS). No aparece en ninguna lectura; se aprobó para los selects.
+- **`appearance: none`** en `select.campo` (css/app.css): quita la flecha nativa del select, que Chrome dibuja a unos 4 px del borde y que no se mueve con `padding`, para poner una flecha propia a 16 px con `background-image` y `background-position` (técnicas de las lecturas pre clase). No aparece en las lecturas pre clase; se aprobó para los selects.
 - **`Number()`** (excepción mínima): convierte en número el texto de los pesos (`js/registrar-curso.js`), de las notas (`js/registrar-nota.js` y `js/simulacion.js`) y del año, el mes y el día de la fecha de entrega (`js/registrar-actividad.js`).
 - **`toLocaleString('es', ...)`** (excepción mínima, en `formatearDecimal`): muestra las cifras calculadas con coma (14,2). Se usa `'es'` y no `'es-PE'` porque, en Chrome, `'es-PE'` da "14.2", ya que los datos de idioma de Perú usan punto decimal.
 - **`display: none`** (excepción mínima):
@@ -518,7 +522,6 @@ Las condiciones se revisan en este orden:
     - Registrar falta: muestra el ícono del tono en la simulación y en J25, y alterna entre el formulario y J25.
     - Cambio de turno: al elegir el turno, muestra los choques y los espacios libres, y el ícono del estado de faltas.
     - Simulador de matrícula: muestra el ícono de la caja (seguro, riesgo o informativa).
-- **Comentario de `css/landing.css`:** se actualizó (solo el comentario) para decir que el encabezado fijo usa la misma excepción de navegación fija que la app.
 - **Redondeo hacia arriba:** se hace sin `Math.ceil`, con `Math.round` y una comparación (`redondearArribaDecimal`).
 - **Redondeo de la nota final no configurado (HU-13, escenario 3):** `notaOficial` devuelve "sin dato" si la universidad no tiene `redondeoFinal`, y Simulación mostraría solo el valor exacto con "Tu universidad no tiene configurado el redondeo de la nota final". En el prototipo solo está configurada la UPC, así que no se ve en pantalla, igual que el tramo "sin dato" del tope de créditos.
 - **Tope de créditos con promedio entre 13 y 15:** `topeCreditos` devuelve "sin dato", porque esa regla no está configurada (HU-32, escenario 3). El Simulador de matrícula lo dice en pantalla en vez de suponer un tope.
