@@ -223,6 +223,15 @@ Las condiciones se revisan en este orden:
   - Cada actividad muestra su impacto con el mismo formato de un decimal de Registrar actividad: Taller 3 "Impacto 10,0 = 10 % ÷ 1 día" (vence hoy y cuenta el mínimo de 1 día), Foro de patrones "5,0 = 5 % ÷ 1 día" e Informe de laboratorio "5,0 = 15 % ÷ 3 días" (`impacto`).
   - Promedio general: "Promedio de tus 3 cursos". Es el promedio simple de las notas de Cálculo II, Programación III y Física II: (13,8 + 16,4 + 15,3) / 3 = 15,17, que se muestra 15,2. El 15,2 viene del mockup (Respuesta-1) y coincide con ese cálculo. No se pondera por créditos porque el prototipo no tiene los créditos de esos cursos.
   - El criterio dice cómo se desempata: "Si dos empatan, va primero la que vence antes", que es la regla de `ordenarPorImpacto`. Por eso el Foro (vence el 7) va antes que el Informe (vence el 9).
+  - **Crítica de diseño (22 nov 2026):**
+    - **La cifra de la nota:** la fila de Cálculo II dice "Necesitas 12,4 en lo que falta para llegar a 13". Es la misma cifra de la caja "Depende del final" de Detalle de curso. Programación III y Física II no la llevan porque no tienen detalle en el prototipo. Las tres notas llevan encima "Nota actual", para que 13,8 no se lea sin contexto.
+    - **Líneas de cálculo:** el criterio de orden, el impacto de cada actividad y el "Límite UPC" de la alerta pasan de Texto auxiliar (12 px, #55606E) a Etiqueta (14 px, peso 500, #1A2430), con la clase `.etiqueta` de `base.css`. El cálculo es lo que distingue al producto y no debía verse como letra pequeña. El "Límite UPC" de la alerta de Faltas usa el mismo estilo, para que la regla se lea igual en las dos pantallas.
+    - **Ícono de "Peso":** en las tarjetas de actividad de Inicio y de Detalle de curso, el calendario se cambió por la balanza gris (`icono-balanza-gris.svg`), porque el peso no es una fecha. Es la misma balanza con el trazo en texto secundario (#55606E), el mismo color del texto "Peso" y del reloj de al lado. La balanza primaria (`icono-balanza.svg`) sigue en las cajas de regla de Detalle de curso, Faltas, Matrícula, Registrar nota y Simulación.
+    - **Faltas de Cálculo II:**
+      - La tarjeta de resumen lleva el estado "⚠ Margen reducido", la misma etiqueta de `estadoFaltas(2)`. Así la tarjeta y la alerta muestran el mismo estado. En la tarjeta estrecha de móvil, el estado puede ocupar dos líneas.
+      - La alerta de Inicio conserva su título, "Te quedan 2 faltas en Cálculo II", que es la etiqueta de ejemplo de la sección 4.2 del informe. Baja a 20 px (18 px en móvil) para quedar por debajo de los títulos de sección; en Faltas sigue a 24 px.
+      - Debajo del título, la alerta agrega una línea tranquila: "Puedes faltar 2 veces más sin perder el curso".
+      - La alerta termina con un siguiente paso: el enlace "Ver mis faltas" y el botón "Registrar cambio de turno", que antes quedaba suelto debajo de ella.
 - **Tokens y tipografía:**
   - Títulos de tarjeta: 18 px con peso 600 en Figma; aquí h3 de 20/18 px con peso 500.
   - Etiquetas de 14 px: peso 600 en Figma; aquí 500.
@@ -232,14 +241,21 @@ Las condiciones se revisan en este orden:
   - Espaciados de 12 px: aquí 8 px dentro de un bloque y 16 px entre bloques. Los de 2 px pasan a 4 px.
   - Radio de 10 px de J21: 8 px en tarjetas de actividad y controles, 12 px en tarjetas de curso y bloques grandes.
 - **Barra de progreso:** el ancho del avance se fija con una clase por porcentaje (`.avance-67`), porque no se usa `style=""`.
-- **Pantallas con solo mockup móvil** (Bienvenida, Mis cursos y las de registro): en web llevan el menú lateral y el contenido en una columna centrada de `max-width: 480px`. Bienvenida no lleva navegación: su barra muestra la marca y "Estudiante" en las dos versiones.
+- **Pantallas con solo mockup móvil** (Bienvenida y las de registro): en web llevan el menú lateral y el contenido en una columna centrada de `max-width: 480px`. Bienvenida no lleva navegación: su barra muestra la marca y "Estudiante" en las dos versiones.
 - **Bienvenida (J9):**
   - Es la entrada de la app y "Continuar" lleva a `inicio.html`.
   - Los tres selects empiezan en una opción vacía ("Elige tu universidad", etc.), para que la validación de J9 tenga sentido. El mockup muestra el estado ya elegido.
   - Universidad y carrera solo ofrecen la opción del mockup. El ciclo va de 1.º a 10.º.
 - **Mis cursos (J11):**
+  - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso, Estado, Nota actual, Necesitas en lo que falta y Faltas.
+  - En web usa el ancho completo del contenido y no la columna de 480 px de las pantallas con solo mockup móvil, porque cinco columnas no caben en 480 px.
+  - La columna Faltas muestra primero lo que queda y después las usadas: "Te quedan 2 · 4 de 6". Es el lenguaje de la pantalla Faltas. J11 decía "4 de 6 faltas".
+  - Solo el nombre de Cálculo II es un enlace, subrayado y de 44 px de alto, porque es el único curso con detalle en el prototipo. Programación III y Física II son texto.
+  - En móvil, el estado va en su propia línea, sin la etiqueta "Estado:", porque el indicador ya nombra el estado.
+  - Encima de la tabla hay un título de sección, "Cursos del ciclo", con la regla que usan las cifras: "Se aprueba con 13 · Límite de faltas: 25 % de las sesiones".
+  - **"Agregar curso" va en la cabecera de la tabla y no al final.** Así sigue a la vista aunque la lista crezca: con 6 o 7 cursos, al final quedaría debajo de la barra inferior en móvil. Se aparta de la sección 4.2 del informe ("las acciones principales van al final") y de J11. **Pendiente:** corregir J11 y la sección 4.2 del informe para que coincidan con el prototipo.
+  - "Simular matrícula del próximo ciclo" sigue al pie, como botón secundario.
   - "Depende del final" lleva el triángulo ⚠ y no el reloj del mockup, igual que en el resto de la app y en la regla de estados.
-  - El ícono de libro mide 24 px, el tamaño por defecto, dentro de una caja de 32 px.
 - **Registrar curso (J12, J24):**
   - Los pesos son campos editables, porque la pantalla recalcula la suma al cambiarlos. En el mockup eran texto.
   - Los pesos son `type="text"`. Con `type="number"`, el navegador bloquearía el envío con su propio aviso antes de que corra el script.
@@ -250,7 +266,7 @@ Las condiciones se revisan en este orden:
     - La caja muestra la diferencia ("Falta asignar 10 %." o "Sobran 10 %.") y lo ingresado se conserva.
   - Un peso que no es un entero de 0 a 100 muestra "⚠ Escribe un número entero de 0 a 100." junto al campo.
   - El nombre, las sesiones y la nota objetivo vienen con los valores del ejemplo. El mockup no muestra errores para ellos, así que no se validan.
-- **Tablas que en móvil son listas** (Detalle de curso y Evaluaciones):
+- **Tablas que en móvil son listas** (Detalle de curso, Evaluaciones y Mis cursos):
   - Es una sola `<table>` con `<caption>`, `<thead>` y `<th>`. En móvil, `table`, `tbody` y `td` pasan a `display: block`, el `<thead>` se oculta y cada `<tr>` es una tarjeta (`display: flex` con `flex-wrap`).
   - Cada celda lleva un `<span class="etiqueta-movil">` ("Fecha: ", "Nota: "…), oculto en web.
   - Diferencias con J14 y J15:
@@ -401,7 +417,7 @@ Las condiciones se revisan en este orden:
 | `form` con `action` hacia la pantalla siguiente; `select`, `option` y `label for` | app/bienvenida.html, app/registrar-curso.html | HTML5 Foundation |
 | `addEventListener` con `change` y `submit`, `e.preventDefault()` solo si hay error, `.value`, `.trim()`, `.textContent`, `.style`, `.focus()` | js/bienvenida.js, js/registrar-curso.js | JavaScript for User Interaction |
 | Expresión regular con `.test()` para validar los pesos | js/registrar-curso.js | JavaScript for User Interaction |
-| `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html | HTML5 Foundation |
+| `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html, app/cursos.html | HTML5 Foundation |
 | `border-collapse` y `vertical-align` en tablas | css/app.css | CSS |
 | `input type="radio"` dentro de `fieldset` y `legend` | app/evaluaciones.html | HTML5 Foundation |
 | `switch` y `change` en los filtros | js/evaluaciones.js, js/actividades.js | JavaScript for User Interaction |

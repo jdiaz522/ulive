@@ -84,61 +84,61 @@
       </header>
 
       <main class="contenido">
-        <div class="columna-estrecha">
-          <div class="titulo-pantalla">
-            <h1>Mis cursos</h1>
-            <p class="descripcion-pantalla">Ciclo 2026-2 · 3 cursos registrados</p>
-          </div>
+        <div class="titulo-pantalla">
+          <h1>Mis cursos</h1>
+          <p class="descripcion-pantalla">Ciclo 2026-2 · 3 cursos registrados</p>
+        </div>
 
-          <div class="tarjeta-app">
-            <ul class="lista-separada">
-              <li>
-                <!-- Solo Cálculo II tiene detalle en el prototipo -->
-                <a class="elemento-lista fila-enlace" href="curso.html">
-                  <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
-                  <span class="curso-info">
-                    <span class="curso-nombre">Cálculo II</span>
-                    <span class="curso-detalle">Necesitas 12,4 en lo que falta · 4 de 6 faltas</span>
-                    <span class="estado-linea">
-                      <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
-                    </span>
-                  </span>
-                  <span class="curso-nota">13,8</span>
-                </a>
-              </li>
-              <li>
-                <div class="elemento-lista">
-                  <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
-                  <span class="curso-info">
-                    <span class="curso-nombre">Programación III</span>
-                    <span class="curso-detalle">Necesitas 9,1 en lo que falta · 1 de 6 faltas</span>
-                    <span class="estado-linea">
-                      <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    </span>
-                  </span>
-                  <span class="curso-nota">16,4</span>
-                </div>
-              </li>
-              <li>
-                <div class="elemento-lista">
-                  <span class="icono-curso"><img src="../img/icono-libro.svg" alt=""></span>
-                  <span class="curso-info">
-                    <span class="curso-nombre">Física II</span>
-                    <span class="curso-detalle">Necesitas 11,6 en lo que falta · 0 de 6 faltas</span>
-                    <span class="estado-linea">
-                      <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    </span>
-                  </span>
-                  <span class="curso-nota">15,3</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="acciones-apiladas">
+        <!-- Tabla en web y tarjetas en móvil, como Evaluaciones y Actividades.
+             "Agregar curso" va en la cabecera para que siga a la vista aunque la lista crezca -->
+        <section class="panel">
+          <div class="panel-cabecera">
+            <div class="panel-titulos">
+              <h2>Cursos del ciclo</h2>
+              <p class="texto-auxiliar">Se aprueba con 13 · Límite de faltas: 25 % de las sesiones</p>
+            </div>
             <a class="boton-app boton-principal" href="registrar-curso.html">Agregar curso</a>
-            <a class="boton-app boton-secundario" href="matricula.html">Simular matrícula del próximo ciclo</a>
           </div>
+          <table class="tabla-app tabla-con-margen tabla-cursos">
+            <caption>Tus cursos del ciclo 2026-2. "Necesitas" es la nota que te hace falta en las evaluaciones pendientes para llegar a 13.</caption>
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Estado</th>
+                <th>Nota actual</th>
+                <th>Necesitas en lo que falta</th>
+                <th>Faltas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!-- Solo Cálculo II tiene detalle en el prototipo: solo su nombre es enlace -->
+                <td class="celda-nombre"><a class="enlace-curso" href="curso.html">Cálculo II</a></td>
+                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span></span></td>
+                <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">13,8</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">12,4</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 2</span> <span class="faltas-usadas">· 4 de 6</span></td>
+              </tr>
+              <tr>
+                <td class="celda-nombre">Programación III</td>
+                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
+                <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">16,4</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">9,1</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 5</span> <span class="faltas-usadas">· 1 de 6</span></td>
+              </tr>
+              <tr>
+                <td class="celda-nombre">Física II</td>
+                <td class="celda-estado"><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
+                <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">15,3</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">11,6</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 6</span> <span class="faltas-usadas">· 0 de 6</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="acciones-app acciones-pie">
+          <a class="boton-app boton-secundario" href="matricula.html">Simular matrícula del próximo ciclo</a>
         </div>
       </main>
     </div>

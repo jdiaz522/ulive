@@ -275,6 +275,19 @@ html {
   line-height: 1.1;
 }
 
+/* Estado dentro de una tarjeta de resumen: solo el ancho de su texto.
+   Puede pasar a dos líneas en la tarjeta estrecha de móvil. */
+.resumen-estado {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+
+.resumen-estado .estado {
+  margin: 0;
+  white-space: normal;
+}
+
 .resumen-nota {
   display: block;
   margin-top: 4px;
@@ -476,6 +489,35 @@ html {
   line-height: 1.4;
 }
 
+/* Lo que falta para aprobar, con la cifra de curso.html (rol Etiqueta) */
+.curso-necesita {
+  display: block;
+  margin-top: 4px;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Nota de la fila con su etiqueta, para que 13,8 no se lea sin contexto */
+.curso-calificacion {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: right;
+}
+
+.curso-calificacion-etiqueta {
+  display: block;
+  color: #55606E;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.curso-calificacion .curso-nota {
+  margin: 0;
+}
+
 .curso-nota {
   display: block;
   margin-top: auto;
@@ -634,6 +676,49 @@ html {
   width: 32px;
   height: 32px;
   margin-right: 8px;
+}
+
+/* En Inicio la alerta acompaña a la columna lateral: título a 20 px (rol h2 móvil),
+   por debajo de los títulos de sección. En Faltas sigue a 24 px, es el tema de la pantalla. */
+.columna-secundaria .alerta-titulo {
+  font-size: 20px;
+}
+
+.columna-secundaria .alerta-titulo img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Lectura tranquila del mismo dato, debajo del título */
+.alerta-calma {
+  margin-top: 8px;
+  color: #1A2430;
+}
+
+/* Siguiente paso dentro de la alerta: enlace con área táctil de 44 px y el botón de cambio de turno */
+.alerta-enlace {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+}
+
+.alerta-enlace a {
+  display: block;
+  min-height: 44px;
+  color: #15497A;
+}
+
+.alerta-enlace a:hover {
+  text-decoration: none;
+}
+
+.alerta-enlace a:active {
+  color: #0F2A44;
+}
+
+.alerta-faltas .acciones-app {
+  margin-top: 8px;
 }
 
 .alerta-resumen {
@@ -1104,6 +1189,36 @@ select.campo {
 /* Nombre de la columna dentro de cada celda: solo en móvil */
 .etiqueta-movil {
   display: none;
+}
+
+/* Mis cursos: el nombre con detalle es un enlace subrayado de 44 px de alto.
+   La celda pierde 8 px de relleno arriba y abajo para que la fila mida lo mismo que las demás */
+.tabla-cursos .celda-nombre {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.enlace-curso {
+  display: block;
+  min-height: 44px;
+  color: #15497A;
+  line-height: 44px;
+  text-decoration: underline;
+}
+
+.enlace-curso:hover {
+  text-decoration: none;
+}
+
+/* Faltas: lo que queda es el dato principal; las usadas van detrás, en texto secundario */
+.faltas-quedan {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.faltas-usadas {
+  color: #55606E;
+  white-space: nowrap;
 }
 
 /* ---------- Filtros (botones de opción) ---------- */
@@ -1744,6 +1859,10 @@ select.campo {
     font-size: 18px;
   }
 
+  .curso-calificacion {
+    margin-top: 8px;
+  }
+
   /* En Mis cursos la nota sigue centrada junto a la información */
   .elemento-lista .curso-nota {
     margin-top: auto;
@@ -1755,6 +1874,11 @@ select.campo {
 
   .alerta-titulo {
     font-size: 20px;
+  }
+
+  /* En Inicio, por debajo de los títulos de sección móviles (20 px) */
+  .columna-secundaria .alerta-titulo {
+    font-size: 18px;
   }
 
   /* Dos columnas pasan a una */
@@ -1827,6 +1951,17 @@ select.campo {
 
   .tabla-app .celda-nombre {
     font-size: 16px;
+  }
+
+  /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda */
+  .tabla-cursos .celda-nombre {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .tabla-cursos .celda-estado {
+    flex: 1 1 100%;
+    margin-right: 0;
   }
 
   .etiqueta-movil {

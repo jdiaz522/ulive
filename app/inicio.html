@@ -102,6 +102,7 @@
           <a class="resumen resumen-enlace" href="faltas.html">
             <span class="resumen-etiqueta">Faltas en Cálculo II</span>
             <span class="resumen-valor">4 / 6</span>
+            <span class="resumen-estado"><span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Margen reducido</span></span>
             <span class="resumen-nota">Te quedan 2 faltas</span>
             <span class="resumen-accion">Ver mis faltas</span>
           </a>
@@ -150,9 +151,14 @@
                     <span class="curso-info">
                       <span class="curso-nombre">Cálculo II</span>
                       <span class="curso-detalle">Lun / Mié · 08:00 · MAT-204</span>
+                      <!-- Mismo dato que la caja "Depende del final" de curso.html -->
+                      <span class="curso-necesita">Necesitas <span class="cifra">12,4</span> en lo que falta para llegar a <span class="cifra">13</span></span>
                     </span>
                     <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
-                    <span class="curso-nota">13,8</span>
+                    <span class="curso-calificacion">
+                      <span class="curso-calificacion-etiqueta">Nota actual</span>
+                      <span class="curso-nota">13,8</span>
+                    </span>
                   </a>
                 </li>
                 <li>
@@ -163,7 +169,10 @@
                       <span class="curso-detalle">Mar / Jue · 10:00 · SIS-306</span>
                     </span>
                     <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    <span class="curso-nota">16,4</span>
+                    <span class="curso-calificacion">
+                      <span class="curso-calificacion-etiqueta">Nota actual</span>
+                      <span class="curso-nota">16,4</span>
+                    </span>
                   </div>
                 </li>
                 <li>
@@ -174,7 +183,10 @@
                       <span class="curso-detalle">Vie · 08:00 · FIS-202</span>
                     </span>
                     <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    <span class="curso-nota">15,3</span>
+                    <span class="curso-calificacion">
+                      <span class="curso-calificacion-etiqueta">Nota actual</span>
+                      <span class="curso-nota">15,3</span>
+                    </span>
                   </div>
                 </li>
               </ul>
@@ -186,7 +198,7 @@
             <!-- Próximas actividades, ordenadas por impacto -->
             <section class="panel">
               <h2>Próximas actividades</h2>
-              <p class="texto-auxiliar criterio">Ordenado por impacto: peso en la nota entre días que faltan (mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
+              <p class="etiqueta criterio">Ordenado por impacto: peso en la nota entre días que faltan (mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
               <ul class="lista-actividades">
                 <li>
                   <a class="tarjeta-actividad fila-enlace" href="curso.html">
@@ -196,10 +208,10 @@
                     </span>
                     <span class="actividad-curso">Cálculo II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">10 %</span></span></span>
+                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">10 %</span></span></span>
                       <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-gris.svg" alt=""> Hoy, 23:59</span>
                     </span>
-                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">10,0</span> = 10 % ÷ 1 día</span>
+                    <span class="etiqueta actividad-impacto">Impacto <span class="cifra">10,0</span> = 10 % ÷ 1 día</span>
                   </a>
                 </li>
                 <li>
@@ -210,10 +222,10 @@
                     </span>
                     <span class="actividad-curso">Programación III</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">5 %</span></span></span>
+                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">5 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span>
                     </span>
-                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">5,0</span> = 5 % ÷ 1 día</span>
+                    <span class="etiqueta actividad-impacto">Impacto <span class="cifra">5,0</span> = 5 % ÷ 1 día</span>
                   </div>
                 </li>
                 <li>
@@ -224,10 +236,10 @@
                     </span>
                     <span class="actividad-curso">Física II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">15 %</span></span></span>
+                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">15 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span>
                     </span>
-                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">5,0</span> = 15 % ÷ 3 días</span>
+                    <span class="etiqueta actividad-impacto">Impacto <span class="cifra">5,0</span> = 15 % ÷ 3 días</span>
                   </div>
                 </li>
               </ul>
@@ -236,6 +248,7 @@
             <!-- Margen de faltas de Cálculo II -->
             <section class="alerta-faltas">
               <h2 class="alerta-titulo"><img src="../img/icono-alerta-grande.svg" alt=""> Te quedan 2 faltas en Cálculo II</h2>
+              <p class="alerta-calma">Puedes faltar 2 veces más sin perder el curso.</p>
               <div class="alerta-resumen">
                 <p class="alerta-dato">4 faltas registradas de 6</p>
               </div>
@@ -243,12 +256,13 @@
                 <div class="progreso-avance avance-67"></div>
               </div>
               <!-- El límite con su cálculo, en vez de un 67 % sin unidad -->
-              <p class="texto-auxiliar alerta-regla">Límite UPC: 25 % de <span class="cifra">24</span> sesiones = <span class="cifra">6</span> faltas</p>
+              <p class="etiqueta alerta-regla">Límite UPC: 25 % de <span class="cifra">24</span> sesiones = <span class="cifra">6</span> faltas</p>
+              <!-- Siguiente paso: ver el detalle o reacomodar la semana si cambia el turno -->
+              <p class="alerta-enlace"><a href="faltas.html">Ver mis faltas</a></p>
+              <div class="acciones-app">
+                <a class="boton-app boton-secundario boton-ancho" href="cambio-turno.html">Registrar cambio de turno</a>
+              </div>
             </section>
-
-            <div class="acciones-app">
-              <a class="boton-app boton-secundario boton-ancho" href="cambio-turno.html">Registrar cambio de turno</a>
-            </div>
           </div>
         </div>
       </main>
