@@ -91,32 +91,42 @@
           <p class="descripcion-pantalla">Martes 6 de octubre · Revisa primero lo prioritario</p>
         </div>
 
-        <!-- Resumen académico -->
-        <section class="resumenes">
-          <article class="resumen">
-            <p class="resumen-etiqueta">Promedio general</p>
-            <p class="resumen-valor">15,2</p>
-            <p class="resumen-nota">Promedio de tus 3 cursos · Situación estable</p>
-          </article>
-          <!-- Las tarjetas que son enlace terminan con una acción visible -->
-          <a class="resumen resumen-enlace" href="faltas.html">
-            <span class="resumen-etiqueta">Faltas en Cálculo II</span>
-            <span class="resumen-valor">4 / 6</span>
-            <span class="resumen-estado"><span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Margen reducido</span></span>
-            <span class="resumen-nota">Te quedan 2 faltas</span>
-            <span class="resumen-accion">Ver mis faltas</span>
-          </a>
-          <a class="resumen resumen-enlace" href="actividades.html">
-            <span class="resumen-etiqueta">Actividades pendientes</span>
-            <span class="resumen-valor">4</span>
-            <span class="resumen-nota">Esta semana · 1 vencida</span>
-            <span class="resumen-accion">Ver actividades</span>
-          </a>
-          <article class="resumen">
-            <p class="resumen-etiqueta">Próxima evaluación</p>
-            <p class="resumen-valor">14 oct</p>
-            <p class="resumen-nota">Parcial 2 · Cálculo II</p>
-          </article>
+        <!-- Resumen académico: dos pares de tarjetas. Cada par pasa entero a otra fila,
+             así a 801 px quedan 2 × 2 y nunca 3 + 1 -->
+        <section class="resumenes resumenes-pares">
+          <div class="resumen-par">
+            <article class="resumen">
+              <p class="resumen-etiqueta">Promedio general</p>
+              <p class="resumen-valor">15,2</p>
+              <!-- Estado de estadoPromedioGeneral (js/calculos.js) -->
+              <p class="resumen-estado"><span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Situación estable</span></p>
+              <p class="resumen-nota">Promedio simple de tus 3 cursos (sin créditos)</p>
+            </article>
+            <!-- Las tarjetas que son enlace terminan con una acción visible -->
+            <a class="resumen resumen-enlace" href="faltas.html">
+              <span class="resumen-etiqueta">Faltas en Cálculo II</span>
+              <span class="resumen-valor">4 / 6</span>
+              <span class="resumen-estado"><span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Margen reducido</span></span>
+              <span class="resumen-nota">Te quedan 2 faltas</span>
+              <span class="resumen-accion">Ver mis faltas</span>
+            </a>
+          </div>
+          <div class="resumen-par">
+            <!-- Las 4 pendientes vencen de hoy al domingo 11; Cuestionario 4 venció el lunes 5
+                 y no cuenta en ellas, pero se avisa con el estado de riesgo (ver README) -->
+            <a class="resumen resumen-enlace" href="actividades.html">
+              <span class="resumen-etiqueta">Actividades pendientes</span>
+              <span class="resumen-valor">4</span>
+              <span class="resumen-estado"><span class="estado estado-riesgo"><img src="../img/icono-alerta-riesgo.svg" alt=""> 1 vencida</span></span>
+              <span class="resumen-nota">Esta semana, sin contar la vencida</span>
+              <span class="resumen-accion">Ver actividades</span>
+            </a>
+            <article class="resumen">
+              <p class="resumen-etiqueta">Próxima evaluación</p>
+              <p class="resumen-valor">14 oct</p>
+              <p class="resumen-nota">Parcial 2 · Cálculo II</p>
+            </article>
+          </div>
         </section>
 
         <div class="columnas columnas-ajustables">
@@ -144,6 +154,8 @@
                 </div>
                 <a class="boton-app boton-secundario" href="cursos.html">Ver todos los cursos</a>
               </div>
+              <!-- Estado y nota van juntos en .curso-resultado: si la fila no cabe (801 px, móvil),
+                   pasan juntos a una segunda línea, con el estado a la izquierda y la nota a la derecha -->
               <ul class="lista-cursos">
                 <li>
                   <a class="fila-curso fila-enlace" href="curso.html">
@@ -154,10 +166,12 @@
                       <!-- Mismos datos que la tabla de cursos.html (Cálculo II: caja "Depende del final" de curso.html) -->
                       <span class="curso-necesita">Necesitas <span class="cifra">12,4</span> en lo que falta para llegar a <span class="cifra">13</span></span>
                     </span>
-                    <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
-                    <span class="curso-calificacion">
-                      <span class="curso-calificacion-etiqueta">Nota actual</span>
-                      <span class="curso-nota">13,8</span>
+                    <span class="curso-resultado">
+                      <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
+                      <span class="curso-calificacion">
+                        <span class="curso-calificacion-etiqueta">Nota actual</span>
+                        <span class="curso-nota">13,8</span>
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -169,10 +183,12 @@
                       <span class="curso-detalle">Mar / Jue · 10:00 · SIS-306</span>
                       <span class="curso-necesita">Necesitas <span class="cifra">9,1</span> en lo que falta para llegar a <span class="cifra">13</span></span>
                     </span>
-                    <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    <span class="curso-calificacion">
-                      <span class="curso-calificacion-etiqueta">Nota actual</span>
-                      <span class="curso-nota">16,4</span>
+                    <span class="curso-resultado">
+                      <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
+                      <span class="curso-calificacion">
+                        <span class="curso-calificacion-etiqueta">Nota actual</span>
+                        <span class="curso-nota">16,4</span>
+                      </span>
                     </span>
                   </div>
                 </li>
@@ -184,14 +200,28 @@
                       <span class="curso-detalle">Vie · 08:00 · FIS-202</span>
                       <span class="curso-necesita">Necesitas <span class="cifra">11,6</span> en lo que falta para llegar a <span class="cifra">13</span></span>
                     </span>
-                    <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
-                    <span class="curso-calificacion">
-                      <span class="curso-calificacion-etiqueta">Nota actual</span>
-                      <span class="curso-nota">15,3</span>
+                    <span class="curso-resultado">
+                      <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
+                      <span class="curso-calificacion">
+                        <span class="curso-calificacion-etiqueta">Nota actual</span>
+                        <span class="curso-nota">15,3</span>
+                      </span>
                     </span>
                   </div>
                 </li>
               </ul>
+              <!-- Reglas de estadoCurso (js/calculos.js): margen = lo que vienes sacando − lo que necesitas -->
+              <details class="ayuda-estados">
+                <summary>¿Qué significan los estados?</summary>
+                <ul>
+                  <li><strong>Asegurado:</strong> ya llegaste a 13, aunque saques 0 en lo que falta.</li>
+                  <li><strong>Con margen:</strong> lo que vienes sacando supera en 3 puntos o más a lo que necesitas.</li>
+                  <li><strong>Depende del final:</strong> lo que vienes sacando alcanza lo que necesitas, pero con menos de 3 puntos de margen.</li>
+                  <li><strong>En riesgo:</strong> necesitas más de lo que vienes sacando.</li>
+                  <li><strong>Ya no alcanza 13:</strong> necesitarías más de 20 en lo que falta.</li>
+                  <li><strong>Situación estable:</strong> promedio de 13 o más y ningún curso en riesgo.</li>
+                </ul>
+              </details>
             </section>
           </div>
 
@@ -200,7 +230,7 @@
             <!-- Próximas actividades, ordenadas por impacto -->
             <section class="panel">
               <h2>Próximas actividades</h2>
-              <p class="etiqueta criterio">Ordenado por impacto: peso en la nota entre días que faltan (mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
+              <p class="etiqueta criterio">Ordenado por impacto = % de la nota por cada día que falta (peso ÷ días que faltan, mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
               <ul class="lista-actividades">
                 <li>
                   <a class="tarjeta-actividad fila-enlace" href="curso.html">

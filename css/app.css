@@ -328,6 +328,22 @@ html {
   color: #0F2A44;
 }
 
+/* Resumen de Inicio en dos pares (.resumen-par). Cada par tiene una base de 416 px
+   (dos tarjetas de 200 px y 16 px entre ellas): si los dos pares no caben en una fila,
+   el segundo pasa abajo entero y quedan 2 × 2, nunca 3 + 1 con una tarjeta suelta.
+   Mismo patrón de margen negativo que .columnas-ajustables: 16 px a la izquierda y
+   abajo de cada par, compensados con -16 px en el contenedor. */
+.resumenes-pares {
+  margin: 0 0 8px -16px;
+}
+
+.resumen-par {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 416px;
+  margin: 0 0 16px 16px;
+}
+
 /* ---------- Columnas de Inicio ---------- */
 .columnas {
   display: flex;
@@ -541,6 +557,77 @@ html {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.1;
+}
+
+/* Filas de Mis cursos (Inicio): el estado y la nota van juntos en .curso-resultado.
+   - Si la fila cabe (1440 px), todo queda en una línea: .curso-info crece (flex 1000)
+     y .curso-resultado se queda con el ancho de su contenido.
+   - Si no cabe (801 px y móvil), .curso-resultado pasa entero a una segunda línea y
+     ocupa todo el ancho: estado a la izquierda y nota a la derecha (margen derecho auto).
+   - El nombre y lo que necesitas no se aprietan por debajo de 240 px.
+   - 4 px arriba y abajo en ambos: centrados en una línea y 8 px entre líneas. */
+.lista-cursos .fila-curso {
+  flex-wrap: wrap;
+}
+
+.lista-cursos .curso-info {
+  flex: 1000 1 240px;
+  margin: 4px 16px;
+}
+
+.curso-resultado {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  margin: auto 0;
+  padding: 4px 0;
+}
+
+.curso-resultado .estado {
+  margin: auto auto auto 0;
+}
+
+.curso-resultado .curso-calificacion {
+  margin: auto 0 auto 16px;
+}
+
+/* Ayuda de Mis cursos: qué significa cada estado (reglas de estadoCurso) */
+.ayuda-estados {
+  margin-top: 8px;
+  border-top: 1px solid #D6DEE7;
+}
+
+.ayuda-estados summary {
+  min-height: 44px;
+  padding-top: 8px;
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ayuda-estados summary:hover {
+  text-decoration: none;
+}
+
+.ayuda-estados ul {
+  margin: 0;
+  padding: 0 0 0 16px;
+}
+
+.ayuda-estados li {
+  max-width: 680px;
+  margin-top: 4px;
+  color: #55606E;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ayuda-estados strong {
+  color: #1A2430;
+  font-weight: 500;
 }
 
 /* Solo las filas que llevan a otra pantalla tienen aspecto de clicables */
@@ -1883,6 +1970,16 @@ select.campo {
     font-size: 20px;
   }
 
+  /* Inicio: cada par ocupa una fila y sus dos tarjetas quedan lado a lado, con la misma altura */
+  .resumenes-pares {
+    margin: 0 0 8px 0;
+  }
+
+  .resumen-par {
+    flex: 1 1 100%;
+    margin: 0;
+  }
+
   .columnas {
     flex-direction: column;
   }
@@ -1928,6 +2025,11 @@ select.campo {
   .curso-info {
     flex: 1 1 60%;
     margin: auto 0 auto 8px;
+  }
+
+  /* Mis cursos (Inicio): 8 px tras el ícono; estado y nota pasan abajo en .curso-resultado */
+  .lista-cursos .curso-info {
+    margin: 4px 0 4px 8px;
   }
 
   .estado {
