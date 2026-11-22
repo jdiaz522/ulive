@@ -6,7 +6,6 @@
   <meta name="description" content="Simula en ULive cómo una evaluación puede cambiar tu promedio y cuánto necesitarías en lo que falta.">
   <meta name="author" content="EduMetrics">
   <title>Simulación de nota · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Evaluaciones / Simulación de nota</p>
@@ -135,12 +133,10 @@
           </section>
         </div>
 
-        <!-- Anuncio del resultado (role="status"): existe desde que carga la página,
-             vacío y sin alto, para que el lector de pantalla lo lea al recibir el texto -->
+        <!-- Anuncio (role="status"): existe desde la carga, vacío y sin alto, para leerse al recibir texto -->
         <p id="anuncio-resultado" class="resultado-anuncio" role="status"></p>
 
-        <!-- Estado 2 (J5, J17): resultado de la simulación. Empieza oculto; el JS lo
-             muestra al enviar una nota válida y lo llena con lo que escribió el usuario -->
+        <!-- Estado 2 (J5, J17): empieza oculto; el JS lo muestra al enviar una nota válida -->
         <section id="vista-resultado" class="vista-resultado">
           <h2>Resultado de simulación</h2>
           <div class="dos-columnas columnas-ajustables">
@@ -149,8 +145,7 @@
               <p id="r-proyectado" class="resultado-cifra dato-numerico">14,2</p>
               <p class="resultado-texto">sería tu nota acumulada</p>
 
-              <!-- Nota calculada con dos decimales y nota oficial según el redondeo (HU-13).
-                   El JS escribe los textos y muestra solo el ícono del tono que corresponde -->
+              <!-- Nota calculada y oficial (HU-13): el JS muestra solo el ícono del tono que corresponde -->
               <div id="r-redondeo" class="caja-estado caja-info caja-redondeo">
                 <img id="r-redondeo-icono-info" src="../img/icono-balanza.svg" alt="">
                 <img id="r-redondeo-icono-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">

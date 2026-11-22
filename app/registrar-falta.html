@@ -6,7 +6,6 @@
   <meta name="description" content="Simula en ULive cuántas faltas te quedarían si faltas a una clase, y regístrala con la consecuencia que fija la regla de la UPC.">
   <meta name="author" content="EduMetrics">
   <title>Registrar o simular una falta · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Faltas / Registrar o simular una falta</p>
@@ -86,7 +84,7 @@
       <main class="contenido">
         <div class="columna-estrecha">
 
-          <!-- Título de la pantalla: al registrar, el JS lo cambia por el de J25 -->
+          <!-- Al registrar, el JS cambia el título por el de J25 -->
           <div class="titulo-pantalla">
             <h1 id="titulo-falta">Registrar o simular una falta</h1>
             <p class="descripcion-pantalla"><span id="descripcion-falta">Cálculo II · </span><span id="descripcion-falta-cifra" class="cifra">4 de 6 faltas usadas</span></p>
@@ -144,11 +142,10 @@
             </form>
           </div>
 
-          <!-- Anuncio del registro (role="status"): existe desde que carga la página, vacío y sin alto -->
+          <!-- Anuncio (role="status"): existe desde la carga, vacío y sin alto -->
           <p id="anuncio-falta" class="resultado-anuncio" role="status"></p>
 
-          <!-- Estado 2 (J25): falta registrada. Empieza oculto; el JS lo muestra al registrar
-               y lo llena con la clase elegida -->
+          <!-- Estado 2 (J25): empieza oculto; el JS lo muestra al registrar -->
           <section id="vista-registrada" class="vista-resultado">
             <div id="caja-registrada" class="caja-estado">
               <img id="icono-reg-seguro" class="icono-oculto" src="../img/icono-escudo.svg" alt="">

@@ -6,7 +6,6 @@
   <meta name="description" content="Registra en ULive tu nuevo turno de trabajo y revisa qué clases y entregas chocan con él, con espacios libres para adelantar tus actividades.">
   <meta name="author" content="EduMetrics">
   <title>Cambio de turno · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Inicio / Cambio de turno</p>
@@ -93,14 +91,13 @@
 
           <form id="form-turno" action="actividades.html">
             <div class="tarjeta-app">
-              <!-- El turno actual es un dato, no un campo editable -->
               <div class="grupo-campo">
                 <p class="etiqueta">Turno actual</p>
                 <p class="dato-fijo">Lun a vie · 2:00 a 8:00 p. m.</p>
               </div>
               <div class="grupo-campo">
                 <label for="nuevo-turno">Nuevo turno</label>
-                <!-- Un select no parte el texto en dos líneas: el horario va en la ayuda -->
+                <!-- Un select no parte el texto: el horario va en la ayuda -->
                 <select id="nuevo-turno" class="campo" aria-describedby="ayuda-turno error-turno" aria-invalid="false">
                   <option value="">Elige tu nuevo turno</option>
                   <option value="jue-vie-manana">Jue 8 y vie 9 oct · mañana</option>
@@ -110,7 +107,7 @@
               </div>
             </div>
 
-            <!-- Resumen (role="status"): existe desde que carga la página y cambia al elegir el turno -->
+            <!-- Resumen (role="status"): existe desde la carga y cambia al elegir el turno -->
             <div id="caja-turno" class="caja-estado caja-info" role="status">
               <img src="../img/icono-calendario-primario.svg" alt="">
               <div class="caja-estado-texto">
@@ -119,7 +116,7 @@
               </div>
             </div>
 
-            <!-- Bloques que dependen del turno: empiezan ocultos y el JS los muestra al elegirlo -->
+            <!-- Empiezan ocultos; el JS los muestra al elegir el turno -->
             <div id="bloque-choques" class="bloque-turno">
               <section class="tarjeta-app">
                 <h2>Lo que choca con tu nuevo turno</h2>

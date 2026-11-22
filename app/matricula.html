@@ -6,7 +6,6 @@
   <meta name="description" content="Simula en ULive tu matrícula del próximo ciclo: elige cursos y revisa si caben en tu tope de créditos según la regla de la UPC.">
   <meta name="author" content="EduMetrics">
   <title>Simular matrícula · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Mis cursos / Simular matrícula</p>
@@ -91,7 +89,7 @@
             <p class="descripcion-pantalla">Elige cursos y revisa si caben en tu tope de créditos.</p>
           </div>
 
-          <!-- Promedio y tope: el JS escribe el tope con topeCreditos (calculos.js) -->
+          <!-- El JS escribe el tope con topeCreditos (calculos.js) -->
           <section class="comparacion resumenes-matricula">
             <article class="resumen">
               <p class="resumen-etiqueta">Tu promedio</p>
@@ -145,7 +143,7 @@
                   <span class="creditos-curso cifra">3 cr.</span>
                 </label>
 
-                <!-- Curso que no se puede elegir: no lleva casilla, solo el motivo en texto -->
+                <!-- Curso que no se puede elegir: sin casilla, con el motivo en texto -->
                 <div class="opcion-casilla opcion-curso curso-bloqueado">
                   <span class="casilla-texto">
                     <span class="casilla-titulo">Investigación de Operaciones</span>
@@ -164,7 +162,7 @@
               </fieldset>
             </div>
 
-            <!-- Aviso (role="status"): existe desde que carga la página y cambia al marcar cursos -->
+            <!-- Aviso (role="status"): existe desde la carga y cambia al marcar cursos -->
             <div id="caja-matricula" class="caja-estado caja-segura" role="status">
               <img id="icono-mat-seguro" src="../img/icono-escudo.svg" alt="">
               <img id="icono-mat-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">

@@ -6,7 +6,6 @@
   <meta name="description" content="Inicio de ULive: tu promedio, tus faltas, tus cursos y lo que debes atender primero esta semana.">
   <meta name="author" content="EduMetrics">
   <title>Inicio · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <!-- Web: ruta y ciclo -->
@@ -91,8 +89,7 @@
           <p class="descripcion-pantalla">Martes 6 de octubre · Revisa primero lo prioritario</p>
         </div>
 
-        <!-- Resumen académico: dos pares de tarjetas. Cada par pasa entero a otra fila,
-             así a 801 px quedan 2 × 2 y nunca 3 + 1 -->
+        <!-- Dos pares de tarjetas: cada par pasa entero a otra fila (2 × 2, nunca 3 + 1) -->
         <section class="resumenes resumenes-pares">
           <div class="resumen-par">
             <article class="resumen">
@@ -102,7 +99,6 @@
               <p class="resumen-estado"><span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Situación estable</span></p>
               <p class="resumen-nota">Promedio simple de tus 3 cursos (sin créditos)</p>
             </article>
-            <!-- Las tarjetas que son enlace terminan con una acción visible -->
             <a class="resumen resumen-enlace" href="faltas.html">
               <span class="resumen-etiqueta">Faltas en Cálculo II</span>
               <span class="resumen-valor">4 / 6</span>
@@ -112,8 +108,7 @@
             </a>
           </div>
           <div class="resumen-par">
-            <!-- Las 4 pendientes vencen de hoy al domingo 11; Cuestionario 4 venció el lunes 5
-                 y no cuenta en ellas, pero se avisa con el estado de riesgo (ver README) -->
+            <!-- Cuestionario 4 venció el lunes 5: no cuenta en las 4 pendientes, pero se avisa como riesgo -->
             <a class="resumen resumen-enlace" href="actividades.html">
               <span class="resumen-etiqueta">Actividades pendientes</span>
               <span class="resumen-valor">4</span>
@@ -154,8 +149,7 @@
                 </div>
                 <a class="boton-app boton-secundario" href="cursos.html">Ver todos los cursos</a>
               </div>
-              <!-- Estado y nota van juntos en .curso-resultado: si la fila no cabe (801 px, móvil),
-                   pasan juntos a una segunda línea, con el estado a la izquierda y la nota a la derecha -->
+              <!-- Estado y nota van juntos: si la fila no cabe, pasan juntos a una segunda línea -->
               <ul class="lista-cursos">
                 <li>
                   <a class="fila-curso fila-enlace" href="curso.html">
@@ -163,8 +157,7 @@
                     <span class="curso-info">
                       <span class="curso-nombre">Cálculo II</span>
                       <span class="curso-detalle">Lun / Mié · 08:00 · MAT-204</span>
-                      <!-- Mismos datos que la tabla de cursos.html (Cálculo II: caja "Depende del final" de curso.html).
-                           La cifra que decide pesa más que la nota actual; el 13 se explica en el subtítulo del panel -->
+                      <!-- Mismos datos que cursos.html; la cifra principal es la nota necesaria -->
                       <span class="curso-necesita">Necesitas <strong class="cifra curso-necesita-cifra">12,4</strong> para llegar a 13</span>
                     </span>
                     <span class="curso-resultado">
@@ -211,7 +204,7 @@
                   </div>
                 </li>
               </ul>
-              <!-- Reglas de estadoCurso (js/calculos.js): margen = lo que vienes sacando − lo que necesitas -->
+              <!-- Reglas de estadoCurso (js/calculos.js) -->
               <details class="ayuda-estados">
                 <summary>¿Qué significan los estados?</summary>
                 <p class="ayuda-grupo">Nota del curso</p>
@@ -228,7 +221,7 @@
                   <li><strong>Situación estable:</strong> promedio de 13 o más y ningún curso en riesgo.</li>
                 </ul>
                 <p class="ayuda-grupo">Faltas</p>
-                <!-- Reglas de estadoFaltas (js/calculos.js): faltas que te quedan antes del límite del 25 % -->
+                <!-- Reglas de estadoFaltas (js/calculos.js) -->
                 <ul>
                   <li><strong>Margen holgado:</strong> te quedan 3 faltas o más.</li>
                   <li><strong>Margen reducido:</strong> te quedan 2 faltas.</li>
@@ -301,7 +294,7 @@
               </div>
               <!-- El límite con su cálculo, en vez de un 67 % sin unidad -->
               <p class="etiqueta alerta-regla">Límite UPC: 25 % de <span class="cifra">24</span> sesiones = <span class="cifra">6</span> faltas</p>
-              <!-- Siguiente paso: ver el detalle o reacomodar la semana si cambia el turno -->
+              <!-- Siguiente paso -->
               <p class="alerta-enlace"><a href="faltas.html">Ver mis faltas</a></p>
               <div class="acciones-app">
                 <a class="boton-app boton-secundario boton-ancho" href="cambio-turno.html">Registrar cambio de turno</a>

@@ -7,21 +7,18 @@
   <meta name="keywords" content="ULive, universitarios, Lima, notas, faltas, gestión del tiempo académico">
   <meta name="author" content="EduMetrics">
   <title>ULive: notas, entregas y faltas según las reglas de tu universidad</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-  <!-- Encabezado con la marca y la navegación a las secciones -->
+  <!-- Encabezado -->
   <header class="encabezado">
     <div class="contenedor barra">
       <a class="marca" href="#inicio">ULive</a>
       <nav class="navegacion" aria-label="Navegación principal">
-        <!-- Entrada al prototipo de la app (Bienvenida, inicio del flujo): desde la URL publicada se
-             verifican las 30 HU core. Va fuera de la lista y antes de ella para quedar, en móvil,
-             en la fila de la marca; la lista pasa a la fila de abajo -->
+        <!-- Fuera de la lista y antes de ella: en móvil queda en la fila de la marca -->
         <a class="enlace-prototipo" href="app/bienvenida.html">Probar el prototipo</a>
         <ul>
           <li><a href="#funciones">Funciones</a></li>
@@ -46,7 +43,6 @@
             <a class="boton boton-secundario" href="#registro">Quiero enterarme</a>
           </div>
         </div>
-        <!-- Escenario de la vista previa: superficie blanca con el marco de celular -->
         <div class="portada-escenario">
           <div class="telefono">
             <img class="vista-previa" src="img/vista-previa-recorte.png" width="780" height="792" alt="Vista previa del detalle del curso Cálculo II en ULive: nota actual 13,8 (aprobando), 4 de 6 faltas usadas con 2 restantes y el aviso «Depende del final: necesitas 12,4 en promedio en lo que falta para llegar a 13; la próxima evaluación pesa 25 %».">
@@ -117,7 +113,7 @@
         <h2>Te avisamos cuando ULive esté disponible</h2>
         <p class="registro-descripcion">Déjanos tu correo y te escribiremos una sola vez, el día del lanzamiento.</p>
 
-        <!-- Tarjeta del registro: primero muestra el formulario y, tras un envío válido, la confirmación -->
+        <!-- Muestra el formulario y, tras un envío válido, la confirmación -->
         <div id="tarjeta-registro" class="tarjeta-registro">
           <form id="form-registro" class="formulario" action="#" novalidate>
             <label for="correo">Correo electrónico</label>
@@ -125,20 +121,18 @@
               <input type="email" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" autocomplete="email" aria-describedby="error-correo" aria-invalid="false">
               <button type="submit" class="boton boton-principal">Avisarme</button>
             </div>
-            <!-- role="status": el lector de pantalla anuncia el error al aparecer, también en blur -->
+            <!-- role="status": el error se anuncia también al salir del campo -->
             <p id="error-correo" class="mensaje-error" role="status"></p>
             <p class="texto-auxiliar">Solo usaremos tu correo para avisarte del lanzamiento. No lo compartimos con terceros.</p>
           </form>
 
-          <!-- Confirmación (J27). El párrafo role="status" existe y está visible desde que carga
-               la página (vacío, sin alto); el escudo y el detalle empiezan ocultos -->
+          <!-- Confirmación (J27): el párrafo role="status" existe desde la carga, vacío, para anunciarse al recibir texto -->
           <div class="confirmacion">
             <img id="icono-confirmacion" class="icono-confirmacion" src="img/escudo-check.svg" alt="">
             <div class="confirmacion-texto">
               <p id="confirmacion" class="confirmacion-titulo" role="status"></p>
               <p id="confirmacion-detalle" class="confirmacion-detalle">Revisa tu bandeja de entrada el día del lanzamiento. Puedes darte de baja desde el mismo correo.</p>
-              <!-- La fila empieza oculta; el enlace vuelve a mostrar el formulario con el correo escrito.
-                   La fila flex hace que el enlace mida solo su texto y no toda la columna. -->
+              <!-- Empieza oculta; en fila flex el enlace mide solo su texto -->
               <div id="fila-enlace" class="fila-enlace">
                 <a id="usar-otro-correo" class="enlace-otro-correo" href="#registro">Usar otro correo</a>
               </div>

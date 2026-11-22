@@ -1,11 +1,4 @@
-// ULive · Cambio de turno (J21)
-// - Al elegir el nuevo turno (change), la caja (role="status") resume qué choca con la
-//   semana y se muestran los choques y los espacios libres. Sin turno, se ocultan.
-// - La clase que choca usaría una falta: las faltas que quedarían y su estado salen de
-//   faltasPermitidas, faltasRestantes y estadoFaltas (calculos.js).
-// - Al guardar: si no hay turno, error junto al campo y foco. El espacio libre ya viene
-//   elegido (el primero, como en J21). Si todo está bien, el formulario se envía a
-//   actividades.html (su action), donde se refleja el plan (informe, 4.5.2).
+// ULive · Cambio de turno (J21): choques con la semana y faltas que usaría la clase que choca
 
 const formularioTurno = document.getElementById('form-turno');
 const selectorTurno = document.getElementById('nuevo-turno');
@@ -98,6 +91,5 @@ formularioTurno.addEventListener('submit', function (e) {
   }
 });
 
-// Al cargar: los bloques empiezan ocultos en el CSS. Si el navegador recuerda el turno
-// (al volver atrás), se muestran de nuevo con sus cifras.
+// Si el navegador recuerda el turno al volver atrás, los bloques se muestran de nuevo
 actualizarTurno();

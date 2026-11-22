@@ -42,14 +42,13 @@ h1, h2, h3, p, ul {
   margin: 0;
 }
 
-/* Excepción: con el encabezado fijo, los saltos a #seccion y el foco con Tab
-   se detienen más abajo para no quedar tapados por el encabezado.
-   Web: 65 px de encabezado + 7 px que sobresale el contorno de foco = 72 px. */
+/* Excepción: con el encabezado fijo, los saltos a #seccion y el foco se detienen más abajo.
+   65 px de encabezado + 7 px que sobresale el contorno de foco = 72 px */
 html {
   scroll-padding-top: 72px;
 }
 
-/* Foco visible (lectura U3S12): contorno primario separado del elemento */
+/* Foco visible: contorno primario separado del elemento */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,

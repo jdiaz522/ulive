@@ -1,9 +1,4 @@
-// ULive · Registrar actividad (J23)
-// - Al cambiar la evaluación o la fecha, la caja (role="status") muestra el peso, los días
-//   que faltan, el impacto y la posición que tendría en Actividades.
-// - Al elegir la evaluación, el curso se completa solo.
-// - Antes de guardar valida nombre, evaluación y fecha (obligatorios) y que la fecha no
-//   haya pasado (HU-14, escenario 3). Si todo está bien, el formulario va a actividades.html.
+// ULive · Registrar actividad (J23): impacto, curso automático y validación (HU-14)
 
 const formularioActividad = document.getElementById('form-actividad');
 const selectorCurso = document.getElementById('curso');
@@ -32,12 +27,10 @@ const evaluacionesPendientes = {
   'fisica-2-laboratorio-3': { curso: 'fisica-2', peso: 15 }
 };
 
-// Actividades vencidas sin entregar: en Actividades van arriba, antes del orden por impacto
-// (Cuestionario 4, Programación III, venció el lun 5 oct)
+// Vencidas sin entregar: van arriba en Actividades (Cuestionario 4, venció el lun 5 oct)
 const VENCIDAS_EJEMPLO = 1;
 
-// Actividades de ejemplo de Actividades que aún se pueden entregar,
-// con los días que faltan desde hoy (6 oct)
+// Actividades de ejemplo que aún se pueden entregar, con los días que faltan desde hoy (6 oct)
 const actividadesEjemplo = [
   { nombre: 'Taller 3', peso: 10, dias: 0 },
   { nombre: 'Foro de patrones', peso: 5, dias: 1 },
@@ -85,8 +78,7 @@ function textoDias(dias) {
   return 'en ' + dias + ' días';
 }
 
-// Posición que tendría la nueva actividad en Actividades: después de las vencidas
-// y, entre las demás, según su impacto
+// Posición en Actividades: después de las vencidas y, entre las demás, por impacto
 function posicionEnLista(nueva) {
   const todas = [];
   for (var i = 0; i < actividadesEjemplo.length; i++) {

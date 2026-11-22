@@ -1,9 +1,4 @@
 // ULive · Registrar o simular una falta (J19) y falta registrada (J25)
-// - Al elegir la clase o marcar "Falta justificada" (change), la caja (role="status")
-//   muestra cuántas faltas quedarían y su estado con los tramos de estadoFaltas.
-// - Al registrar: si no hay clase, error junto al campo y foco. Si la hay, preventDefault()
-//   (no hay servidor), se oculta el formulario y se muestra J25 con la clase elegida y la
-//   consecuencia que fija la regla de la UPC. El anuncio con role="status" lo resume.
 
 const formularioFalta = document.getElementById('form-falta');
 const selectorClase = document.getElementById('clase');

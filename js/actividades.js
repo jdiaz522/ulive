@@ -1,19 +1,12 @@
-// ULive · Actividades (J7, J20) y HU-17 (marcar una actividad como entregada)
-// - Filtros: al elegir una opción (change), recorre las filas y oculta o muestra cada una
-//   según su estado. El conteo se anuncia en un párrafo con role="status".
-// - Casilla "Entregada" (change, .checked): actualiza "entregada" en el array, cambia el texto
-//   del estado ("✓ Entregada" o el estado anterior) y vuelve a aplicar el filtro elegido.
-// - Una actividad vencida sin marcar muestra "Vencida" (riesgo, ⚠ y texto). Va arriba en el HTML.
-// Pendientes = todo lo que aún no se entrega ("Pendiente", "En curso" y "Vencida").
-// Limitación: la marca dura mientras la página está abierta (sin almacenamiento local).
+// ULive · Actividades: filtros y casilla "Entregada" (HU-17)
+// La marca dura mientras la página está abierta (sin almacenamiento local)
 
 const conteoActividades = document.getElementById('conteo-actividades');
 
 // Colores de la tabla de tokens
 const COLOR_SEGURO = '#1B7F4B';
 
-// Cada actividad: su fila, su casilla, el estado escrito en el HTML y la fecha de vencimiento
-// (año, mes de 1 a 12, día) para saber si ya venció respecto de "hoy" (HOY_PROTOTIPO).
+// Cada actividad: fila, casilla, estado del HTML y vencimiento (año, mes de 1 a 12, día)
 function actividad(id, estadoInicial, anio, mes, dia) {
   return {
     fila: document.getElementById('act-' + id),
@@ -157,8 +150,7 @@ for (var k = 0; k < filasActividades.length; k++) {
     item.entregada = item.casilla.checked;
     pintarEstado(item);
     filtrarActividades(filtroElegido());
-    // Si el filtro ocultó la fila, el foco pasa a la siguiente casilla visible
-    // o, si no hay, al filtro elegido, para no perderlo
+    // Si el filtro ocultó la fila, el foco pasa a la siguiente casilla visible o al filtro
     if (item.fila.style.display === 'none') {
       enfocarDespuesDe(item);
     }

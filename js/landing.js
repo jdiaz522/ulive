@@ -1,6 +1,4 @@
-// ULive · Landing page
-// Única interacción: validar el correo del formulario de registro (estados J26 y J27)
-// y volver al formulario desde la confirmación con "Usar otro correo".
+// ULive · Landing: valida el correo del registro (J26, J27)
 
 const formulario = document.getElementById('form-registro');
 const campoCorreo = document.getElementById('correo');
@@ -18,12 +16,11 @@ const patronArroba = /@/;
 const mensajeSinArroba = '⚠ Revisa tu correo, le falta la @. Lo que escribiste se conserva.';
 const mensajeGeneral = '⚠ Escribe un correo válido, por ejemplo nombre@correo.com';
 
-// Muestra el error junto al campo y cambia solo el color del borde del campo.
-// El grosor sigue siendo el del CSS (1 px), así el campo no se mueve.
+// Error junto al campo; solo cambia el color del borde, no el grosor, así el campo no se mueve
 function mostrarError(mensaje) {
   errorCorreo.textContent = mensaje;
   campoCorreo.style.borderColor = '#B3261E';
-  // Estado de error para lectores de pantalla (lectura U3S12)
+  // Estado de error para lectores de pantalla
   campoCorreo.setAttribute('aria-invalid', 'true');
 }
 
@@ -34,8 +31,7 @@ function limpiarError() {
   campoCorreo.setAttribute('aria-invalid', 'false');
 }
 
-// Revisa el correo y devuelve true si es válido.
-// No cambia lo que el usuario escribió.
+// Revisa el correo sin cambiar lo escrito; devuelve true si es válido
 function validarCorreo() {
   const valor = campoCorreo.value.trim();
 
@@ -52,8 +48,7 @@ function validarCorreo() {
   return false;
 }
 
-// Al salir del campo: valida solo si el usuario escribió algo.
-// No devuelve el foco aquí para no atrapar a quien navega con el teclado.
+// Al salir del campo: valida si hay texto, sin devolver el foco para no atrapar al teclado
 campoCorreo.addEventListener('blur', function () {
   if (campoCorreo.value.trim() !== '') {
     validarCorreo();
@@ -69,10 +64,8 @@ formulario.addEventListener('submit', function (e) {
     return;
   }
 
-  // Correo válido: se oculta el formulario y se muestran el escudo, el detalle y
-  // la fila del enlace "Usar otro correo" (J27). El párrafo role="status" ya está en la
-  // página desde el inicio, así que al recibir su texto el lector de pantalla
-  // lo anuncia (lectura U3S12).
+  // Correo válido: se muestra la confirmación (J27). El párrafo role="status" ya está en la página,
+  // así que se anuncia al recibir su texto
   formulario.style.display = 'none';
   iconoConfirmacion.style.display = 'block';
   confirmacionDetalle.style.display = 'block';
@@ -80,19 +73,15 @@ formulario.addEventListener('submit', function (e) {
   // Sin ✓ en el texto: el escudo ya lleva el check y el estado tiene ícono y texto
   confirmacion.textContent = 'Listo. Te escribiremos a ' + campoCorreo.value.trim();
 
-  // El botón "Avisarme", que tenía el foco, quedó oculto. El foco pasa al enlace
-  // "Usar otro correo" para que quien usa teclado no vuelva al inicio de la página.
-  // El mensaje role="status" se anuncia igual, después del enlace.
+  // El botón que tenía el foco quedó oculto: el foco pasa a "Usar otro correo"
   enlaceOtroCorreo.focus();
 });
 
-// "Usar otro correo": vuelve al formulario con el correo anterior escrito,
-// para corregirlo o reemplazarlo, y pone el foco en el campo.
+// "Usar otro correo": vuelve al formulario con el correo escrito y el foco en el campo
 enlaceOtroCorreo.addEventListener('click', function (e) {
   e.preventDefault();
 
-  // Se vacía el párrafo de estado para que la fila de confirmación no ocupe alto
-  // y para que un nuevo envío vuelva a anunciarse
+  // Vaciar el estado le quita el alto y permite anunciar un nuevo envío
   confirmacion.textContent = '';
   iconoConfirmacion.style.display = 'none';
   confirmacionDetalle.style.display = 'none';

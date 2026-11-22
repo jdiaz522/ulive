@@ -1,6 +1,4 @@
-// ULive · Evaluaciones (J3, J15)
-// Filtros: al elegir una opción (change), recorre las filas y oculta o muestra cada una
-// según su estado. El conteo se anuncia en un párrafo con role="status".
+// ULive · Evaluaciones (J3, J15): filtros por estado
 
 const conteoEvaluaciones = document.getElementById('conteo-evaluaciones');
 
@@ -52,7 +50,7 @@ function textoConteo(cantidad, filtro) {
   return texto;
 }
 
-// Aplica el filtro: '' devuelve la fila a lo que diga el CSS (fila de tabla en web, tarjeta en móvil)
+// '' devuelve la fila a lo que diga el CSS (tabla en web, tarjeta en móvil)
 function aplicarFiltro(filtro) {
   var visibles = 0;
   for (var i = 0; i < filasEvaluaciones.length; i++) {

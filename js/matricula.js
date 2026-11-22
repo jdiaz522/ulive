@@ -1,11 +1,4 @@
-// ULive · Simulador de matrícula (J22)
-// - Al cargar, el tope sale de topeCreditos con el promedio del ejemplo (15,2 -> 27).
-//   Si el promedio cae entre 13 y 15, la regla no está configurada (HU-32, escenario 3):
-//   la pantalla lo dice y no supone un tope.
-// - Al marcar o desmarcar un curso (change), se suman sus créditos (sumarCreditos), se
-//   comparan con el tope y la caja (role="status") dice si la selección cabe o se pasa.
-// - Al guardar: si no hay cursos o la selección supera el tope, preventDefault(), error
-//   junto a la lista y foco en la primera casilla. Si está bien, se envía a cursos.html.
+// ULive · Simulador de matrícula (J22): suma los créditos marcados y los compara con el tope
 
 const formularioMatricula = document.getElementById('form-matricula');
 const grupoCursos = document.getElementById('grupo-cursos');
@@ -30,8 +23,7 @@ const coloresMatricula = { seguro: '#1B7F4B', riesgo: '#B3261E', info: '#15497A'
 // Promedio proyectado del ciclo 2026-2 (el mismo de Inicio)
 const PROMEDIO_PROYECTADO = 15.2;
 
-// Cursos que se pueden elegir, con sus créditos (J22).
-// Investigación de Operaciones no está: no se puede elegir (falta Estadística II).
+// Cursos que se pueden elegir (J22); Investigación de Operaciones no está: falta Estadística II
 const cursosMatricula = [
   { campo: document.getElementById('curso-calculo-3'), creditos: 5 },
   { campo: document.getElementById('curso-fisica-3'), creditos: 4 },

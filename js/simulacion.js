@@ -1,10 +1,4 @@
 // ULive · Simulación de nota (J4, J16) y su resultado (J5, J17)
-// - Precarga el escenario del mockup (15 en el Parcial 2).
-// - Al cambiar la evaluación o la nota, recalcula el resultado estimado (role="status").
-// - Al enviar: si la nota no es válida, error junto al campo y foco. Si es válida,
-//   preventDefault() (no hay servidor), se oculta el formulario y se muestra el bloque de
-//   resultado con lo que escribió el usuario; el anuncio con role="status" lo resume.
-// - "Nueva simulación" vuelve al formulario con los valores que tenía.
 
 const formularioSimulacion = document.getElementById('form-simulacion');
 const selectorSimulado = document.getElementById('evaluacion-simulada');
@@ -201,8 +195,7 @@ function tonoRedondeo(atencion) {
   }
 }
 
-// Nota calculada con dos decimales y nota oficial según la regla de redondeo (HU-13).
-// Si el redondeo decide si apruebas (de 12,00 a 12,99), lo advierte. Devuelve el resumen.
+// Nota calculada y oficial (HU-13); advierte si el redondeo decide si apruebas (12,00 a 12,99)
 function llenarRedondeo(proyectado) {
   const calculada = formatearCentesimas(proyectado);
   const oficial = notaOficial(proyectado, REGLAS_UPC);

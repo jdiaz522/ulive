@@ -6,7 +6,6 @@
   <meta name="description" content="Actividades del ciclo en ULive, ordenadas por su impacto en tu nota: peso entre los días que faltan para la entrega.">
   <meta name="author" content="EduMetrics">
   <title>Actividades · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Actividades</p>
@@ -89,7 +87,7 @@
           <p class="descripcion-pantalla">Ordenadas por impacto en tu nota</p>
         </div>
 
-        <!-- Filtros: botones de opción; el JS oculta o muestra filas -->
+        <!-- Filtros: el JS oculta o muestra filas -->
         <fieldset class="filtros">
           <legend>Mostrar</legend>
           <div class="filtros-opciones">
@@ -103,7 +101,7 @@
           <h2>Actividades del ciclo</h2>
           <p class="texto-auxiliar criterio">Primero las vencidas sin entregar; después, por impacto: peso en la nota entre días que faltan</p>
           <p id="conteo-actividades" class="texto-auxiliar" role="status">7 actividades</p>
-          <!-- El estado va sobre las acciones (la casilla "Entregada" lo cambia) para que la tabla quepa en 801 px -->
+          <!-- El estado va sobre las acciones para que la tabla quepa en 801 px -->
           <table class="tabla-app tabla-con-margen tabla-actividades">
             <caption>Actividades del ciclo 2026-2: primero las vencidas y después de mayor a menor impacto. Marca "Entregada" cuando la entregues.</caption>
             <thead>

@@ -1,9 +1,5 @@
-/*
-  ULive · Estilos de la app (navegación global y pantallas)
-  Se carga después de css/base.css, que tiene los tokens, la tipografía y los campos.
-  Primero la versión web y al final la media query móvil.
-  Colores: solo los de la tabla de tokens de css/base.css.
-*/
+/* ULive · Estilos de la app
+   Se carga después de css/base.css; al final, la media query móvil. */
 
 /* ---------- Cifras con unidad ---------- */
 /* Una cifra y su "%" no se separan en dos líneas */
@@ -12,15 +8,13 @@
 }
 
 /* ---------- Página ---------- */
-/* La página ocupa al menos el alto de la ventana, para que la columna
-   lateral oscura llegue hasta abajo aunque el contenido sea corto */
+/* Al menos el alto de la ventana: la columna lateral oscura llega hasta abajo */
 html,
 body {
   height: 100%;
 }
 
-/* Excepción de la navegación fija: en la app no hay encabezado fijo arriba,
-   así que los saltos y el foco solo dejan un pequeño margen */
+/* Excepción de navegación fija: sin encabezado arriba, basta un margen pequeño para el foco */
 html {
   scroll-padding-top: 8px;
 }
@@ -38,17 +32,15 @@ html {
   background-color: #0F2A44;
 }
 
-/* Excepción: el contenido de la columna lateral queda fijo al desplazarse */
+/* Excepción: el menú lateral queda fijo al desplazarse */
 .lateral-contenido {
   position: sticky;
   top: 0;
   padding: 32px 16px 24px 16px;
 }
 
-/* En pantallas bajas (celular horizontal, laptop con zoom) el menú lateral es más alto que la
-   ventana y, fijo, dejaría el perfil cortado hasta el final de la página. Ahí se desactiva la
-   excepción sticky y el menú se desplaza con la página. Solo afecta a .lateral-contenido:
-   .lateral, la barra inferior móvil, sigue fija */
+/* Excepción en pantallas bajas: fijo, el menú sería más alto que la ventana y cortaría el perfil.
+   Solo afecta a .lateral-contenido; la barra inferior móvil (.lateral) sigue fija */
 @media screen and (max-height: 500px) {
   .lateral-contenido {
     position: static;
@@ -70,7 +62,7 @@ html {
   line-height: 32px;
 }
 
-/* Símbolo "U": primario sobre la columna oscura (el acento queda para la acción principal) */
+/* Símbolo "U" en primario: el acento queda para la acción principal */
 .simbolo {
   display: block;
   width: 32px;
@@ -136,8 +128,7 @@ html {
   font-weight: 600;
 }
 
-/* Foco sobre fondo #0F2A44 (columna lateral y tarjeta "Revisar primero"): el contorno
-   primario de base.css casi no se ve ahí (1,6:1), así que pasa a blanco (14,6:1). */
+/* Foco sobre #0F2A44: el contorno primario casi no se ve (1,6:1), pasa a blanco */
 .lateral a:focus-visible,
 .notificacion a:focus-visible {
   outline: 3px solid #FFFFFF;
@@ -156,7 +147,7 @@ html {
   line-height: 1.4;
 }
 
-/* Texto sobre #15497A: blanco, porque #D6DEE7 es el token Divisor, no un color de texto */
+/* Blanco: #D6DEE7 es el token Divisor, no un color de texto */
 .perfil-detalle {
   margin-top: 4px;
   color: #FFFFFF;
@@ -199,7 +190,7 @@ html {
   margin-right: 8px;
 }
 
-/* Marca y perfil de la barra móvil: en web ya están en la columna lateral */
+/* En web la marca y el perfil ya están en la columna lateral */
 .marca-movil,
 .perfil-movil {
   display: none;
@@ -286,8 +277,7 @@ html {
   line-height: 1.1;
 }
 
-/* Estado dentro de una tarjeta de resumen: solo el ancho de su texto.
-   Puede pasar a dos líneas en la tarjeta estrecha de móvil. */
+/* Estado en una tarjeta de resumen: solo el ancho de su texto */
 .resumen-estado {
   display: flex;
   flex-direction: row;
@@ -307,9 +297,7 @@ html {
   line-height: 1.4;
 }
 
-/* Tarjeta de resumen que es enlace: lleva el mismo borde de 1 px que las demás
-   (un borde de 2 px se leía como "activo" o con foco) y termina con una acción
-   visible, subrayada en primario. Las tarjetas que no son enlace no la llevan. */
+/* Tarjeta que es enlace: borde de 1 px (con 2 px parecía activa) y acción visible al final */
 .resumen-accion {
   display: block;
   margin-top: 8px;
@@ -320,7 +308,6 @@ html {
   text-decoration: underline;
 }
 
-/* Al pasar el cursor se quita el subrayado, como en los demás enlaces de texto */
 .resumen-enlace:hover .resumen-accion {
   text-decoration: none;
 }
@@ -329,11 +316,8 @@ html {
   color: #0F2A44;
 }
 
-/* Resumen de Inicio en dos pares (.resumen-par). Cada par tiene una base de 416 px
-   (dos tarjetas de 200 px y 16 px entre ellas): si los dos pares no caben en una fila,
-   el segundo pasa abajo entero y quedan 2 × 2, nunca 3 + 1 con una tarjeta suelta.
-   Mismo patrón de margen negativo que .columnas-ajustables: 16 px a la izquierda y
-   abajo de cada par, compensados con -16 px en el contenedor. */
+/* Cada par tiene una base de 416 px (200 + 16 + 200): si no caben, el segundo pasa abajo entero.
+   Margen negativo como en .columnas-ajustables */
 .resumenes-pares {
   margin: 0 0 8px -16px;
 }
@@ -406,7 +390,7 @@ html {
   line-height: 1.4;
 }
 
-/* Texto sobre #0F2A44: blanco, porque #D6DEE7 es el token Divisor, no un color de texto */
+/* Blanco: #D6DEE7 es el token Divisor, no un color de texto */
 .notificacion-descripcion {
   margin-top: 8px;
   color: #FFFFFF;
@@ -442,7 +426,7 @@ html {
   margin-top: 4px;
 }
 
-/* Cálculo del impacto de cada actividad: peso ÷ días que faltan (impacto en calculos.js) */
+/* Impacto: peso ÷ días que faltan */
 .actividad-impacto {
   display: block;
   margin-top: 4px;
@@ -454,15 +438,13 @@ html {
 }
 
 /* ---------- Filas de curso y de actividad dentro de un panel ---------- */
-/* Filas planas separadas por un divisor, no tarjetas dentro del panel:
-   el panel ya es la superficie blanca con borde */
+/* Filas planas con divisor: el panel ya es la superficie con borde */
 .lista-cursos,
 .lista-actividades {
   margin: 8px 0 0 0;
   padding: 0;
 }
 
-/* Separador arriba de cada fila salvo la primera */
 .lista-cursos li,
 .lista-actividades li {
   display: block;
@@ -482,7 +464,7 @@ html {
   text-decoration: none;
 }
 
-/* En la lista de Inicio el ícono va sin caja gris, para no sumar otro nivel de contenedor */
+/* En Inicio el ícono va sin caja gris: no suma otro nivel de contenedor */
 .lista-cursos .icono-curso {
   background-color: #FFFFFF;
 }
@@ -521,7 +503,7 @@ html {
   line-height: 1.4;
 }
 
-/* Lo que falta para aprobar, con la cifra de curso.html (rol Etiqueta) */
+/* Lo que falta para aprobar (rol Etiqueta) */
 .curso-necesita {
   display: block;
   margin-top: 4px;
@@ -531,9 +513,7 @@ html {
   line-height: 1.4;
 }
 
-/* La cifra que necesitas es la que decide: 20 px y peso 600 (18 px en móvil), como la nota
-   actual antes. La nota actual pasa a dato de referencia (16 px, peso 500, texto principal).
-   Se usa en Inicio y en la columna "Necesitas" de Mis cursos */
+/* La cifra que decide (lo que necesitas) es la grande; la nota actual es dato de referencia */
 .curso-necesita-cifra {
   color: #0F2A44;
   font-size: 20px;
@@ -541,7 +521,7 @@ html {
   line-height: 1.1;
 }
 
-/* Nota de la fila con su etiqueta, para que 13,8 no se lea sin contexto */
+/* La nota lleva etiqueta para que 13,8 no se lea sin contexto */
 .curso-calificacion {
   display: block;
   margin-top: auto;
@@ -574,13 +554,8 @@ html {
   line-height: 1.1;
 }
 
-/* Filas de Mis cursos (Inicio): el estado y la nota van juntos en .curso-resultado.
-   - Si la fila cabe (1440 px), todo queda en una línea: .curso-info crece (flex 1000)
-     y .curso-resultado se queda con el ancho de su contenido.
-   - Si no cabe (801 px y móvil), .curso-resultado pasa entero a una segunda línea y
-     ocupa todo el ancho: estado a la izquierda y nota a la derecha (margen derecho auto).
-   - El nombre y lo que necesitas no se aprietan por debajo de 240 px.
-   - 4 px arriba y abajo en ambos: centrados en una línea y 8 px entre líneas. */
+/* Filas de Mis cursos: si no caben en una línea, .curso-resultado pasa entera abajo,
+   con el estado a la izquierda y la nota a la derecha */
 .lista-cursos .fila-curso {
   flex-wrap: wrap;
 }
@@ -606,7 +581,7 @@ html {
   margin: auto 0 auto 16px;
 }
 
-/* Ayuda de estados (Inicio y Mis cursos): reglas de estadoCurso, estadoPromedioGeneral (solo Inicio) y estadoFaltas */
+/* Ayuda de estados (Inicio y Mis cursos) */
 .ayuda-estados {
   margin-top: 8px;
   border-top: 1px solid #D6DEE7;
@@ -645,7 +620,7 @@ html {
   font-weight: 500;
 }
 
-/* Grupos de la ayuda: estados de la nota, del promedio (solo Inicio) y de las faltas (rol Etiqueta) */
+/* Grupos de la ayuda (rol Etiqueta) */
 .ayuda-grupo {
   margin: 8px 0 0 0;
   color: #1A2430;
@@ -661,8 +636,7 @@ html {
 }
 
 /* ---------- Indicadores de estado: color + ícono + texto ---------- */
-/* Sin borde, para que no se lean como botones: el estado lo dicen el texto,
-   el ícono y su color sobre fondo #F5F7FA (contraste AA verificado). */
+/* Sin borde, para no leerse como botones; contraste AA sobre #F5F7FA */
 .estado {
   display: flex;
   flex-direction: row;
@@ -695,7 +669,7 @@ html {
   color: #B3261E;
 }
 
-/* Estado sin color de situación académica (Pendiente, En curso): texto secundario, sin borde */
+/* Estado sin situación académica (Pendiente, En curso): texto secundario */
 .estado-neutro {
   display: block;
   padding: 0 8px;
@@ -716,8 +690,7 @@ html {
   text-decoration: none;
 }
 
-/* La actividad prioritaria no cambia de borde: su prioridad la marcan el orden
-   y el vencimiento en peso 600 (.vence-pronto). */
+/* La prioridad la marcan el orden y el vencimiento en peso 600, no el borde */
 
 .actividad-cabecera {
   display: flex;
@@ -772,13 +745,12 @@ html {
   margin-right: 4px;
 }
 
-/* Vence hoy: más peso, sin color (los colores de estado son solo para la situación académica) */
+/* Vence hoy: más peso, sin color (el color de estado es solo para la situación académica) */
 .vence-pronto {
   font-weight: 600;
 }
 
 /* ---------- Alerta de faltas ---------- */
-/* Borde de 1 px como las demás tarjetas: con 2 px competía con "Revisar primero" */
 .alerta-faltas {
   padding: 24px;
   border: 1px solid #8A5A00;
@@ -802,8 +774,7 @@ html {
   margin-right: 8px;
 }
 
-/* En Inicio la alerta acompaña a la columna lateral: título a 20 px (rol h2 móvil),
-   por debajo de los títulos de sección. En Faltas sigue a 24 px, es el tema de la pantalla. */
+/* En Inicio el título va a 20 px, por debajo de los títulos de sección; en Faltas, a 24 px */
 .columna-secundaria .alerta-titulo {
   font-size: 20px;
 }
@@ -813,13 +784,12 @@ html {
   height: 24px;
 }
 
-/* Lectura tranquila del mismo dato, debajo del título */
 .alerta-calma {
   margin-top: 8px;
   color: #1A2430;
 }
 
-/* Siguiente paso dentro de la alerta: enlace con área táctil de 44 px y el botón de cambio de turno */
+/* Siguiente paso: enlace de 44 px y botón de cambio de turno */
 .alerta-enlace {
   margin-top: 8px;
   font-size: 14px;
@@ -942,7 +912,7 @@ html {
   margin-bottom: 8px;
 }
 
-/* Fecha y hora de entrega: dos campos agrupados con fieldset y legend */
+/* Fecha y hora: dos campos en un fieldset */
 .grupo-fecha {
   padding: 0;
   border: 0;
@@ -984,17 +954,13 @@ html {
   margin-top: 4px;
 }
 
-/* Registrar actividad: los datos de impacto empiezan ocultos; el JS los muestra con display: inline */
+/* Empiezan ocultos; el JS los muestra con display: inline */
 .impacto-datos {
   display: none;
 }
 
-/* El select usa los estilos de .campo (base.css) y se ajusta su alto.
-   Excepción aprobada: appearance: none quita la flecha nativa, que Chrome dibuja
-   a unos 4 px del borde. La flecha propia (img/flecha-select.svg, 16 px) queda
-   a 16 px del borde, igual que el texto a la izquierda.
-   padding-right: 16 (separación del texto) + 16 (flecha) + 16 (hasta el borde) = 48 px.
-   La lista desplegada la sigue dibujando el sistema operativo. */
+/* Excepción: appearance: none quita la flecha nativa, que Chrome pega a unos 4 px del borde.
+   Flecha propia de 16 px; padding-right = 16 (texto) + 16 (flecha) + 16 (borde) = 48 px */
 select.campo {
   min-height: 48px;
   padding-right: 48px;
@@ -1070,7 +1036,6 @@ select.campo {
   padding: 0;
 }
 
-/* Separador arriba de cada fila salvo la primera (no se usa :last-child) */
 .lista-separada li {
   display: block;
   border-top: 1px solid #D6DEE7;
@@ -1105,7 +1070,7 @@ select.campo {
   margin: 4px 0 0 0;
 }
 
-/* El indicador dentro de la columna de información solo ocupa el ancho de su texto */
+/* El indicador solo ocupa el ancho de su texto */
 .estado-linea {
   display: flex;
   flex-direction: row;
@@ -1226,17 +1191,8 @@ select.campo {
   margin-right: 24px;
 }
 
-/* Dos columnas que pasan a dos filas cuando no entran (a 801 px, por ejemplo), sin otro
-   punto de quiebre. Sirve para las dos parejas de columnas: .columna-ancha + .columna-lado
-   (Detalle de curso, Faltas, Simulación) y .columna-principal + .columna-secundaria (Inicio),
-   y para el formulario de Simulación (.columna-formulario).
-   - Anchos base con flex: 480 px la columna principal, 390 px la lateral y 560 px el formulario.
-   - La principal se queda con casi todo el espacio sobrante (flex 1000 contra 1), así que en
-     web ancha las columnas miden lo mismo que antes. La que pasa abajo ocupa toda la fila.
-   - Cada columna lleva 24 px de margen a la izquierda y abajo, y el contenedor los compensa
-     con -24 px: en una fila queda el mismo espacio entre columnas que antes, y al pasar abajo
-     ninguna queda corrida y hay 24 px entre filas. El margen va abajo y no arriba para no
-     chocar con el margen superior de .fila-separada (Faltas) */
+/* Dos columnas que pasan a dos filas cuando no entran, sin otro punto de quiebre.
+   Margen de 24 px a la izquierda y abajo, compensado con -24 px en el contenedor */
 .columnas-ajustables {
   flex-wrap: wrap;
   margin: 0 0 -24px -24px;
@@ -1275,7 +1231,7 @@ select.campo {
   text-align: left;
 }
 
-/* Relleno lateral de 8 px: las tablas caben justo por encima del punto de quiebre (801 px) */
+/* Relleno lateral de 8 px: las tablas caben justo a 801 px */
 .tabla-app th {
   padding: 16px 8px;
   background-color: #F5F7FA;
@@ -1298,15 +1254,13 @@ select.campo {
   font-weight: 500;
 }
 
-/* "28 sep" no se parte: a 801 px el indicador de Resultado le quita ancho a la columna */
+/* La fecha no se parte a 801 px */
 .tabla-app .celda-fecha {
   color: #55606E;
   white-space: nowrap;
 }
 
-/* Resultado de cada evaluación (Detalle de curso y Evaluaciones), con los indicadores de estado:
-   Aprobada (seguro) si la nota llega a REGLAS_UPC.notaAprobatoria (13, calculos.js),
-   Desaprobada (riesgo) si no llega y Pendiente (neutro) si aún no tiene nota */
+/* Resultado de evaluación: Aprobada desde 13 (notaAprobatoria), Desaprobada o Pendiente */
 .tabla-app .celda-resultado {
   font-size: 14px;
 }
@@ -1351,7 +1305,7 @@ select.campo {
   font-weight: 500;
 }
 
-/* Texto principal y sin subrayado: no es un enlace */
+/* Texto principal sin subrayado: no es un enlace */
 .tabla-curso {
   display: block;
   color: #1A2430;
@@ -1365,10 +1319,8 @@ select.campo {
   display: none;
 }
 
-/* Mis cursos: nombre del curso y, debajo, su estado. El nombre con detalle es un enlace
-   subrayado de 44 px de alto; los demás nombres ocupan la misma altura para que las filas midan igual.
-   Si el nombre se parte en dos líneas, el relleno de 8 px mantiene el interlineado normal.
-   La celda pierde 8 px de relleno arriba y abajo porque el nombre ya trae los suyos */
+/* Mis cursos: el nombre con detalle es un enlace de 44 px; los demás ocupan la misma altura
+   para que las filas midan igual */
 .tabla-cursos .celda-nombre {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -1391,7 +1343,7 @@ select.campo {
 }
 
 /* Faltas: lo que queda es el dato principal; las usadas van debajo, en texto secundario */
-/* "Te quedan 2" no se parte: el número no queda separado de su frase */
+/* "Te quedan 2" no se parte */
 .faltas-quedan {
   font-weight: 500;
   white-space: nowrap;
@@ -1402,21 +1354,19 @@ select.campo {
   color: #55606E;
 }
 
-/* Estado del margen de faltas (estadoFaltas) bajo las usadas, como el de la nota bajo el nombre */
+/* Estado del margen de faltas bajo las usadas */
 .faltas-estado {
   margin-top: 4px;
 }
 
-/* Mis cursos: el texto de las celdas puede partirse para que la tabla quepa
-   justo por encima del punto de quiebre (801 px) sin desplazamiento horizontal */
+/* El texto puede partirse para que la tabla quepa a 801 px sin desplazamiento horizontal */
 .tabla-cursos .estado,
 .tabla-cursos .cifra {
   white-space: normal;
 }
 
-/* Actividades: el estado va sobre las acciones, en la misma celda, porque la casilla
-   "Entregada" es la que lo cambia. En fila flex para que el indicador "Vencida" solo
-   ocupe el ancho de su texto. 8 px hasta la casilla, como cuando eran dos celdas en móvil */
+/* Actividades: el estado va sobre la casilla "Entregada", que lo cambia.
+   En fila flex, "Vencida" solo ocupa el ancho de su texto */
 .estado-accion {
   display: flex;
   flex-direction: row;
@@ -1424,15 +1374,14 @@ select.campo {
   margin-bottom: 8px;
 }
 
-/* Resultado de evaluación: la etiqueta móvil y el indicador en una fila, el indicador del ancho de su texto */
+/* Etiqueta móvil e indicador en una fila */
 .estado-celda {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-/* En móvil, "Estado:" o "Resultado:" y su indicador comparten la línea. Los márgenes auto
-   centran la etiqueta en alto junto al indicador; 4 px reponen el espacio final, que flex no conserva.
+/* Los márgenes auto centran la etiqueta junto al indicador; 4 px reponen el espacio que flex no conserva.
    Dos clases para ganarle al margen superior de .estado en móvil */
 .estado-accion .etiqueta-movil,
 .estado-celda .etiqueta-movil {
@@ -1562,7 +1511,7 @@ select.campo {
   margin: 0 auto;
 }
 
-/* Indicadores que empiezan ocultos; el JS muestra el del estado con display: flex */
+/* Empiezan ocultos; el JS muestra el del estado con display: flex */
 .estado.estado-oculto {
   display: none;
 }
@@ -1575,7 +1524,7 @@ select.campo {
   margin-top: 16px;
 }
 
-/* Simulación: el resultado (J5, J17) empieza oculto; el JS lo muestra con display: block */
+/* Resultado de Simulación: empieza oculto; el JS lo muestra con display: block */
 .vista-resultado {
   display: none;
   margin-top: 16px;
@@ -1640,7 +1589,7 @@ select.campo {
   white-space: normal;
 }
 
-/* Casilla con título y detalle (Falta justificada): toda la etiqueta es el área táctil */
+/* Toda la etiqueta es el área táctil */
 .opcion-casilla {
   display: flex;
   flex-direction: row;
@@ -1737,7 +1686,7 @@ select.campo {
   color: #1A2430;
 }
 
-/* Bloques que dependen del turno: empiezan ocultos y el JS los muestra con display: block */
+/* Empiezan ocultos; el JS los muestra con display: block */
 .bloque-turno {
   display: none;
 }
@@ -1747,9 +1696,8 @@ select.campo {
   display: none;
 }
 
-/* Grupo de opciones dentro de una tarjeta, con su leyenda como título.
-   La tarjeta es un div que envuelve al fieldset: si el borde fuera del fieldset,
-   la leyenda quedaría sobre la línea del borde. */
+/* La tarjeta es un div alrededor del fieldset: con el borde en el fieldset,
+   la leyenda quedaría sobre la línea */
 .grupo-opciones {
   margin: 0;
   padding: 0;
@@ -1797,9 +1745,8 @@ select.campo {
   line-height: 1.4;
 }
 
-/* Curso que no se puede elegir: sin casilla ni cursor de clic, borde punteado y texto
-   secundario sin transparencia (opacity bajaba el contraste y, al crear un contexto de
-   apilamiento, el curso se pintaba encima de la barra inferior fija) */
+/* Curso no elegible: borde punteado y texto secundario. Sin opacity: bajaba el contraste
+   y el curso se pintaba sobre la barra inferior fija */
 .curso-bloqueado {
   border-style: dashed;
   cursor: default;
@@ -1813,7 +1760,7 @@ select.campo {
   border-color: #7D8B99;
 }
 
-/* Promedio y tope (J22): separados del aviso de la regla */
+/* Promedio y tope: separados del aviso de la regla */
 .resumenes-matricula {
   margin-bottom: 16px;
 }
@@ -2138,7 +2085,7 @@ select.campo {
     margin-top: 16px;
   }
 
-  /* Columnas ajustables: en móvil vuelven a la columna única de siempre */
+  /* Columnas ajustables: en móvil, una sola columna */
   .columnas-ajustables {
     margin: 0;
   }
@@ -2168,7 +2115,7 @@ select.campo {
     margin-top: 0;
   }
 
-  /* Faltas: las tres tarjetas en una fila, como en J18 */
+  /* Faltas: las tres tarjetas en una fila (J18) */
   .resumenes-faltas .resumen,
   .resumenes-faltas .resumen:nth-child(odd) {
     flex: 1;
@@ -2191,8 +2138,8 @@ select.campo {
     display: none;
   }
 
-  /* Cada fila es un bloque plano con divisor arriba, no una tarjeta dentro del panel.
-     También la primera, que así queda separada del caption (y sigue bien si un filtro oculta filas) */
+  /* Cada fila es un bloque plano con divisor arriba, también la primera:
+     así queda separada del caption aunque un filtro oculte filas */
   .tabla-app tr {
     display: flex;
     flex-direction: row;
@@ -2225,8 +2172,7 @@ select.campo {
     font-weight: 400;
   }
 
-  /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda.
-     Los nombres sin enlace vuelven a su altura de línea, como en las demás tarjetas */
+  /* Mis cursos: el nombre en la primera línea y el estado en la segunda */
   .tabla-cursos .celda-nombre {
     padding-top: 0;
     padding-bottom: 4px;

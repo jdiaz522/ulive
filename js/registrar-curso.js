@@ -1,9 +1,4 @@
-// ULive · Registrar curso (J12 y J24)
-// - Al elegir una plantilla (HU-02), llena los pesos de la fórmula y recalcula la suma.
-// - Al cambiar un peso, recalcula y muestra la suma (role="status").
-// - Al guardar, si los pesos no suman 100 %: no se envía, se muestra la diferencia,
-//   se marca el peso que hay que revisar y se le devuelve el foco. Lo ingresado se conserva.
-// - Si suman 100 %, el formulario se envía a cursos.html (su action).
+// ULive · Registrar curso (J12, J24): plantillas (HU-02) y pesos que suman 100 %
 
 const formularioCurso = document.getElementById('form-curso');
 const selectorPlantilla = document.getElementById('plantilla');

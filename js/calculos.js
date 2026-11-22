@@ -1,9 +1,5 @@
-// ULive · Funciones puras de cálculo académico.
-// No tocan el DOM: reciben números y devuelven números.
-// Reglas de la UPC: escala de 0 a 20, nota aprobatoria 13,
-// límite de inasistencias del 25 % de las sesiones y redondeo de la nota final:
-// "las fracciones de 0,50 y superiores se consideran como la unidad inmediata superior"
-// (Reglamento de Estudios de Pregrado, SICA-REG-05 v14, art. 2.5.a).
+// ULive · Funciones puras de cálculo académico (no tocan el DOM).
+// Redondeo UPC: desde 0,50 sube a la unidad (SICA-REG-05 v14, art. 2.5.a).
 
 const REGLAS_UPC = {
   notaMinima: 0,
@@ -18,10 +14,8 @@ function redondearDecimal(valor) {
   return Math.round(valor * 10) / 10;
 }
 
-// Redondea hacia arriba a un decimal (12,345 -> 12,4).
-// Se usa en la nota necesaria, porque es un mínimo.
-// Solo con Math.round: si el redondeo quedó por debajo, se suma una décima.
-// La tolerancia evita que un error de coma flotante (12,3000000001) suba a 12,4.
+// Redondea hacia arriba a un decimal (12,345 -> 12,4): la nota necesaria es un mínimo.
+// La tolerancia evita que 12,3000000001 suba a 12,4.
 function redondearArribaDecimal(valor) {
   const decimas = Math.round(valor * 10);
   if (decimas / 10 < valor - 0.000001) {
@@ -30,9 +24,7 @@ function redondearArribaDecimal(valor) {
   return decimas / 10;
 }
 
-// Muestra un número con un decimal y coma (14.2 -> "14,2").
-// Excepción mínima: toLocaleString('es', ...) sobre números.
-// Se usa 'es' y no 'es-PE' porque los datos de idioma de Perú usan punto decimal.
+// Excepción: toLocaleString('es') da coma decimal (14.2 -> "14,2"); 'es-PE' da punto.
 function formatearDecimal(valor) {
   return valor.toLocaleString('es', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
@@ -42,15 +34,13 @@ function redondearCentesimas(valor) {
   return Math.round(valor * 100) / 100;
 }
 
-// Muestra un número con dos decimales y coma (13.777 -> "13,78").
-// Misma excepción mínima que formatearDecimal.
+// Dos decimales con coma (13.777 -> "13,78"), con la misma excepción.
 function formatearCentesimas(valor) {
   return redondearCentesimas(valor).toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-// Nota oficial (entera) de una nota final calculada, según la regla de redondeo de la universidad.
-// Se parte de la nota en centésimas, la misma que se muestra (12,495 -> 12,50 -> 13).
-// Si la universidad no tiene regla de redondeo, devuelve SIN_DATO (HU-13, escenario 3).
+// Nota oficial (entera) según la regla de redondeo, desde las centésimas (12,495 -> 12,50 -> 13).
+// Sin regla, devuelve SIN_DATO.
 function notaOficial(nota, reglas) {
   if (reglas.redondeoFinal === undefined) {
     return SIN_DATO;
@@ -71,8 +61,7 @@ function notaOficial(nota, reglas) {
 // Patrón de una nota con hasta dos decimales, con coma o con punto: 15 · 15,5 · 15.75
 const PATRON_NOTA = /^\d{1,2}([.,]\d{1,2})?$/;
 
-// Convierte el texto de una nota en número, o devuelve null si no tiene el formato.
-// Lee los caracteres por posición (como las fechas): parte entera y decimales, sin .replace().
+// Convierte el texto de una nota en número, o null si no tiene el formato.
 function textoANota(texto) {
   if (!PATRON_NOTA.test(texto)) {
     return null;
@@ -115,8 +104,7 @@ function sumarPesos(evaluaciones) {
   return suma;
 }
 
-// Promedio de lo ya evaluado. Las evaluaciones sin nota (null) no cuentan.
-// Devuelve { promedio, pesoEvaluado } sin redondear.
+// Promedio de lo evaluado (sin nota no cuenta): { promedio, pesoEvaluado }, sin redondear.
 function promedioEvaluado(evaluaciones) {
   var puntos = 0;
   var pesoEvaluado = 0;
@@ -147,9 +135,6 @@ function notaNecesaria(promedio, pesoEvaluado, objetivo) {
 }
 
 // Escenario: qué pasa si en la evaluación pendiente "codigo" se obtiene "nota".
-// evaluaciones = [{ codigo, nota (null si está pendiente), peso }, ...]
-// Devuelve el promedio actual, el proyectado y la nota necesaria antes y después
-// (sin redondear), más las evaluaciones que seguirían pendientes.
 function simularEvaluacion(evaluaciones, codigo, nota) {
   const actual = promedioEvaluado(evaluaciones);
   var peso = 0;
@@ -191,14 +176,11 @@ function faltasRestantes(permitidas, usadas) {
   return permitidas - usadas;
 }
 
-// Umbral del margen de faltas (decisión de diseño): con 3 o más faltas
-// disponibles el margen es holgado.
+// Decisión de diseño: con 3 o más faltas disponibles el margen es holgado.
 const UMBRAL_FALTAS_HOLGADO = 3;
 
-// Estado del margen de faltas, con los nombres de la guía de estilos:
-// margen holgado (seguro), margen reducido (atención) y umbral superado (riesgo).
-// Con 1 falta disponible ya es riesgo: la HU-23 pide avisar cuando queda una.
-// Con 0 faltas disponibles, una más hace que el examen final se califique con cero.
+// Estado del margen de faltas: holgado, reducido o umbral superado.
+// Con 1 falta ya es riesgo: la HU-23 pide avisar cuando queda una.
 function estadoFaltas(restantes) {
   if (restantes < 0) {
     return { etiqueta: 'Límite superado', tono: 'riesgo' };
@@ -231,13 +213,10 @@ function sumarCreditos(cursos) {
   return suma;
 }
 
-// Umbral de margen (decisión de diseño): con 3 puntos o más entre lo que viene
-// sacando y lo que necesita, el curso tiene "margen holgado".
+// Decisión de diseño: con 3 puntos o más de margen, el curso tiene "margen holgado".
 const UMBRAL_MARGEN = 3;
 
-// Estado de un curso según su margen (HU-12).
-// margen = promedio de lo evaluado − nota necesaria en lo que falta (sin redondear).
-// Devuelve { etiqueta, tono }; tono es "seguro", "atencion" o "riesgo".
+// Estado de un curso (HU-12): margen = promedio de lo evaluado − nota necesaria.
 function estadoCurso(promedio, pesoEvaluado) {
   const necesaria = notaNecesaria(promedio, pesoEvaluado, REGLAS_UPC.notaAprobatoria);
   const margen = promedio - necesaria;
@@ -264,8 +243,7 @@ function estadoNotaActual(promedio) {
   return 'Desaprobando';
 }
 
-// Situación del promedio general: estable si es 13 o más y ningún curso
-// está "En riesgo" ni "Ya no alcanza 13". estados = [{ tono: 'seguro' }, ...]
+// Promedio general estable: 13 o más y ningún curso en riesgo.
 function estadoPromedioGeneral(promedioGeneral, estados) {
   var hayRiesgo = false;
   for (var i = 0; i < estados.length; i++) {
@@ -282,10 +260,8 @@ function estadoPromedioGeneral(promedioGeneral, estados) {
 // Valor que devuelven las reglas que la universidad no tiene configuradas
 const SIN_DATO = 'sin dato';
 
-// Tope de créditos según el promedio (regla UPC de J22).
-// Promedio mayor a 15: 27 créditos. Menor a 13: 18 créditos.
-// Para el tramo de 13 a 15 la regla no está configurada (HU-32, escenario 3):
-// se devuelve SIN_DATO y la pantalla debe decirlo, sin suponer un valor.
+// Tope de créditos (J22): más de 15 -> 27; menos de 13 -> 18.
+// Entre 13 y 15 no hay regla: devuelve SIN_DATO (HU-32).
 function topeCreditos(promedio) {
   if (promedio > 15) {
     return 27;
@@ -296,19 +272,17 @@ function topeCreditos(promedio) {
   return SIN_DATO;
 }
 
-// "Hoy" del prototipo: martes 6 de octubre de 2026 (no la fecha real del equipo).
-// Se construye con año, mes (0 = enero) y día para que la zona horaria no mueva el día.
+// "Hoy" del prototipo: martes 6 de octubre de 2026.
+// Con año, mes (0 = enero) y día para que la zona horaria no mueva el día.
 const HOY_PROTOTIPO = new Date(2026, 9, 6);
 
-// Días que faltan desde hoy hasta una fecha (negativo si ya pasó).
-// mes va de 1 a 12, como en el campo de fecha.
+// Días desde hoy hasta una fecha (negativo si ya pasó); mes de 1 a 12.
 function diasDesdeHoy(anio, mes, dia) {
   const fecha = new Date(anio, mes - 1, dia);
   return Math.round((fecha - HOY_PROTOTIPO) / 86400000);
 }
 
-// Impacto de una actividad (HU-16): peso en la nota ÷ días que faltan
-// para el vencimiento, con un mínimo de 1 día.
+// Impacto (HU-16): peso ÷ días que faltan, con un mínimo de 1 día.
 function impacto(peso, diasRestantes) {
   var dias = diasRestantes;
   if (dias < 1) {
@@ -317,15 +291,14 @@ function impacto(peso, diasRestantes) {
   return peso / dias;
 }
 
-// Ordena actividades de mayor a menor impacto: [{ peso: 10, dias: 0 }, ...]
-// Si dos tienen el mismo impacto, va primero la que vence antes.
+// Ordena de mayor a menor impacto; a igual impacto, primero la que vence antes.
 function vaAntes(a, b) {
   const impactoA = impacto(a.peso, a.dias);
   const impactoB = impacto(b.peso, b.dias);
   return impactoA > impactoB || (impactoA === impactoB && a.dias < b.dias);
 }
 
-// Devuelve un array nuevo (ordenamiento por inserción, solo con bucles e índices).
+// Devuelve un array nuevo (ordenamiento por inserción).
 function ordenarPorImpacto(actividades) {
   var ordenadas = [];
   for (var i = 0; i < actividades.length; i++) {

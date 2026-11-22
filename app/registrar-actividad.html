@@ -6,7 +6,6 @@
   <meta name="description" content="Registra en ULive una entrega o evaluación con su fecha para que aparezca en Actividades, ordenada por impacto.">
   <meta name="author" content="EduMetrics">
   <title>Nueva actividad · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Actividades / Nueva actividad</p>
@@ -90,7 +88,6 @@
             <p class="descripcion-pantalla">Registra una entrega o evaluación con su fecha para que aparezca en Actividades.</p>
           </div>
 
-          <!-- Guardar envía el formulario a Actividades (su action) si los datos están completos -->
           <form id="form-actividad" action="actividades.html">
             <div class="tarjeta-app">
               <div class="grupo-campo">
@@ -124,7 +121,7 @@
               </fieldset>
               <div class="grupo-campo">
                 <label for="evaluacion-formula">Evaluación de la fórmula</label>
-                <!-- Solo evaluaciones pendientes: a una evaluación ya calificada no se le registra una entrega -->
+                <!-- Solo evaluaciones pendientes: una ya calificada no recibe entregas -->
                 <select id="evaluacion-formula" class="campo" aria-describedby="ayuda-formula error-formula" aria-invalid="false">
                   <option value="">Elige una evaluación</option>
                   <optgroup label="Cálculo II">
@@ -144,7 +141,7 @@
               </div>
             </div>
 
-            <!-- Impacto (HU-16): se recalcula al cambiar la evaluación o la fecha -->
+            <!-- Impacto: se recalcula al cambiar la evaluación o la fecha -->
             <div id="caja-impacto" class="caja-estado caja-info" role="status">
               <img src="../img/icono-calendario-primario.svg" alt="">
               <div class="caja-estado-texto">

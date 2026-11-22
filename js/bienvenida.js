@@ -1,7 +1,4 @@
-// ULive · Bienvenida (J9)
-// Universidad y carrera son datos fijos (solo está configurada la UPC):
-// solo se comprueba que el ciclo tenga valor antes de continuar.
-// Si todo está completo, el formulario se envía a inicio.html (su action).
+// ULive · Bienvenida (J9): universidad y carrera son fijas; solo se valida el ciclo
 
 const formularioBienvenida = document.getElementById('form-bienvenida');
 

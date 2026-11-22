@@ -1,8 +1,5 @@
-/*
-  ULive · Estilos de la landing page
-  Primero la versión web (1440 px) y al final la media query móvil.
-  Los colores salen de la tabla de tokens de css/base.css.
-*/
+/* ULive · Estilos de la landing page
+   Primero la versión web y al final la media query móvil. */
 
 /* ---------- Secciones ---------- */
 /* 32 px de la sección + 32 px del contenedor = 64 px arriba y abajo */
@@ -20,8 +17,7 @@
 }
 
 /* ---------- Encabezado ---------- */
-/* Excepción: el encabezado queda fijo arriba al desplazarse.
-   Usa la misma excepción de navegación fija que el menú lateral y la barra inferior de la app. */
+/* Excepción: el encabezado queda fijo arriba al desplazarse */
 .encabezado {
   position: sticky;
   top: 0;
@@ -53,9 +49,7 @@
   text-decoration: underline;
 }
 
-/* Navegación: "Probar el prototipo" y la lista de secciones en una fila.
-   Los 32 px hasta el botón van aquí y no en el botón: así, cuando el botón pasa a la
-   segunda fila (801 a unos 930 px), queda alineado con la marca y no corrido 32 px */
+/* Los 32 px hasta el botón van aquí: si el botón pasa a la segunda fila, queda alineado con la marca */
 .navegacion {
   display: flex;
   flex-direction: row;
@@ -93,10 +87,8 @@
   color: #0F2A44;
 }
 
-/* Entre 801 y unos 930 px la barra no cabe en una fila: con flex-wrap y los enlaces sin
-   partir, el botón pasa a una segunda fila y el encabezado mide 113 px. Los saltos a
-   #seccion se detienen 124 px más abajo, como en móvil (113 + 7 del contorno, redondeado);
-   en web ancha (65 px) quedan 52 px de aire de más. No se agrega otro @media */
+/* Entre 801 y unos 930 px el encabezado pasa a dos filas (113 px):
+   113 + 7 del contorno de foco, redondeado = 124 px, sin otro @media */
 html {
   scroll-padding-top: 124px;
 }
@@ -107,8 +99,7 @@ html {
   flex-direction: row;
 }
 
-/* Márgenes automáticos arriba y abajo: centra el texto junto al escenario.
-   Texto y escenario se reparten el ancho en dos mitades. */
+/* Márgenes automáticos: centran el texto en alto junto al escenario */
 .portada-texto {
   flex: 1;
   margin-top: auto;
@@ -261,7 +252,7 @@ html {
   color: #FFFFFF;
 }
 
-/* Tarjeta que contiene el formulario y la confirmación (unos 75 caracteres de ancho) */
+/* Tarjeta del formulario y la confirmación (unos 75 caracteres de ancho) */
 .tarjeta-registro {
   max-width: 680px;
   margin-top: 24px;
@@ -297,8 +288,7 @@ html {
   margin-top: 8px;
 }
 
-/* La fila de confirmación siempre está en la página. Mientras el párrafo de
-   estado está vacío y el escudo y el detalle están ocultos, no ocupa alto. */
+/* Sin alto mientras el estado está vacío y el escudo y el detalle, ocultos */
 .confirmacion {
   display: flex;
   flex-direction: row;
@@ -310,9 +300,7 @@ html {
   display: none;
 }
 
-/* El escudo se alinea arriba, con la primera línea del título: 28 px de alto,
-   igual que esa línea en web (20 px × 1.4). Con un correo largo en varias
-   líneas, el ícono sigue marcando el inicio del mensaje. */
+/* El escudo se alinea con la primera línea del título: 28 px (20 px × 1.4) */
 .icono-confirmacion {
   width: 28px;
   height: 28px;
@@ -331,16 +319,14 @@ html {
   margin-top: 4px;
 }
 
-/* Fila de "Usar otro correo": empieza oculta y el JS la muestra con display: flex.
-   Como el enlace es un elemento de una fila flex, mide solo su texto y acepta
-   min-height; así el contorno de foco no ocupa toda la columna. */
+/* Empieza oculta; el JS la muestra con display: flex.
+   En fila flex el enlace mide solo su texto y el contorno de foco no ocupa toda la columna */
 .confirmacion-texto .fila-enlace {
   display: none;
   flex-direction: row;
   margin-top: 8px;
 }
 
-/* Enlace subrayado en primario; al pasar el cursor se quita el subrayado */
 .confirmacion-texto .enlace-otro-correo {
   min-height: 44px;
   color: #15497A;
@@ -363,8 +349,7 @@ html {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
-  /* Excepción (ver README): un correo largo sin espacios se corta donde no cabe,
-     en vez de desbordar la tarjeta a 390 px. El texto copiado queda intacto. */
+  /* Excepción: un correo largo sin espacios se corta en vez de desbordar la tarjeta a 390 px */
   overflow-wrap: anywhere;
 }
 
@@ -412,8 +397,8 @@ html {
   line-height: 1.4;
 }
 
-/* Enlace al prototipo en el pie: blanco y subrayado sobre #0F2A44, con área táctil de 44 px */
-/* En fila flex, el enlace solo ocupa el ancho de su texto */
+/* Enlace al prototipo: blanco y subrayado sobre #0F2A44, 44 px de alto */
+/* En fila flex, el enlace mide solo su texto */
 .pie-enlace {
   display: flex;
   flex-direction: row;
@@ -433,7 +418,7 @@ html {
   text-decoration: none;
 }
 
-/* Contorno de foco blanco: el primario #15497A no se distingue sobre #0F2A44 (como .lateral en la app) */
+/* Foco blanco: el primario #15497A no se distingue sobre #0F2A44 */
 .pie a:focus-visible {
   outline: 3px solid #FFFFFF;
 }
@@ -450,20 +435,14 @@ html {
     padding: 16px;
   }
 
-  /* Encabezado compacto en dos filas: marca arriba y enlaces debajo.
-     Así el encabezado fijo ocupa unos 113 px y no 170 px de la pantalla. */
+  /* Encabezado en dos filas: marca arriba y enlaces debajo */
   .barra {
     flex-wrap: wrap;
   }
 
-  /* "Probar el prototipo" queda en la fila de la marca y la lista en la fila de abajo:
-     - La marca y la navegación miden la mitad cada una, así que entran juntas en la primera fila.
-     - Dentro de la navegación (flex con flex-wrap), el enlace va a la derecha (margen auto)
-       y la lista, de 200 % de ancho, pasa a la segunda línea.
-     - margin-left: -100 % (del ancho de la navegación) lleva la lista al borde izquierdo:
-       ocupa todo el ancho de la barra, debajo de la marca, sin taparla. */
-  /* margin-bottom: auto evita que la marca se estire al alto de las dos filas
-     de la navegación y tape la mitad izquierda de la lista */
+  /* "Probar el prototipo" en la fila de la marca (mitad y mitad); la lista, de 200 % de ancho,
+     pasa abajo y margin-left: -100 % la lleva al borde izquierdo */
+  /* margin-bottom: auto: la marca no se estira al alto de las dos filas ni tapa la lista */
   .marca {
     width: 50%;
     margin-bottom: auto;
@@ -489,7 +468,7 @@ html {
     line-height: 48px;
   }
 
-  /* Enlaces de la lista en línea; el relleno vertical da un área táctil de unos 49 px */
+  /* Enlaces en línea; el relleno vertical da unos 49 px de área táctil */
   .navegacion li {
     display: inline;
     margin-left: 0;

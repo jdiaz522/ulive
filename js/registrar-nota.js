@@ -1,8 +1,4 @@
-// ULive · Registrar nota (J13)
-// - Valida que la nota sea de 0 a 20, con hasta dos decimales y coma o punto
-//   (al cambiar el campo y al guardar). La convierte con textoANota (calculos.js).
-// - Antes de guardar, muestra cómo cambian el promedio y la nota necesaria (role="status").
-// - Si la nota es válida, el formulario se envía a curso.html (su action).
+// ULive · Registrar nota (J13): valida la nota y muestra la vista previa
 
 const formularioNota = document.getElementById('form-nota');
 const selectorEvaluacion = document.getElementById('evaluacion');
@@ -86,8 +82,7 @@ function textoNecesaria(necesaria) {
 function actualizarVistaPrevia() {
   const nota = leerNota();
   if (nota === null) {
-    // Sin una nota válida se muestra la situación de hoy (el código vacío no elige
-    // ninguna evaluación: solo sirve para obtener las que quedan y la nota necesaria actual)
+    // Sin nota válida se muestra la situación de hoy (el código vacío no elige evaluación)
     const hoy = simularEvaluacion(evaluacionesCalculo, '', 0);
     promedioConNota.textContent = '—';
     evaluadoConNota.textContent = 'Escribe la nota para verlo';

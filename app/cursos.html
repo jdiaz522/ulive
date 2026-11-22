@@ -6,7 +6,6 @@
   <meta name="description" content="Mis cursos en ULive: la nota que necesitas en lo que falta, tus faltas y el estado de cada curso del ciclo.">
   <meta name="author" content="EduMetrics">
   <title>Mis cursos · ULive</title>
-  <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/app.css">
@@ -14,7 +13,7 @@
 <body>
   <div class="app">
 
-    <!-- Columna lateral (web) / barra inferior (móvil) con la navegación global -->
+    <!-- Navegación global: columna lateral en web, barra inferior en móvil -->
     <div class="lateral">
       <div class="lateral-contenido">
         <p class="marca-app marca-lateral"><span class="simbolo">U</span> ULive</p>
@@ -74,7 +73,6 @@
       </div>
     </div>
 
-    <!-- Área principal -->
     <div class="area">
       <header class="barra-app">
         <p class="ruta">ULive / Mis cursos</p>
@@ -89,9 +87,7 @@
           <p class="descripcion-pantalla">Ciclo 2026-2 · 3 cursos registrados</p>
         </div>
 
-        <!-- Tabla en web y tarjetas en móvil, como Evaluaciones y Actividades. El estado va bajo el nombre
-             del curso, en la misma celda, para que la tabla quepa en 801 px.
-             "Agregar curso" va en la cabecera para que siga a la vista aunque la lista crezca -->
+        <!-- El estado va bajo el nombre para que la tabla quepa en 801 px -->
         <section class="panel">
           <div class="panel-cabecera">
             <div class="panel-titulos">
@@ -112,8 +108,7 @@
             </thead>
             <tbody>
               <tr>
-                <!-- Solo Cálculo II tiene detalle en el prototipo: solo su nombre es enlace.
-                     El estado de faltas sale de estadoFaltas (js/calculos.js): 2 restantes = margen reducido; 3 o más = holgado -->
+                <!-- Solo Cálculo II tiene detalle: solo su nombre es enlace -->
                 <td class="celda-nombre"><a class="enlace-curso" href="curso.html">Cálculo II</a><span class="estado-linea"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">13,8</span></td>
                 <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra curso-necesita-cifra">12,4</span></td>
@@ -133,7 +128,7 @@
               </tr>
             </tbody>
           </table>
-          <!-- Reglas de estadoCurso (js/calculos.js), igual que en Inicio: margen = lo que vienes sacando − lo que necesitas -->
+          <!-- Reglas de estadoCurso (js/calculos.js) -->
           <details class="ayuda-estados">
             <summary>¿Qué significan los estados?</summary>
             <p class="ayuda-grupo">Nota del curso</p>
@@ -145,7 +140,7 @@
               <li><strong>Ya no alcanza 13:</strong> necesitarías más de 20 en lo que falta.</li>
             </ul>
             <p class="ayuda-grupo">Faltas</p>
-            <!-- Reglas de estadoFaltas (js/calculos.js): faltas que te quedan antes del límite del 25 % -->
+            <!-- Reglas de estadoFaltas (js/calculos.js) -->
             <ul>
               <li><strong>Margen holgado:</strong> te quedan 3 faltas o más.</li>
               <li><strong>Margen reducido:</strong> te quedan 2 faltas.</li>
