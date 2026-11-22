@@ -104,34 +104,56 @@
             <caption>Tus cursos del ciclo 2026-2. "Necesitas" es la nota que te hace falta en las evaluaciones pendientes para llegar a 13.</caption>
             <thead>
               <tr>
-                <th>Curso / estado</th>
+                <th>Curso</th>
                 <th>Nota actual</th>
-                <th>Necesitas en lo que falta</th>
+                <th>Necesitas</th>
                 <th>Faltas</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <!-- Solo Cálculo II tiene detalle en el prototipo: solo su nombre es enlace -->
+                <!-- Solo Cálculo II tiene detalle en el prototipo: solo su nombre es enlace.
+                     El estado de faltas sale de estadoFaltas (js/calculos.js): 2 restantes = margen reducido; 3 o más = holgado -->
                 <td class="celda-nombre"><a class="enlace-curso" href="curso.html">Cálculo II</a><span class="estado-linea"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">13,8</span></td>
-                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">12,4</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 2</span><span class="faltas-usadas">4 de 6</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra curso-necesita-cifra">12,4</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 2</span><span class="faltas-usadas">4 de 6</span><span class="estado-linea faltas-estado"><span class="estado estado-atencion estado-tabla"><img src="../img/icono-alerta.svg" alt=""> Margen reducido</span></span></td>
               </tr>
               <tr>
                 <td class="celda-nombre"><span class="nombre-curso">Programación III</span><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">16,4</span></td>
-                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">9,1</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 5</span><span class="faltas-usadas">1 de 6</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra curso-necesita-cifra">9,1</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 5</span><span class="faltas-usadas">1 de 6</span><span class="estado-linea faltas-estado"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Margen holgado</span></span></td>
               </tr>
               <tr>
                 <td class="celda-nombre"><span class="nombre-curso">Física II</span><span class="estado-linea"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Con margen</span></span></td>
                 <td><span class="etiqueta-movil">Nota actual: </span><span class="cifra">15,3</span></td>
-                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra">11,6</span></td>
-                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 6</span><span class="faltas-usadas">0 de 6</span></td>
+                <td><span class="etiqueta-movil">Necesitas: </span><span class="cifra curso-necesita-cifra">11,6</span></td>
+                <td><span class="etiqueta-movil">Faltas: </span><span class="faltas-quedan">Te quedan 6</span><span class="faltas-usadas">0 de 6</span><span class="estado-linea faltas-estado"><span class="estado estado-seguro estado-tabla"><img src="../img/icono-escudo.svg" alt=""> Margen holgado</span></span></td>
               </tr>
             </tbody>
           </table>
+          <!-- Reglas de estadoCurso (js/calculos.js), igual que en Inicio: margen = lo que vienes sacando − lo que necesitas -->
+          <details class="ayuda-estados">
+            <summary>¿Qué significan los estados?</summary>
+            <p class="ayuda-grupo">Nota del curso</p>
+            <ul>
+              <li><strong>Asegurado:</strong> ya llegaste a 13, aunque saques 0 en lo que falta.</li>
+              <li><strong>Con margen:</strong> lo que vienes sacando supera en 3 puntos o más a lo que necesitas.</li>
+              <li><strong>Depende del final:</strong> lo que vienes sacando alcanza lo que necesitas, pero con menos de 3 puntos de margen.</li>
+              <li><strong>En riesgo:</strong> necesitas más de lo que vienes sacando.</li>
+              <li><strong>Ya no alcanza 13:</strong> necesitarías más de 20 en lo que falta.</li>
+            </ul>
+            <p class="ayuda-grupo">Faltas</p>
+            <!-- Reglas de estadoFaltas (js/calculos.js): faltas que te quedan antes del límite del 25 % -->
+            <ul>
+              <li><strong>Margen holgado:</strong> te quedan 3 faltas o más.</li>
+              <li><strong>Margen reducido:</strong> te quedan 2 faltas.</li>
+              <li><strong>Última falta disponible:</strong> te queda 1 falta.</li>
+              <li><strong>Sin faltas disponibles:</strong> no te quedan faltas; una más y el examen final se califica con cero.</li>
+              <li><strong>Límite superado:</strong> pasaste el <span class="cifra">25 %</span> de las sesiones y el examen final se califica con cero.</li>
+            </ul>
+          </details>
         </section>
 
         <div class="acciones-app acciones-pie">

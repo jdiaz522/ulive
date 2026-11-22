@@ -532,7 +532,8 @@ html {
 }
 
 /* La cifra que necesitas es la que decide: 20 px y peso 600 (18 px en móvil), como la nota
-   actual antes. La nota actual pasa a dato de referencia (16 px, peso 500, texto principal) */
+   actual antes. La nota actual pasa a dato de referencia (16 px, peso 500, texto principal).
+   Se usa en Inicio y en la columna "Necesitas" de Mis cursos */
 .curso-necesita-cifra {
   color: #0F2A44;
   font-size: 20px;
@@ -605,7 +606,7 @@ html {
   margin: auto 0 auto 16px;
 }
 
-/* Ayuda de Mis cursos: qué significa cada estado (reglas de estadoCurso) */
+/* Ayuda de estados (Inicio y Mis cursos): reglas de estadoCurso, estadoPromedioGeneral (solo Inicio) y estadoFaltas */
 .ayuda-estados {
   margin-top: 8px;
   border-top: 1px solid #D6DEE7;
@@ -642,6 +643,15 @@ html {
 .ayuda-estados strong {
   color: #1A2430;
   font-weight: 500;
+}
+
+/* Grupos de la ayuda: estados de la nota, del promedio (solo Inicio) y de las faltas (rol Etiqueta) */
+.ayuda-grupo {
+  margin: 8px 0 0 0;
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 /* Solo las filas que llevan a otra pantalla tienen aspecto de clicables */
@@ -1386,6 +1396,11 @@ select.campo {
 .faltas-usadas {
   display: block;
   color: #55606E;
+}
+
+/* Estado del margen de faltas (estadoFaltas) bajo las usadas, como el de la nota bajo el nombre */
+.faltas-estado {
+  margin-top: 4px;
 }
 
 /* Mis cursos: el texto de las celdas puede partirse para que la tabla quepa
