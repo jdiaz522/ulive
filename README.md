@@ -23,13 +23,13 @@ img/              vista previa de la app e íconos exportados desde Figma
 | `link rel="stylesheet"` (hojas externas y Google Fonts) | index.html | HTML5 Foundation / CSS |
 | `script src` antes de `</body>` | index.html | JavaScript for User Interaction |
 | `header`, `nav`, `main`, `section`, `article`, `footer` | index.html | HTML5 Foundation |
-| `aria-label` en `nav`, `aria-describedby` y `aria-invalid` en el correo, `role="status"` en la confirmación | index.html | Front-End Accessibility and Deployment |
+| `aria-label` en `nav`, `aria-describedby` y `aria-invalid` en el correo, `role="status"` en la confirmación y en el error del correo | index.html | Front-End Accessibility and Deployment |
 | `:focus-visible` con `outline` y `outline-offset` | css/base.css | Front-End Accessibility and Deployment |
 | `.setAttribute('aria-invalid', ...)` | js/landing.js | Front-End Accessibility and Deployment |
 | `h1`–`h3`, `p`, `ul`, `li`, `a href="#id"` | index.html | HTML5 Foundation |
 | `img` con `alt` (descriptivo o vacío si es decorativa) | index.html | HTML5 Foundation |
 | `details` y `summary` para las preguntas frecuentes | index.html | HTML5 Foundation |
-| `form`, `label for`, `input type="text"` con `placeholder`, `button type="submit"` | index.html | HTML5 Foundation |
+| `form`, `label for`, `input type="email"` con `placeholder`, `button type="submit"` | index.html | HTML5 Foundation (tabla de tipos de input) y Front-End Accessibility and Deployment (ejemplo de etiqueta y error) |
 | Atributos `class` e `id` | index.html | HTML5 Foundation |
 | Selectores de elemento, clase, id y descendiente | css/base.css, css/landing.css | CSS |
 | `:hover`, `:active`, `:first-child` | css/base.css, css/landing.css | CSS |
@@ -44,8 +44,8 @@ img/              vista previa de la app e íconos exportados desde Figma
 | `@media screen and (max-width: 800px)` | css/base.css, css/landing.css | CSS |
 | `const`, funciones, `if`, operadores de comparación y lógicos | js/landing.js | JavaScript for User Interaction |
 | `document.getElementById` | js/landing.js | JavaScript for User Interaction |
-| `addEventListener` con `blur` y `submit` | js/landing.js | JavaScript for User Interaction |
-| `.value`, `.trim()`, `.textContent`, `.style.border`, `.style.display`, `.focus()`, `e.preventDefault()` | js/landing.js | JavaScript for User Interaction |
+| `addEventListener` con `blur`, `submit` y `click` | js/landing.js | JavaScript for User Interaction |
+| `.value`, `.trim()`, `.textContent`, `.style.borderColor`, `.style.display`, `.focus()`, `e.preventDefault()` | js/landing.js | JavaScript for User Interaction |
 | Expresiones regulares con `.test()` | js/landing.js | JavaScript for User Interaction |
 
 ## Adaptaciones propias
@@ -79,16 +79,19 @@ img/              vista previa de la app e íconos exportados desde Figma
 - **Mensajes de error:** se acordaron dos, los dos con ⚠:
   - Si falta la @: "⚠ Revisa tu correo, le falta la @. Lo que escribiste se conserva."
   - En los demás casos: "⚠ Escribe un correo válido, por ejemplo nombre@correo.com".
-  - Con error, el borde del campo y el de la tarjeta del formulario pasan a 2 px #B3261E, como en J26.
+  - Con error, el borde del campo cambia solo de color a #B3261E y mantiene 1 px; la tarjeta no cambia. Así el campo no se mueve y el rojo queda en el campo que origina el error. El mensaje lleva ⚠ y texto, así que el estado no depende solo del color.
+  - El párrafo del error tiene `role="status"`, para que el lector de pantalla lo anuncie también cuando aparece al salir del campo (`blur`) y no solo al enviar.
 - **Validación en `blur`:** solo valida si el campo tiene texto, y no devuelve el foco. Si lo devolviera al salir del campo, quien navega con el teclado no podría salir de él. El foco se devuelve solo al enviar.
-- **Confirmación:** el texto sale del correo escrito y lleva ✓ además del ícono del escudo (J27). El formulario y la confirmación comparten una tarjeta (`#tarjeta-registro`), que es la que recibe el borde rojo del error. El párrafo `role="status"` está en la página desde que carga, vacío y sin alto. Así, al recibir el texto, el lector de pantalla lo anuncia. Si estuviera dentro de un bloque oculto que se muestra en el mismo momento, muchos lectores no lo anunciarían.
+- **Confirmación:** el texto sale del correo escrito y lleva ✓ además del ícono del escudo (J27). El formulario y la confirmación comparten una tarjeta (`#tarjeta-registro`), y el error ya no la pinta. El párrafo `role="status"` está en la página desde que carga, vacío y sin alto. Así, al recibir el texto, el lector de pantalla lo anuncia. Si estuviera dentro de un bloque oculto que se muestra en el mismo momento, muchos lectores no lo anunciarían.
+- **Usar otro correo:** J27 no muestra cómo corregir un correo ya enviado. Tras confirmar aparece el enlace "Usar otro correo" (`#usar-otro-correo`), que vuelve a mostrar el formulario con el correo anterior escrito, pone el foco en el campo y vacía el párrafo de estado, para que un nuevo envío se anuncie otra vez. Es un `<a href="#registro">` con `click` y `e.preventDefault()`, con `min-height: 44px`. Al confirmar, el foco pasa a este enlace con `.focus()`, porque el botón "Avisarme", que lo tenía, queda oculto.
 - **Pie de página:** se quitó "Aviso de privacidad" porque no existe esa página. El texto de ayuda del formulario ya explica para qué se usa el correo.
 - **Íconos:** se mantienen los tamaños del mockup, que no son los 24 px por defecto: 32 px en las funciones y 28 px en la confirmación. Cada uno va junto a un título visible y por eso lleva `alt=""`.
-- **Vista previa de la app:** se exportó de Figma a 2x (546 × 1358 px) y se muestra a 273 px de ancho.
+- **Vista previa de la app:** es un recorte de la parte superior de J14 (Detalle de curso móvil) y no la pantalla de Inicio completa. Muestra Cálculo II con la nota actual 13,8, las faltas 4 / 6 y el aviso "Necesitas 12,4", para que la portada enseñe un cálculo real. Se exportó a 2x (780 × 792 px) y lleva `width` y `height` para reservar su espacio al cargar. El marco del celular es plano, sin sombra, como pide DESIGN.md.
 
 ## Excepciones usadas
 
 - `display: none`: el escudo y el texto de detalle de la confirmación empiezan ocultos con CSS. Al enviar un correo válido, el JS pone `formulario.style.display = 'none'` y muestra el escudo y el detalle con `.style.display = 'block'`. Se apoya en que la lectura de JavaScript dice que el DOM permite "mostrar, ocultar o eliminar elementos". En CSS también oculta en móvil el botón del encabezado.
+- `novalidate` en el formulario de registro: el correo es `type="email"` para que el celular muestre el teclado con @. Sin `novalidate`, el navegador bloquearía el envío con su propio aviso antes de que corra el script, y no se verían los mensajes de J26. No aparece en ninguna lectura; se aprobó para este caso.
 - `position: sticky; top: 0;` en el encabezado y `scroll-padding-top` en `html`: mantienen el encabezado fijo y evitan que tape el título de la sección o el contorno de foco al usar los enlaces o Tab. No aparece en ninguna lectura. Valores:
   - Web: 72 px (65 px de encabezado + 7 px del contorno de foco).
   - Móvil: 124 px (114 px de encabezado + 7 px del contorno, redondeado).
@@ -223,7 +226,7 @@ Las condiciones se revisan en este orden:
   - El ícono de libro mide 24 px, el tamaño por defecto, dentro de una caja de 32 px.
 - **Registrar curso (J12, J24):**
   - Los pesos son campos editables, porque la pantalla recalcula la suma al cambiarlos. En el mockup eran texto.
-  - Los pesos son `type="text"`, como el correo de la landing. Con `type="number"`, el navegador bloquearía el envío con su propio aviso antes de que corra el script.
+  - Los pesos son `type="text"`. Con `type="number"`, el navegador bloquearía el envío con su propio aviso antes de que corra el script.
   - "Usar una plantilla" es un `<select>`. Al elegir "Ciencias con laboratorio" (HU-02), llena los pesos con `.value` y recalcula la suma.
   - Los pesos empiezan vacíos, así que la suma inicial es "Suma: 0 % · Falta asignar 100 %", en una caja neutra (borde #7D8B99, sin ícono). Con 100 % pasa a la caja segura de J12.
   - **Al guardar con una suma distinta de 100 %** (J24):

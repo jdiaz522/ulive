@@ -38,12 +38,17 @@
           <p class="antetitulo">Para universitarios de Lima</p>
           <h1>Sabe cuánto necesitas, qué atender primero y si puedes faltar</h1>
           <p class="portada-descripcion">ULive aplica las reglas de tu universidad a tus cursos: te muestra la nota que necesitas en lo que falta, ordena tu semana según el peso de cada entrega y te dice cuántas faltas te quedan.</p>
+          <p class="portada-aviso texto-destacado">ULive aún no está disponible. Déjanos tu correo y te avisamos el día del lanzamiento.</p>
           <div class="acciones">
             <a class="boton boton-secundario" href="#registro">Quiero enterarme</a>
           </div>
-          <p class="texto-auxiliar">Sin contraseñas del portal. Tus datos se quedan en tu celular.</p>
         </div>
-        <img class="vista-previa" src="img/vista-previa-app.png" alt="Vista previa de la pantalla de inicio de ULive: saludo a Daniela, la entrega prioritaria del Taller 3 de Cálculo II que vence hoy, promedio 15,2, 4 de 6 faltas usadas, 3 pendientes, sus cursos Cálculo II y Programación III y sus próximas actividades.">
+        <!-- Escenario de la vista previa: la imagen de fondo va aquí y no detrás del texto -->
+        <div class="portada-escenario">
+          <div class="telefono">
+            <img class="vista-previa" src="img/vista-previa-recorte.png" width="780" height="792" alt="Vista previa del detalle del curso Cálculo II en ULive: nota actual 13,8 (aprobando), 4 de 6 faltas usadas con 2 restantes y el aviso «Depende del final: necesitas 12,4 en promedio en lo que falta para llegar a 13; la próxima evaluación pesa 25 %».">
+          </div>
+        </div>
       </div>
     </section>
 
@@ -111,13 +116,14 @@
 
         <!-- Tarjeta del registro: primero muestra el formulario y, tras un envío válido, la confirmación -->
         <div id="tarjeta-registro" class="tarjeta-registro">
-          <form id="form-registro" class="formulario" action="#">
+          <form id="form-registro" class="formulario" action="#" novalidate>
             <label for="correo">Correo electrónico</label>
             <div class="campo-fila">
-              <input type="text" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" aria-describedby="error-correo" aria-invalid="false">
+              <input type="email" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" aria-describedby="error-correo" aria-invalid="false">
               <button type="submit" class="boton boton-principal">Avisarme</button>
             </div>
-            <p id="error-correo" class="mensaje-error"></p>
+            <!-- role="status": el lector de pantalla anuncia el error al aparecer, también en blur -->
+            <p id="error-correo" class="mensaje-error" role="status"></p>
             <p class="texto-auxiliar">Solo usaremos tu correo para avisarte del lanzamiento. No lo compartimos con terceros.</p>
           </form>
 
@@ -128,6 +134,8 @@
             <div class="confirmacion-texto">
               <p id="confirmacion" class="confirmacion-titulo" role="status"></p>
               <p id="confirmacion-detalle" class="confirmacion-detalle">Revisa tu bandeja de entrada el día del lanzamiento. Puedes darte de baja desde el mismo correo.</p>
+              <!-- Empieza oculto; tras confirmar vuelve a mostrar el formulario con el correo escrito -->
+              <a id="usar-otro-correo" class="enlace-otro-correo" href="#registro">Usar otro correo</a>
             </div>
           </div>
         </div>

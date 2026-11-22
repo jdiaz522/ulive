@@ -92,11 +92,17 @@
   flex-direction: row;
 }
 
-/* Márgenes automáticos arriba y abajo: centra el texto junto a la imagen */
+/* Márgenes automáticos arriba y abajo: centra el texto junto al escenario.
+   Texto y escenario se reparten el ancho en dos mitades. */
 .portada-texto {
   flex: 1;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+/* El título se corta en dos líneas en vez de cruzar toda la página */
+.portada-texto h1 {
+  max-width: 560px;
 }
 
 .antetitulo {
@@ -116,20 +122,45 @@
   color: #55606E;
 }
 
+/* Aviso de prelanzamiento: cuerpo destacado, justo antes de la acción que lo resuelve */
+.portada-aviso {
+  margin-top: 24px;
+  color: #1A2430;
+}
+
 .acciones {
   display: flex;
   flex-direction: row;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
-.portada-texto .texto-auxiliar {
-  margin-top: 16px;
+/* Escenario: superficie donde se apoya el teléfono. La imagen de fondo de la
+   portada va en esta caja (background-image), nunca detrás del texto, para que
+   el contraste AA del texto no dependa de la imagen. */
+.portada-escenario {
+  flex: 1;
+  margin-left: 32px;
+  padding: 32px;
+  border: 1px solid #D6DEE7;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Marco de celular: borde grueso como bisel y radio de tarjeta, sin sombra (diseño plano) */
+.telefono {
+  width: 320px;
+  margin: 0 auto;
+  border: 8px solid #0F2A44;
+  border-radius: 12px;
+  background-color: #0F2A44;
 }
 
 .vista-previa {
   display: block;
-  width: 273px;
-  margin-left: 32px;
+  width: 100%;
+  border-radius: 4px;
 }
 
 /* ---------- Dato del problema ---------- */
@@ -217,18 +248,24 @@
 }
 
 /* ---------- Registro de interesados ---------- */
+/* Banda oscura: la acción principal de la página se separa de los segmentos */
 .registro {
-  background-color: #FFFFFF;
+  background-color: #0F2A44;
+}
+
+.registro h2 {
+  color: #FFFFFF;
 }
 
 .registro-descripcion {
   margin-top: 16px;
-  color: #55606E;
+  color: #FFFFFF;
 }
 
-/* Tarjeta que contiene el formulario y la confirmación */
+/* Tarjeta que contiene el formulario y la confirmación (unos 75 caracteres de ancho) */
 .tarjeta-registro {
-  margin-top: 16px;
+  max-width: 680px;
+  margin-top: 24px;
   padding: 24px;
   border: 1px solid #D6DEE7;
   border-radius: 12px;
@@ -292,6 +329,27 @@
 
 .confirmacion-texto .confirmacion-detalle {
   margin-top: 4px;
+}
+
+/* "Usar otro correo": empieza oculto y el JS lo muestra con display: block.
+   Enlace subrayado en primario; al pasar el cursor se quita el subrayado. */
+.confirmacion-texto .enlace-otro-correo {
+  display: none;
+  min-height: 44px;
+  margin-top: 8px;
+  color: #15497A;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 44px;
+  text-decoration: underline;
+}
+
+.confirmacion-texto .enlace-otro-correo:hover {
+  text-decoration: none;
+}
+
+.confirmacion-texto .enlace-otro-correo:active {
+  color: #0F2A44;
 }
 
 .confirmacion-texto .confirmacion-titulo {
@@ -393,8 +451,14 @@
     flex-direction: column;
   }
 
-  .vista-previa {
-    margin: 32px auto 0 auto;
+  .portada-escenario {
+    margin-top: 24px;
+    margin-left: 0;
+    padding: 8px;
+  }
+
+  .telefono {
+    width: 100%;
   }
 
   .problema-fila {
