@@ -877,9 +877,19 @@ html {
   display: none;
 }
 
-/* El select usa los estilos de .campo (base.css); solo se ajusta su alto */
+/* El select usa los estilos de .campo (base.css) y se ajusta su alto.
+   Excepción aprobada: appearance: none quita la flecha nativa, que Chrome dibuja
+   a unos 4 px del borde. La flecha propia (img/flecha-select.svg, 16 px) queda
+   a 16 px del borde, igual que el texto a la izquierda.
+   padding-right: 16 (separación del texto) + 16 (flecha) + 16 (hasta el borde) = 48 px.
+   La lista desplegada la sigue dibujando el sistema operativo. */
 select.campo {
   min-height: 48px;
+  padding-right: 48px;
+  appearance: none;
+  background-image: url("../img/flecha-select.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
 }
 
 .ayuda {

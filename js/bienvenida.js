@@ -1,13 +1,12 @@
 // ULive · Bienvenida (J9)
-// Comprueba que universidad, carrera y ciclo tengan valor antes de continuar.
+// Universidad y carrera son datos fijos (solo está configurada la UPC):
+// solo se comprueba que el ciclo tenga valor antes de continuar.
 // Si todo está completo, el formulario se envía a inicio.html (su action).
 
 const formularioBienvenida = document.getElementById('form-bienvenida');
 
 // Cada campo con su mensaje de error y el texto que se muestra si está vacío
 const camposBienvenida = [
-  { campo: document.getElementById('universidad'), error: document.getElementById('error-universidad'), mensaje: '⚠ Elige tu universidad para cargar sus reglas.' },
-  { campo: document.getElementById('carrera'), error: document.getElementById('error-carrera'), mensaje: '⚠ Elige tu carrera.' },
   { campo: document.getElementById('ciclo'), error: document.getElementById('error-ciclo'), mensaje: '⚠ Elige tu ciclo actual.' }
 ];
 

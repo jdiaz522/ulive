@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bienvenida a ULive: elige tu universidad, tu carrera y tu ciclo para cargar sus reglas de evaluación, faltas y matrícula.">
+  <meta name="description" content="Bienvenida a ULive: confirma tu universidad y tu carrera, y elige tu ciclo para cargar sus reglas de evaluación, faltas y matrícula.">
   <meta name="author" content="EduMetrics">
   <title>Bienvenida · ULive</title>
   <!-- Fuente Inter desde Google Fonts (pesos 400, 500 y 600) -->
@@ -22,27 +22,20 @@
     <div class="columna-estrecha">
       <div class="titulo-pantalla">
         <h1>Te damos la bienvenida a ULive</h1>
-        <p class="descripcion-pantalla">Elige tu universidad para que ULive cargue sus reglas de evaluación, faltas y matrícula.</p>
+        <p class="descripcion-pantalla">ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Solo falta tu ciclo actual.</p>
       </div>
 
       <form id="form-bienvenida" action="inicio.html">
         <div class="tarjeta-app">
+          <!-- Universidad y carrera son datos fijos: el prototipo solo tiene configurada la UPC -->
           <div class="grupo-campo">
-            <label for="universidad">Universidad</label>
-            <select id="universidad" class="campo" aria-describedby="ayuda-universidad error-universidad" aria-invalid="false">
-              <option value="">Elige tu universidad</option>
-              <option value="upc">Universidad Peruana de Ciencias Aplicadas (UPC)</option>
-            </select>
-            <p id="ayuda-universidad" class="texto-auxiliar ayuda">Se aplicarán la escala de 0 a 20 y el límite de <span class="cifra">25 %</span> de faltas.</p>
-            <p id="error-universidad" class="mensaje-error"></p>
+            <p class="etiqueta">Universidad</p>
+            <p class="dato-fijo">Universidad Peruana de Ciencias Aplicadas (UPC)</p>
+            <p class="texto-auxiliar ayuda">Por ahora ULive solo tiene configuradas las reglas de la UPC. Se aplicarán la escala de 0 a 20 y el límite de <span class="cifra">25 %</span> de faltas.</p>
           </div>
           <div class="grupo-campo">
-            <label for="carrera">Carrera</label>
-            <select id="carrera" class="campo" aria-describedby="error-carrera" aria-invalid="false">
-              <option value="">Elige tu carrera</option>
-              <option value="isi">Ingeniería de Sistemas de Información</option>
-            </select>
-            <p id="error-carrera" class="mensaje-error"></p>
+            <p class="etiqueta">Carrera</p>
+            <p class="dato-fijo">Ingeniería de Sistemas de Información</p>
           </div>
           <div class="grupo-campo">
             <label for="ciclo">Ciclo actual</label>

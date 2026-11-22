@@ -251,8 +251,9 @@ Las condiciones se revisan en este orden:
 - **Pantallas con solo mockup móvil** (Bienvenida y las de registro): en web llevan el menú lateral y el contenido en una columna centrada de `max-width: 480px`. Bienvenida no lleva navegación: su barra muestra la marca y "Estudiante" en las dos versiones.
 - **Bienvenida (J9):**
   - Es la entrada de la app y "Continuar" lleva a `inicio.html`.
-  - Los tres selects empiezan en una opción vacía ("Elige tu universidad", etc.), para que la validación de J9 tenga sentido. El mockup muestra el estado ya elegido.
-  - Universidad y carrera solo ofrecen la opción del mockup. El ciclo va de 1.º a 10.º.
+  - **Universidad y carrera son datos fijos, no selects (revisión de UX, 22 nov 2026).** Cada select tenía una sola opción real, así que había que elegir sin que hubiera decisión, y a 390 px el nombre de la universidad (378 px) no cabía en el select (unos 280 px útiles) y quedaba cortado. Ahora se muestran como texto con su etiqueta, igual que "Turno actual" en Cambio de turno (`.dato-fijo`), y el texto pasa a otra línea en vez de cortarse. Una ayuda explica por qué: "Por ahora ULive solo tiene configuradas las reglas de la UPC".
+  - Solo se pide el ciclo actual, que empieza en "Elige tu ciclo" y va de 1.º a 10.º. `js/bienvenida.js` solo valida ese campo. La descripción de la pantalla cambia a "ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Solo falta tu ciclo actual."
+  - **Pendiente:** corregir J9 (muestra tres selects) y la sección 4.2 del informe ("las reglas de cada universidad se cargan como configuración desde la Bienvenida") para que coincidan con el prototipo.
 - **Mis cursos (J11):**
   - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso / estado, Nota actual, Necesitas en lo que falta y Faltas.
   - En web usa el ancho completo del contenido y no la columna de 480 px de las pantallas con solo mockup móvil, porque cinco columnas no caben en 480 px.
@@ -417,6 +418,11 @@ Las condiciones se revisan en este orden:
 - **Notas con hasta dos decimales:** Registrar nota y Simulación aceptan notas de 0 a 20 con hasta dos decimales, con coma o con punto (15 · 15,5 · 15.75), porque el reglamento (art. 2.5.a) expresa las notas de cada evaluación con centésimas.
   - `textoANota` (en `calculos.js`) comprueba el formato con una expresión regular y `.test()`, y arma el número leyendo los caracteres por posición (parte entera y decimales), la misma lectura por posición que se usa para las fechas. No usa `.replace()`.
   - La ayuda dice "Nota de 0 a 20, hasta dos decimales (15,5 o 15.75)" y el error, "⚠ Escribe una nota de 0 a 20, con hasta dos decimales (15,5 o 15.75)".
+- **Flecha propia en los select (revisión de UX, 22 nov 2026):** Chrome dibuja la flecha nativa a unos 4 px del borde, mientras el texto empieza a 16 px. Con la excepción `appearance: none` (ver "Técnicas y excepciones de la app"), `select.campo` usa una flecha de 16 px exportada a `img/flecha-select.svg` (trazo de 1,5 px en #1A2430, como los demás íconos), colocada con `background-image`, `background-repeat: no-repeat` y `background-position: right 16px center`.
+  - `padding-right: 48px` = 16 (separación entre el texto y la flecha) + 16 (flecha) + 16 (de la flecha al borde). No es un valor nuevo de la escala: es la suma de tres valores de 16 px, simétrica con los 16 px del texto a la izquierda.
+  - Aplica a los 9 selects de la app. A 390 px se probó la opción más larga de cada uno; la más ajustada es "Parcial 2 · 14 oct · peso 25 %" (Registrar nota): 210 px de texto en 243 px útiles.
+  - El contorno de foco (3 px #15497A, separado 4 px) y el borde de error (2 px #B3261E) se siguen viendo, con la flecha en su sitio.
+  - **Límite:** la lista desplegada la sigue dibujando el sistema operativo. Chrome no aplica `border` ni `padding` a las `<option>`, así que no se les puede poner borde.
 - **Foco visible en `select` y `textarea`:** se agregaron a la regla `:focus-visible` de `base.css` porque antes no incluía ni `select` ni `textarea`. La landing no tiene ninguno de los dos, así que no cambia.
 
 ## Técnicas y excepciones de la app
@@ -445,6 +451,7 @@ Las condiciones se revisan en este orden:
 | Validación de 0 a 20, vista previa y resultado estimado con `change` y `submit` | js/registrar-nota.js, js/simulacion.js | JavaScript for User Interaction |
 | `aria-describedby`, `aria-invalid` (cambiado con `.setAttribute()`) y `role="status"` en la suma y en el aviso de plantilla | app/bienvenida.html, app/registrar-curso.html, js/*.js | Front-End Accessibility and Deployment |
 | `:focus-visible` con `outline` y `outline-offset`, también en `select` y `textarea` | css/base.css | Front-End Accessibility and Deployment |
+| `background-image`, `background-repeat` y `background-position` para la flecha de los select | css/app.css | CSS |
 | `input type="radio"` (espacios libres) e `input type="checkbox"` (cursos) dentro de su `label`, en un `fieldset` con `legend` | app/cambio-turno.html, app/matricula.html | HTML5 Foundation |
 | `.checked` para leer casillas (la lectura de JavaScript lee y marca casillas con `checked` en jQuery; aquí es lo mismo sin librería) | js/registrar-falta.js, js/matricula.js | JavaScript for User Interaction |
 | `topeCreditos`, `sumarCreditos`, `faltasPermitidas`, `faltasRestantes` y `estadoFaltas` (funciones puras) | js/calculos.js, js/cambio-turno.js, js/matricula.js | JavaScript for User Interaction |
@@ -456,6 +463,7 @@ Las condiciones se revisan en este orden:
 
 - **Navegación fija:** `position: sticky; top: 0;` en el contenido de la columna lateral (web) y `position: sticky; bottom: 0;` en la barra inferior (móvil). En `html`, `scroll-padding-top: 8px` y, en móvil, `scroll-padding-bottom: 80px` (72 px de barra + 7 px del contorno de foco, redondeado), para que el elemento con foco no quede debajo de la barra.
   - **Pantallas bajas:** con `@media screen and (max-height: 500px)`, `.lateral-contenido` pasa a `position: static`. En un celular en horizontal (874 × 402) o una laptop con zoom, el menú lateral es más alto que la ventana y, fijo, dejaba la tarjeta del perfil cortada hasta llegar al final de la página; así se desplaza con ella. Es la misma técnica de `@media` de la lista, aplicada al alto, y solo desactiva la excepción sticky. No toca `.lateral`: la barra inferior móvil sigue fija.
+- **`appearance: none`** en `select.campo` (css/app.css): quita la flecha nativa del select, que Chrome dibuja a unos 4 px del borde y que no se mueve con `padding`, para poner una flecha propia a 16 px con `background-image` y `background-position` (técnicas de la lectura de CSS). No aparece en ninguna lectura; se aprobó para los selects.
 - **`Number()`** (excepción mínima): convierte en número el texto de los pesos (`js/registrar-curso.js`), de las notas (`js/registrar-nota.js` y `js/simulacion.js`) y del año, el mes y el día de la fecha de entrega (`js/registrar-actividad.js`).
 - **`toLocaleString('es', ...)`** (excepción mínima, en `formatearDecimal`): muestra las cifras calculadas con coma (14,2). Se usa `'es'` y no `'es-PE'` porque, en Chrome, `'es-PE'` da "14.2", ya que los datos de idioma de Perú usan punto decimal.
 - **`display: none`** (excepción mínima):
