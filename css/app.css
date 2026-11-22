@@ -1686,6 +1686,22 @@ select.campo {
   color: #1A2430;
 }
 
+/* ---------- Bienvenida (J9): reglas escritas a mano ---------- */
+/* Empieza oculto; el JS lo muestra con display: block */
+.reglas-manuales {
+  display: none;
+  padding: 0;
+  border: 0;
+}
+
+.reglas-manuales legend {
+  padding: 0;
+}
+
+.reglas-intro {
+  margin-top: 4px;
+}
+
 /* Empiezan ocultos; el JS los muestra con display: block */
 .bloque-turno {
   display: none;
@@ -1722,6 +1738,15 @@ select.campo {
 
 .grupo-opciones .mensaje-error {
   margin-top: 8px;
+}
+
+/* Leyendas con el estilo de una etiqueta de campo; el id gana a ".grupo-opciones legend" en móvil */
+#grupo-clases legend,
+.reglas-manuales legend {
+  color: #1A2430;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 /* Fila de curso: casilla, nombre y créditos a la derecha */
@@ -1868,9 +1893,10 @@ select.campo {
     margin: 0;
   }
 
+  /* Sin min-width: 0, ningún destino mide menos que su texto: a 320 px "Evaluaciones"
+     y "Actividades" conservan su ancho y los demás se reparten el resto */
   .navegacion-app li {
     flex: 1;
-    min-width: 0;
     margin-top: 0;
     margin-left: 4px;
   }

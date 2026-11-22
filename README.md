@@ -121,20 +121,20 @@ Son las 15 pantallas de la app. Dos no son archivos aparte, sino estados de otra
 |---|---|---|---|---|
 | Landing | index.html | J8; estados J26 (correo no válido) y J27 (confirmación) | — | HU-43, HU-44, HU-45 |
 | Bienvenida | app/bienvenida.html | — | J9 | HU-31, HU-36 |
-| Inicio | app/inicio.html | J1 | J10 | HU-08, HU-12, HU-16, HU-22, HU-48 |
+| Inicio | app/inicio.html | J1 | J10 | HU-08, HU-12, HU-16, HU-22, HU-47, HU-48 |
 | Mis cursos | app/cursos.html | — | J11 | HU-08, HU-09, HU-12 |
 | Registrar curso | app/registrar-curso.html | — | J12, error J24 | HU-01, HU-02, HU-20 |
-| Registrar nota | app/registrar-nota.html | — | J13 | HU-07 |
+| Registrar nota | app/registrar-nota.html | — | J13 | HU-07, HU-47 |
 | Detalle de curso | app/curso.html | J2 | J14 | HU-08, HU-09, HU-10, HU-13 |
 | Evaluaciones | app/evaluaciones.html | J3 | J15 | HU-08, HU-11 |
-| Simulación de nota | app/simulacion.html | J4 | J16 | HU-10, HU-11, HU-13 |
+| Simulación de nota | app/simulacion.html | J4 | J16 | HU-09, HU-10, HU-11, HU-13 |
 | Resultado de simulación | estado de app/simulacion.html | J5 | J17 | HU-10, HU-11, HU-13 |
 | Faltas | app/faltas.html | J6 | J18 | HU-22, HU-24, HU-32 |
 | Registrar o simular falta | app/registrar-falta.html (J25 es un estado de la página) | — | J19, aviso J25 | HU-21, HU-23, HU-25 |
 | Actividades | app/actividades.html | J7 | J20 | HU-15, HU-16, HU-17 |
-| Cambio de turno | app/cambio-turno.html | — | J21 | HU-27, HU-28 |
-| Simulador de matrícula | app/matricula.html | — | J22 | HU-33, HU-34 |
-| Registrar actividad | app/registrar-actividad.html | — | J23 | HU-14 |
+| Cambio de turno | app/cambio-turno.html | — | J21 | HU-28 |
+| Simulador de matrícula | app/matricula.html | — | J22 | HU-32, HU-33, HU-34 |
+| Registrar actividad | app/registrar-actividad.html | — | J23 | HU-14, HU-15 |
 
 La landing no es una de las 15 pantallas de la app; va en la tabla para mostrar sus historias.
 
@@ -209,6 +209,7 @@ Las condiciones se revisan en este orden:
 - **Navegación global:** un solo `<nav aria-label="Navegación principal">`.
   - En web es la columna lateral, a la izquierda.
   - En móvil es la barra inferior. Para eso, `.app` usa `flex-direction: column-reverse`.
+  - **A 320 px no desborda (HU-48, escenario 3):** los cinco destinos usan `flex: 1`, pero sin `min-width: 0`, así que ninguno mide menos que su texto. A 320 px "Evaluaciones" (76 px) y "Actividades" (68 px) conservan su ancho y los otros tres se reparten el resto (44 px cada uno, con 56 px de alto). Antes la barra se pasaba 10 px del ancho. Desde unos 400 px los cinco vuelven a medir casi igual. Se midió a 306, 360 y 390 px de ancho útil.
   - En el HTML la navegación va antes que el contenido, en todas las páginas. Por eso, con Tab, llega primero a la navegación, tanto en web como en móvil.
   - El destino activo lleva la clase `activa` (cambia el fondo y el peso de la letra) y `aria-current="page"`, para no depender solo de lo visual.
 - **Foco sobre fondo oscuro:** el contorno de foco de `base.css` es primario (#15497A) y sobre #0F2A44 casi no se ve (1,6:1). En la columna lateral (web) y en la tarjeta "Revisar primero" pasa a blanco (14,6:1) con `.lateral a:focus-visible` y `.notificacion a:focus-visible`. En móvil la barra inferior es blanca y vuelve el contorno primario.
@@ -270,12 +271,15 @@ Las condiciones se revisan en este orden:
 - **Pantallas con solo mockup móvil** (Bienvenida y las de registro): en web llevan el menú lateral y el contenido en una columna centrada de `max-width: 480px`. Bienvenida no lleva navegación: su barra muestra la marca y "Estudiante" en las dos versiones.
 - **Bienvenida (J9):**
   - Es la entrada de la app y "Continuar" lleva a `inicio.html`.
-  - **Universidad y carrera son datos fijos, no selects (revisión de UX, 22 nov 2026).** Cada select tenía una sola opción real, así que había que elegir sin que hubiera decisión, y a 390 px el nombre de la universidad (378 px) no cabía en el select (unos 280 px útiles) y quedaba cortado. Ahora se muestran como texto con su etiqueta, igual que "Turno actual" en Cambio de turno (`.dato-fijo`), y el texto pasa a otra línea en vez de cortarse. Una ayuda explica por qué: "Por ahora ULive solo tiene configuradas las reglas de la UPC".
-  - **El ciclo viene marcado en 5.º, el de Daniela (revisión de UX, 22 nov 2026).** Sin almacenamiento, el ciclo elegido no llega a Inicio, que siempre muestra "Ingeniería · 5.º ciclo". Si alguien elegía 1.º, la pantalla siguiente lo contradecía. Ahora el select empieza en 5.º ciclo con el atributo `selected` (el mismo recurso que `checked` en las casillas y botones de opción del prototipo) y basta pulsar "Continuar". Sigue siendo un select de 1.º a 10.º con la opción "Elige tu ciclo": si alguien vuelve a ella, `js/bienvenida.js` muestra "⚠ Elige tu ciclo actual.". La descripción dice "ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Confirma tu ciclo actual."
-  - **La ayuda va debajo de Universidad y Carrera,** porque explica a las dos: "Por ahora ULive solo tiene configuradas las reglas de la UPC: escala de 0 a 20 y límite de 25 % de faltas. Las reglas dependen de la universidad, no de la carrera." Antes estaba entre las dos y solo hablaba de la universidad.
+  - **Universidad: un select con la UPC elegida (HU-31, 22 nov 2026).** El escenario 1 de HU-31 pide elegir la universidad y confirmarla, y el 2, poder decir que no está en la lista. Por eso vuelve a ser un `<select>` con dos opciones: "Universidad Peruana de Ciencias Aplicadas (UPC)", elegida con `selected`, y "Mi universidad no está en la lista". A 390 px el nombre completo cabe en el select de 48 px de alto sin desbordar la página.
+    - **"Mi universidad no está en la lista"** (escenario 2): con `change`, `js/bienvenida.js` muestra un `<fieldset>` "Reglas de tu universidad" (empieza con `display: none` y pasa a `block`) con dos campos: "Límite de faltas (% de sesiones)", un entero de 1 a 100 (expresión regular y `Number()`), y "Nota aprobatoria", de 0 a 20 con hasta dos decimales (`textoANota`). Si están vacíos o mal escritos, al continuar aparece el error con ⚠ junto a cada campo, borde de riesgo, `aria-invalid` y foco en el primero. Al volver a la UPC, el bloque se oculta y sus errores se borran.
+    - **Limitación:** sin almacenamiento, las reglas escritas no llegan a las demás pantallas, que siguen con las de la UPC. Se pueden ingresar, pero no se aplican.
+  - **Carrera es un dato fijo,** como "Turno actual" en Cambio de turno (`.dato-fijo`): tiene una sola opción real.
+  - **El ciclo viene marcado en 5.º, el de Daniela (revisión de UX, 22 nov 2026).** Sin almacenamiento, el ciclo elegido no llega a Inicio, que siempre muestra "Ingeniería · 5.º ciclo". Si alguien elegía 1.º, la pantalla siguiente lo contradecía. Ahora el select empieza en 5.º ciclo con el atributo `selected` (el mismo recurso que `checked` en las casillas y botones de opción del prototipo) y basta pulsar "Continuar". Sigue siendo un select de 1.º a 10.º con la opción "Elige tu ciclo": si alguien vuelve a ella, `js/bienvenida.js` muestra "⚠ Elige tu ciclo actual.". La descripción dice "ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Elige tu universidad y confirma tu ciclo actual."
+  - **La ayuda va debajo de Universidad** y está vinculada al select con `aria-describedby`: "Por ahora ULive solo tiene configuradas las reglas de la UPC: escala de 0 a 20 y límite de 25 % de faltas. Las reglas dependen de la universidad, no de la carrera."
   - **h1 "Te damos la bienvenida",** sin "a ULive": la marca ya está en la barra, y así "ULive" no queda sola en la segunda línea (pasaba a 1440 y a 390). No se usa "Bienvenida a ULive" porque tiene género y la app es para todos.
   - **Caja del escudo:** "No pedimos tu contraseña del portal" / "Tú registras tus cursos y notas. ULive no se conecta al portal." Ya no promete que los datos se guardan en el celular (HU-37 no está cubierta).
-  - **Pendiente:** corregir J9 (muestra tres selects) y la sección 4.2 del informe ("las reglas de cada universidad se cargan como configuración desde la Bienvenida") para que coincidan con el prototipo.
+  - **Pendiente:** corregir J9 (muestra tres selects; el prototipo tiene dos, Universidad y Ciclo, y el bloque de reglas manuales) para que coincida con el prototipo.
 - **Mis cursos (J11):**
   - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso, Nota actual, Necesitas y Faltas. Las cabeceras son cortas porque el caption ya define "Necesitas" ("la nota que te hace falta en las evaluaciones pendientes para llegar a 13"); con "Necesitas en lo que falta", la cabecera ocupaba 3 líneas a 801 px.
   - En web usa el ancho completo del contenido y no la columna de 480 px de las pantallas con solo mockup móvil, porque cuatro columnas no caben en 480 px.
@@ -298,7 +302,8 @@ Las condiciones se revisan en este orden:
     - Se marca con "⚠ Revisa este peso" el último peso que el usuario cambió (o el examen final, si no cambió ninguno), con borde de riesgo y `aria-invalid="true"`, y se le devuelve el foco.
     - La caja muestra la diferencia ("Falta asignar 10 %." o "Sobran 10 %.") y lo ingresado se conserva.
   - Un peso que no es un entero de 0 a 100 muestra "⚠ Escribe un número entero de 0 a 100." junto al campo.
-  - El nombre, las sesiones y la nota objetivo vienen con los valores del ejemplo. El mockup no muestra errores para ellos, así que no se validan.
+  - El nombre y las sesiones vienen con los valores del ejemplo. El mockup no muestra errores para ellos, así que no se validan.
+  - **Sin "Nota objetivo" (22 nov 2026):** el campo no se usaba en ningún cálculo. La nota objetivo pasó a Simulación, donde sí cambia la nota necesaria (HU-09). La tarjeta se llama ahora "Faltas".
 - **Tablas que en móvil son listas** (Detalle de curso, Evaluaciones, Actividades y Mis cursos):
   - Es una sola `<table>` con `<caption>`, `<thead>` y `<th>`. En móvil, `table`, `tbody` y `td` pasan a `display: block`, el `<thead>` se oculta y cada `<tr>` es un bloque (`display: flex` con `flex-wrap`) separado por un divisor de 1 px #D6DEE7 arriba, también el primero, que así queda separado del caption. Antes cada `<tr>` era una tarjeta con borde y radio dentro del panel, una tarjeta dentro de otra.
   - **Justo por encima del punto de quiebre (801 px)** las cuatro tablas desbordaban el panel y la página tenía desplazamiento horizontal. Sin agregar puntos de quiebre, se probó en orden: dejar que el texto se parta, juntar columnas y bajar el relleno lateral a 8 px, midiendo a 801 px después de cada paso:
@@ -336,7 +341,9 @@ Las condiciones se revisan en este orden:
   - La nota empieza vacía. Antes de guardar, la vista previa (`role="status"`) muestra el promedio con esa nota, el % evaluado, la nota necesaria ("Necesitarás 10,2…") y las evaluaciones que quedan. Sin nota válida, muestra la nota necesaria de hoy.
   - Si la nota no es válida, no se envía, aparece el error junto al campo y el foco vuelve a él. Si es válida, el formulario va a `curso.html`.
 - **Simulación (J4, J16):**
-  - Viene precargada con el escenario del mockup (Parcial 2 y nota 15).
+  - Viene precargada con el escenario del mockup (Parcial 2, nota 15 y nota objetivo 13).
+  - **Nota objetivo (HU-09, escenario 2):** un campo "Nota objetivo" que empieza en 13, la aprobatoria de la UPC, y se valida como las notas (`textoANota`). Al cambiarlo (`change`), `simularEvaluacion` recibe el objetivo y recalcula la nota necesaria: con 13, "Necesitas 10,2 en promedio en lo que falta para llegar a 13"; con 10, "Necesitas 0,2…"; con 16, "Ya no alcanzarías 16: necesitarías más de 20 en lo que falta". La caja "Contexto del cálculo" y la tarjeta "Nota necesaria · para llegar a…" muestran el objetivo escrito. El indicador de estado y "seguirías aprobando" siguen midiendo contra 13, porque dicen si apruebas, no si llegas a tu meta.
+    - Si el objetivo no es válido, aparece el error con ⚠ junto al campo y, al simular, el foco va a él.
   - Al cambiar la evaluación o la nota, se recalculan el peso, la nota necesaria, el promedio proyectado y el indicador de estado. Hay tres indicadores (seguro, atención y riesgo) y el JS muestra solo el que corresponde, porque no se puede cambiar el `src` de una imagen.
 - **Redondeo en el resultado de Simulación (HU-13):** debajo del promedio proyectado, una caja muestra la nota calculada con dos decimales y la nota oficial que daría, con `formatearCentesimas` y `notaOficial`:
   - De 12,50 a 12,99 avisa, en color de atención con ⚠: "Con el redondeo de la UPC, 12,60 se vuelve 13: aprobarías". Se prueba con 9,95 en el examen final.
@@ -368,9 +375,11 @@ Las condiciones se revisan en este orden:
   - "Agregar actividad" (acción principal, acento) va en web y en móvil. En J7 no estaba.
 - **Registrar actividad (J23):** `js/registrar-actividad.js`.
   - **Formulario vacío al empezar:**
-    - El nombre tiene el placeholder "Ej. Informe de laboratorio 3" y la evaluación empieza en "Elige una evaluación".
+    - El nombre tiene el placeholder "Ej. Informe de laboratorio 3" y la evaluación empieza en "Ninguna: sin peso registrado".
     - Al elegir la evaluación, el curso se completa solo con `.value`. La hora es opcional.
   - **Evaluación de la fórmula:** solo ofrece evaluaciones **pendientes**, agrupadas por curso con `<optgroup>`, porque a una evaluación ya calificada no se le registra una entrega.
+  - **Peso opcional (HU-15, escenario 3; 22 nov 2026):** la evaluación es "(opcional)", como la hora. Si se deja en "Ninguna: sin peso registrado", la caja de impacto dice "Sin peso registrado · vence en 3 días · impacto 0,0: quedaría 8.º de 8 en Actividades": con peso 0 el impacto es 0 y queda después de las que pesan. Como entonces el curso no se completa solo, el curso pasa a ser obligatorio: sin él aparece "⚠ Elige el curso de la actividad." Al guardar se revisan curso, nombre y fecha, y el foco va al primero con error.
+    - **Limitación:** la vista de Actividades no muestra la actividad nueva (no hay almacenamiento), así que "sin peso registrado" se ve en Registrar actividad y no en la lista de la semana.
   - **Caja de impacto** (`role="status"`, existe desde que carga la página): al cambiar la evaluación o la fecha (`change`) muestra el peso, los días que faltan, el impacto y la posición que tendría en Actividades.
     - Ejemplo: "Peso 15 % · vence en 3 días · impacto 5,0: quedaría 5.º de 8 en Actividades".
     - Usa `impacto` y `ordenarPorImpacto` con las seis actividades de ejemplo que aún se pueden entregar, y suma antes la vencida (Cuestionario 4), que en Actividades va primero. Si empata, va primero la que vence antes. Con el mismo impacto y los mismos días, la nueva queda después.
@@ -408,13 +417,15 @@ Las condiciones se revisan en este orden:
 - **Registrar o simular falta (J19) y falta registrada (J25): J25 es un estado de `registrar-falta.html`, no una página aparte.**
   - **Por qué:** es el mismo motivo que en Simulación. J25 muestra la clase registrada, las faltas usadas y las restantes, y una página aparte solo podría mostrar las del mockup, aunque el usuario eligiera otra clase o marcara "Falta justificada". Por eso no existe `falta-registrada.html`.
   - **Curso:** solo se ofrece Cálculo II, porque el prototipo solo detalla las faltas de ese curso. La fecha de la falta de Programación III no aparece en ningún mockup.
-  - **Clases:** las próximas tres según el horario de Cálculo II (Lun / Mié 08:00): Mié 7 oct, Lun 12 oct y Mié 14 oct. La clase empieza en "Elige una clase".
-  - **Simulación** (`role="status"`, existe desde que carga la página): al elegir la clase o marcar "Falta justificada" (`change`), muestra cuántas faltas quedarían y pinta la caja según el margen. Ejemplos: "Si faltas el miércoles 7, te quedaría 1 falta" o, con justificación, "…te seguirían quedando 2 faltas".
+  - **Clases:** las próximas tres según el horario de Cálculo II (Lun / Mié 08:00): Mié 7 oct, Lun 12 oct y Mié 14 oct. **Son casillas, no un select (HU-25, escenario 2; 22 nov 2026):** con un select solo se simulaba una falta y, con 4 de 6 usadas, nunca se llegaba al límite. Ahora van en un `<fieldset>` "Clases a las que faltaste o faltarías" y se pueden marcar varias. Empiezan sin marcar.
+  - **Simulación** (`role="status"`, existe desde que carga la página): al marcar clases o "Falta justificada" (`change`), muestra cuántas faltas quedarían y pinta la caja según el margen. Ejemplos: "Si faltas el miércoles 7, te quedaría 1 falta"; con dos, "…no te quedaría ninguna falta"; con justificación, "…te seguirían quedando 2 faltas".
+    - **Con las tres** se supera el límite, y la consecuencia aparece antes de registrar, en riesgo y con ícono: "Si faltas el miércoles 7, el lunes 12 y el miércoles 14, superarías el límite de 6 faltas · Llegarías a 7 faltas, más que las 6 permitidas: según la regla UPC, tu examen final se calificaría con cero. Simulación: aún no se guarda."
   - **Al registrar:**
-    - Sin clase: "⚠ Elige la clase a la que faltaste o faltarías.", con borde de riesgo, `aria-invalid` y foco en el campo.
-    - Con clase: `preventDefault()` (no hay servidor), se oculta el formulario y se muestra J25 con la clase elegida.
+    - Sin clases: "⚠ Marca al menos una clase a la que faltaste o faltarías.", con borde de riesgo en las tres opciones, `aria-invalid` en sus casillas y foco en la primera.
+    - Con clases: `preventDefault()` (no hay servidor), se oculta el formulario y se muestra J25 con las clases marcadas (la lista tiene una fila por clase y el JS muestra solo las marcadas).
     - J25 incluye las faltas usadas y las restantes ("Faltas registradas" es un `h2`, para no saltar del `h1` al `h3`), la marca "Registrada hoy" (y "· justificada" si corresponde) y la consecuencia de la regla UPC. El `h1` pasa a "Faltas de Cálculo II".
-    - Un `<p role="status">` resume el registro ("Falta registrada: Mié 7 oct · Teoría. Te queda 1 falta en Cálculo II.").
+    - Un `<p role="status">` resume el registro ("Falta registrada: Mié 7 oct · Teoría. Te queda 1 falta en Cálculo II." o, con varias, "Faltas registradas: …").
+  - **"Deshacer el registro" (HU-21, escenario 3; 22 nov 2026):** botón secundario (`button type="button"` con `click`) en J25. Vuelve al formulario con las casillas sin marcar (`.checked = false`), el título y la descripción originales ("Cálculo II · 4 de 6 faltas usadas"), y la caja dice "Registro deshecho: sigues con 4 de 6 faltas usadas". El foco va a la primera clase y el `<p role="status">` lo anuncia.
   - **Falta justificada:** no se descuenta del margen, pero queda en la lista con la marca "justificada".
   - **"Simular otra clase"** recarga la página (enlace a `registrar-falta.html`). **"Volver a Faltas"** es un enlace a `faltas.html`.
   - Se quitaron los botones "Eliminar" de J25: no tenían ninguna acción, y un botón que no hace nada confunde.
@@ -434,18 +445,22 @@ Las condiciones se revisan en este orden:
   - **Al guardar:** sin turno, aparece "⚠ Elige tu nuevo turno para guardar el plan." junto al campo, con borde de riesgo, `aria-invalid` y foco. Con turno, el formulario va a `actividades.html` (su `action`), porque, según el informe (4.5.2, wireflow de UF-05), el plan guardado se refleja en Actividades. "Cancelar" vuelve a Inicio (el Dashboard).
   - **Navegación:** Inicio queda como destino activo, como en J21.
 - **Simulador de matrícula (J22):** `js/matricula.js`.
-  - **Tope:** se calcula con `topeCreditos` a partir del promedio proyectado (15,2, el mismo de Inicio), y da 27.
-    - Si el promedio estuviera entre 13 y 15, la tarjeta diría "Sin dato · regla no configurada". La caja (informativa) diría "No podemos comparar tu selección con un tope", con los créditos elegidos (HU-32, escenario 3).
-    - Se probó cambiando el promedio a 14 en una copia de prueba.
+  - **Promedio ponderado (22 nov 2026):** es un campo, "Tu promedio ponderado", que empieza en 15,2 (el promedio proyectado de Inicio) y se valida como las notas (`textoANota`). Reemplaza la tarjeta fija "Tu promedio". Al cambiarlo (`change`), el tope se recalcula con `topeCreditos` y la selección se compara de nuevo:
+    - **15,2 (más de 15):** tope 27, "Tu selección cabe en tu tope · Te quedan 5 créditos libres".
+    - **Vacío (HU-33, escenario 2):** "Sin dato · promedio no registrado" en la tarjeta y "Promedio no registrado" en la caja (informativa), con los créditos elegidos. Al guardar, error junto al campo y foco en él.
+    - **Entre 13 y 15, por ejemplo 14 (HU-32, escenario 3):** "Sin dato · regla no configurada" y "No podemos comparar tu selección con un tope". Se puede guardar, porque no hay tope con qué comparar.
+    - **Menos de 13, por ejemplo 12 (HU-34, escenario 3):** tope 18. Los 22 créditos del ejemplo lo superan: "⚠ Tu selección supera tu tope · Te pasas por 4 créditos…", y al guardar no se envía. Quitando Cálculo III quedan 17 de 18 y cabe.
+    - **Fuera de 0 a 20 o mal escrito:** "⚠ Escribe tu promedio ponderado, de 0 a 20 con hasta dos decimales (15,2 o 15.25).", con borde de riesgo y `aria-invalid`.
+  - La regla UPC dice ahora también "Entre 13 y 15, la regla aún no está configurada."
   - **Cursos:** cada uno es un `input type="checkbox"` dentro de su `<label>`, agrupados en un `<fieldset>` con su `<legend>`. Vienen marcados los cinco del mockup (22 créditos), igual que Simulación viene precargada.
   - **Investigación de Operaciones** no se puede elegir. Como el atributo `disabled` no está en la lista de técnicas, va sin casilla, con borde punteado (`border-style: dashed`), texto secundario (#55606E) y el motivo: "No disponible: requiere Estadística II, que aún no apruebas".
     - No se usa `opacity`, aunque el mockup la tenía. Con 75 %, el texto #55606E quedaba cerca de 3,6:1 sobre blanco, por debajo del 4,5:1 de WCAG AA (lecturas pre clase). Además, `opacity` crea un contexto de apilamiento, y en móvil el curso se pintaba encima de la barra inferior fija.
   - **Al marcar o desmarcar** (`change`): `sumarCreditos` suma los créditos y se actualiza "Seleccionados: 22 de 27 créditos". La caja `role="status"` muestra el resultado:
     - "Tu selección cabe en tu tope · Te quedan 5 créditos libres" (seguro, escudo).
-    - "⚠ Tu selección supera tu tope · Te pasas por N créditos…" (riesgo, ⚠). Con los cursos del ejemplo no se llega a este caso, porque el máximo es 26 créditos. Se probó agregando un curso de prueba.
+    - "⚠ Tu selección supera tu tope · Te pasas por N créditos…" (riesgo, ⚠). Con el tope de 27 no se llega (el máximo es 26 créditos); con un promedio menor a 13 (tope 18), sí.
     - "Aún no eliges cursos" (informativa), si no hay ninguno marcado.
   - **Al guardar:** sin cursos, o si se supera el tope, aparece el error junto a la lista con ⚠, borde de riesgo en la tarjeta, `aria-invalid` en las casillas y foco en la primera. Si está bien, el formulario va a `cursos.html` (su `action`), que es desde donde se llega.
-  - **Promedio y tope en móvil:** van en dos tarjetas en fila, como en J22, y no apilados como en Registrar nota.
+  - **Promedio y tope:** el promedio va en su campo y el tope en una tarjeta resaltada debajo, en web y en móvil. En J22 eran dos tarjetas en fila; el promedio pasó a campo para poder cambiarlo.
 - **Casillas y botones de opción (limitación):** usan el estilo del navegador, porque `accent-color` no está en la lista de técnicas. El color de la marca depende del navegador.
 - **Notas con hasta dos decimales:** Registrar nota y Simulación aceptan notas de 0 a 20 con hasta dos decimales, con coma o con punto (15 · 15,5 · 15.75), porque el reglamento (art. 2.5.a) expresa las notas de cada evaluación con centésimas.
   - `textoANota` (en `calculos.js`) comprueba el formato con una expresión regular y `.test()`, y arma el número leyendo los caracteres por posición (parte entera y decimales), la misma lectura por posición que se usa para las fechas. No usa `.replace()`.
@@ -455,7 +470,7 @@ Las condiciones se revisan en este orden:
   - Aplica a los 9 selects de la app. A 390 px se probó la opción más larga de cada uno; la más ajustada es "Parcial 2 · 14 oct · peso 25 %" (Registrar nota): 210 px de texto en 243 px útiles.
   - El contorno de foco (3 px #15497A, separado 4 px) y el borde de error (1 px #B3261E) se siguen viendo, con la flecha en su sitio.
   - **Límite:** la lista desplegada la sigue dibujando el sistema operativo. Chrome no aplica `border` ni `padding` a las `<option>`, así que no se les puede poner borde.
-- **Borde de error de 1 px (revisión de UX, 22 nov 2026):** en los formularios de la app, el error pasaba el borde a `2px solid #B3261E`. El campo crecía 2 px y todo lo de abajo saltaba. Ahora el JS cambia solo `.style.borderColor` a #B3261E, como en la landing, y el borde se queda en 1 px. Al corregir, `borderColor = ''` devuelve el color del CSS. El error sigue teniendo texto con ⚠, borde rojo, `aria-invalid="true"` y foco en el campo. Aplica a Bienvenida, Registrar curso (pesos), Registrar nota, Registrar falta (clase), Registrar actividad, Matrícula (tarjeta de la lista de cursos), Cambio de turno (nuevo turno) y Simulación (nota esperada).
+- **Borde de error de 1 px (revisión de UX, 22 nov 2026):** en los formularios de la app, el error pasaba el borde a `2px solid #B3261E`. El campo crecía 2 px y todo lo de abajo saltaba. Ahora el JS cambia solo `.style.borderColor` a #B3261E, como en la landing, y el borde se queda en 1 px. Al corregir, `borderColor = ''` devuelve el color del CSS. El error sigue teniendo texto con ⚠, borde rojo, `aria-invalid="true"` y foco en el campo. Aplica a Bienvenida (ciclo y reglas manuales), Registrar curso (pesos), Registrar nota, Registrar falta (opciones de clase), Registrar actividad (curso, nombre y fecha), Matrícula (promedio y tarjeta de la lista de cursos), Cambio de turno (nuevo turno) y Simulación (nota esperada y nota objetivo).
 - **Foco visible en `select` y `textarea`:** se agregaron a la regla `:focus-visible` de `base.css` porque antes no incluía ni `select` ni `textarea`. La landing no tiene ninguno de los dos, así que no cambia.
 
 ## Técnicas y excepciones de la app
@@ -472,17 +487,18 @@ Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curs
 | `form` con `action` hacia la pantalla siguiente; `select`, `option` y `label for` | app/bienvenida.html, app/registrar-curso.html |
 | `addEventListener` con `change` y `submit`, `e.preventDefault()` solo si hay error, `.value`, `.trim()`, `.textContent`, `.style`, `.focus()` | js/bienvenida.js, js/registrar-curso.js |
 | `.style.borderColor` para marcar el error (el borde se queda en 1 px, como en la landing) | js/bienvenida.js, js/registrar-*.js, js/matricula.js, js/cambio-turno.js, js/simulacion.js |
-| `option` con `selected` para el ciclo del ejemplo (5.º), como `checked` en las casillas | app/bienvenida.html |
+| `option` con `selected` para la universidad (UPC) y el ciclo del ejemplo (5.º), como `checked` en las casillas | app/bienvenida.html |
+| `fieldset` y `legend` para las reglas manuales; expresión regular con `.test()` y `Number()` para el límite de faltas | app/bienvenida.html, js/bienvenida.js |
 | Expresión regular con `.test()` para validar los pesos | js/registrar-curso.js |
 | `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html, app/cursos.html |
 | `border-collapse` y `vertical-align` en tablas | css/app.css |
 | `input type="radio"` dentro de `fieldset` y `legend` | app/evaluaciones.html |
 | `switch` y `change` en los filtros | js/evaluaciones.js, js/actividades.js |
-| `input type="checkbox"` dentro de su `label` (Falta justificada) y `.checked` | app/registrar-falta.html, js/registrar-falta.js |
+| `input type="checkbox"` dentro de su `label` (clases y Falta justificada) y `.checked`, también para desmarcarlas al deshacer | app/registrar-falta.html, js/registrar-falta.js |
 | `a` con `target="_blank"` (Consultar reglamento) | app/faltas.html |
 | `input type="date"` y `type="time"` en un `fieldset`, `select` con `optgroup` | app/registrar-actividad.html |
 | `new Date(año, mes, día)` y resta de fechas; lectura de caracteres por posición | js/calculos.js, js/registrar-actividad.js |
-| `button type="button"` con el evento `click` (Nueva simulación) | app/simulacion.html, js/simulacion.js |
+| `button type="button"` con el evento `click` (Nueva simulación, Deshacer el registro) | app/simulacion.html, js/simulacion.js, app/registrar-falta.html, js/registrar-falta.js |
 | `white-space: nowrap` en `.cifra`, para que una cifra y su "%" no se separen | css/app.css |
 | `simularEvaluacion` y `formatearDecimal` (funciones puras) | js/calculos.js |
 | Validación de 0 a 20, vista previa y resultado estimado con `change` y `submit` | js/registrar-nota.js, js/simulacion.js |
@@ -511,6 +527,7 @@ Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curs
     - Bloques que empiezan ocultos y que el JS muestra:
       - El resultado de Simulación.
       - J25 en Registrar falta.
+      - Las reglas manuales de Bienvenida.
       - Los choques y los espacios libres de Cambio de turno.
       - Los íconos de estado que no corresponden (clase `icono-oculto`).
   - **Desde JavaScript (`.style.display`):**
@@ -518,17 +535,18 @@ Las técnicas usadas son conceptos extraídos de las lecturas pre clase del curs
     - Registrar curso: muestra el escudo o la alerta de la caja de suma (`'block'` / `'none'`).
     - Registrar nota: oculta los espacios de "Quedan…" que no se usan.
     - Simulación: muestra solo el indicador de estado que corresponde y alterna entre el formulario y el resultado (`'none'`, `'block'` y `''`).
-    - Registrar actividad: en la caja de impacto, alterna entre el criterio ("Elige la evaluación y la fecha…") y las cifras (`'none'` / `'inline'`).
-    - Registrar falta: muestra el ícono del tono en la simulación y en J25, y alterna entre el formulario y J25.
+    - Registrar actividad: en la caja de impacto, alterna entre el criterio ("Elige la fecha…") y las cifras (`'none'` / `'inline'`).
+    - Registrar falta: muestra el ícono del tono en la simulación y en J25, alterna entre el formulario y J25 (también al deshacer) y muestra en J25 solo las filas de las clases marcadas.
+    - Bienvenida: muestra u oculta las reglas manuales (`'block'` / `'none'`).
     - Cambio de turno: al elegir el turno, muestra los choques y los espacios libres, y el ícono del estado de faltas.
     - Simulador de matrícula: muestra el ícono de la caja (seguro, riesgo o informativa).
 - **Redondeo hacia arriba:** se hace sin `Math.ceil`, con `Math.round` y una comparación (`redondearArribaDecimal`).
 - **Redondeo de la nota final no configurado (HU-13, escenario 3):** `notaOficial` devuelve "sin dato" si la universidad no tiene `redondeoFinal`, y Simulación mostraría solo el valor exacto con "Tu universidad no tiene configurado el redondeo de la nota final". En el prototipo solo está configurada la UPC, así que no se ve en pantalla, igual que el tramo "sin dato" del tope de créditos.
-- **Tope de créditos con promedio entre 13 y 15:** `topeCreditos` devuelve "sin dato", porque esa regla no está configurada (HU-32, escenario 3). El Simulador de matrícula lo dice en pantalla en vez de suponer un tope.
+- **Tope de créditos con promedio entre 13 y 15:** `topeCreditos` devuelve "sin dato", porque esa regla no está configurada (HU-32, escenario 3). El Simulador de matrícula lo dice en pantalla en vez de suponer un tope; se ve escribiendo un promedio entre 13 y 15.
 
 ## 30 HU core implementadas
 
-Las 28 de la tabla de pantallas más HU-13 y HU-17. Cada una se puede verificar en la versión publicada.
+Las 28 de la tabla de pantallas más HU-13 y HU-17. Cada una se puede verificar en la versión publicada. HU-47 reemplaza a HU-27 (Reprogramar una actividad), que no cumplía ningún escenario; Cambio de turno sigue en el prototipo por HU-28.
 
 | HU | Pantalla donde se verifica |
 |---|---|
@@ -536,29 +554,29 @@ Las 28 de la tabla de pantallas más HU-13 y HU-17. Cada una se puede verificar 
 | HU-02 | Registrar curso (plantilla) |
 | HU-07 | Registrar nota |
 | HU-08 | Inicio, Mis cursos, Detalle de curso, Evaluaciones |
-| HU-09 | Mis cursos, Detalle de curso |
+| HU-09 | Mis cursos, Detalle de curso, Simulación (nota objetivo) |
 | HU-10 | Detalle de curso, Simulación |
 | HU-11 | Evaluaciones, Simulación |
 | HU-12 | Inicio, Mis cursos |
 | HU-13 | Detalle de curso, Simulación (nota calculada y nota oficial) |
 | HU-14 | Registrar actividad |
-| HU-15 | Actividades |
+| HU-15 | Actividades, Registrar actividad (sin peso registrado) |
 | HU-16 | Inicio, Actividades |
 | HU-17 | Actividades (marcar como entregada, vencida) |
 | HU-20 | Registrar curso |
-| HU-21 | Registrar o simular falta |
+| HU-21 | Registrar o simular falta (con Deshacer) |
 | HU-22 | Inicio, Faltas |
 | HU-23 | Registrar o simular falta |
 | HU-24 | Faltas |
-| HU-25 | Registrar o simular falta |
-| HU-27 | Cambio de turno |
+| HU-25 | Registrar o simular falta (varias clases, límite superado) |
 | HU-28 | Cambio de turno |
-| HU-31 | Bienvenida |
-| HU-32 | Faltas |
-| HU-33 | Simulador de matrícula |
-| HU-34 | Simulador de matrícula |
+| HU-31 | Bienvenida (universidad y reglas manuales) |
+| HU-32 | Faltas, Simulador de matrícula (promedio entre 13 y 15) |
+| HU-33 | Simulador de matrícula (promedio editable) |
+| HU-34 | Simulador de matrícula (tope 18 con promedio menor a 13) |
 | HU-36 | Bienvenida |
 | HU-43 | Landing |
 | HU-44 | Landing |
 | HU-45 | Landing |
-| HU-48 | Inicio |
+| HU-47 | Inicio (margen de faltas al abrir), Registrar nota (vista previa al instante) |
+| HU-48 | Inicio; barra inferior sin desborde a 320 px |

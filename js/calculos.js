@@ -135,7 +135,12 @@ function notaNecesaria(promedio, pesoEvaluado, objetivo) {
 }
 
 // Escenario: qué pasa si en la evaluación pendiente "codigo" se obtiene "nota".
-function simularEvaluacion(evaluaciones, codigo, nota) {
+// "objetivo" es opcional: sin él, la nota necesaria se calcula para la aprobatoria.
+function simularEvaluacion(evaluaciones, codigo, nota, objetivo) {
+  var meta = objetivo;
+  if (meta === undefined) {
+    meta = REGLAS_UPC.notaAprobatoria;
+  }
   const actual = promedioEvaluado(evaluaciones);
   var peso = 0;
   const restantes = [];
@@ -151,11 +156,11 @@ function simularEvaluacion(evaluaciones, codigo, nota) {
   return {
     promedioActual: actual.promedio,
     pesoEvaluado: actual.pesoEvaluado,
-    necesariaActual: notaNecesaria(actual.promedio, actual.pesoEvaluado, REGLAS_UPC.notaAprobatoria),
+    necesariaActual: notaNecesaria(actual.promedio, actual.pesoEvaluado, meta),
     pesoEvaluacion: peso,
     proyectado: proyectado,
     pesoProyectado: pesoProyectado,
-    necesariaNueva: notaNecesaria(proyectado, pesoProyectado, REGLAS_UPC.notaAprobatoria),
+    necesariaNueva: notaNecesaria(proyectado, pesoProyectado, meta),
     estado: estadoCurso(proyectado, pesoProyectado),
     restantes: restantes
   };

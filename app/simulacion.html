@@ -107,11 +107,17 @@
               <p id="ayuda-esperada" class="texto-auxiliar ayuda">Nota de 0 a 20, hasta dos decimales (15,5 o 15.75)</p>
               <p id="error-esperada" class="mensaje-error"></p>
             </div>
+            <div class="grupo-campo">
+              <label for="nota-objetivo">Nota objetivo</label>
+              <input type="text" id="nota-objetivo" class="campo" value="13" aria-describedby="ayuda-objetivo error-objetivo" aria-invalid="false">
+              <p id="ayuda-objetivo" class="texto-auxiliar ayuda">13 es la nota aprobatoria de la UPC. Súbela si quieres terminar con más.</p>
+              <p id="error-objetivo" class="mensaje-error"></p>
+            </div>
             <div class="caja-estado caja-info caja-separada">
               <img src="../img/icono-balanza.svg" alt="">
               <div class="caja-estado-texto">
                 <p class="caja-titulo">Contexto del cálculo</p>
-                <p class="caja-detalle">Nota actual: 13,8 · Evaluado: <span class="cifra">45 %</span> · Nota objetivo: 13</p>
+                <p class="caja-detalle">Nota actual: 13,8 · Evaluado: <span class="cifra">45 %</span> · Nota objetivo: <span id="contexto-objetivo" class="cifra">13</span></p>
               </div>
             </div>
             <div class="acciones-apiladas acciones-formulario">
@@ -123,7 +129,7 @@
           <section class="panel-resultado columna-ancha" role="status">
             <span class="icono-resultado"><img src="../img/icono-calculadora-grande.svg" alt=""></span>
             <h2>Resultado estimado</h2>
-            <p id="resultado-necesaria" class="resultado-texto">Necesitas 10,2 en promedio en lo que falta</p>
+            <p id="resultado-necesaria" class="resultado-texto">Necesitas 10,2 en promedio en lo que falta para llegar a 13</p>
             <div class="estado-linea">
               <span id="estado-seguro" class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> <span id="texto-estado-seguro">Con margen</span></span>
               <span id="estado-atencion" class="estado estado-atencion estado-oculto"><img src="../img/icono-alerta.svg" alt=""> <span id="texto-estado-atencion">Depende del final</span></span>
@@ -158,7 +164,7 @@
               <div class="caja-estado caja-info">
                 <img src="../img/icono-balanza.svg" alt="">
                 <div class="caja-estado-texto">
-                  <p id="r-necesaria-titulo" class="caja-titulo">Necesitas 10,2 en promedio en lo que falta</p>
+                  <p id="r-necesaria-titulo" class="caja-titulo">Necesitas 10,2 en promedio en lo que falta para llegar a 13</p>
                   <p class="caja-detalle">Este es el dato decisivo para alcanzar la meta del curso.</p>
                 </div>
               </div>
@@ -167,7 +173,7 @@
                 <div class="resumen">
                   <p class="resumen-etiqueta">Nota necesaria</p>
                   <p id="r-necesaria" class="resumen-valor">10,2</p>
-                  <p class="resumen-nota">para llegar a 13</p>
+                  <p id="r-necesaria-meta" class="resumen-nota">para llegar a 13</p>
                 </div>
                 <div class="resumen">
                   <p class="resumen-etiqueta">Evaluación</p>

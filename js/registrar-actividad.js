@@ -9,13 +9,14 @@ const selectorFormula = document.getElementById('evaluacion-formula');
 const impactoPendiente = document.getElementById('impacto-pendiente');
 const impactoDatos = document.getElementById('impacto-datos');
 const impactoPeso = document.getElementById('impacto-peso');
+const impactoPesoEtiqueta = document.getElementById('impacto-peso-etiqueta');
 const impactoDias = document.getElementById('impacto-dias');
 const impactoValor = document.getElementById('impacto-valor');
 const impactoPosicion = document.getElementById('impacto-posicion');
 
-// Campos obligatorios con su mensaje de error
+// Campos obligatorios con su mensaje de error; la evaluación es opcional (HU-15)
 const campoNombre = { campo: campoActividad, error: document.getElementById('error-actividad') };
-const campoFormula = { campo: selectorFormula, error: document.getElementById('error-formula') };
+const campoCurso = { campo: selectorCurso, error: document.getElementById('error-curso') };
 const campoDeFecha = { campo: campoFecha, error: document.getElementById('error-fecha') };
 
 // Evaluaciones pendientes de la fórmula: su curso y su peso
@@ -94,20 +95,29 @@ function posicionEnLista(nueva) {
   return null;
 }
 
-// Actualiza la caja de impacto; sin evaluación o sin fecha válida muestra el criterio
+// Actualiza la caja de impacto; sin fecha válida muestra el criterio.
+// Sin evaluación el peso es 0: "sin peso registrado" y queda después de las que pesan.
 function actualizarImpacto() {
   const evaluacion = evaluacionesPendientes[selectorFormula.value];
   const dias = leerDias();
-  if (!evaluacion || dias === null || dias < 0) {
+  if (dias === null || dias < 0) {
     impactoDatos.style.display = 'none';
     impactoPendiente.style.display = 'inline';
     return;
   }
-  const nueva = { nombre: 'Nueva actividad', peso: evaluacion.peso, dias: dias };
+  var peso = 0;
+  if (evaluacion) {
+    peso = evaluacion.peso;
+    impactoPesoEtiqueta.textContent = 'Peso ';
+    impactoPeso.textContent = peso + ' %';
+  } else {
+    impactoPesoEtiqueta.textContent = '';
+    impactoPeso.textContent = 'Sin peso registrado';
+  }
+  const nueva = { nombre: 'Nueva actividad', peso: peso, dias: dias };
   const posicion = posicionEnLista(nueva);
-  impactoPeso.textContent = evaluacion.peso + ' %';
   impactoDias.textContent = textoDias(dias);
-  impactoValor.textContent = formatearDecimal(redondearDecimal(impacto(evaluacion.peso, dias)));
+  impactoValor.textContent = formatearDecimal(redondearDecimal(impacto(peso, dias)));
   impactoPosicion.textContent = posicion.lugar + '.º de ' + posicion.total;
   impactoPendiente.style.display = 'none';
   impactoDatos.style.display = 'inline';
@@ -137,12 +147,12 @@ function revisarNombre() {
   return true;
 }
 
-function revisarFormula() {
-  if (selectorFormula.value === '') {
-    marcarError(campoFormula, '⚠ Elige la evaluación de la fórmula.');
+function revisarCurso() {
+  if (selectorCurso.value === '') {
+    marcarError(campoCurso, '⚠ Elige el curso de la actividad.');
     return false;
   }
-  limpiarError(campoFormula);
+  limpiarError(campoCurso);
   return true;
 }
 
@@ -151,9 +161,15 @@ selectorFormula.addEventListener('change', function () {
   const evaluacion = evaluacionesPendientes[selectorFormula.value];
   if (evaluacion) {
     selectorCurso.value = evaluacion.curso;
-    limpiarError(campoFormula);
+    limpiarError(campoCurso);
   }
   actualizarImpacto();
+});
+
+selectorCurso.addEventListener('change', function () {
+  if (selectorCurso.value !== '') {
+    limpiarError(campoCurso);
+  }
 });
 
 // Al cambiar la fecha: si ya pasó se avisa enseguida; si está vacía, se espera a guardar
@@ -172,20 +188,20 @@ campoActividad.addEventListener('blur', function () {
   }
 });
 
-// Al guardar: se revisan los tres campos y el foco va al primero con error
+// Al guardar: se revisan curso, nombre y fecha; el foco va al primero con error
 formularioActividad.addEventListener('submit', function (e) {
+  const cursoBien = revisarCurso();
   const nombreBien = revisarNombre();
   const fechaBien = revisarFecha();
-  const formulaBien = revisarFormula();
-  if (nombreBien && fechaBien && formulaBien) {
+  if (cursoBien && nombreBien && fechaBien) {
     return;
   }
   e.preventDefault();
-  if (!nombreBien) {
+  if (!cursoBien) {
+    selectorCurso.focus();
+  } else if (!nombreBien) {
     campoActividad.focus();
-  } else if (!fechaBien) {
-    campoFecha.focus();
   } else {
-    selectorFormula.focus();
+    campoFecha.focus();
   }
 });

@@ -90,7 +90,7 @@
             <p class="descripcion-pantalla"><span id="descripcion-falta">Cálculo II · </span><span id="descripcion-falta-cifra" class="cifra">4 de 6 faltas usadas</span></p>
           </div>
 
-          <!-- Estado 1 (J19): registrar o simular una falta -->
+          <!-- Estado 1 (J19): registrar o simular una o varias faltas -->
           <div id="vista-falta">
 
             <form id="form-falta" action="registrar-falta.html">
@@ -103,22 +103,30 @@
                   </select>
                   <p id="ayuda-curso-falta" class="texto-auxiliar ayuda">Lun / Mié · 08:00 · sesiones de teoría</p>
                 </div>
-                <div class="grupo-campo">
-                  <label for="clase">Clase</label>
-                  <select id="clase" class="campo" aria-describedby="error-clase" aria-invalid="false">
-                    <option value="">Elige una clase</option>
-                    <option value="mie-7-oct">Mié 7 oct · 8:00 a. m.</option>
-                    <option value="lun-12-oct">Lun 12 oct · 8:00 a. m.</option>
-                    <option value="mie-14-oct">Mié 14 oct · 8:00 a. m.</option>
-                  </select>
+                <!-- Se pueden marcar varias clases para ver si se supera el límite -->
+                <fieldset id="grupo-clases" class="grupo-campo grupo-opciones">
+                  <legend>Clases a las que faltaste o faltarías</legend>
+                  <p class="texto-auxiliar">Marca una o varias.</p>
+                  <label id="opcion-mie-7-oct" class="opcion-casilla" for="clase-mie-7-oct">
+                    <input type="checkbox" id="clase-mie-7-oct" aria-describedby="error-clase" aria-invalid="false">
+                    <span class="casilla-texto"><span class="casilla-titulo">Mié 7 oct · 8:00 a. m.</span></span>
+                  </label>
+                  <label id="opcion-lun-12-oct" class="opcion-casilla" for="clase-lun-12-oct">
+                    <input type="checkbox" id="clase-lun-12-oct" aria-describedby="error-clase" aria-invalid="false">
+                    <span class="casilla-texto"><span class="casilla-titulo">Lun 12 oct · 8:00 a. m.</span></span>
+                  </label>
+                  <label id="opcion-mie-14-oct" class="opcion-casilla" for="clase-mie-14-oct">
+                    <input type="checkbox" id="clase-mie-14-oct" aria-describedby="error-clase" aria-invalid="false">
+                    <span class="casilla-texto"><span class="casilla-titulo">Mié 14 oct · 8:00 a. m.</span></span>
+                  </label>
                   <p id="error-clase" class="mensaje-error"></p>
-                </div>
+                </fieldset>
                 <div class="grupo-campo">
                   <label class="opcion-casilla" for="justificada">
                     <input type="checkbox" id="justificada">
                     <span class="casilla-texto">
                       <span class="casilla-titulo">Falta justificada</span>
-                      <span class="casilla-detalle">Si la universidad la justifica, no se descuenta de tu margen.</span>
+                      <span class="casilla-detalle">Si la universidad las justifica, no se descuentan de tu margen.</span>
                     </span>
                   </label>
                 </div>
@@ -130,8 +138,8 @@
                 <img id="icono-sim-atencion" class="icono-oculto" src="../img/icono-alerta.svg" alt="">
                 <img id="icono-sim-riesgo" class="icono-oculto" src="../img/icono-alerta-riesgo.svg" alt="">
                 <div class="caja-estado-texto">
-                  <p id="simulacion-titulo" class="caja-titulo">Elige una clase para ver cuántas faltas te quedarían</p>
-                  <p class="caja-detalle">Simulación: no se guarda hasta que la registres. Superar 6 faltas hace que el examen final se califique con cero.</p>
+                  <p id="simulacion-titulo" class="caja-titulo">Marca una o varias clases para ver cuántas faltas te quedarían</p>
+                  <p id="simulacion-detalle" class="caja-detalle">Simulación: no se guarda hasta que la registres. Superar 6 faltas hace que el examen final se califique con cero.</p>
                 </div>
               </div>
 
@@ -182,15 +190,25 @@
                 <li><p class="falta-fecha">Mié 23 sep · Teoría</p></li>
                 <li><p class="falta-fecha">Lun 28 sep · Teoría</p></li>
                 <li><p class="falta-fecha">Lun 5 oct · Teoría</p></li>
-                <li>
-                  <p id="registrada-clase" class="falta-fecha">Mié 7 oct · Teoría</p>
-                  <p id="registrada-marca" class="texto-auxiliar">Registrada hoy</p>
+                <!-- Nuevas: el JS muestra solo las clases marcadas -->
+                <li id="registrada-mie-7-oct">
+                  <p class="falta-fecha">Mié 7 oct · Teoría</p>
+                  <p id="marca-mie-7-oct" class="texto-auxiliar">Registrada hoy</p>
+                </li>
+                <li id="registrada-lun-12-oct">
+                  <p class="falta-fecha">Lun 12 oct · Teoría</p>
+                  <p id="marca-lun-12-oct" class="texto-auxiliar">Registrada hoy</p>
+                </li>
+                <li id="registrada-mie-14-oct">
+                  <p class="falta-fecha">Mié 14 oct · Teoría</p>
+                  <p id="marca-mie-14-oct" class="texto-auxiliar">Registrada hoy</p>
                 </li>
               </ul>
             </section>
 
             <div class="acciones-apiladas">
               <a class="boton-app boton-principal" href="faltas.html">Volver a Faltas</a>
+              <button type="button" id="boton-deshacer" class="boton-app boton-secundario">Deshacer el registro</button>
             </div>
           </section>
         </div>

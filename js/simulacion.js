@@ -5,6 +5,9 @@ const selectorSimulado = document.getElementById('evaluacion-simulada');
 const pesoSimuladoValor = document.getElementById('peso-simulado-valor');
 const campoEsperada = document.getElementById('nota-esperada');
 const errorEsperada = document.getElementById('error-esperada');
+const campoObjetivo = document.getElementById('nota-objetivo');
+const errorObjetivo = document.getElementById('error-objetivo');
+const contextoObjetivo = document.getElementById('contexto-objetivo');
 const resultadoNecesaria = document.getElementById('resultado-necesaria');
 const resultadoDetalle = document.getElementById('resultado-detalle');
 
@@ -21,6 +24,7 @@ const resultado = {
   proyectado: document.getElementById('r-proyectado'),
   necesariaTitulo: document.getElementById('r-necesaria-titulo'),
   necesaria: document.getElementById('r-necesaria'),
+  necesariaMeta: document.getElementById('r-necesaria-meta'),
   peso: document.getElementById('r-peso'),
   nombre: document.getElementById('r-nombre'),
   escenarioNombre: document.getElementById('r-escenario-nombre'),
@@ -58,6 +62,11 @@ function leerEsperada() {
   return textoANota(campoEsperada.value.trim());
 }
 
+// Nota objetivo: el mismo formato que una nota; null si no es válida
+function leerObjetivo() {
+  return textoANota(campoObjetivo.value.trim());
+}
+
 // Nota escrita como la ve el usuario: con coma y solo los decimales que tiene (15,5 · 15,75 · 15)
 function textoNotaUsuario(nota) {
   return nota.toLocaleString('es', { maximumFractionDigits: 2 });
@@ -73,6 +82,18 @@ function limpiarError() {
   errorEsperada.textContent = '';
   campoEsperada.style.borderColor = '';
   campoEsperada.setAttribute('aria-invalid', 'false');
+}
+
+function marcarErrorObjetivo() {
+  errorObjetivo.textContent = '⚠ Escribe una nota objetivo de 0 a 20, con hasta dos decimales (13 o 15,5)';
+  campoObjetivo.style.borderColor = '#B3261E';
+  campoObjetivo.setAttribute('aria-invalid', 'true');
+}
+
+function limpiarErrorObjetivo() {
+  errorObjetivo.textContent = '';
+  campoObjetivo.style.borderColor = '';
+  campoObjetivo.setAttribute('aria-invalid', 'false');
 }
 
 // Datos de la evaluación elegida
@@ -106,14 +127,15 @@ function mostrarEstado(grupo, estado) {
   }
 }
 
-function textoNecesaria(necesaria) {
+function textoNecesaria(necesaria, objetivo) {
+  const meta = textoNotaUsuario(objetivo);
   if (necesaria <= 0) {
-    return 'Ya alcanzarías 13, aunque saques 0 en lo que falta';
+    return 'Ya alcanzarías ' + meta + ', aunque saques 0 en lo que falta';
   }
   if (necesaria > REGLAS_UPC.notaMaxima) {
-    return 'Ya no alcanzarías 13: necesitarías más de 20 en lo que falta';
+    return 'Ya no alcanzarías ' + meta + ': necesitarías más de 20 en lo que falta';
   }
-  return 'Necesitas ' + formatearDecimal(redondearArribaDecimal(necesaria)) + ' en promedio en lo que falta';
+  return 'Necesitas ' + formatearDecimal(redondearArribaDecimal(necesaria)) + ' en promedio en lo que falta para llegar a ' + meta;
 }
 
 // Valor corto de la nota necesaria para la tarjeta ("10,2", "0,0" o "más de 20")
@@ -132,27 +154,32 @@ function actualizarEstimado() {
   const evaluacion = buscarEvaluacion(selectorSimulado.value);
   pesoSimuladoValor.textContent = evaluacion.peso + ' %';
   const nota = leerEsperada();
-  if (nota === null) {
-    resultadoNecesaria.textContent = 'Escribe una nota de 0 a 20 para ver el resultado';
+  const objetivo = leerObjetivo();
+  if (objetivo !== null) {
+    contextoObjetivo.textContent = textoNotaUsuario(objetivo);
+  }
+  if (nota === null || objetivo === null) {
+    resultadoNecesaria.textContent = 'Escribe la nota esperada y la nota objetivo, de 0 a 20, para ver el resultado';
     resultadoDetalle.textContent = '';
     mostrarEstado(indicadoresEstimado, { tono: 'ninguno', etiqueta: '' });
     return;
   }
-  const escenario = simularEvaluacion(evaluacionesSimulacion, evaluacion.codigo, nota);
-  resultadoNecesaria.textContent = textoNecesaria(escenario.necesariaNueva);
+  const escenario = simularEvaluacion(evaluacionesSimulacion, evaluacion.codigo, nota, objetivo);
+  resultadoNecesaria.textContent = textoNecesaria(escenario.necesariaNueva, objetivo);
   resultadoDetalle.textContent = 'Con ' + textoNotaUsuario(nota) + ' en ' + conArticulo(evaluacion) + ', tu promedio proyectado sería ' + formatearDecimal(redondearDecimal(escenario.proyectado)) + '.';
   mostrarEstado(indicadoresEstimado, escenario.estado);
 }
 
 // Estado 2: llena el bloque de resultado con el escenario del usuario
-function llenarResultado(evaluacion, nota) {
-  const escenario = simularEvaluacion(evaluacionesSimulacion, evaluacion.codigo, nota);
+function llenarResultado(evaluacion, nota, objetivo) {
+  const escenario = simularEvaluacion(evaluacionesSimulacion, evaluacion.codigo, nota, objetivo);
   const proyectado = formatearDecimal(redondearDecimal(escenario.proyectado));
   resultado.nota.textContent = textoNotaUsuario(nota);
   resultado.evaluacion.textContent = conArticulo(evaluacion);
   resultado.proyectado.textContent = proyectado;
-  resultado.necesariaTitulo.textContent = textoNecesaria(escenario.necesariaNueva);
+  resultado.necesariaTitulo.textContent = textoNecesaria(escenario.necesariaNueva, objetivo);
   resultado.necesaria.textContent = valorNecesaria(escenario.necesariaNueva);
+  resultado.necesariaMeta.textContent = 'para llegar a ' + textoNotaUsuario(objetivo);
   resultado.peso.textContent = evaluacion.peso + ' %';
   resultado.nombre.textContent = evaluacion.nombre;
   resultado.escenarioNombre.textContent = evaluacion.nombre;
@@ -170,7 +197,7 @@ function llenarResultado(evaluacion, nota) {
   const redondeo = llenarRedondeo(escenario.proyectado);
 
   // Resumen para el lector de pantalla (y línea visible sobre el resultado)
-  anuncioResultado.textContent = 'Resultado: si obtienes ' + textoNotaUsuario(nota) + ' en ' + conArticulo(evaluacion) + ', tu nota acumulada sería ' + proyectado + '. ' + redondeo + ' ' + textoNecesaria(escenario.necesariaNueva) + '.';
+  anuncioResultado.textContent = 'Resultado: si obtienes ' + textoNotaUsuario(nota) + ' en ' + conArticulo(evaluacion) + ', tu nota acumulada sería ' + proyectado + '. ' + redondeo + ' ' + textoNecesaria(escenario.necesariaNueva, objetivo) + '.';
 }
 
 // Valores de la caja de redondeo (HU-13)
@@ -233,6 +260,15 @@ campoEsperada.addEventListener('change', function () {
   actualizarEstimado();
 });
 
+campoObjetivo.addEventListener('change', function () {
+  if (leerObjetivo() === null) {
+    marcarErrorObjetivo();
+  } else {
+    limpiarErrorObjetivo();
+  }
+  actualizarEstimado();
+});
+
 selectorSimulado.addEventListener('change', function () {
   actualizarEstimado();
 });
@@ -241,13 +277,23 @@ selectorSimulado.addEventListener('change', function () {
 formularioSimulacion.addEventListener('submit', function (e) {
   e.preventDefault();
   const nota = leerEsperada();
+  const objetivo = leerObjetivo();
+  if (objetivo === null) {
+    marcarErrorObjetivo();
+  } else {
+    limpiarErrorObjetivo();
+  }
   if (nota === null) {
     marcarError();
     campoEsperada.focus();
     return;
   }
   limpiarError();
-  llenarResultado(buscarEvaluacion(selectorSimulado.value), nota);
+  if (objetivo === null) {
+    campoObjetivo.focus();
+    return;
+  }
+  llenarResultado(buscarEvaluacion(selectorSimulado.value), nota, objetivo);
   vistaFormulario.style.display = 'none';
   vistaResultado.style.display = 'block';
 });
@@ -259,3 +305,6 @@ botonNueva.addEventListener('click', function () {
   anuncioResultado.textContent = '';
   campoEsperada.focus();
 });
+
+// Al cargar, por si el navegador recuerda otros valores al volver atrás
+actualizarEstimado();

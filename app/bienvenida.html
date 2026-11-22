@@ -21,21 +21,41 @@
     <div class="columna-estrecha">
       <div class="titulo-pantalla">
         <h1>Te damos la bienvenida</h1>
-        <p class="descripcion-pantalla">ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Confirma tu ciclo actual.</p>
+        <p class="descripcion-pantalla">ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Elige tu universidad y confirma tu ciclo actual.</p>
       </div>
 
       <form id="form-bienvenida" action="inicio.html">
         <div class="tarjeta-app">
-          <!-- Datos fijos del ejemplo: el prototipo solo tiene configurada la UPC -->
           <div class="grupo-campo">
-            <p class="etiqueta">Universidad</p>
-            <p class="dato-fijo">Universidad Peruana de Ciencias Aplicadas (UPC)</p>
+            <label for="universidad">Universidad</label>
+            <select id="universidad" class="campo" aria-describedby="ayuda-universidad">
+              <option value="upc" selected>Universidad Peruana de Ciencias Aplicadas (UPC)</option>
+              <option value="otra">Mi universidad no está en la lista</option>
+            </select>
+            <p id="ayuda-universidad" class="texto-auxiliar ayuda">Por ahora ULive solo tiene configuradas las reglas de la UPC: escala de 0 a 20 y límite de <span class="cifra">25 %</span> de faltas. Las reglas dependen de la universidad, no de la carrera.</p>
           </div>
+
+          <!-- Empieza oculto; el JS lo muestra al elegir "Mi universidad no está en la lista" -->
+          <fieldset id="reglas-manuales" class="grupo-campo reglas-manuales">
+            <legend>Reglas de tu universidad</legend>
+            <p class="texto-auxiliar reglas-intro">Escríbelas como aparecen en tu reglamento. ULive las usa en lugar de las de la UPC.</p>
+            <div class="grupo-campo">
+              <label for="limite-faltas">Límite de faltas (% de sesiones)</label>
+              <input type="text" id="limite-faltas" class="campo" aria-describedby="ayuda-limite error-limite" aria-invalid="false">
+              <p id="ayuda-limite" class="texto-auxiliar ayuda">Número entero de 1 a 100. Ej. 30</p>
+              <p id="error-limite" class="mensaje-error"></p>
+            </div>
+            <div class="grupo-campo">
+              <label for="nota-aprobatoria">Nota aprobatoria</label>
+              <input type="text" id="nota-aprobatoria" class="campo" aria-describedby="ayuda-aprobatoria error-aprobatoria" aria-invalid="false">
+              <p id="ayuda-aprobatoria" class="texto-auxiliar ayuda">En la escala de 0 a 20, hasta dos decimales. Ej. 11 o 10,5</p>
+              <p id="error-aprobatoria" class="mensaje-error"></p>
+            </div>
+          </fieldset>
+
           <div class="grupo-campo">
             <p class="etiqueta">Carrera</p>
             <p class="dato-fijo">Ingeniería de Sistemas de Información</p>
-            <!-- La ayuda explica los dos datos fijos -->
-            <p class="texto-auxiliar ayuda">Por ahora ULive solo tiene configuradas las reglas de la UPC: escala de 0 a 20 y límite de <span class="cifra">25 %</span> de faltas. Las reglas dependen de la universidad, no de la carrera.</p>
           </div>
           <div class="grupo-campo">
             <label for="ciclo">Ciclo actual</label>

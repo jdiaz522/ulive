@@ -6,7 +6,8 @@ const errorMatricula = document.getElementById('error-matricula');
 const creditosSeleccionados = document.getElementById('creditos-seleccionados');
 const topeValor = document.getElementById('tope-matricula');
 const topeNota = document.getElementById('tope-nota');
-const promedioValor = document.getElementById('promedio-matricula');
+const campoPromedio = document.getElementById('promedio-ponderado');
+const errorPromedio = document.getElementById('error-promedio');
 
 const cajaMatricula = document.getElementById('caja-matricula');
 const matriculaTitulo = document.getElementById('matricula-titulo');
@@ -20,9 +21,6 @@ const iconosMatricula = {
 // Colores de cada tono (tabla de tokens); "info" es el primario
 const coloresMatricula = { seguro: '#1B7F4B', riesgo: '#B3261E', info: '#15497A' };
 
-// Promedio proyectado del ciclo 2026-2 (el mismo de Inicio)
-const PROMEDIO_PROYECTADO = 15.2;
-
 // Cursos que se pueden elegir (J22); Investigación de Operaciones no está: falta Estadística II
 const cursosMatricula = [
   { campo: document.getElementById('curso-calculo-3'), creditos: 5 },
@@ -33,7 +31,8 @@ const cursosMatricula = [
   { campo: document.getElementById('curso-diseno-experimentos'), creditos: 4 }
 ];
 
-const tope = topeCreditos(PROMEDIO_PROYECTADO);
+// Tope según el promedio escrito: null si el promedio falta o no es válido
+var tope = topeCreditos(15.2);
 
 // Suma de créditos de las casillas marcadas
 function creditosMarcados() {
@@ -80,9 +79,60 @@ function marcarErrorMatricula(mensaje) {
   }
 }
 
+function marcarErrorPromedio() {
+  errorPromedio.textContent = '⚠ Escribe tu promedio ponderado, de 0 a 20 con hasta dos decimales (15,2 o 15.25).';
+  campoPromedio.style.borderColor = '#B3261E';
+  campoPromedio.setAttribute('aria-invalid', 'true');
+}
+
+function limpiarErrorPromedio() {
+  errorPromedio.textContent = '';
+  campoPromedio.style.borderColor = '';
+  campoPromedio.setAttribute('aria-invalid', 'false');
+}
+
+// Lee el promedio, recalcula el tope con topeCreditos y escribe la tarjeta
+function actualizarTope() {
+  const texto = campoPromedio.value.trim();
+  const promedio = textoANota(texto);
+  if (texto === '') {
+    limpiarErrorPromedio();
+    tope = null;
+    topeValor.textContent = 'Sin dato';
+    topeNota.textContent = 'promedio no registrado';
+  } else if (promedio === null) {
+    marcarErrorPromedio();
+    tope = null;
+    topeValor.textContent = 'Sin dato';
+    topeNota.textContent = 'revisa tu promedio';
+  } else {
+    limpiarErrorPromedio();
+    tope = topeCreditos(promedio);
+    if (tope === SIN_DATO) {
+      topeValor.textContent = 'Sin dato';
+      topeNota.textContent = 'regla no configurada';
+    } else {
+      topeValor.textContent = tope;
+      topeNota.textContent = 'según la UPC';
+    }
+  }
+}
+
 // Recalcula la suma, la compara con el tope y actualiza la caja
 function actualizarMatricula() {
   const suma = creditosMarcados();
+
+  if (tope === null) {
+    creditosSeleccionados.textContent = textoCreditos(suma);
+    if (campoPromedio.value.trim() === '') {
+      matriculaTitulo.textContent = 'Promedio no registrado';
+    } else {
+      matriculaTitulo.textContent = 'Revisa tu promedio ponderado';
+    }
+    matriculaDetalle.textContent = 'Tu tope de créditos depende de tu promedio. Escríbelo para comparar tu selección (' + textoCreditos(suma) + ').';
+    pintarCajaMatricula('info');
+    return;
+  }
 
   if (tope === SIN_DATO) {
     creditosSeleccionados.textContent = textoCreditos(suma);
@@ -115,15 +165,16 @@ function actualizarMatricula() {
   }
 }
 
-// Al cargar: promedio y tope calculados
-promedioValor.textContent = formatearDecimal(PROMEDIO_PROYECTADO);
-if (tope === SIN_DATO) {
-  topeValor.textContent = 'Sin dato';
-  topeNota.textContent = 'regla no configurada';
-} else {
-  topeValor.textContent = tope;
-}
+// Al cargar, y si el navegador recuerda otro promedio al volver atrás
+actualizarTope();
 actualizarMatricula();
+
+// Al cambiar el promedio: se recalcula el tope y se compara de nuevo la selección
+campoPromedio.addEventListener('change', function () {
+  actualizarTope();
+  limpiarErrorMatricula();
+  actualizarMatricula();
+});
 
 // Al marcar o desmarcar un curso
 for (var i = 0; i < cursosMatricula.length; i++) {
@@ -135,6 +186,12 @@ for (var i = 0; i < cursosMatricula.length; i++) {
 
 // Al guardar
 formularioMatricula.addEventListener('submit', function (e) {
+  if (textoANota(campoPromedio.value.trim()) === null) {
+    e.preventDefault();
+    marcarErrorPromedio();
+    campoPromedio.focus();
+    return;
+  }
   const suma = creditosMarcados();
   if (suma === 0) {
     e.preventDefault();

@@ -1,11 +1,12 @@
-// ULive · Registrar o simular una falta (J19) y falta registrada (J25)
+// ULive · Registrar o simular faltas (J19) y falta registrada (J25)
 
 const formularioFalta = document.getElementById('form-falta');
-const selectorClase = document.getElementById('clase');
 const casillaJustificada = document.getElementById('justificada');
 const errorClase = document.getElementById('error-clase');
 const cajaSimulacion = document.getElementById('caja-simulacion');
 const simulacionTitulo = document.getElementById('simulacion-titulo');
+const simulacionDetalle = document.getElementById('simulacion-detalle');
+const botonDeshacer = document.getElementById('boton-deshacer');
 
 const tituloFalta = document.getElementById('titulo-falta');
 const descripcionFalta = document.getElementById('descripcion-falta');
@@ -20,8 +21,6 @@ const registradaConsecuencia = document.getElementById('registrada-consecuencia'
 const registradaUsadas = document.getElementById('registrada-usadas');
 const registradaRestantes = document.getElementById('registrada-restantes');
 const registradaRestantesNota = document.getElementById('registrada-restantes-nota');
-const registradaClase = document.getElementById('registrada-clase');
-const registradaMarca = document.getElementById('registrada-marca');
 
 // Íconos de cada caja, uno por tono
 function iconos(prefijo) {
@@ -42,12 +41,63 @@ const SESIONES_CALCULO = 24;
 const USADAS_CALCULO = 4;
 const permitidasCalculo = faltasPermitidas(SESIONES_CALCULO);
 
-// Próximas clases de Cálculo II (Lun / Mié 08:00)
-const clasesCalculo = {
-  'mie-7-oct': { texto: 'Mié 7 oct · Teoría', frase: 'el miércoles 7' },
-  'lun-12-oct': { texto: 'Lun 12 oct · Teoría', frase: 'el lunes 12' },
-  'mie-14-oct': { texto: 'Mié 14 oct · Teoría', frase: 'el miércoles 14' }
-};
+// Próximas clases de Cálculo II (Lun / Mié 08:00): casilla, opción, fila de J25 y su marca
+function clase(codigo, texto, frase) {
+  return {
+    texto: texto,
+    frase: frase,
+    casilla: document.getElementById('clase-' + codigo),
+    opcion: document.getElementById('opcion-' + codigo),
+    fila: document.getElementById('registrada-' + codigo),
+    marca: document.getElementById('marca-' + codigo)
+  };
+}
+const clasesCalculo = [
+  clase('mie-7-oct', 'Mié 7 oct · Teoría', 'el miércoles 7'),
+  clase('lun-12-oct', 'Lun 12 oct · Teoría', 'el lunes 12'),
+  clase('mie-14-oct', 'Mié 14 oct · Teoría', 'el miércoles 14')
+];
+
+// Clases marcadas, en orden de fecha
+function clasesMarcadas() {
+  const marcadas = [];
+  for (var i = 0; i < clasesCalculo.length; i++) {
+    if (clasesCalculo[i].casilla.checked) {
+      marcadas[marcadas.length] = clasesCalculo[i];
+    }
+  }
+  return marcadas;
+}
+
+// "el miércoles 7", "el miércoles 7 y el lunes 12", "el miércoles 7, el lunes 12 y el miércoles 14"
+function frasesClases(marcadas) {
+  var texto = '';
+  for (var i = 0; i < marcadas.length; i++) {
+    if (i > 0 && i === marcadas.length - 1) {
+      texto = texto + ' y ';
+    } else if (i > 0) {
+      texto = texto + ', ';
+    }
+    texto = texto + marcadas[i].frase;
+  }
+  return texto;
+}
+
+function limpiarErrorClase() {
+  errorClase.textContent = '';
+  for (var i = 0; i < clasesCalculo.length; i++) {
+    clasesCalculo[i].opcion.style.borderColor = '';
+    clasesCalculo[i].casilla.setAttribute('aria-invalid', 'false');
+  }
+}
+
+function marcarErrorClase() {
+  errorClase.textContent = '⚠ Marca al menos una clase a la que faltaste o faltarías.';
+  for (var i = 0; i < clasesCalculo.length; i++) {
+    clasesCalculo[i].opcion.style.borderColor = '#B3261E';
+    clasesCalculo[i].casilla.setAttribute('aria-invalid', 'true');
+  }
+}
 
 // Pinta una caja con el tono del estado: borde, color del título y su ícono
 function pintarCaja(caja, titulo, grupoIconos, tono) {
@@ -68,9 +118,9 @@ function pintarCaja(caja, titulo, grupoIconos, tono) {
   }
 }
 
-// Faltas que quedarían: una falta justificada no se descuenta
-function restantesCon(justificada) {
-  var nuevas = 1;
+// Faltas que quedarían: las justificadas no se descuentan
+function restantesCon(cantidad, justificada) {
+  var nuevas = cantidad;
   if (justificada) {
     nuevas = 0;
   }
@@ -91,19 +141,28 @@ function textoQuedarian(restantes) {
   return 'te quedarían ' + restantes + ' faltas';
 }
 
-// Estado 1: simulación al elegir la clase o marcar la casilla
+// Detalle de la caja; con el límite superado, la consecuencia se dice antes de decidir (HU-25)
+const DETALLE_SIMULACION = 'Simulación: no se guarda hasta que la registres. Superar ' + permitidasCalculo + ' faltas hace que el examen final se califique con cero.';
+
+// Estado 1: simulación al marcar clases o la casilla de justificada
 function actualizarSimulacion() {
-  const clase = clasesCalculo[selectorClase.value];
-  if (!clase) {
-    simulacionTitulo.textContent = 'Elige una clase para ver cuántas faltas te quedarían';
+  const marcadas = clasesMarcadas();
+  if (marcadas.length === 0) {
+    simulacionTitulo.textContent = 'Marca una o varias clases para ver cuántas faltas te quedarían';
+    simulacionDetalle.textContent = DETALLE_SIMULACION;
     pintarCaja(cajaSimulacion, simulacionTitulo, iconosSimulacion, 'ninguno');
     return;
   }
-  const restantes = restantesCon(casillaJustificada.checked);
+  const restantes = restantesCon(marcadas.length, casillaJustificada.checked);
   if (casillaJustificada.checked) {
-    simulacionTitulo.textContent = 'Si faltas ' + clase.frase + ' con justificación aprobada, te seguirían quedando ' + restantes + ' faltas';
+    simulacionTitulo.textContent = 'Si faltas ' + frasesClases(marcadas) + ' con justificación aprobada, te seguirían quedando ' + restantes + ' faltas';
   } else {
-    simulacionTitulo.textContent = 'Si faltas ' + clase.frase + ', ' + textoQuedarian(restantes);
+    simulacionTitulo.textContent = 'Si faltas ' + frasesClases(marcadas) + ', ' + textoQuedarian(restantes);
+  }
+  if (restantes < 0) {
+    simulacionDetalle.textContent = 'Llegarías a ' + (USADAS_CALCULO + marcadas.length) + ' faltas, más que las ' + permitidasCalculo + ' permitidas: según la regla UPC, tu examen final se calificaría con cero. Simulación: aún no se guarda.';
+  } else {
+    simulacionDetalle.textContent = DETALLE_SIMULACION;
   }
   pintarCaja(cajaSimulacion, simulacionTitulo, iconosSimulacion, estadoFaltas(restantes).tono);
 }
@@ -133,10 +192,10 @@ function consecuencia(restantes, justificada) {
   return 'Si superas ' + permitidasCalculo + ' faltas, tu examen final se califica con cero (regla UPC). Te avisaremos antes de cada clase.';
 }
 
-// Estado 2: llena J25 con la clase elegida
-function mostrarRegistrada(clase, justificada) {
-  const restantes = restantesCon(justificada);
-  var usadas = USADAS_CALCULO + 1;
+// Estado 2: llena J25 con las clases marcadas
+function mostrarRegistrada(marcadas, justificada) {
+  const restantes = restantesCon(marcadas.length, justificada);
+  var usadas = USADAS_CALCULO + marcadas.length;
   if (justificada) {
     usadas = USADAS_CALCULO;
   }
@@ -159,27 +218,59 @@ function mostrarRegistrada(clase, justificada) {
   } else {
     registradaRestantesNota.textContent = 'disponibles';
   }
-  registradaClase.textContent = clase.texto;
-  if (justificada) {
-    registradaMarca.textContent = 'Registrada hoy · justificada';
-  } else {
-    registradaMarca.textContent = 'Registrada hoy';
+  var textos = '';
+  for (var i = 0; i < clasesCalculo.length; i++) {
+    if (clasesCalculo[i].casilla.checked) {
+      clasesCalculo[i].fila.style.display = 'block';
+      if (justificada) {
+        clasesCalculo[i].marca.textContent = 'Registrada hoy · justificada';
+      } else {
+        clasesCalculo[i].marca.textContent = 'Registrada hoy';
+      }
+      if (textos !== '') {
+        textos = textos + ', ';
+      }
+      textos = textos + clasesCalculo[i].texto;
+    } else {
+      clasesCalculo[i].fila.style.display = 'none';
+    }
   }
 
   vistaFalta.style.display = 'none';
   vistaRegistrada.style.display = 'block';
   // Resumen breve para el lector de pantalla; la consecuencia completa está en la caja
-  anuncioFalta.textContent = 'Falta registrada: ' + clase.texto + '. ' + tituloRegistrada(restantes) + '.';
+  var registro = 'Falta registrada: ';
+  if (marcadas.length > 1) {
+    registro = 'Faltas registradas: ';
+  }
+  anuncioFalta.textContent = registro + textos + '. ' + tituloRegistrada(restantes) + '.';
 }
 
-selectorClase.addEventListener('change', function () {
-  if (selectorClase.value !== '') {
-    errorClase.textContent = '';
-    selectorClase.style.borderColor = '';
-    selectorClase.setAttribute('aria-invalid', 'false');
+// Deshacer (HU-21): quita lo registrado y el margen vuelve a 4 de 6
+function deshacerRegistro() {
+  tituloFalta.textContent = 'Registrar o simular una falta';
+  descripcionFalta.textContent = 'Cálculo II · ';
+  descripcionFaltaCifra.textContent = USADAS_CALCULO + ' de ' + permitidasCalculo + ' faltas usadas';
+  vistaRegistrada.style.display = 'none';
+  vistaFalta.style.display = '';
+  for (var i = 0; i < clasesCalculo.length; i++) {
+    clasesCalculo[i].casilla.checked = false;
   }
+  casillaJustificada.checked = false;
   actualizarSimulacion();
-});
+  simulacionTitulo.textContent = 'Registro deshecho: sigues con ' + USADAS_CALCULO + ' de ' + permitidasCalculo + ' faltas usadas';
+  anuncioFalta.textContent = simulacionTitulo.textContent + '.';
+  clasesCalculo[0].casilla.focus();
+}
+
+for (var i = 0; i < clasesCalculo.length; i++) {
+  clasesCalculo[i].casilla.addEventListener('change', function () {
+    if (clasesMarcadas().length > 0) {
+      limpiarErrorClase();
+    }
+    actualizarSimulacion();
+  });
+}
 
 casillaJustificada.addEventListener('change', function () {
   actualizarSimulacion();
@@ -188,13 +279,18 @@ casillaJustificada.addEventListener('change', function () {
 // Al registrar
 formularioFalta.addEventListener('submit', function (e) {
   e.preventDefault();
-  const clase = clasesCalculo[selectorClase.value];
-  if (!clase) {
-    errorClase.textContent = '⚠ Elige la clase a la que faltaste o faltarías.';
-    selectorClase.style.borderColor = '#B3261E';
-    selectorClase.setAttribute('aria-invalid', 'true');
-    selectorClase.focus();
+  const marcadas = clasesMarcadas();
+  if (marcadas.length === 0) {
+    marcarErrorClase();
+    clasesCalculo[0].casilla.focus();
     return;
   }
-  mostrarRegistrada(clase, casillaJustificada.checked);
+  mostrarRegistrada(marcadas, casillaJustificada.checked);
 });
+
+botonDeshacer.addEventListener('click', function () {
+  deshacerRegistro();
+});
+
+// Al cargar, por si el navegador recuerda casillas marcadas al volver atrás
+actualizarSimulacion();

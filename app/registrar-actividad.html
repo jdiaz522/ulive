@@ -92,13 +92,14 @@
             <div class="tarjeta-app">
               <div class="grupo-campo">
                 <label for="curso">Curso</label>
-                <select id="curso" class="campo" aria-describedby="ayuda-curso">
+                <select id="curso" class="campo" aria-describedby="ayuda-curso error-curso" aria-invalid="false">
                   <option value="">Elige un curso</option>
                   <option value="calculo-2">Cálculo II</option>
                   <option value="programacion-3">Programación III</option>
                   <option value="fisica-2">Física II</option>
                 </select>
                 <p id="ayuda-curso" class="texto-auxiliar ayuda">Se completa solo al elegir la evaluación.</p>
+                <p id="error-curso" class="mensaje-error"></p>
               </div>
               <div class="grupo-campo">
                 <label for="actividad">Actividad</label>
@@ -120,10 +121,10 @@
                 <p id="error-fecha" class="mensaje-error"></p>
               </fieldset>
               <div class="grupo-campo">
-                <label for="evaluacion-formula">Evaluación de la fórmula</label>
+                <label for="evaluacion-formula">Evaluación de la fórmula (opcional)</label>
                 <!-- Solo evaluaciones pendientes: una ya calificada no recibe entregas -->
-                <select id="evaluacion-formula" class="campo" aria-describedby="ayuda-formula error-formula" aria-invalid="false">
-                  <option value="">Elige una evaluación</option>
+                <select id="evaluacion-formula" class="campo" aria-describedby="ayuda-formula">
+                  <option value="">Ninguna: sin peso registrado</option>
                   <optgroup label="Cálculo II">
                     <option value="calculo-2-parcial-2">Parcial 2 · peso 25 %</option>
                     <option value="calculo-2-taller-3">Taller 3 · peso 10 %</option>
@@ -136,8 +137,7 @@
                     <option value="fisica-2-laboratorio-3">Laboratorio 3 · peso 15 %</option>
                   </optgroup>
                 </select>
-                <p id="ayuda-formula" class="texto-auxiliar ayuda">El peso se toma de la fórmula que registraste para el curso.</p>
-                <p id="error-formula" class="mensaje-error"></p>
+                <p id="ayuda-formula" class="texto-auxiliar ayuda">El peso se toma de la fórmula que registraste para el curso. Sin evaluación, la actividad queda sin peso registrado.</p>
               </div>
             </div>
 
@@ -147,8 +147,8 @@
               <div class="caja-estado-texto">
                 <p class="caja-titulo">Se ordenará en Actividades según su impacto</p>
                 <p class="caja-detalle">
-                  <span id="impacto-pendiente">Elige la evaluación y la fecha para ver su peso e impacto. El impacto es el peso en la nota entre los días que faltan para la entrega.</span>
-                  <span id="impacto-datos" class="impacto-datos">Peso <span id="impacto-peso" class="cifra">15 %</span> · vence <span id="impacto-dias" class="cifra">en 3 días</span> · impacto <span id="impacto-valor" class="cifra">5,0</span>: quedaría <span id="impacto-posicion" class="cifra">4.º de 7</span> en Actividades.</span>
+                  <span id="impacto-pendiente">Elige la fecha para ver su impacto. El impacto es el peso en la nota entre los días que faltan para la entrega.</span>
+                  <span id="impacto-datos" class="impacto-datos"><span id="impacto-peso-etiqueta">Peso </span><span id="impacto-peso" class="cifra">15 %</span> · vence <span id="impacto-dias" class="cifra">en 3 días</span> · impacto <span id="impacto-valor" class="cifra">5,0</span>: quedaría <span id="impacto-posicion" class="cifra">4.º de 7</span> en Actividades.</span>
                 </p>
               </div>
             </div>

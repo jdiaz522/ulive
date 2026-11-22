@@ -89,29 +89,33 @@
             <p class="descripcion-pantalla">Elige cursos y revisa si caben en tu tope de créditos.</p>
           </div>
 
-          <!-- El JS escribe el tope con topeCreditos (calculos.js) -->
-          <section class="comparacion resumenes-matricula">
-            <article class="resumen">
-              <p class="resumen-etiqueta">Tu promedio</p>
-              <p id="promedio-matricula" class="resumen-valor">15,2</p>
-              <p class="resumen-nota">proyectado 2026-2</p>
-            </article>
-            <article class="resumen resumen-resaltado">
-              <p class="resumen-etiqueta">Tope de créditos</p>
-              <p id="tope-matricula" class="resumen-valor">27</p>
-              <p id="tope-nota" class="resumen-nota">según la UPC</p>
-            </article>
-          </section>
-
-          <div class="caja-estado caja-info">
-            <img src="../img/icono-balanza.svg" alt="">
-            <div class="caja-estado-texto">
-              <p class="caja-titulo">Regla UPC</p>
-              <p class="caja-detalle">Con promedio mayor a 15 puedes matricular hasta 27 créditos; con menos de 13, hasta 18.</p>
-            </div>
-          </div>
-
           <form id="form-matricula" action="cursos.html">
+            <div class="tarjeta-app">
+              <div class="grupo-campo">
+                <label for="promedio-ponderado">Tu promedio ponderado</label>
+                <input type="text" id="promedio-ponderado" class="campo" value="15,2" aria-describedby="ayuda-promedio error-promedio" aria-invalid="false">
+                <p id="ayuda-promedio" class="texto-auxiliar ayuda">Proyectado del ciclo 2026-2. De 0 a 20, hasta dos decimales (15,2 o 15.25).</p>
+                <p id="error-promedio" class="mensaje-error"></p>
+              </div>
+            </div>
+
+            <!-- El JS escribe el tope con topeCreditos (calculos.js) -->
+            <section class="comparacion resumenes-matricula">
+              <article class="resumen resumen-resaltado">
+                <p class="resumen-etiqueta">Tope de créditos</p>
+                <p id="tope-matricula" class="resumen-valor">27</p>
+                <p id="tope-nota" class="resumen-nota">según la UPC</p>
+              </article>
+            </section>
+
+            <div class="caja-estado caja-info">
+              <img src="../img/icono-balanza.svg" alt="">
+              <div class="caja-estado-texto">
+                <p class="caja-titulo">Regla UPC</p>
+                <p class="caja-detalle">Con promedio mayor a 15 puedes matricular hasta 27 créditos; con menos de 13, hasta 18. Entre 13 y 15, la regla aún no está configurada.</p>
+              </div>
+            </div>
+
             <div id="grupo-cursos" class="tarjeta-app">
               <fieldset class="grupo-opciones">
                 <legend>Cursos disponibles</legend>
