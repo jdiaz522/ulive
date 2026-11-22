@@ -136,12 +136,12 @@
             <section class="notificacion">
               <div class="notificacion-cabecera">
                 <p class="notificacion-etiqueta">Revisar primero</p>
-                <p class="notificacion-plazo">vence hoy, 23:59</p>
+                <p class="notificacion-plazo">Vence: Hoy, 23:59</p>
               </div>
               <h2 class="notificacion-titulo">Entregar Taller 3 de Cálculo II</h2>
               <p class="notificacion-descripcion">Adjunta el desarrollo en PDF antes del cierre.</p>
               <div class="acciones-app">
-                <a class="boton-app boton-principal" href="curso.html">Ver actividad</a>
+                <a class="boton-app boton-principal" href="curso.html#actividades">Ver actividad</a>
               </div>
             </section>
 
@@ -150,7 +150,7 @@
               <div class="panel-cabecera">
                 <div class="panel-titulos">
                   <h2>Mis cursos</h2>
-                  <p class="texto-auxiliar">Situación académica del ciclo</p>
+                  <p class="texto-auxiliar">Situación académica del ciclo · En la UPC apruebas con 13 (escala de 0 a 20)</p>
                 </div>
                 <a class="boton-app boton-secundario" href="cursos.html">Ver todos los cursos</a>
               </div>
@@ -163,8 +163,9 @@
                     <span class="curso-info">
                       <span class="curso-nombre">Cálculo II</span>
                       <span class="curso-detalle">Lun / Mié · 08:00 · MAT-204</span>
-                      <!-- Mismos datos que la tabla de cursos.html (Cálculo II: caja "Depende del final" de curso.html) -->
-                      <span class="curso-necesita">Necesitas <span class="cifra">12,4</span> en lo que falta para llegar a <span class="cifra">13</span></span>
+                      <!-- Mismos datos que la tabla de cursos.html (Cálculo II: caja "Depende del final" de curso.html).
+                           La cifra que decide pesa más que la nota actual; el 13 se explica en el subtítulo del panel -->
+                      <span class="curso-necesita">Necesitas <strong class="cifra curso-necesita-cifra">12,4</strong> para llegar a 13</span>
                     </span>
                     <span class="curso-resultado">
                       <span class="estado estado-atencion"><img src="../img/icono-alerta.svg" alt=""> Depende del final</span>
@@ -181,7 +182,7 @@
                     <span class="curso-info">
                       <span class="curso-nombre">Programación III</span>
                       <span class="curso-detalle">Mar / Jue · 10:00 · SIS-306</span>
-                      <span class="curso-necesita">Necesitas <span class="cifra">9,1</span> en lo que falta para llegar a <span class="cifra">13</span></span>
+                      <span class="curso-necesita">Necesitas <strong class="cifra curso-necesita-cifra">9,1</strong> para llegar a 13</span>
                     </span>
                     <span class="curso-resultado">
                       <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
@@ -198,7 +199,7 @@
                     <span class="curso-info">
                       <span class="curso-nombre">Física II</span>
                       <span class="curso-detalle">Vie · 08:00 · FIS-202</span>
-                      <span class="curso-necesita">Necesitas <span class="cifra">11,6</span> en lo que falta para llegar a <span class="cifra">13</span></span>
+                      <span class="curso-necesita">Necesitas <strong class="cifra curso-necesita-cifra">11,6</strong> para llegar a 13</span>
                     </span>
                     <span class="curso-resultado">
                       <span class="estado estado-seguro"><img src="../img/icono-escudo.svg" alt=""> Con margen</span>
@@ -233,14 +234,13 @@
               <p class="etiqueta criterio">Ordenado por impacto = % de la nota por cada día que falta (peso ÷ días que faltan, mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
               <ul class="lista-actividades">
                 <li>
-                  <a class="tarjeta-actividad fila-enlace" href="curso.html">
+                  <a class="tarjeta-actividad fila-enlace" href="curso.html#actividades">
                     <span class="actividad-cabecera">
                       <span class="actividad-nombre">Taller 3</span>
                       <span class="estado-neutro">Pendiente</span>
                     </span>
                     <span class="actividad-curso">Cálculo II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">10 %</span></span></span>
                       <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-gris.svg" alt=""> Hoy, 23:59</span>
                     </span>
                     <span class="etiqueta actividad-impacto">Impacto <span class="cifra">10,0</span> = 10 % ÷ 1 día</span>
@@ -254,7 +254,6 @@
                     </span>
                     <span class="actividad-curso">Programación III</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">5 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span>
                     </span>
                     <span class="etiqueta actividad-impacto">Impacto <span class="cifra">5,0</span> = 5 % ÷ 1 día</span>
@@ -268,7 +267,6 @@
                     </span>
                     <span class="actividad-curso">Física II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-balanza-gris.svg" alt=""> <span>Peso <span class="cifra">15 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span>
                     </span>
                     <span class="etiqueta actividad-impacto">Impacto <span class="cifra">5,0</span> = 15 % ÷ 3 días</span>

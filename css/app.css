@@ -156,9 +156,10 @@ html {
   line-height: 1.4;
 }
 
+/* Texto sobre #15497A: blanco, porque #D6DEE7 es el token Divisor, no un color de texto */
 .perfil-detalle {
   margin-top: 4px;
-  color: #D6DEE7;
+  color: #FFFFFF;
   font-size: 12px;
   line-height: 1.4;
 }
@@ -387,7 +388,6 @@ html {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .notificacion-plazo {
@@ -406,9 +406,10 @@ html {
   line-height: 1.4;
 }
 
+/* Texto sobre #0F2A44: blanco, porque #D6DEE7 es el token Divisor, no un color de texto */
 .notificacion-descripcion {
   margin-top: 8px;
-  color: #D6DEE7;
+  color: #FFFFFF;
 }
 
 .notificacion .acciones-app {
@@ -530,6 +531,15 @@ html {
   line-height: 1.4;
 }
 
+/* La cifra que necesitas es la que decide: 20 px y peso 600 (18 px en móvil), como la nota
+   actual antes. La nota actual pasa a dato de referencia (16 px, peso 500, texto principal) */
+.curso-necesita-cifra {
+  color: #0F2A44;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
 /* Nota de la fila con su etiqueta, para que 13,8 no se lea sin contexto */
 .curso-calificacion {
   display: block;
@@ -547,6 +557,10 @@ html {
 
 .curso-calificacion .curso-nota {
   margin: 0;
+  color: #1A2430;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .curso-nota {
@@ -754,9 +768,10 @@ html {
 }
 
 /* ---------- Alerta de faltas ---------- */
+/* Borde de 1 px como las demás tarjetas: con 2 px competía con "Revisar primero" */
 .alerta-faltas {
   padding: 24px;
-  border: 2px solid #8A5A00;
+  border: 1px solid #8A5A00;
   border-radius: 12px;
   background-color: #FFFFFF;
 }
@@ -2038,6 +2053,10 @@ select.campo {
 
   .curso-nota {
     margin-top: 8px;
+    font-size: 18px;
+  }
+
+  .curso-necesita-cifra {
     font-size: 18px;
   }
 
