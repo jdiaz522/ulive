@@ -64,13 +64,13 @@ function leerDias() {
 
 function marcarError(item, mensaje) {
   item.error.textContent = mensaje;
-  item.campo.style.border = '2px solid #B3261E';
+  item.campo.style.borderColor = '#B3261E';
   item.campo.setAttribute('aria-invalid', 'true');
 }
 
 function limpiarError(item) {
   item.error.textContent = '';
-  item.campo.style.border = '';
+  item.campo.style.borderColor = '';
   item.campo.setAttribute('aria-invalid', 'false');
 }
 

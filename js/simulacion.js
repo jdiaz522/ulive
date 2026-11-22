@@ -71,13 +71,13 @@ function textoNotaUsuario(nota) {
 
 function marcarError() {
   errorEsperada.textContent = '⚠ Escribe una nota de 0 a 20, con hasta dos decimales (15,5 o 15.75)';
-  campoEsperada.style.border = '2px solid #B3261E';
+  campoEsperada.style.borderColor = '#B3261E';
   campoEsperada.setAttribute('aria-invalid', 'true');
 }
 
 function limpiarError() {
   errorEsperada.textContent = '';
-  campoEsperada.style.border = '';
+  campoEsperada.style.borderColor = '';
   campoEsperada.setAttribute('aria-invalid', 'false');
 }
 

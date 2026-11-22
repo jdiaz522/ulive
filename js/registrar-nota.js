@@ -38,13 +38,13 @@ function leerNota() {
 
 function marcarError() {
   errorNota.textContent = '⚠ Escribe una nota de 0 a 20, con hasta dos decimales (15,5 o 15.75)';
-  campoNota.style.border = '2px solid #B3261E';
+  campoNota.style.borderColor = '#B3261E';
   campoNota.setAttribute('aria-invalid', 'true');
 }
 
 function limpiarError() {
   errorNota.textContent = '';
-  campoNota.style.border = '';
+  campoNota.style.borderColor = '';
   campoNota.setAttribute('aria-invalid', 'false');
 }
 

@@ -13,14 +13,14 @@ const camposBienvenida = [
 // Marca un campo con error: texto junto al campo, borde de riesgo y aria-invalid
 function marcarError(item) {
   item.error.textContent = item.mensaje;
-  item.campo.style.border = '2px solid #B3261E';
+  item.campo.style.borderColor = '#B3261E';
   item.campo.setAttribute('aria-invalid', 'true');
 }
 
 // Quita el error y devuelve el borde definido en el CSS
 function limpiarError(item) {
   item.error.textContent = '';
-  item.campo.style.border = '';
+  item.campo.style.borderColor = '';
   item.campo.setAttribute('aria-invalid', 'false');
 }
 

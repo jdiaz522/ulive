@@ -58,13 +58,13 @@ function leerPeso(fila) {
 // Marca o desmarca un peso: texto junto al campo, borde de riesgo y aria-invalid
 function marcarPeso(fila, mensaje) {
   fila.aviso.textContent = mensaje;
-  fila.campo.style.border = '2px solid #B3261E';
+  fila.campo.style.borderColor = '#B3261E';
   fila.campo.setAttribute('aria-invalid', 'true');
 }
 
 function desmarcarPeso(fila) {
   fila.aviso.textContent = '';
-  fila.campo.style.border = '';
+  fila.campo.style.borderColor = '';
   fila.campo.setAttribute('aria-invalid', 'false');
 }
 

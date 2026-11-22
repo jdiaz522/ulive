@@ -73,7 +73,7 @@ function pintarCajaMatricula(tono) {
 // Quita el error de la lista
 function limpiarErrorMatricula() {
   errorMatricula.textContent = '';
-  grupoCursos.style.border = '';
+  grupoCursos.style.borderColor = '';
   for (var i = 0; i < cursosMatricula.length; i++) {
     cursosMatricula[i].campo.setAttribute('aria-invalid', 'false');
   }
@@ -82,7 +82,7 @@ function limpiarErrorMatricula() {
 // Marca el error: texto junto a la lista, borde de riesgo y aria-invalid en las casillas
 function marcarErrorMatricula(mensaje) {
   errorMatricula.textContent = mensaje;
-  grupoCursos.style.border = '2px solid #B3261E';
+  grupoCursos.style.borderColor = '#B3261E';
   for (var i = 0; i < cursosMatricula.length; i++) {
     cursosMatricula[i].campo.setAttribute('aria-invalid', 'true');
   }

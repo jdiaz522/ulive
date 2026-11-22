@@ -135,7 +135,7 @@ La landing no es una de las 15 pantallas de la app; va en la tabla para mostrar 
 ## Historias Must Have que el prototipo web no cubre
 
 - **HU-03 (editar la fórmula de un curso):** no hay pantalla de edición. En el informe, la edición reutiliza el formulario de Registrar curso.
-- **HU-37 (datos en el dispositivo) y HU-46 (funcionar sin conexión):** necesitan almacenamiento local o un service worker, que están fuera de las lecturas. En el prototipo solo se informa en Bienvenida ("Tus cursos y notas se guardan en tu celular…").
+- **HU-37 (datos en el dispositivo) y HU-46 (funcionar sin conexión):** necesitan almacenamiento local o un service worker, que están fuera de las lecturas. Bienvenida ya no lo menciona: decía "Tus cursos y notas se guardan en tu celular", algo que el prototipo no hace. Ahora dice "Tú registras tus cursos y notas. ULive no se conecta al portal." (revisión de UX, 22 nov 2026).
 
 ## Cambios de datos respecto de los mockups
 
@@ -265,7 +265,10 @@ Las condiciones se revisan en este orden:
 - **Bienvenida (J9):**
   - Es la entrada de la app y "Continuar" lleva a `inicio.html`.
   - **Universidad y carrera son datos fijos, no selects (revisión de UX, 22 nov 2026).** Cada select tenía una sola opción real, así que había que elegir sin que hubiera decisión, y a 390 px el nombre de la universidad (378 px) no cabía en el select (unos 280 px útiles) y quedaba cortado. Ahora se muestran como texto con su etiqueta, igual que "Turno actual" en Cambio de turno (`.dato-fijo`), y el texto pasa a otra línea en vez de cortarse. Una ayuda explica por qué: "Por ahora ULive solo tiene configuradas las reglas de la UPC".
-  - Solo se pide el ciclo actual, que empieza en "Elige tu ciclo" y va de 1.º a 10.º. `js/bienvenida.js` solo valida ese campo. La descripción de la pantalla cambia a "ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Solo falta tu ciclo actual."
+  - **El ciclo viene marcado en 5.º, el de Daniela (revisión de UX, 22 nov 2026).** Sin almacenamiento, el ciclo elegido no llega a Inicio, que siempre muestra "Ingeniería · 5.º ciclo". Si alguien elegía 1.º, la pantalla siguiente lo contradecía. Ahora el select empieza en 5.º ciclo con el atributo `selected` (el mismo recurso que `checked` en las casillas y botones de opción del prototipo) y basta pulsar "Continuar". Sigue siendo un select de 1.º a 10.º con la opción "Elige tu ciclo": si alguien vuelve a ella, `js/bienvenida.js` muestra "⚠ Elige tu ciclo actual.". La descripción dice "ULive carga las reglas de evaluación, faltas y matrícula de tu universidad. Confirma tu ciclo actual."
+  - **La ayuda va debajo de Universidad y Carrera,** porque explica a las dos: "Por ahora ULive solo tiene configuradas las reglas de la UPC: escala de 0 a 20 y límite de 25 % de faltas. Las reglas dependen de la universidad, no de la carrera." Antes estaba entre las dos y solo hablaba de la universidad.
+  - **h1 "Te damos la bienvenida",** sin "a ULive": la marca ya está en la barra, y así "ULive" no queda sola en la segunda línea (pasaba a 1440 y a 390). No se usa "Bienvenida a ULive" porque tiene género y la app es para todos.
+  - **Caja del escudo:** "No pedimos tu contraseña del portal" / "Tú registras tus cursos y notas. ULive no se conecta al portal." Ya no promete que los datos se guardan en el celular (HU-37 no está cubierta).
   - **Pendiente:** corregir J9 (muestra tres selects) y la sección 4.2 del informe ("las reglas de cada universidad se cargan como configuración desde la Bienvenida") para que coincidan con el prototipo.
 - **Mis cursos (J11):**
   - Es una tabla en web y tarjetas en móvil, como Detalle de curso, Evaluaciones y Actividades. J11 es una lista. La tabla deja comparar los cursos por columnas: Curso, Nota actual, Necesitas y Faltas. Las cabeceras son cortas porque el caption ya define "Necesitas" ("la nota que te hace falta en las evaluaciones pendientes para llegar a 13"); con "Necesitas en lo que falta", la cabecera ocupaba 3 líneas a 801 px.
@@ -351,7 +354,7 @@ Las condiciones se revisan en este orden:
   - **Botón por fila:** solo las actividades de Cálculo II lo llevan, porque el prototipo solo detalla ese curso. Dice "Ver curso" (en J7 decía "Ver") porque lleva al Detalle del curso y no a la actividad, y porque "Ver" solo no dice adónde va.
   - "Agregar actividad" (acción principal, acento) va en web y en móvil. En J7 no estaba.
 - **Registrar actividad (J23):** `js/registrar-actividad.js`.
-  - **Formulario vacío al empezar,** como Bienvenida:
+  - **Formulario vacío al empezar:**
     - El nombre tiene el placeholder "Ej. Informe de laboratorio 3" y la evaluación empieza en "Elige una evaluación".
     - Al elegir la evaluación, el curso se completa solo con `.value`. La hora es opcional.
   - **Evaluación de la fórmula:** solo ofrece evaluaciones **pendientes**, agrupadas por curso con `<optgroup>`, porque a una evaluación ya calificada no se le registra una entrega.
@@ -405,7 +408,7 @@ Las condiciones se revisan en este orden:
   - La casilla "Falta justificada" va dentro de su `<label>`, que tiene más de 44 px de alto y es el área que se toca.
 - **Cambio de turno (J21):** `js/cambio-turno.js`.
   - **Turno actual:** es un dato y no un campo (en el mockup no tenía flecha), así que va como texto debajo de su etiqueta.
-  - **Nuevo turno:** un `<select>` que empieza en "Elige tu nuevo turno", como Bienvenida y Registrar actividad. Solo ofrece el turno del mockup.
+  - **Nuevo turno:** un `<select>` que empieza en "Elige tu nuevo turno", como Registrar actividad. Solo ofrece el turno del mockup.
     - La opción dice "Jue 8 y vie 9 oct · mañana" y el horario ("Turno de mañana: 8:00 a. m. a 2:00 p. m.") va en una ayuda debajo, vinculada con `aria-describedby`. Un `<select>` no parte su texto en dos líneas, y a 390 px el texto completo del mockup quedaba cortado.
   - **Al elegir el turno** (`change`):
     - Se muestran los bloques "Lo que choca con tu nuevo turno" y "Espacios libres", que empiezan con `display: none` en el CSS.
@@ -437,8 +440,9 @@ Las condiciones se revisan en este orden:
 - **Flecha propia en los select (revisión de UX, 22 nov 2026):** Chrome dibuja la flecha nativa a unos 4 px del borde, mientras el texto empieza a 16 px. Con la excepción `appearance: none` (ver "Técnicas y excepciones de la app"), `select.campo` usa una flecha de 16 px exportada a `img/flecha-select.svg` (trazo de 1,5 px en #1A2430, como los demás íconos), colocada con `background-image`, `background-repeat: no-repeat` y `background-position: right 16px center`.
   - `padding-right: 48px` = 16 (separación entre el texto y la flecha) + 16 (flecha) + 16 (de la flecha al borde). No es un valor nuevo de la escala: es la suma de tres valores de 16 px, simétrica con los 16 px del texto a la izquierda.
   - Aplica a los 9 selects de la app. A 390 px se probó la opción más larga de cada uno; la más ajustada es "Parcial 2 · 14 oct · peso 25 %" (Registrar nota): 210 px de texto en 243 px útiles.
-  - El contorno de foco (3 px #15497A, separado 4 px) y el borde de error (2 px #B3261E) se siguen viendo, con la flecha en su sitio.
+  - El contorno de foco (3 px #15497A, separado 4 px) y el borde de error (1 px #B3261E) se siguen viendo, con la flecha en su sitio.
   - **Límite:** la lista desplegada la sigue dibujando el sistema operativo. Chrome no aplica `border` ni `padding` a las `<option>`, así que no se les puede poner borde.
+- **Borde de error de 1 px (revisión de UX, 22 nov 2026):** en los formularios de la app, el error pasaba el borde a `2px solid #B3261E`. El campo crecía 2 px y todo lo de abajo saltaba. Ahora el JS cambia solo `.style.borderColor` a #B3261E, como en la landing, y el borde se queda en 1 px. Al corregir, `borderColor = ''` devuelve el color del CSS. El error sigue teniendo texto con ⚠, borde rojo, `aria-invalid="true"` y foco en el campo. Aplica a Bienvenida, Registrar curso (pesos), Registrar nota, Registrar falta (clase), Registrar actividad, Matrícula (tarjeta de la lista de cursos), Cambio de turno (nuevo turno) y Simulación (nota esperada).
 - **Foco visible en `select` y `textarea`:** se agregaron a la regla `:focus-visible` de `base.css` porque antes no incluía ni `select` ni `textarea`. La landing no tiene ninguno de los dos, así que no cambia.
 
 ## Técnicas y excepciones de la app
@@ -452,6 +456,8 @@ Las condiciones se revisan en este orden:
 | Funciones, `var`, `const`, `if`, bucles `for` y `while`, objetos, arrays y `Math.round` | js/calculos.js | JavaScript for User Interaction |
 | `form` con `action` hacia la pantalla siguiente; `select`, `option` y `label for` | app/bienvenida.html, app/registrar-curso.html | HTML5 Foundation |
 | `addEventListener` con `change` y `submit`, `e.preventDefault()` solo si hay error, `.value`, `.trim()`, `.textContent`, `.style`, `.focus()` | js/bienvenida.js, js/registrar-curso.js | JavaScript for User Interaction |
+| `.style.borderColor` para marcar el error (el borde se queda en 1 px, como en la landing) | js/bienvenida.js, js/registrar-*.js, js/matricula.js, js/cambio-turno.js, js/simulacion.js | JavaScript for User Interaction |
+| `option` con `selected` para el ciclo del ejemplo (5.º), como `checked` en las casillas | app/bienvenida.html | HTML5 Foundation |
 | Expresión regular con `.test()` para validar los pesos | js/registrar-curso.js | JavaScript for User Interaction |
 | `table`, `caption`, `thead`, `tbody`, `tr`, `th`, `td` | app/curso.html, app/evaluaciones.html, app/cursos.html | HTML5 Foundation |
 | `border-collapse` y `vertical-align` en tablas | css/app.css | CSS |

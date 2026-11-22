@@ -56,13 +56,13 @@ function actualizarChoqueFaltas() {
 
 function marcarErrorTurno(mensaje) {
   errorTurno.textContent = mensaje;
-  selectorTurno.style.border = '2px solid #B3261E';
+  selectorTurno.style.borderColor = '#B3261E';
   selectorTurno.setAttribute('aria-invalid', 'true');
 }
 
 function limpiarErrorTurno() {
   errorTurno.textContent = '';
-  selectorTurno.style.border = '';
+  selectorTurno.style.borderColor = '';
   selectorTurno.setAttribute('aria-invalid', 'false');
 }
 

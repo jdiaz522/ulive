@@ -180,7 +180,7 @@ function mostrarRegistrada(clase, justificada) {
 selectorClase.addEventListener('change', function () {
   if (selectorClase.value !== '') {
     errorClase.textContent = '';
-    selectorClase.style.border = '';
+    selectorClase.style.borderColor = '';
     selectorClase.setAttribute('aria-invalid', 'false');
   }
   actualizarSimulacion();
@@ -196,7 +196,7 @@ formularioFalta.addEventListener('submit', function (e) {
   const clase = clasesCalculo[selectorClase.value];
   if (!clase) {
     errorClase.textContent = '⚠ Elige la clase a la que faltaste o faltarías.';
-    selectorClase.style.border = '2px solid #B3261E';
+    selectorClase.style.borderColor = '#B3261E';
     selectorClase.setAttribute('aria-invalid', 'true');
     selectorClase.focus();
     return;
