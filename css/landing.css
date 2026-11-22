@@ -105,18 +105,6 @@
   max-width: 560px;
 }
 
-.antetitulo {
-  color: #15497A;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.portada-texto h1 {
-  margin-top: 16px;
-}
-
 .portada-descripcion {
   margin-top: 16px;
   color: #55606E;
@@ -134,9 +122,7 @@
   margin-top: 16px;
 }
 
-/* Escenario: superficie donde se apoya el teléfono. La imagen de fondo de la
-   portada va en esta caja (background-image), nunca detrás del texto, para que
-   el contraste AA del texto no dependa de la imagen. */
+/* Escenario: superficie blanca donde se apoya el teléfono */
 .portada-escenario {
   flex: 1;
   margin-left: 32px;
@@ -144,8 +130,6 @@
   border: 1px solid #D6DEE7;
   border-radius: 12px;
   background-color: #FFFFFF;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 /* Marco de celular: borde grueso como bisel y radio de tarjeta, sin sombra (diseño plano) */
@@ -193,7 +177,7 @@
 
 .dato-fuente {
   margin-top: 4px;
-  color: #D6DEE7;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
@@ -311,11 +295,12 @@
   display: none;
 }
 
+/* El escudo se alinea arriba, con la primera línea del título: 28 px de alto,
+   igual que esa línea en web (20 px × 1.4). Con un correo largo en varias
+   líneas, el ícono sigue marcando el inicio del mensaje. */
 .icono-confirmacion {
   width: 28px;
   height: 28px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .confirmacion-texto {
@@ -331,12 +316,18 @@
   margin-top: 4px;
 }
 
-/* "Usar otro correo": empieza oculto y el JS lo muestra con display: block.
-   Enlace subrayado en primario; al pasar el cursor se quita el subrayado. */
-.confirmacion-texto .enlace-otro-correo {
+/* Fila de "Usar otro correo": empieza oculta y el JS la muestra con display: flex.
+   Como el enlace es un elemento de una fila flex, mide solo su texto y acepta
+   min-height; así el contorno de foco no ocupa toda la columna. */
+.confirmacion-texto .fila-enlace {
   display: none;
-  min-height: 44px;
+  flex-direction: row;
   margin-top: 8px;
+}
+
+/* Enlace subrayado en primario; al pasar el cursor se quita el subrayado */
+.confirmacion-texto .enlace-otro-correo {
+  min-height: 44px;
   color: #15497A;
   font-size: 16px;
   font-weight: 500;
@@ -357,6 +348,9 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
+  /* Excepción (ver README): un correo largo sin espacios se corta donde no cabe,
+     en vez de desbordar la tarjeta a 390 px. El texto copiado queda intacto. */
+  overflow-wrap: anywhere;
 }
 
 /* ---------- Preguntas frecuentes ---------- */

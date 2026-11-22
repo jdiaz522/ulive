@@ -8,6 +8,7 @@ const errorCorreo = document.getElementById('error-correo');
 const iconoConfirmacion = document.getElementById('icono-confirmacion');
 const confirmacion = document.getElementById('confirmacion');
 const confirmacionDetalle = document.getElementById('confirmacion-detalle');
+const filaEnlace = document.getElementById('fila-enlace');
 const enlaceOtroCorreo = document.getElementById('usar-otro-correo');
 
 // Texto sin espacios, una @, texto, un punto y al menos dos letras al final
@@ -69,14 +70,15 @@ formulario.addEventListener('submit', function (e) {
   }
 
   // Correo válido: se oculta el formulario y se muestran el escudo, el detalle y
-  // el enlace "Usar otro correo" (J27). El párrafo role="status" ya está en la
+  // la fila del enlace "Usar otro correo" (J27). El párrafo role="status" ya está en la
   // página desde el inicio, así que al recibir su texto el lector de pantalla
   // lo anuncia (lectura U3S12).
   formulario.style.display = 'none';
   iconoConfirmacion.style.display = 'block';
   confirmacionDetalle.style.display = 'block';
-  enlaceOtroCorreo.style.display = 'block';
-  confirmacion.textContent = '✓ Listo. Te escribiremos a ' + campoCorreo.value.trim();
+  filaEnlace.style.display = 'flex';
+  // Sin ✓ en el texto: el escudo ya lleva el check y el estado tiene ícono y texto
+  confirmacion.textContent = 'Listo. Te escribiremos a ' + campoCorreo.value.trim();
 
   // El botón "Avisarme", que tenía el foco, quedó oculto. El foco pasa al enlace
   // "Usar otro correo" para que quien usa teclado no vuelva al inicio de la página.
@@ -94,7 +96,7 @@ enlaceOtroCorreo.addEventListener('click', function (e) {
   confirmacion.textContent = '';
   iconoConfirmacion.style.display = 'none';
   confirmacionDetalle.style.display = 'none';
-  enlaceOtroCorreo.style.display = 'none';
+  filaEnlace.style.display = 'none';
 
   formulario.style.display = 'block';
   campoCorreo.focus();

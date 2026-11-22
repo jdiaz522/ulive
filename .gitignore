@@ -1,0 +1,14 @@
+# Informe del curso y sus imágenes: no se publica
+informe/
+*.zip
+
+# Archivos de trabajo con Claude e impeccable
+CLAUDE.md
+AGENTS.md
+PRODUCT.md
+DESIGN.md
+prompt-*.md
+respuesta-*.md
+.claude/
+.gemini/
+.impeccable/

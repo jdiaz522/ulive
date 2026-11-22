@@ -35,7 +35,6 @@
     <section id="inicio" class="seccion portada">
       <div class="contenedor portada-fila">
         <div class="portada-texto">
-          <p class="antetitulo">Para universitarios de Lima</p>
           <h1>Sabe cuánto necesitas, qué atender primero y si puedes faltar</h1>
           <p class="portada-descripcion">ULive aplica las reglas de tu universidad a tus cursos: te muestra la nota que necesitas en lo que falta, ordena tu semana según el peso de cada entrega y te dice cuántas faltas te quedan.</p>
           <p class="portada-aviso texto-destacado">ULive aún no está disponible. Déjanos tu correo y te avisamos el día del lanzamiento.</p>
@@ -43,7 +42,7 @@
             <a class="boton boton-secundario" href="#registro">Quiero enterarme</a>
           </div>
         </div>
-        <!-- Escenario de la vista previa: la imagen de fondo va aquí y no detrás del texto -->
+        <!-- Escenario de la vista previa: superficie blanca con el marco de celular -->
         <div class="portada-escenario">
           <div class="telefono">
             <img class="vista-previa" src="img/vista-previa-recorte.png" width="780" height="792" alt="Vista previa del detalle del curso Cálculo II en ULive: nota actual 13,8 (aprobando), 4 de 6 faltas usadas con 2 restantes y el aviso «Depende del final: necesitas 12,4 en promedio en lo que falta para llegar a 13; la próxima evaluación pesa 25 %».">
@@ -119,7 +118,7 @@
           <form id="form-registro" class="formulario" action="#" novalidate>
             <label for="correo">Correo electrónico</label>
             <div class="campo-fila">
-              <input type="email" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" aria-describedby="error-correo" aria-invalid="false">
+              <input type="email" id="correo" class="campo" placeholder="tu.correo@ejemplo.com" autocomplete="email" aria-describedby="error-correo" aria-invalid="false">
               <button type="submit" class="boton boton-principal">Avisarme</button>
             </div>
             <!-- role="status": el lector de pantalla anuncia el error al aparecer, también en blur -->
@@ -134,8 +133,11 @@
             <div class="confirmacion-texto">
               <p id="confirmacion" class="confirmacion-titulo" role="status"></p>
               <p id="confirmacion-detalle" class="confirmacion-detalle">Revisa tu bandeja de entrada el día del lanzamiento. Puedes darte de baja desde el mismo correo.</p>
-              <!-- Empieza oculto; tras confirmar vuelve a mostrar el formulario con el correo escrito -->
-              <a id="usar-otro-correo" class="enlace-otro-correo" href="#registro">Usar otro correo</a>
+              <!-- La fila empieza oculta; el enlace vuelve a mostrar el formulario con el correo escrito.
+                   La fila flex hace que el enlace mida solo su texto y no toda la columna. -->
+              <div id="fila-enlace" class="fila-enlace">
+                <a id="usar-otro-correo" class="enlace-otro-correo" href="#registro">Usar otro correo</a>
+              </div>
             </div>
           </div>
         </div>
