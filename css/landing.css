@@ -32,6 +32,7 @@
 .barra {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -50,6 +51,15 @@
 
 .marca:hover {
   text-decoration: underline;
+}
+
+/* Navegación: "Probar el prototipo" y la lista de secciones en una fila.
+   Los 32 px hasta el botón van aquí y no en el botón: así, cuando el botón pasa a la
+   segunda fila (801 a unos 930 px), queda alineado con la marca y no corrido 32 px */
+.navegacion {
+  display: flex;
+  flex-direction: row;
+  margin-right: 32px;
 }
 
 .navegacion ul {
@@ -72,6 +82,7 @@
   font-weight: 500;
   line-height: 48px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navegacion a:hover {
@@ -82,8 +93,12 @@
   color: #0F2A44;
 }
 
-.boton-encabezado {
-  margin-left: 32px;
+/* Entre 801 y unos 930 px la barra no cabe en una fila: con flex-wrap y los enlaces sin
+   partir, el botón pasa a una segunda fila y el encabezado mide 113 px. Los saltos a
+   #seccion se detienen 124 px más abajo, como en móvil (113 + 7 del contorno, redondeado);
+   en web ancha (65 px) quedan 52 px de aire de más. No se agrega otro @media */
+html {
+  scroll-padding-top: 124px;
 }
 
 /* ---------- Primera sección ---------- */
@@ -397,6 +412,32 @@
   line-height: 1.4;
 }
 
+/* Enlace al prototipo en el pie: blanco y subrayado sobre #0F2A44, con área táctil de 44 px */
+/* En fila flex, el enlace solo ocupa el ancho de su texto */
+.pie-enlace {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+
+.pie-enlace a {
+  display: block;
+  min-height: 44px;
+  color: #FFFFFF;
+  font-weight: 500;
+  line-height: 44px;
+  text-decoration: underline;
+}
+
+.pie-enlace a:hover {
+  text-decoration: none;
+}
+
+/* Contorno de foco blanco: el primario #15497A no se distingue sobre #0F2A44 (como .lateral en la app) */
+.pie a:focus-visible {
+  outline: 3px solid #FFFFFF;
+}
+
 /* =========================================================
    Móvil: una sola columna y márgenes laterales de 16 px
    ========================================================= */
@@ -415,16 +456,40 @@
     flex-wrap: wrap;
   }
 
+  /* "Probar el prototipo" queda en la fila de la marca y la lista en la fila de abajo:
+     - La marca y la navegación miden la mitad cada una, así que entran juntas en la primera fila.
+     - Dentro de la navegación (flex con flex-wrap), el enlace va a la derecha (margen auto)
+       y la lista, de 200 % de ancho, pasa a la segunda línea.
+     - margin-left: -100 % (del ancho de la navegación) lleva la lista al borde izquierdo:
+       ocupa todo el ancho de la barra, debajo de la marca, sin taparla. */
+  /* margin-bottom: auto evita que la marca se estire al alto de las dos filas
+     de la navegación y tape la mitad izquierda de la lista */
+  .marca {
+    width: 50%;
+    margin-bottom: auto;
+  }
+
   .navegacion {
-    width: 100%;
+    width: 50%;
+    margin-right: 0;
+    flex-wrap: wrap;
+  }
+
+  .navegacion .enlace-prototipo {
+    display: block;
+    margin-left: auto;
+    padding: 0 4px;
   }
 
   .navegacion ul {
     display: block;
+    flex: none;
+    width: 200%;
+    margin-left: -100%;
     line-height: 48px;
   }
 
-  /* Enlaces en línea; el relleno vertical da un área táctil de unos 49 px */
+  /* Enlaces de la lista en línea; el relleno vertical da un área táctil de unos 49 px */
   .navegacion li {
     display: inline;
     margin-left: 0;
