@@ -96,18 +96,21 @@
           <article class="resumen">
             <p class="resumen-etiqueta">Promedio general</p>
             <p class="resumen-valor">15,2</p>
-            <p class="resumen-nota">Situación estable</p>
+            <p class="resumen-nota">Promedio de tus 3 cursos · Situación estable</p>
           </article>
-          <a class="resumen resumen-destacado" href="faltas.html">
+          <!-- Las tarjetas que son enlace terminan con una acción visible -->
+          <a class="resumen resumen-enlace" href="faltas.html">
             <span class="resumen-etiqueta">Faltas en Cálculo II</span>
             <span class="resumen-valor">4 / 6</span>
             <span class="resumen-nota">Te quedan 2 faltas</span>
+            <span class="resumen-accion">Ver mis faltas</span>
           </a>
-          <article class="resumen">
-            <p class="resumen-etiqueta">Actividades pendientes</p>
-            <p class="resumen-valor">4</p>
-            <p class="resumen-nota">Esta semana · 1 vencida</p>
-          </article>
+          <a class="resumen resumen-enlace" href="actividades.html">
+            <span class="resumen-etiqueta">Actividades pendientes</span>
+            <span class="resumen-valor">4</span>
+            <span class="resumen-nota">Esta semana · 1 vencida</span>
+            <span class="resumen-accion">Ver actividades</span>
+          </a>
           <article class="resumen">
             <p class="resumen-etiqueta">Próxima evaluación</p>
             <p class="resumen-valor">14 oct</p>
@@ -124,7 +127,7 @@
                 <p class="notificacion-etiqueta">Revisar primero</p>
                 <p class="notificacion-plazo">vence hoy, 23:59</p>
               </div>
-              <p class="notificacion-titulo">Entregar Taller 3 de Cálculo II</p>
+              <h2 class="notificacion-titulo">Entregar Taller 3 de Cálculo II</h2>
               <p class="notificacion-descripcion">Adjunta el desarrollo en PDF antes del cierre.</p>
               <div class="acciones-app">
                 <a class="boton-app boton-principal" href="curso.html">Ver actividad</a>
@@ -183,19 +186,20 @@
             <!-- Próximas actividades, ordenadas por impacto -->
             <section class="panel">
               <h2>Próximas actividades</h2>
-              <p class="texto-auxiliar criterio">Ordenado por impacto: peso en la nota entre días que faltan</p>
+              <p class="texto-auxiliar criterio">Ordenado por impacto: peso en la nota entre días que faltan (mínimo 1 día). Si dos empatan, va primero la que vence antes.</p>
               <ul class="lista-actividades">
                 <li>
-                  <a class="tarjeta-actividad actividad-prioritaria fila-enlace" href="curso.html">
+                  <a class="tarjeta-actividad fila-enlace" href="curso.html">
                     <span class="actividad-cabecera">
                       <span class="actividad-nombre">Taller 3</span>
                       <span class="estado-neutro">Pendiente</span>
                     </span>
                     <span class="actividad-curso">Cálculo II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">10 %</span></span>
-                      <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-primario.svg" alt=""> Hoy, 23:59</span>
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">10 %</span></span></span>
+                      <span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-gris.svg" alt=""> Hoy, 23:59</span>
                     </span>
+                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">10,0</span> = 10 % ÷ 1 día</span>
                   </a>
                 </li>
                 <li>
@@ -206,9 +210,10 @@
                     </span>
                     <span class="actividad-curso">Programación III</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">5 %</span></span>
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">5 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span>
                     </span>
+                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">5,0</span> = 5 % ÷ 1 día</span>
                   </div>
                 </li>
                 <li>
@@ -219,9 +224,10 @@
                     </span>
                     <span class="actividad-curso">Física II</span>
                     <span class="actividad-fechas">
-                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> Peso <span class="cifra">15 %</span></span>
+                      <span class="actividad-peso"><img src="../img/icono-calendario-gris.svg" alt=""> <span>Peso <span class="cifra">15 %</span></span></span>
                       <span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span>
                     </span>
+                    <span class="texto-auxiliar actividad-impacto">Impacto <span class="cifra">5,0</span> = 15 % ÷ 3 días</span>
                   </div>
                 </li>
               </ul>
@@ -229,14 +235,15 @@
 
             <!-- Margen de faltas de Cálculo II -->
             <section class="alerta-faltas">
-              <p class="alerta-titulo"><img src="../img/icono-alerta-grande.svg" alt=""> Te quedan 2 faltas en Cálculo II</p>
+              <h2 class="alerta-titulo"><img src="../img/icono-alerta-grande.svg" alt=""> Te quedan 2 faltas en Cálculo II</h2>
               <div class="alerta-resumen">
                 <p class="alerta-dato">4 faltas registradas de 6</p>
-                <p class="alerta-porcentaje"><span class="cifra">67 %</span></p>
               </div>
               <div class="progreso">
                 <div class="progreso-avance avance-67"></div>
               </div>
+              <!-- El límite con su cálculo, en vez de un 67 % sin unidad -->
+              <p class="texto-auxiliar alerta-regla">Límite UPC: 25 % de <span class="cifra">24</span> sesiones = <span class="cifra">6</span> faltas</p>
             </section>
 
             <div class="acciones-app">

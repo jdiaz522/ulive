@@ -126,6 +126,13 @@ html {
   font-weight: 600;
 }
 
+/* Foco sobre fondo #0F2A44 (columna lateral y tarjeta "Revisar primero"): el contorno
+   primario de base.css casi no se ve ahí (1,6:1), así que pasa a blanco (14,6:1). */
+.lateral a:focus-visible,
+.notificacion a:focus-visible {
+  outline: 3px solid #FFFFFF;
+}
+
 .perfil-lateral {
   padding: 16px;
   border-radius: 8px;
@@ -276,13 +283,26 @@ html {
   line-height: 1.4;
 }
 
-/* Variante resaltada (enlace a Faltas) */
-.resumen-destacado {
-  border: 2px solid #15497A;
+/* Tarjeta de resumen que es enlace: lleva el mismo borde de 1 px que las demás
+   (un borde de 2 px se leía como "activo" o con foco) y termina con una acción
+   visible, subrayada en primario. Las tarjetas que no son enlace no la llevan. */
+.resumen-accion {
+  display: block;
+  margin-top: 8px;
+  color: #15497A;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: underline;
 }
 
-.resumen-destacado:hover .resumen-etiqueta {
-  text-decoration: underline;
+/* Al pasar el cursor se quita el subrayado, como en los demás enlaces de texto */
+.resumen-enlace:hover .resumen-accion {
+  text-decoration: none;
+}
+
+.resumen-enlace:active .resumen-accion {
+  color: #0F2A44;
 }
 
 /* ---------- Columnas de Inicio ---------- */
@@ -382,6 +402,17 @@ html {
   margin-top: 4px;
 }
 
+/* Cálculo del impacto de cada actividad: peso ÷ días que faltan (impacto en calculos.js) */
+.actividad-impacto {
+  display: block;
+  margin-top: 4px;
+}
+
+/* Límite de faltas con su cálculo, debajo de la barra */
+.alerta-regla {
+  margin-top: 8px;
+}
+
 /* ---------- Filas de curso ---------- */
 .lista-cursos,
 .lista-actividades {
@@ -462,14 +493,15 @@ html {
 }
 
 /* ---------- Indicadores de estado: color + ícono + texto ---------- */
+/* Sin borde, para que no se lean como botones: el estado lo dicen el texto,
+   el ícono y su color sobre fondo #F5F7FA (contraste AA verificado). */
 .estado {
   display: flex;
   flex-direction: row;
   margin: auto 16px auto 0;
   padding: 4px 8px;
-  border: 1px solid #55606E;
   border-radius: 4px;
-  background-color: #FFFFFF;
+  background-color: #F5F7FA;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
@@ -484,28 +516,24 @@ html {
 }
 
 .estado-seguro {
-  border-color: #1B7F4B;
   color: #1B7F4B;
 }
 
 .estado-atencion {
-  border-color: #8A5A00;
   color: #8A5A00;
 }
 
 .estado-riesgo {
-  border-color: #B3261E;
   color: #B3261E;
 }
 
-/* Estado sin color de situación académica (Pendiente, En curso) */
+/* Estado sin color de situación académica (Pendiente, En curso): texto secundario, sin borde */
 .estado-neutro {
   display: block;
   padding: 0 8px;
-  border: 1px solid #7D8B99;
   border-radius: 4px;
   background-color: #F5F7FA;
-  color: #1A2430;
+  color: #55606E;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
@@ -523,9 +551,8 @@ html {
   text-decoration: none;
 }
 
-.actividad-prioritaria {
-  border: 2px solid #15497A;
-}
+/* La actividad prioritaria no cambia de borde: su prioridad la marcan el orden
+   y el vencimiento en peso 600 (.vence-pronto). */
 
 .actividad-cabecera {
   display: flex;
@@ -580,9 +607,8 @@ html {
   margin-right: 4px;
 }
 
-/* Vence hoy: primario y más peso */
+/* Vence hoy: más peso, sin color (los colores de estado son solo para la situación académica) */
 .vence-pronto {
-  color: #15497A;
   font-weight: 600;
 }
 
@@ -621,10 +647,6 @@ html {
 .alerta-dato {
   margin-right: auto;
   font-weight: 500;
-}
-
-.alerta-porcentaje {
-  color: #55606E;
 }
 
 /* Barra de progreso: el ancho del avance se fija con una clase por porcentaje */
@@ -1593,6 +1615,11 @@ select.campo {
   .destino.activa {
     background-color: #F5F7FA;
     color: #15497A;
+  }
+
+  /* En móvil la barra de navegación es blanca: vuelve el contorno primario */
+  .lateral a:focus-visible {
+    outline: 3px solid #15497A;
   }
 
   /* Barra superior: marca y perfil; la ruta y el ciclo se ocultan */

@@ -47,7 +47,6 @@ function actualizarChoqueFaltas() {
   }
   choqueFaltas.textContent = 'usarías 1 de tus ' + permitidas + ' faltas (' + quedarian + ')';
   estadoChoqueTexto.textContent = estado.etiqueta;
-  estadoChoque.style.borderColor = coloresTurno[estado.tono];
   estadoChoque.style.color = coloresTurno[estado.tono];
   iconosChoque.seguro.style.display = 'none';
   iconosChoque.atencion.style.display = 'none';

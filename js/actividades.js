@@ -111,7 +111,6 @@ function pintarEstado(item) {
   if (item.entregada) {
     item.texto.textContent = '✓ Entregada';
     item.estado.style.color = COLOR_SEGURO;
-    item.estado.style.borderColor = COLOR_SEGURO;
     if (item.icono) {
       item.icono.style.display = 'none';
     }
@@ -123,7 +122,6 @@ function pintarEstado(item) {
     item.texto.textContent = item.estadoInicial;
   }
   item.estado.style.color = '';
-  item.estado.style.borderColor = '';
   if (item.icono) {
     item.icono.style.display = '';
   }
