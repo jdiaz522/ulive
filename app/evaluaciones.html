@@ -104,12 +104,12 @@
         <section class="panel">
           <h2>Listado del ciclo</h2>
           <p id="conteo-evaluaciones" class="texto-auxiliar" role="status">7 evaluaciones</p>
-          <table class="tabla-app tabla-con-margen">
+          <!-- El curso va bajo el nombre (como en Actividades) para que la tabla quepa en 801 px -->
+          <table class="tabla-app tabla-con-margen tabla-evaluaciones">
             <caption>Evaluaciones del ciclo 2026-2 de tus tres cursos</caption>
             <thead>
               <tr>
-                <th>Evaluación</th>
-                <th>Curso</th>
+                <th>Evaluación / curso</th>
                 <th>Fecha</th>
                 <th>Nota</th>
                 <th>Peso</th>
@@ -118,56 +118,49 @@
             </thead>
             <tbody>
               <tr id="eval-parcial-2">
-                <td class="celda-nombre">Parcial 2</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Parcial 2</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>14 oct</td>
                 <td><span class="etiqueta-movil">Nota: </span>—</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">25 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Pendiente</td>
               </tr>
               <tr id="eval-taller-2">
-                <td class="celda-nombre">Taller 2</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Taller 2</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>28 sep</td>
                 <td><span class="etiqueta-movil">Nota: </span>16</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
               </tr>
               <tr id="eval-parcial-1">
-                <td class="celda-nombre">Parcial 1</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Parcial 1</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>18 sep</td>
                 <td><span class="etiqueta-movil">Nota: </span>14</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">20 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
               </tr>
               <tr id="eval-practica-1">
-                <td class="celda-nombre">Práctica 1</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Práctica 1</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>4 sep</td>
                 <td><span class="etiqueta-movil">Nota: </span>12</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Desaprobada</td>
               </tr>
               <tr id="eval-quiz">
-                <td class="celda-nombre">Quiz estructuras</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Programación III</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Quiz estructuras</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Programación III</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>12 sep</td>
                 <td><span class="etiqueta-movil">Nota: </span>9</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Desaprobada</td>
               </tr>
               <tr id="eval-laboratorio-2">
-                <td class="celda-nombre">Laboratorio 2</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Física II</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Laboratorio 2</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Física II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>8 sep</td>
                 <td><span class="etiqueta-movil">Nota: </span>18</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
                 <td class="celda-resultado"><span class="etiqueta-movil">Resultado: </span>Aprobada</td>
               </tr>
               <tr id="eval-proyecto-api">
-                <td class="celda-nombre">Proyecto API</td>
-                <td class="celda-curso"><span class="etiqueta-movil">Curso: </span>Programación III</td>
+                <td class="celda-nombre"><span class="tabla-nombre">Proyecto API</span><span class="tabla-curso"><span class="etiqueta-movil">Curso: </span>Programación III</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Fecha: </span>30 oct</td>
                 <td><span class="etiqueta-movil">Nota: </span>—</td>
                 <td><span class="etiqueta-movil">Peso: </span><span class="cifra">30 %</span></td>

@@ -426,33 +426,38 @@ html {
   margin-top: 8px;
 }
 
-/* ---------- Filas de curso ---------- */
+/* ---------- Filas de curso y de actividad dentro de un panel ---------- */
+/* Filas planas separadas por un divisor, no tarjetas dentro del panel:
+   el panel ya es la superficie blanca con borde */
 .lista-cursos,
 .lista-actividades {
-  margin: 16px 0 0 0;
+  margin: 8px 0 0 0;
   padding: 0;
 }
 
+/* Separador arriba de cada fila salvo la primera */
 .lista-cursos li,
 .lista-actividades li {
   display: block;
-  margin-top: 8px;
+  border-top: 1px solid #D6DEE7;
 }
 
 .lista-cursos li:first-child,
 .lista-actividades li:first-child {
-  margin-top: 0;
+  border-top: 0;
 }
 
 .fila-curso {
   display: flex;
   flex-direction: row;
-  padding: 16px;
-  border: 1px solid #D6DEE7;
-  border-radius: 12px;
-  background-color: #FFFFFF;
+  padding: 16px 0;
   color: #1A2430;
   text-decoration: none;
+}
+
+/* En la lista de Inicio el ícono va sin caja gris, para no sumar otro nivel de contenedor */
+.lista-cursos .icono-curso {
+  background-color: #FFFFFF;
 }
 
 .icono-curso {
@@ -582,13 +587,10 @@ html {
   white-space: nowrap;
 }
 
-/* ---------- Tarjetas de actividad ---------- */
+/* ---------- Filas de actividad (Inicio y Detalle de curso) ---------- */
 .tarjeta-actividad {
   display: block;
-  padding: 8px;
-  border: 1px solid #D6DEE7;
-  border-radius: 8px;
-  background-color: #FFFFFF;
+  padding: 16px 0;
   color: #1A2430;
   text-decoration: none;
 }
@@ -1092,6 +1094,27 @@ select.campo {
   margin-right: 24px;
 }
 
+/* Dos columnas que pasan a dos filas cuando la lateral no entra (Detalle de curso a 801 px).
+   Ancho base: 480 px la principal y 390 px la lateral. La principal se queda con casi todo
+   el espacio sobrante (flex 1000 contra 1), así que en web ancha se ve como antes; cuando
+   la lateral baja, ocupa toda la fila. El margen negativo del contenedor compensa el
+   margen de 24 px de cada columna, para que ninguna quede corrida al pasar abajo */
+.columnas-ajustables {
+  flex-wrap: wrap;
+  margin: -24px 0 0 -24px;
+}
+
+.columnas-ajustables .columna-ancha {
+  flex: 1000 1 480px;
+  margin: 24px 0 0 24px;
+}
+
+.columnas-ajustables .columna-lado {
+  flex: 1 1 390px;
+  width: auto;
+  margin: 24px 0 0 24px;
+}
+
 /* ---------- Tabla que en móvil es lista ---------- */
 .tabla-app {
   width: 100%;
@@ -1106,8 +1129,9 @@ select.campo {
   text-align: left;
 }
 
+/* Relleno lateral de 8 px: las tablas caben justo por encima del punto de quiebre (801 px) */
 .tabla-app th {
-  padding: 16px;
+  padding: 16px 8px;
   background-color: #F5F7FA;
   color: #0F2A44;
   font-size: 12px;
@@ -1118,7 +1142,7 @@ select.campo {
 }
 
 .tabla-app td {
-  padding: 16px;
+  padding: 16px 8px;
   border-top: 1px solid #D6DEE7;
   color: #1A2430;
   vertical-align: middle;
@@ -1235,12 +1259,13 @@ select.campo {
   white-space: normal;
 }
 
-/* Mis cursos: relleno lateral de 8 px en las celdas, para que la tabla quepa a 801 px
-   sin partir los datos. En móvil manda el relleno de las tarjetas (más abajo) */
-.tabla-cursos th,
-.tabla-cursos td {
-  padding-left: 8px;
-  padding-right: 8px;
+/* Actividades: el estado va sobre las acciones, en la misma celda, porque la casilla
+   "Entregada" es la que lo cambia. En fila flex para que el indicador "Vencida" solo
+   ocupe el ancho de su texto. 8 px hasta la casilla, como cuando eran dos celdas en móvil */
+.estado-accion {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
 }
 
 /* ---------- Filtros (botones de opción) ---------- */
@@ -1864,7 +1889,6 @@ select.campo {
   /* Fila de curso en dos líneas: ícono y nombre arriba; estado y nota debajo */
   .fila-curso {
     flex-wrap: wrap;
-    padding: 8px;
   }
 
   .curso-info {
@@ -1918,6 +1942,20 @@ select.campo {
     margin-top: 16px;
   }
 
+  .columnas-ajustables {
+    margin: 0;
+  }
+
+  .columnas-ajustables .columna-ancha {
+    flex: 1;
+    margin: 0;
+  }
+
+  .columnas-ajustables .columna-lado {
+    flex: 0 1 auto;
+    margin: 16px 0 16px 0;
+  }
+
   .fila-separada {
     margin-top: 0;
   }
@@ -1945,15 +1983,14 @@ select.campo {
     display: none;
   }
 
+  /* Cada fila es un bloque plano con divisor arriba, no una tarjeta dentro del panel.
+     También la primera, que así queda separada del caption (y sigue bien si un filtro oculta filas) */
   .tabla-app tr {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 8px;
-    padding: 8px 16px;
-    border: 1px solid #D6DEE7;
-    border-radius: 8px;
-    background-color: #FFFFFF;
+    padding: 8px 0;
+    border-top: 1px solid #D6DEE7;
   }
 
   .tabla-app td {
@@ -1973,6 +2010,18 @@ select.campo {
 
   .tabla-app .celda-nombre {
     font-size: 16px;
+  }
+
+  /* Evaluaciones: el curso sigue en su propia línea, con su etiqueta "Curso:" y en texto principal */
+  .tabla-evaluaciones .tabla-curso {
+    margin-top: 8px;
+    color: #1A2430;
+    font-weight: 400;
+  }
+
+  /* Actividades: el estado vuelve a ser un bloque, como cuando tenía su propia celda */
+  .estado-accion {
+    display: block;
   }
 
   /* Mis cursos: el nombre (o su enlace de 44 px) en la primera línea y el estado en la segunda.

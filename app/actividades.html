@@ -103,6 +103,7 @@
           <h2>Actividades del ciclo</h2>
           <p class="texto-auxiliar criterio">Primero las vencidas sin entregar; después, por impacto: peso en la nota entre días que faltan</p>
           <p id="conteo-actividades" class="texto-auxiliar" role="status">7 actividades</p>
+          <!-- El estado va sobre las acciones (la casilla "Entregada" lo cambia) para que la tabla quepa en 801 px -->
           <table class="tabla-app tabla-con-margen tabla-actividades">
             <caption>Actividades del ciclo 2026-2: primero las vencidas y después de mayor a menor impacto. Marca "Entregada" cuando la entregues.</caption>
             <thead>
@@ -110,8 +111,7 @@
                 <th>Actividad / curso</th>
                 <th>Peso</th>
                 <th>Vencimiento</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th>Estado / acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -119,8 +119,8 @@
                 <td class="celda-nombre"><span id="nombre-cuestionario-4" class="tabla-nombre">Cuestionario 4</span><span class="tabla-curso">Programación III</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Venció lun 5 oct, 23:59</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-cuestionario-4" class="estado estado-riesgo estado-tabla"><img id="icono-vencida-cuestionario-4" src="../img/icono-alerta-riesgo.svg" alt=""> <span id="estado-texto-cuestionario-4">Vencida</span></span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-cuestionario-4" class="estado estado-riesgo estado-tabla"><img id="icono-vencida-cuestionario-4" src="../img/icono-alerta-riesgo.svg" alt=""> <span id="estado-texto-cuestionario-4">Vencida</span></span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-cuestionario-4"><input type="checkbox" id="entregada-cuestionario-4" aria-describedby="nombre-cuestionario-4"> Entregada</label>
                   </div>
@@ -130,8 +130,8 @@
                 <td class="celda-nombre"><span id="nombre-taller-3" class="tabla-nombre">Taller 3</span><span class="tabla-curso">Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">10 %</span></td>
                 <td><span class="actividad-vence vence-pronto"><img src="../img/icono-reloj-gris.svg" alt=""> Hoy, 23:59</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-taller-3" class="estado-actividad">Pendiente</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-taller-3" class="estado-actividad">Pendiente</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-taller-3"><input type="checkbox" id="entregada-taller-3" aria-describedby="nombre-taller-3"> Entregada</label>
                     <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
@@ -142,8 +142,8 @@
                 <td class="celda-nombre"><span id="nombre-foro-patrones" class="tabla-nombre">Foro de patrones</span><span class="tabla-curso">Programación III</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> Mañana, 18:00</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-foro-patrones" class="estado-actividad">Pendiente</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-foro-patrones" class="estado-actividad">Pendiente</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-foro-patrones"><input type="checkbox" id="entregada-foro-patrones" aria-describedby="nombre-foro-patrones"> Entregada</label>
                   </div>
@@ -153,8 +153,8 @@
                 <td class="celda-nombre"><span id="nombre-informe-laboratorio" class="tabla-nombre">Informe de laboratorio</span><span class="tabla-curso">Física II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">15 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 20:00</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-informe-laboratorio" class="estado-actividad">Pendiente</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-informe-laboratorio" class="estado-actividad">Pendiente</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-informe-laboratorio"><input type="checkbox" id="entregada-informe-laboratorio" aria-describedby="nombre-informe-laboratorio"> Entregada</label>
                   </div>
@@ -164,8 +164,8 @@
                 <td class="celda-nombre"><span id="nombre-guia-integrales" class="tabla-nombre">Guía de integrales</span><span class="tabla-curso">Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 9 oct, 23:59</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-guia-integrales" class="estado-actividad">En curso</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-guia-integrales" class="estado-actividad">En curso</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-guia-integrales"><input type="checkbox" id="entregada-guia-integrales" aria-describedby="nombre-guia-integrales"> Entregada</label>
                     <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
@@ -176,8 +176,8 @@
                 <td class="celda-nombre"><span id="nombre-proyecto-api" class="tabla-nombre">Proyecto API</span><span class="tabla-curso">Programación III</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">30 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 30 oct, 18:00</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-proyecto-api" class="estado-actividad">En curso</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-proyecto-api" class="estado-actividad">En curso</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-proyecto-api"><input type="checkbox" id="entregada-proyecto-api" aria-describedby="nombre-proyecto-api"> Entregada</label>
                   </div>
@@ -187,8 +187,8 @@
                 <td class="celda-nombre"><span id="nombre-foro-dudas" class="tabla-nombre">Foro de dudas</span><span class="tabla-curso">Cálculo II</span></td>
                 <td class="celda-fecha"><span class="etiqueta-movil">Peso: </span><span class="cifra">5 %</span></td>
                 <td><span class="actividad-vence"><img src="../img/icono-reloj-gris.svg" alt=""> 12 oct</span></td>
-                <td><span class="etiqueta-movil">Estado: </span><span id="estado-foro-dudas" class="estado-actividad">Pendiente</span></td>
                 <td class="celda-accion">
+                  <span class="estado-accion"><span class="etiqueta-movil">Estado: </span><span id="estado-foro-dudas" class="estado-actividad">Pendiente</span></span>
                   <div class="acciones-fila">
                     <label class="opcion-casilla opcion-entregada" for="entregada-foro-dudas"><input type="checkbox" id="entregada-foro-dudas" aria-describedby="nombre-foro-dudas"> Entregada</label>
                     <a class="boton-app boton-secundario" href="curso.html">Ver curso</a>
