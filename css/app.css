@@ -45,6 +45,16 @@ html {
   padding: 32px 16px 24px 16px;
 }
 
+/* En pantallas bajas (celular horizontal, laptop con zoom) el menú lateral es más alto que la
+   ventana y, fijo, dejaría el perfil cortado hasta el final de la página. Ahí se desactiva la
+   excepción sticky y el menú se desplaza con la página. Solo afecta a .lateral-contenido:
+   .lateral, la barra inferior móvil, sigue fija */
+@media screen and (max-height: 500px) {
+  .lateral-contenido {
+    position: static;
+  }
+}
+
 .area {
   flex: 1;
   min-width: 0;

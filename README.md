@@ -455,6 +455,7 @@ Las condiciones se revisan en este orden:
 | `a` con `target="_blank"` hacia el reglamento (Ver regla) | app/curso.html | HTML5 Foundation |
 
 - **Navegación fija:** `position: sticky; top: 0;` en el contenido de la columna lateral (web) y `position: sticky; bottom: 0;` en la barra inferior (móvil). En `html`, `scroll-padding-top: 8px` y, en móvil, `scroll-padding-bottom: 80px` (72 px de barra + 7 px del contorno de foco, redondeado), para que el elemento con foco no quede debajo de la barra.
+  - **Pantallas bajas:** con `@media screen and (max-height: 500px)`, `.lateral-contenido` pasa a `position: static`. En un celular en horizontal (874 × 402) o una laptop con zoom, el menú lateral es más alto que la ventana y, fijo, dejaba la tarjeta del perfil cortada hasta llegar al final de la página; así se desplaza con ella. Es la misma técnica de `@media` de la lista, aplicada al alto, y solo desactiva la excepción sticky. No toca `.lateral`: la barra inferior móvil sigue fija.
 - **`Number()`** (excepción mínima): convierte en número el texto de los pesos (`js/registrar-curso.js`), de las notas (`js/registrar-nota.js` y `js/simulacion.js`) y del año, el mes y el día de la fecha de entrega (`js/registrar-actividad.js`).
 - **`toLocaleString('es', ...)`** (excepción mínima, en `formatearDecimal`): muestra las cifras calculadas con coma (14,2). Se usa `'es'` y no `'es-PE'` porque, en Chrome, `'es-PE'` da "14.2", ya que los datos de idioma de Perú usan punto decimal.
 - **`display: none`** (excepción mínima):
