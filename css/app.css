@@ -1094,25 +1094,39 @@ select.campo {
   margin-right: 24px;
 }
 
-/* Dos columnas que pasan a dos filas cuando la lateral no entra (Detalle de curso a 801 px).
-   Ancho base: 480 px la principal y 390 px la lateral. La principal se queda con casi todo
-   el espacio sobrante (flex 1000 contra 1), así que en web ancha se ve como antes; cuando
-   la lateral baja, ocupa toda la fila. El margen negativo del contenedor compensa el
-   margen de 24 px de cada columna, para que ninguna quede corrida al pasar abajo */
+/* Dos columnas que pasan a dos filas cuando no entran (a 801 px, por ejemplo), sin otro
+   punto de quiebre. Sirve para las dos parejas de columnas: .columna-ancha + .columna-lado
+   (Detalle de curso, Faltas, Simulación) y .columna-principal + .columna-secundaria (Inicio),
+   y para el formulario de Simulación (.columna-formulario).
+   - Anchos base con flex: 480 px la columna principal, 390 px la lateral y 560 px el formulario.
+   - La principal se queda con casi todo el espacio sobrante (flex 1000 contra 1), así que en
+     web ancha las columnas miden lo mismo que antes. La que pasa abajo ocupa toda la fila.
+   - Cada columna lleva 24 px de margen a la izquierda y abajo, y el contenedor los compensa
+     con -24 px: en una fila queda el mismo espacio entre columnas que antes, y al pasar abajo
+     ninguna queda corrida y hay 24 px entre filas. El margen va abajo y no arriba para no
+     chocar con el margen superior de .fila-separada (Faltas) */
 .columnas-ajustables {
   flex-wrap: wrap;
-  margin: -24px 0 0 -24px;
+  margin: 0 0 -24px -24px;
 }
 
-.columnas-ajustables .columna-ancha {
+.columnas-ajustables .columna-ancha,
+.columnas-ajustables .columna-principal {
   flex: 1000 1 480px;
-  margin: 24px 0 0 24px;
+  margin: 0 0 24px 24px;
 }
 
-.columnas-ajustables .columna-lado {
+.columnas-ajustables .columna-lado,
+.columnas-ajustables .columna-secundaria {
   flex: 1 1 390px;
   width: auto;
-  margin: 24px 0 0 24px;
+  margin: 0 0 24px 24px;
+}
+
+.columnas-ajustables .columna-formulario {
+  flex: 1 1 560px;
+  width: auto;
+  margin: 0 0 24px 24px;
 }
 
 /* ---------- Tabla que en móvil es lista ---------- */
@@ -1942,11 +1956,13 @@ select.campo {
     margin-top: 16px;
   }
 
+  /* Columnas ajustables: en móvil vuelven a la columna única de siempre */
   .columnas-ajustables {
     margin: 0;
   }
 
-  .columnas-ajustables .columna-ancha {
+  .columnas-ajustables .columna-ancha,
+  .columnas-ajustables .columna-principal {
     flex: 1;
     margin: 0;
   }
@@ -1954,6 +1970,16 @@ select.campo {
   .columnas-ajustables .columna-lado {
     flex: 0 1 auto;
     margin: 16px 0 16px 0;
+  }
+
+  .columnas-ajustables .columna-secundaria {
+    flex: 0 1 auto;
+    margin: 0;
+  }
+
+  .columnas-ajustables .columna-formulario {
+    flex: 0 1 auto;
+    margin: 0 0 16px 0;
   }
 
   .fila-separada {
